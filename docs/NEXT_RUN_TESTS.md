@@ -82,6 +82,20 @@ against its Run 13 baseline.
 | B28 | `production_attempt_goal_count` vs funnel `producer_ran` | 1,275 vs 164 (different units) | same order |
 | B12 | `[host] suspended` lines for gaps > 60 s; affect/staleness by seconds | — | every gap logged and credited |
 
+**Learning contract (F1/F2 of `analysis/2026-10-17-cognitive-learning-investigation/`,
+fixed 2026-11-02 — Ric: "Fix F1/F2 first")**
+
+| # | Observable | Before | Pass |
+|---|---|---|---|
+| F1 | goal-weighted cognition reward on a cycle that did not advance the goal | pulled toward 0.5 (0.32 → 0.668; −0.1 → +0.26) | equals its base reward |
+| F1 | `assess_goal_progress` EMA with a goal committed | rewarded as pursuit (+0.3) | no higher than other non-advancing cognition |
+| F2 | `cognition_history` deliberate rows whose reward is the previous pick's | every row | 0 — each row's reward is its own (`executed` names an override) |
+| F2 | reward-engine / EMA key on override cycles | the selector's pick | the function that ran |
+
+Both are unit-tested (`tests/brain/test_learning_contract_f1_f2.py`); a live life is
+what shows whether honest rewards change selection. Expect reward EMAs to sit lower
+than Run 13's — that is the point, not a regression.
+
 **Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
 and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
 distinct questions, structured reuse ≥ 1, an answer cited later).

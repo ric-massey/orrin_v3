@@ -84,6 +84,15 @@ Small, mostly independent fixes from the Run 13 live deep read
   refractories and the saturation tripwire still count cycles.
 - **B4 residue:** proper-noun page titles ("High Road", "Once More Round") still pass the
   cleaner; they read as ordinary names.
+- **F1/F2 learning-contract fixes (2026-11-02), ahead of Run 14.** From the read-only
+  investigation `analysis/2026-10-17-cognitive-learning-investigation/REPORT.md`:
+  goal progress now credits only consequential action, and as a shift around neutral
+  (an unrelated or failed call keeps its own reward); every learner fed by think()'s
+  finalizer is keyed on the function that actually ran, and cognition history writes a
+  row once that row's own reward is known. Rows added to the Run 14 gate. Still open
+  from that report: F3 (signal→function map is a recency selector), F4/F12 (citation
+  is not decision change), attention learning and rule verification in the same
+  finalizer still score the previous function's reward against this cycle's context.
 - **Before Run 14** (not done): ~2k-cycle smoke life for the cluster 1–2 observables, hard
   reset + restore the two seeds, launch with the staged band (build brief §3).
 

@@ -149,6 +149,11 @@ def finalize_cycle(context: Context, result: Any, reward: Any, affect_state: Any
         else result.get("action", {}).get("type") if isinstance(result, dict) and "action" in result
         else ""
     ) or ""
+    # F2: a setpoint override can run a different function than think() picked;
+    # plasticity, drives and the reward key below must name the one that ran.
+    _ran = context.get("_step_outcome")
+    if isinstance(_ran, dict) and _ran.get("fn") and _ran.get("cycle") == context.get("_cycle_index"):
+        _cycle_fn = str(_ran["fn"])
     # Expose the chosen function so finalize.py's outward reward scorer can read it.
     context["last_function_chosen"] = _cycle_fn
 

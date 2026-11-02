@@ -41,7 +41,8 @@ def shape_cognition_reward(
     _status_r = status_r
     _is_failure = is_failure
 
-    # Blend: env-delta (40%) + status (20%) + emotional delta (40%).
+    # Blend: env-delta (36%) + status (24%) + emotional delta (40%) — 0.6/0.4
+    # inside the 60% blend_reward gives the non-affect side.
     # signal_delta_reward captures how the function actually moved
     # Orrin's internal state — the reward signal the bandit was missing.
     _emo_r = signal_delta_reward(_emo_pre, _emo_post)
@@ -64,9 +65,14 @@ def shape_cognition_reward(
     # Apply goal-weighted reward on the cognition path, matching
     # the action path — so the bandit learns that cognition which
     # doesn't advance the committed goal is worth less.
+    # F1 (2026-10-17): "acted" is the consequential-action flag that
+    # mark_consequential_cognition set for THIS call (milestone ticked, env
+    # changed, healthy info gain) — not `not _is_failure`, which credited any
+    # call that merely returned as goal progress.
     try:
         from brain.cognition.planning.goal_progress import goal_weighted_reward as _gwr_cog
-        reward = _gwr_cog(base_reward, context, action_was_taken=not _is_failure, fn_name=fn_name)
+        _advanced = (not _is_failure) and bool(context.get("_consequential_cognition_this_cycle"))
+        reward = _gwr_cog(base_reward, context, action_was_taken=_advanced, fn_name=fn_name)
     except Exception:
         reward = base_reward
     # AR4 (audit R1): making pays per attempt. The per-cycle gradient favored

@@ -107,8 +107,19 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # the model to rate its own output text.  ORRIN_loop.py sets
     # context["_step_delta_reward"] after each cognition call using env_snapshot.
     # Finalize reads it here to fire the reward_signal signal; then clears the key.
+    #
+    # F2 (2026-10-17): this runs inside think(), BEFORE the loop executes
+    # `next_function`, so the reward here belongs to the function executed LAST
+    # cycle. The step outcome names that function; everything below that learns
+    # from this reward is keyed on it, never on `next_function`.
+    from brain.cognition.action_accounting import take_step_outcome
+    _outcome = take_step_outcome(context)
+    _outcome_fn = _outcome["fn"] if _outcome else None
+    _judged_fn = _outcome_fn or str(context.get("last_function_chosen") or "")
     _delta_r = context.pop("_step_delta_reward", None)
-    if _delta_r is not None:
+    if _outcome is not None:
+        actual_fb = float(_outcome["reward"])
+    elif _delta_r is not None:
         actual_fb = float(_delta_r)
     else:
         # Fallback: rule-based satisfaction when ORRIN_loop didn't set a delta.
@@ -122,9 +133,11 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # toward neutral so the bandit/EMA can't learn "always pick reflection".
     try:
         from brain.think.think_utils.select_function import _DELIBERATION_FNS
+        _judged_produced = (bool(_outcome.get("produced")) if _outcome
+                            else cycle_produced_goal_action(context))
         if (not is_agentic
-                and next_function in _DELIBERATION_FNS
-                and not cycle_produced_goal_action(context)
+                and _judged_fn in _DELIBERATION_FNS
+                and not _judged_produced
                 and actual_fb > 0.4):
             actual_fb = 0.4 + (actual_fb - 0.4) * 0.5
     except Exception as _e:
@@ -135,7 +148,7 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
     # function so each function learns its own expectation.
     try:
         from brain.control_signals.reward_signals.reward_engine import submit_reward as _submit_reward
-        _act_key = str(context.get("last_function_chosen") or "cycle")
+        _act_key = _judged_fn or "cycle"
         # R10-8 / F-LN8: zero-with-prejudice for gate-refused actions (the seam
         # lives in realized_reward_with_prejudice so the harness can prove it).
         actual_fb = realized_reward_with_prejudice(_act_key, actual_fb)
@@ -183,6 +196,15 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         record_failure("finalize.finalize_cycle.4", _e)
         _reward(context, signal="reward_signal", actual=actual_fb, expected=0.5, effort=0.5,
                 mode="phasic", source="env_delta")
+
+    # Emotion → function association (moved here from think(), F2): reinforce the
+    # affect the executed function was CHOSEN under with that function's reward.
+    if _outcome and _outcome.get("dom_emo"):
+        try:
+            from brain.control_signals.signal_learning import update_signal_function_map
+            update_signal_function_map(_outcome["dom_emo"], _outcome_fn, reward_signal=actual_fb)
+        except Exception as _e:
+            record_failure("finalize.signal_function_map", _e)
 
     # Attention value learning: sources that were active this cycle get credit
     # or penalty based on whether the cycle produced high reward.
@@ -468,17 +490,30 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
             k: v for k, v in reason.items()
             if k not in _REASON_STRIP
         }
-    cognition_log.append({
+    # F2: an entry is written once its choice has run and been rewarded. The
+    # pick made now waits on context until next cycle's finalize, which knows
+    # what it earned; before, each entry paired the new pick with the previous
+    # function's reward, and episode replay learned from those pairs.
+    _pending = context.pop("_pending_choice_entry", None)
+    if isinstance(_pending, dict) and _pending.get("choice"):
+        _pending["reward"] = round(float(actual_fb), 4)
+        if _outcome is None:
+            _pending["reward_source"] = "satisfaction"  # nothing reported executing it
+        elif _outcome_fn != _pending.get("choice"):
+            _pending["executed"] = _outcome_fn  # an override ran something else
+        _pending["is_agentic"] = bool(_pending.get("is_agentic")) or bool(
+            _outcome and _outcome.get("produced"))
+        cognition_log.append(_pending)
+    context["_pending_choice_entry"] = {
         "choice": next_function,
         "reason": _reason_slim,
         "timestamp": now_iso_z(),
-        "reward": round(float(actual_fb), 4),
         "is_agentic": bool(is_agentic),
         # Lane tag (Gap 3): finalize records think()'s pick — always the
         # deliberate (conscious-slot) lane. The executive lane's advances are
         # tracked on its own summary/queue, not in this history.
         "lane": "deliberate",
-    })
+    }
     cognition_log = cognition_log[-500:]  # cap to prevent unbounded growth
     save_json(COGNITION_HISTORY_FILE, cognition_log)
 
@@ -498,7 +533,8 @@ def finalize_cycle(context, user_input, next_function, reason, speaker):
         "satisfaction": satisfaction,
         "recent_picks": context.get("recent_picks", []),  # <-- persisted for transparency
     })
-    log_private(f"Cognition log now has {len(cognition_log)} entries. Last: {cognition_log[-1]}")
+    if cognition_log:
+        log_private(f"Cognition log now has {len(cognition_log)} entries. Last: {cognition_log[-1]}")
 
     # === Outcome-driven Brain: Per-tick decision record ===
     try:

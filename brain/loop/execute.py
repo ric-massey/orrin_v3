@@ -436,8 +436,8 @@ def execute_cognition_function(
 
             if _noop:
                 reward = 0.0
-            # Expose for finalize.py's reward_signal signal.
-            context["_step_delta_reward"] = reward
+            context["_executed_fn"] = fn_name  # F2: what ran (post-override) — the loop's step outcome
+            context["_step_delta_reward"] = reward  # for finalize.py's reward_signal signal
             # Feed env-delta reward back into the depth bandit when
             # pursue_committed_goal ran this cycle (it stashes its chosen depth).
             _pg_depth = context.pop("_pursue_goal_depth", None)

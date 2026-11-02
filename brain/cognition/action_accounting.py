@@ -74,3 +74,36 @@ def reset_cycle_action_flags(context: Dict[str, Any]) -> None:
     context.pop("_effect_rows_this_cycle", None)
     context.pop("_action_kind", None)
     context.pop("_verified_artifact_this_cycle", None)
+
+
+def record_step_outcome(context: Dict[str, Any], fn_name: str, reward: Any) -> None:
+    """F2 (learning investigation, 2026-10-17): stamp what was EXECUTED this cycle
+    with the reward it earned, so learners never pair one function's outcome with
+    another function's name.
+
+    think()'s finalizer runs before the loop dispatches the function it picked, so
+    the outcome it consumes is the previous cycle's. It used to file that reward
+    under the NEW pick (cognition history, replay, the deliberation discount) and
+    under `last_function_chosen`, which is the selector's pick even when a
+    setpoint override ran something else. This record names the function that
+    actually ran, the affect it was chosen under, and whether it advanced the goal.
+    """
+    try:
+        r = float(reward)
+    except (TypeError, ValueError):
+        return
+    if not fn_name:
+        return
+    context["_step_outcome"] = {
+        "fn": str(fn_name),
+        "reward": r,
+        "dom_emo": context.get("_selection_dom_emo"),
+        "produced": cycle_produced_goal_action(context),
+        "cycle": context.get("_cycle_index"),
+    }
+
+
+def take_step_outcome(context: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Pop the last executed step's outcome (see record_step_outcome)."""
+    out = context.pop("_step_outcome", None)
+    return out if isinstance(out, dict) and out.get("fn") else None

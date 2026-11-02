@@ -15,9 +15,14 @@ from typing import Any, Dict
 
 
 # --- Adjustable weights (Orrin can modify these) ---
-_W_ACTION_TAKEN       = 0.40  # an action was actually executed this cycle
-_W_PURSUIT_FN         = 0.30  # pursue_committed_goal explicitly ran
-_W_GOAL_IN_WM         = 0.10  # per working-memory entry that mentions the goal (max 2)
+# F1 (learning investigation, 2026-10-17): every credit above the base now needs
+# the cycle to have ADVANCED the goal (`action_was_taken` — callers pass the
+# authoritative consequential-action flag, not "the call didn't fail"). Before,
+# an unrelated non-failing call scored 0.9 here, and naming the goal in working
+# memory or running assess_goal_progress paid without moving anything.
+_W_ACTION_TAKEN       = 0.40  # the cycle produced goal action (milestone, env change, info gain)
+_W_PURSUIT_FN         = 0.30  # ...and it was pursue_committed_goal that produced it
+_W_GOAL_IN_WM         = 0.10  # ...and working memory is on the goal (per entry, max 2)
 _W_STALL_PENALTY      = 0.20  # subtracted when action_debt is high
 _STALL_THRESHOLD      = 3     # debt level at which stalling penalty kicks in
 # _BASE_SCORE matches the "no goal → 0.5" neutral return so that having a goal
@@ -38,10 +43,11 @@ def compute_goal_progress(
     When no goal is active, returns 0.5 (neutral — don't penalize idle cycles).
 
     Rules (Orrin can inspect and revise these):
-      +0.10  base credit for being active while a goal exists
-      +0.40  an action was executed (action_debt resets to 0)
-      +0.30  pursue_committed_goal ran this cycle (generated a concrete next step)
-      +0.10  each working-memory entry in the last 5 that names the goal (max 2)
+       0.50  base: a goal exists (neutral — the same as no goal)
+      +0.40  the cycle produced goal action (consequential, not merely non-failing)
+      +0.30  pursue_committed_goal is what produced it
+      +0.10  each working-memory entry in the last 5 that names the goal (max 2),
+             only on a cycle that produced goal action
       -0.20  stalling: action_debt >= _STALL_THRESHOLD cycles without acting
     """
     goal = bound_goal(context)
@@ -55,13 +61,16 @@ def compute_goal_progress(
     if action_was_taken:
         score += _W_ACTION_TAKEN
 
-    # Credit for actively pursuing the goal via the dedicated function
-    if fn_name in ("pursue_committed_goal", "assess_goal_progress"):
+    # Credit for pursuing the goal via the dedicated function — when the pursuit
+    # produced something. assess_goal_progress is no longer here: assessing always
+    # "succeeds" and never advances the goal (the BEHAVIOR_FIX_PLAN 2.1 rut).
+    if action_was_taken and fn_name == "pursue_committed_goal":
         score += _W_PURSUIT_FN
 
-    # Credit for working-memory entries that reference the goal.
+    # Credit for working-memory entries that reference the goal, on a cycle that
+    # advanced it. Talking about the goal without moving it is not progress.
     # Uses word-level matching so "writing a poem" matches goal "write a poem".
-    if goal_title:
+    if goal_title and action_was_taken:
         _stop = {"a", "an", "the", "is", "to", "for", "in", "of", "and", "or", "my"}
         _goal_words = {w for w in goal_title.split() if w not in _stop and len(w) > 2}
         wm = context.get("working_memory") or []
@@ -87,20 +96,24 @@ def goal_weighted_reward(
     goal_weight: float = 0.60,
 ) -> float:
     """
-    Blend base reward with goal progress when a committed goal is active.
+    Adjust base reward by goal progress when a committed goal is active.
 
     When a goal is active:
-        final = (1 - goal_weight) * base_reward + goal_weight * goal_progress
+        final = base_reward + goal_weight * (goal_progress - 0.5)
     When no goal is active:
         final = base_reward (unchanged)
 
-    goal_weight=0.60 means 60% of the reward is determined by whether the
-    cycle actually moved toward the goal, 40% by the function's own quality.
-    This creates a strong incentive to stay goal-directed.
+    Progress is a shift around neutral, not a blend. F1 (2026-10-17): the old
+    blend, (1 - w) * base + w * progress, pulled every reward toward the
+    progress score, so a failure's -0.1 came out at +0.26 and an unrelated
+    0.32 at 0.668. Now a cycle that neither advanced nor stalled the goal
+    keeps its own reward and sign; advancing it adds up to +0.30, stalling
+    takes 0.18 off. Clamped to [-1, 1] like the no-goal path, which already
+    passes negative rewards through to the bandit.
     """
     if not (bound_goal(context) or {}).get("title"):
         return base_reward
 
     gp = compute_goal_progress(context, action_was_taken=action_was_taken, fn_name=fn_name)
-    blended = (1.0 - goal_weight) * base_reward + goal_weight * gp
-    return max(0.0, min(1.0, blended))
+    shifted = base_reward + goal_weight * (gp - 0.5)
+    return max(-1.0, min(1.0, shifted))

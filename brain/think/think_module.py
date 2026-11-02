@@ -24,7 +24,6 @@ from brain.think.thought_stream import emit_thought
 from brain.behavior.speak import OrrinSpeaker
 from brain.cognition.self_state.relationships import update_relationship_model
 from brain.cognition.self_state.self_model_conflicts import update_self_model
-from brain.control_signals.signal_learning import update_signal_function_map
 
 from brain.paths import (
     SELF_MODEL_FILE, LONG_MEMORY_FILE, RELATIONSHIPS_FILE,
@@ -370,17 +369,14 @@ def think(context: Dict[str, Any]) -> Dict[str, Any]:
         except Exception as _ne:
             record_failure("think_module.think.narrate", _ne)
 
-        # Link dominant emotion → function with last cycle's actual reward as signal.
-        # Previously called without reward_signal so it always incremented +1.0 —
-        # making it a pure frequency counter, not a learner. Using context["last_reward"]
-        # (set by finalize_cycle at end of previous cycle) gives a real outcome signal.
+        # Link dominant emotion → function. F2 (2026-10-17): this used to update
+        # (today's emotion, today's pick) with context["last_reward"] — which, at
+        # this point in the cycle, is the reward of the function executed TWO
+        # cycles ago. Now the emotion is stashed with the pick, execution carries
+        # it on the step outcome, and finalize_cycle reinforces the pair once the
+        # function that ran has its own reward.
         dom_emo = dominant_signal(affect_state)
-        if dom_emo:
-            try:
-                _last_reward = float(context.get("last_reward") or 0.5)
-                update_signal_function_map(dom_emo, fn_name, reward_signal=_last_reward)
-            except Exception as _e:
-                record_failure("think_module.think.8", _e)
+        context["_selection_dom_emo"] = dom_emo or None
 
         # === 7) Conflict-gated deliberation (Fix 3; Botvinick et al. 2001) =======
         # Default stance is unchanged: the LLM is a TOOL, not a background engine —

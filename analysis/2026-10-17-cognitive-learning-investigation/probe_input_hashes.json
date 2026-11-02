@@ -1,0 +1,13 @@
+{
+  "brain/control_signals/signal_learning.py": "fbb0e23acd271a03b7a91c235c4d666dcfd7818d79af177837ab461167808ca8",
+  "brain/symbolic/rule_verifier.py": "d397cbbfc6832db98398142d88eebc3a26cba828d16cbbe3bcd594b22f46c997",
+  "brain/cognition/planning/goal_progress.py": "5827a2cb6bcc7fa409ac09c306f4d445b606c47bfeec8e4c2a7af70ce9e1e562",
+  "goals/handlers/characterize.py": "25bdb601c6728ba68b31cae4dc9563d41a79390fdc6ddb52e7e52faf48c5c2f8",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-10-06-run/data/resource_history.jsonl": "d2023f26fcc26c4aac440d31760e94bcc2cf731dcedf21ff45acb94aaa5c3f93",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-10-06-run/goals_daemon/goals/artifacts/g_8defcfaea8/claims.json": "ad7340e89e5ef637a6ff368338b18c2651cd0149545129ac005d28d313a59704",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-10-06-run/goals_daemon/goals/artifacts/g_b365f032d2/claims.json": "c9c878264b908effb7584e0e9ca71409e3147879f3606cd69c70222e3f05ccaf",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-10-06-run/goals_daemon/goals/artifacts/g_d4163f89bf/claims.json": "4d920c4c40842766382c1dbcfc259d39c80d8be53d81885b012e91788606fb68",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-17-run/data_snapshot_2026-06-17.zip": "33b38642924db20bcb9fb93e6b2c519632e64de94e60cc70643d0d5a37445612",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-18-run/data_snapshot_2026-06-18.zip": "c33f25b8b784999d4f349684dfde22552a2cdcefb499758a7abb87d9b0c671e4",
+  "docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-06-25-run/data_snapshot_2026-06-25.zip": "fc7fdd473c96f3b9c4faf69cf32e1d23556a3117c8231fa21b42cde6ab50a0fa"
+}

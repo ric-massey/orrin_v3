@@ -1,0 +1,422 @@
+{
+  "signal_association": {
+    "before": {
+      "drive": {
+        "historically_good": 0.5,
+        "historically_bad": 0.5
+      }
+    },
+    "negative_reward_result": {
+      "failed_action": 0.1
+    },
+    "state_after_negative": {
+      "drive": {
+        "failed_action": 0.1
+      }
+    },
+    "next_zero_reward_result": {
+      "next_action": 0.1
+    }
+  },
+  "rule_verifier": {
+    "first": [
+      "old_rule"
+    ],
+    "second": [
+      "old_rule"
+    ],
+    "update_requests": [
+      [
+        "old_rule",
+        0.025,
+        "reward"
+      ],
+      [
+        "old_rule",
+        0.025,
+        "reward"
+      ]
+    ],
+    "note": "Dependency-stubbed matching probe; source separately inspected for WAL consumption."
+  },
+  "goal_reward": {
+    "ordinary_nonfailure_no_evidence_gp": 0.9,
+    "ordinary_nonfailure_base_032": 0.668,
+    "failure_base_minus_01": 0.26,
+    "note": "Goal-weighting stage only; final shaping and explicit-noop override may alter these numbers."
+  },
+  "characterize_telemetry": [
+    {
+      "id": "g_8defcfaea8",
+      "prediction": {
+        "claim": "My memory use (RSS) rises after read_a_book runs",
+        "checkable_against": "resource_history:rss_mb:last_fn",
+        "confidence": 0.6,
+        "resolved": true,
+        "correct": true,
+        "driver": "read_a_book",
+        "made_at_ts": 1791323702.5,
+        "hypothesized_at": 1791323704.960692,
+        "train": {
+          "driver": "read_a_book",
+          "n": 120,
+          "mean": 74.1325,
+          "base": 0.2805
+        },
+        "test": {
+          "n": 10,
+          "mean": 9.14,
+          "base": 0.4631,
+          "correct": true
+        },
+        "outcome": "held out of sample: mean +9.14 after read_a_book (n=10) vs baseline +0.4631"
+      },
+      "train_rows_available": 2754,
+      "train_driver_recomputed": [
+        120,
+        74.1325
+      ],
+      "train_baseline_recomputed": 0.2805303305484925,
+      "fresh_rows_available": 12638,
+      "matching_fresh_prefixes": [
+        {
+          "prefix_rows": 1173,
+          "last_ts": 1791327440.3
+        }
+      ]
+    },
+    {
+      "id": "g_b365f032d2",
+      "prediction": {
+        "claim": "My CPU load rises after generate_intrinsic_goals runs",
+        "checkable_against": "resource_history:cpu_util:last_fn",
+        "confidence": 0.6,
+        "resolved": true,
+        "correct": false,
+        "driver": "generate_intrinsic_goals",
+        "made_at_ts": 1791325509.6,
+        "hypothesized_at": 1791325512.653754,
+        "train": {
+          "driver": "generate_intrinsic_goals",
+          "n": 144,
+          "mean": 0.0382,
+          "base": 0.0003
+        },
+        "outcome": "inconclusive: generate_intrinsic_goals did not recur >= 10x in 4554 fresh samples"
+      },
+      "train_rows_available": 3347,
+      "train_driver_recomputed": [
+        144,
+        0.03815972222222222
+      ],
+      "train_baseline_recomputed": 0.0002797369994022714,
+      "fresh_rows_available": 12045
+    },
+    {
+      "id": "g_d4163f89bf",
+      "prediction": {
+        "claim": "My memory use (RSS) rises after read_a_book runs",
+        "checkable_against": "resource_history:rss_mb:last_fn",
+        "confidence": 0.6,
+        "resolved": true,
+        "correct": true,
+        "driver": "read_a_book",
+        "made_at_ts": 1791384296.4,
+        "hypothesized_at": 1791384302.27376,
+        "train": {
+          "driver": "read_a_book",
+          "n": 262,
+          "mean": 35.8844,
+          "base": 0.0551
+        },
+        "test": {
+          "n": 10,
+          "mean": 32.94,
+          "base": 0.0368,
+          "correct": true
+        },
+        "outcome": "held out of sample: mean +32.94 after read_a_book (n=10) vs baseline +0.0368"
+      },
+      "train_rows_available": 12446,
+      "train_driver_recomputed": [
+        262,
+        35.88435114503817
+      ],
+      "train_baseline_recomputed": 0.05505825632784251,
+      "fresh_rows_available": 2946,
+      "matching_fresh_prefixes": [
+        {
+          "prefix_rows": 1101,
+          "last_ts": 1791395302.0
+        }
+      ]
+    }
+  ],
+  "early_archives": {
+    "2026-06-17-run": {
+      "log_message_counts": {
+        "[consciousness] ignited:": 10707
+      },
+      "boot_stamps": [],
+      "duplicate_log_files_skipped": [
+        "brain/data/rotated/activity_log.2026-06-17T14-16-48.241340Z.txt"
+      ],
+      "unique_activity_files": 12,
+      "decision_stats": {
+        "recorded_count": 10707,
+        "top": [
+          [
+            "seek_novelty",
+            {
+              "count": 2616,
+              "total_reward": 791.0274123341871,
+              "avg_reward": 0.3023805093020593
+            }
+          ],
+          [
+            "generate_intrinsic_goals",
+            {
+              "count": 2580,
+              "total_reward": 821.1622480334845,
+              "avg_reward": 0.3182799410982498
+            }
+          ],
+          [
+            "look_outward",
+            {
+              "count": 1750,
+              "total_reward": 292.3587117864415,
+              "avg_reward": 0.1670621210208237
+            }
+          ],
+          [
+            "look_around",
+            {
+              "count": 805,
+              "total_reward": 152.0222152564451,
+              "avg_reward": 0.18884747236825478
+            }
+          ],
+          [
+            "search_own_files",
+            {
+              "count": 650,
+              "total_reward": 129.13734605244395,
+              "avg_reward": 0.198672840080683
+            }
+          ],
+          [
+            "research_topic",
+            {
+              "count": 623,
+              "total_reward": 315.84186254222254,
+              "avg_reward": 0.5069692817692175
+            }
+          ],
+          [
+            "search_files",
+            {
+              "count": 327,
+              "total_reward": 84.90723735111116,
+              "avg_reward": 0.25965516009514117
+            }
+          ],
+          [
+            "assess_goal_progress",
+            {
+              "count": 316,
+              "total_reward": 102.5071802666664,
+              "avg_reward": 0.32438981097046327
+            }
+          ]
+        ]
+      }
+    },
+    "2026-06-18-run": {
+      "log_message_counts": {
+        "[consciousness] ignited:": 11402
+      },
+      "boot_stamps": [],
+      "duplicate_log_files_skipped": [
+        "brain/data/rotated/activity_log.2026-06-18T19-22-39.622157Z.txt"
+      ],
+      "unique_activity_files": 15,
+      "decision_stats": {
+        "recorded_count": 11396,
+        "top": [
+          [
+            "generate_intrinsic_goals",
+            {
+              "count": 3768,
+              "total_reward": 958.7929167836822,
+              "avg_reward": 0.2544567188916354
+            }
+          ],
+          [
+            "look_around",
+            {
+              "count": 1499,
+              "total_reward": 262.64841714577534,
+              "avg_reward": 0.1752157552673618
+            }
+          ],
+          [
+            "look_outward",
+            {
+              "count": 1308,
+              "total_reward": 204.21139707999936,
+              "avg_reward": 0.1561249213149842
+            }
+          ],
+          [
+            "assess_goal_progress",
+            {
+              "count": 943,
+              "total_reward": 317.96416632497835,
+              "avg_reward": 0.3371836334305179
+            }
+          ],
+          [
+            "search_own_files",
+            {
+              "count": 829,
+              "total_reward": 145.74659633599902,
+              "avg_reward": 0.17581012827020387
+            }
+          ],
+          [
+            "seek_novelty",
+            {
+              "count": 607,
+              "total_reward": 92.91002643333296,
+              "avg_reward": 0.15306429395936236
+            }
+          ],
+          [
+            "research_topic",
+            {
+              "count": 540,
+              "total_reward": 291.7371228377779,
+              "avg_reward": 0.5402539311810702
+            }
+          ],
+          [
+            "search_files",
+            {
+              "count": 488,
+              "total_reward": 133.29189119999936,
+              "avg_reward": 0.2731391213114741
+            }
+          ]
+        ]
+      }
+    },
+    "2026-06-25-run": {
+      "log_message_counts": {
+        "[consciousness] ignited:": 17352
+      },
+      "boot_stamps": [],
+      "duplicate_log_files_skipped": [],
+      "unique_activity_files": 17,
+      "decision_stats": {
+        "recorded_count": 17352,
+        "top": [
+          [
+            "look_outward",
+            {
+              "count": 5082,
+              "total_reward": 1007.8683214670301,
+              "avg_reward": 0.19832119666805
+            }
+          ],
+          [
+            "generate_intrinsic_goals",
+            {
+              "count": 4392,
+              "total_reward": 2105.9913473660463,
+              "avg_reward": 0.47950622663161346
+            }
+          ],
+          [
+            "look_around",
+            {
+              "count": 3984,
+              "total_reward": 1040.554950543018,
+              "avg_reward": 0.2611834715218419
+            }
+          ],
+          [
+            "grep_files",
+            {
+              "count": 960,
+              "total_reward": 514.7755639753361,
+              "avg_reward": 0.5362245458076418
+            }
+          ],
+          [
+            "assess_goal_progress",
+            {
+              "count": 876,
+              "total_reward": 260.3719930453323,
+              "avg_reward": 0.29722830256316474
+            }
+          ],
+          [
+            "search_own_files",
+            {
+              "count": 493,
+              "total_reward": 170.05461448888747,
+              "avg_reward": 0.34493836610322004
+            }
+          ],
+          [
+            "research_topic",
+            {
+              "count": 339,
+              "total_reward": 204.489863010667,
+              "avg_reward": 0.6032149351347109
+            }
+          ],
+          [
+            "seek_novelty",
+            {
+              "count": 266,
+              "total_reward": 72.33752910555552,
+              "avg_reward": 0.2719455981411862
+            }
+          ]
+        ]
+      },
+      "production": {
+        "rows": 17352,
+        "first": [
+          1
+        ],
+        "last": [
+          17352
+        ],
+        "committed_counts": {
+          "null": 1322,
+          "intrinsic-2026-06-24T03:45:39.223857+00:00": 3,
+          "intrinsic-2026-06-24T04:27:49.425428+00:00": 1,
+          "intrinsic-2026-06-24T04:50:07.440054+00:00": 1,
+          "Open question: What would I explore if I had no consequences?": 65,
+          "g_94f4c814dc": 304,
+          "Open question: What question would make me most uncomfortable to answer honestly?": 115,
+          "Understand consciousness and subjective experience more deeply": 188,
+          "The causes of action_debt accumulates": 81,
+          "The causes of rich internal state with no environmental coupling": 14297,
+          "intrinsic-2026-06-25T03:32:35.697337+00:00": 117,
+          "Understand history of written language more deeply": 1,
+          "intrinsic-2026-06-25T03:40:54.594812+00:00": 1,
+          "Restore: Long-memory has 2001 entries (threshold: 1500). Consolidation needed \u2014 run_forgetting_cycle or run_rule_compres": 83,
+          "intrinsic-2026-06-25T03:46:05.874867+00:00": 150,
+          "Understand mathematics more deeply": 1,
+          "intrinsic-2026-06-25T03:54:26.008106+00:00": 1,
+          "Understand foundations of quantum mechanics more deeply": 488,
+          "intrinsic-2026-06-25T04:32:34.761504+00:00": 133
+        }
+      }
+    }
+  }
+}

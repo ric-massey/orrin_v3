@@ -1,0 +1,28 @@
+{
+  "source_baseline": "1c51dfb",
+  "input_hash_checks_passed": 351,
+  "linked_repository_files": 119,
+  "markdown_reports": {
+    "ARCHITECTURE.md": {
+      "words": 3101,
+      "bytes": 33833
+    },
+    "CHRONOLOGY.md": {
+      "words": 2533,
+      "bytes": 18330
+    },
+    "EXPERIMENTS.md": {
+      "words": 2595,
+      "bytes": 20239
+    },
+    "REPORT.md": {
+      "words": 7775,
+      "bytes": 64512
+    },
+    "README.md": {
+      "words": 228,
+      "bytes": 3060
+    }
+  },
+  "validation_scope": "Local links, referenced definitions, input byte preservation; not scientific peer review or runtime testing."
+}

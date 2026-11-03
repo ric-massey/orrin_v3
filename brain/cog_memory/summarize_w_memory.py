@@ -21,6 +21,25 @@ def summarize_and_promote_working_memory(memories: List[Dict[str, Any]]) -> None
     if not memories:
         return
 
+    # B3's self-log share, held at write time (2026-11-02). prune_long_memory
+    # enforces it only once the store is full, so smoke life 3's 429-row memory
+    # (never pruned) was 43 % working-memory summaries. Checked here, at the one
+    # writer of these summaries, rather than in update_long_memory, whose default
+    # event_type is also "summary" for any untyped write.
+    try:
+        from brain.cog_memory.long_memory import (
+            LONG_MEMORY_FILE, _SELF_LOG_EVENT_TYPES, _SELF_LOG_MAX_SHARE)
+        from brain.utils.json_utils import load_json
+        _ltm = load_json(LONG_MEMORY_FILE, default_type=list) or []
+        _n_self = sum(1 for m in _ltm if isinstance(m, dict)
+                      and m.get("event_type") in _SELF_LOG_EVENT_TYPES)
+        if _n_self + 1 > _SELF_LOG_MAX_SHARE * (len(_ltm) + 1):
+            log_private("[working_memory] Summary not promoted: self-log share at "
+                        f"{_SELF_LOG_MAX_SHARE:.0%} of long memory.")
+            return
+    except Exception as e:
+        log_error(f"summarize_and_promote_working_memory: share check failed: {e}")
+
     # Collect metadata
     referenced = [m for m in memories if m.get("referenced", 0) > 0]
     pins = [m for m in memories if m.get("pin", False)]

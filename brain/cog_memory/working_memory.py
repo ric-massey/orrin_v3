@@ -333,6 +333,12 @@ def update_working_memory(
         def _is_salient(m: dict) -> bool:
             if m.get("pin"):
                 return True
+            # Commentary on his own state is never promoted (2026-11-02): recall
+            # touches canned self-prompts constantly, so "referenced" made every
+            # shadow question salient. See brain/utils/self_commentary.py.
+            from brain.utils.self_commentary import is_self_commentary
+            if is_self_commentary(m):
+                return False
             if int(m.get("importance") or 1) >= 3:
                 return True
             if int(m.get("referenced") or 0) > 0:

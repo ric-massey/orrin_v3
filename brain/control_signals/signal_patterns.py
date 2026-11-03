@@ -60,43 +60,11 @@ def apply_wm_triggers_and_appraisal(
     # and uncertainty high. Skip this whole family of self-commentary so introspection
     # doesn't mechanically amplify the state it observes. Genuine stimuli (conscious-stream
     # chunks, perceptions, user input) are NOT in this set and are still appraised.
-    _SKIP_EVENT_TYPES = frozenset({
-        "oscillation_detected", "affect_cause", "dominant_affect",
-        "affect_analysis", "unexplained_affect_reflection",
-        "metacog_pattern", "affective_reflection", "shadow_dialogue",
-        "incubated_insight", "self_query",
-        # Decision logs ("Chose: X — {weights:{…}}") embed signal names as
-        # feature-weight keys, so keyword-detecting them spuriously fires those
-        # signals. A choice's affect is already accounted for via the reward/bandit
-        # channel, not by re-reading the log text.
-        "choice",
-    })
-
-    def _is_self_commentary(et: str) -> bool:
-        return (
-            et in _SKIP_EVENT_TYPES
-            or "affect" in et            # affect_cause, dominant_affect, affective_reflection, …
-            or "metacog" in et           # metacog_pattern, metacog_monitor, …
-            or et.endswith("_reflection")
-            or et.endswith("_dialogue")
-        )
-
-    # Machine-generated introspective markup. Orrin's symbolic dreams / metacog / causal
-    # self-model reasoning names his own affect signals as technical tokens
-    # ("… → 'uncertainty rises'", "[metacog/pattern] Cognitive rut…", "impasse_signal …").
-    # This text rides inside ordinary "chunk" (conscious-stream) entries, so the event_type
-    # filter above can't catch it — yet keyword-detecting it re-fires the named signal,
-    # reopening the self-reinforcing loop. Genuine felt stimuli (speech, perception, plain
-    # thoughts) carry none of these markers, so skip keyword appraisal when any are present.
-    _INTROSPECTIVE_MARKERS = (
-        "[sym_dream", "[metacog", "[emotion/cause]", "[incubation insight]",
-        "counterfactual:", "oscillation detected", "dominant affect", "dominant emotion",
-        "shadow question",
-        # Decision logs ("🧠 Chose: X — {…'multi-factor'…weights{…}}"). The weights
-        # dict lists every signal name as a key, so keyword detection spuriously fires
-        # whichever signals appear there. These ride inside plain "chunk" conscious-stream
-        # entries too, so match on the log signature, not the event_type.
-        "🧠 chose", "multi-factor",
+    # The event types and markup are shared with long memory (2026-11-02):
+    # brain/utils/self_commentary.py.
+    from brain.utils.self_commentary import (
+        is_self_commentary_type as _is_self_commentary,
+        INTROSPECTIVE_MARKERS as _INTROSPECTIVE_MARKERS,
     )
 
     # Per-emotion cap on how much this keyword-trigger pass can boost any single

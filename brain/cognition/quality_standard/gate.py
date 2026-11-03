@@ -72,7 +72,7 @@ def regression_smoke() -> Tuple[bool, str]:
     the predicate must PASS every exemplar and REJECT every anti-exemplar, each judged
     in isolation. Returns (ok, reason). On the P2 branch this is a SMOKE CHECK (a
     predicate-passing add can't fail it); it has real teeth only at P4."""
-    for p in _golden_files(paths.QUALITY_EXEMPLARS_DIR):
+    for p in [f for d in paths.exemplar_dirs() for f in _golden_files(d)]:
         try:
             v = assess_quality(p.read_text(encoding="utf-8"))
         except OSError as exc:
@@ -114,9 +114,9 @@ def writability_probe() -> Tuple[bool, Dict[str, Any]]:
     on success. Returns (ok, diagnostics). Run at boot — a dead promotion path
     must scream on cycle 1, not minute 13 in a log nobody reads — and reused by
     problem-refocus as the verified re-attempt for write-failure recovery (C2)."""
-    probe = paths.QUALITY_EXEMPLARS_DIR / f"_probe_{uuid.uuid4().hex[:8]}.tmp"
+    probe = paths.QUALITY_EXEMPLARS_WRITE_DIR / f"_probe_{uuid.uuid4().hex[:8]}.tmp"
     try:
-        paths.QUALITY_EXEMPLARS_DIR.mkdir(parents=True, exist_ok=True)
+        paths.QUALITY_EXEMPLARS_WRITE_DIR.mkdir(parents=True, exist_ok=True)
         probe.write_text("probe", encoding="utf-8")
         probe.unlink()
         return True, {}
@@ -125,7 +125,7 @@ def writability_probe() -> Tuple[bool, Dict[str, Any]]:
             probe.unlink()
         except OSError:
             pass
-        return False, _oserror_diagnostics(paths.QUALITY_EXEMPLARS_DIR, exc)
+        return False, _oserror_diagnostics(paths.QUALITY_EXEMPLARS_WRITE_DIR, exc)
 
 
 def _slug(text: str, content_hash: str) -> str:
@@ -148,7 +148,7 @@ def _is_near_duplicate(text: str) -> Optional[str]:
     target = _words(text)
     if not target:
         return None
-    for p in _golden_files(paths.QUALITY_EXEMPLARS_DIR):
+    for p in [f for d in paths.exemplar_dirs() for f in _golden_files(d)]:
         try:
             if _jaccard(target, _words(p.read_text(encoding="utf-8"))) >= _NEAR_DUP_SIM:
                 return p.name
@@ -254,16 +254,16 @@ def apply_pending_promotions() -> List[Dict[str, Any]]:
             continue
 
         slug = _slug(text, chash)
-        dest = paths.QUALITY_EXEMPLARS_DIR / f"{slug}.md"
+        dest = paths.QUALITY_EXEMPLARS_WRITE_DIR / f"{slug}.md"
         try:
-            paths.QUALITY_EXEMPLARS_DIR.mkdir(parents=True, exist_ok=True)
+            paths.QUALITY_EXEMPLARS_WRITE_DIR.mkdir(parents=True, exist_ok=True)
             if dest.exists():  # extremely unlikely (hash-suffixed); treat as dup
                 revisions.mark(cid, "rejected", reason="exemplar_path_exists")
                 changed.append(revisions.get(cid))
                 continue
             dest.write_text(text if text.endswith("\n") else text + "\n", encoding="utf-8")
         except OSError as exc:
-            diag = _oserror_diagnostics(paths.QUALITY_EXEMPLARS_DIR, exc)
+            diag = _oserror_diagnostics(paths.QUALITY_EXEMPLARS_WRITE_DIR, exc)
             record_failure("quality_standard.gate.write_exemplar", exc)
             revisions.mark(cid, "pending", apply_error=str(exc), diagnostics=diag)
             log_activity(f"[quality_standard] write_exemplar failed for {cid} — "

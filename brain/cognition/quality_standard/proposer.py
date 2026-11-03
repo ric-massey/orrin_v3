@@ -109,12 +109,10 @@ def _is_near_duplicate_exemplar(text: str) -> bool:
     the gate would reject anyway; the proposer skips it up front (cheap word-set
     Jaccard; the gate re-checks before any write)."""
     try:
-        if not paths.QUALITY_EXEMPLARS_DIR.is_dir():
-            return False
         target = _words(text)
         if not target:
             return False
-        for p in paths.QUALITY_EXEMPLARS_DIR.iterdir():
+        for p in [f for d in paths.exemplar_dirs() if d.is_dir() for f in d.iterdir()]:
             if not p.is_file() or p.name.startswith("_") or p.name in ("README.md",):
                 continue
             try:
@@ -247,7 +245,7 @@ def propose_suspects(context: Optional[Dict[str, Any]] = None) -> List[Dict[str,
         record_failure("quality_standard.proposer.propose_suspects.import", exc)
         return appended
 
-    if not paths.QUALITY_EXEMPLARS_DIR.is_dir():
+    if not any(d.is_dir() for d in paths.exemplar_dirs()):
         return appended
 
     anti_words: List[set] = []
@@ -265,7 +263,7 @@ def propose_suspects(context: Optional[Dict[str, Any]] = None) -> List[Dict[str,
         if r.get("kind") == "suspect" and r.get("status") in ("pending", "applied")
     }
 
-    for p in sorted(paths.QUALITY_EXEMPLARS_DIR.iterdir()):
+    for p in sorted(f for d in paths.exemplar_dirs() if d.is_dir() for f in d.iterdir()):
         if not p.is_file() or p.name.startswith("_") or p.name == "README.md":
             continue
         path_str = str(p)

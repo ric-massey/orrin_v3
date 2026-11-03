@@ -36,6 +36,11 @@ even when the run "looks clean."
   `aspiration_scoreboard.json`, `failures.jsonl`, `habituation.json`
 - `activity_log.txt` **plus all of `rotated/`** (the life usually spans 6–9
   rotated files; since B22 they are `*.txt.gz` — read with `zcat`/`gzip.open`)
+- **Promoted exemplars**: a life run in place writes them into
+  `tests/fixtures/quality_golden/exemplars/` (untracked until the capture commit —
+  review each one, they become the standard); a life with `ORRIN_DATA_DIR` set writes
+  them to `<data dir>/promoted_exemplars/`. Never `git add -A` after a life without
+  looking: smoke life 4's junk note was swept into a commit that way (2026-11-02).
 - `brain/data/tracked_work/` (the manuscripts `compose_section` writes; Run 13's
   75 credited babble sections were found only on the second pass)
 - Check **private-log retention** before scoring anything from it: Run 13's rotation

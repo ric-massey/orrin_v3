@@ -196,6 +196,25 @@ EFFECT_ARTIFACTS_DIR = DATA_DIR / "effect_artifacts"
 QUALITY_GOLDEN_DIR     = _REPO_ROOT / "tests" / "fixtures" / "quality_golden"
 QUALITY_EXEMPLARS_DIR  = QUALITY_GOLDEN_DIR / "exemplars"
 QUALITY_ANTI_EXEMPLARS_DIR = QUALITY_GOLDEN_DIR / "anti_exemplars"
+# Where a life WRITES the exemplars it promotes (2026-11-02). A life run in place
+# promotes into the committed set above, and the capture commit reviews them. A life
+# whose data dir is isolated (ORRIN_DATA_DIR — a smoke life, the test suite) writes
+# beside its own data instead: smoke life 4 put an incubation-babble note into the
+# committed golden set from a scratch dir. ORRIN_EXEMPLARS_DIR overrides both.
+_env_exemplars = os.environ.get("ORRIN_EXEMPLARS_DIR")
+QUALITY_EXEMPLARS_WRITE_DIR = (Path(_env_exemplars).resolve() if _env_exemplars
+                               else DATA_DIR / "promoted_exemplars" if _env_data
+                               else QUALITY_EXEMPLARS_DIR)
+
+
+def exemplar_dirs() -> list:
+    """Every directory a reader should treat as the exemplar set: the committed set
+    plus this life's own promotions when they are written elsewhere. Read at call
+    time so a test's monkeypatch of either path is honoured."""
+    dirs = [QUALITY_EXEMPLARS_DIR]
+    if QUALITY_EXEMPLARS_WRITE_DIR != QUALITY_EXEMPLARS_DIR:
+        dirs.append(QUALITY_EXEMPLARS_WRITE_DIR)
+    return dirs
 
 # ===== Known persons (multi-person identity) =====
 KNOWN_PERSONS_FILE = DATA_DIR / "known_persons.json"

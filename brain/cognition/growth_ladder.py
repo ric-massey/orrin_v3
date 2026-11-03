@@ -27,7 +27,7 @@ import re
 import time
 from typing import Any, Dict, Optional, Set
 
-from brain.paths import DATA_DIR, QUALITY_EXEMPLARS_DIR
+from brain.paths import DATA_DIR
 from brain.utils.json_utils import load_json, save_json
 from brain.utils.failure_counter import record_failure
 from brain.utils.log import log_activity
@@ -165,8 +165,9 @@ def mastered_terms() -> Set[str]:
     except Exception as exc:
         record_failure("growth_ladder.mastered_terms.answers", exc)
     try:
-        if QUALITY_EXEMPLARS_DIR.is_dir():
-            for p in sorted(QUALITY_EXEMPLARS_DIR.glob("*.md"))[:40]:
+        from brain.paths import exemplar_dirs
+        if any(d.is_dir() for d in exemplar_dirs()):
+            for p in sorted(f for d in exemplar_dirs() if d.is_dir() for f in d.glob("*.md"))[:40]:
                 try:
                     terms |= _terms(p.read_text(encoding="utf-8")[:2000])
                 except OSError:

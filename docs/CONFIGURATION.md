@@ -45,6 +45,7 @@ Orrin reads many `ORRIN_*` variables; the full set is discoverable with
 | `ORRIN_METRICS` / `ORRIN_METRICS_PORT` | `0` / _(OS-assigned)_ | Set `ORRIN_METRICS=1` to start the Prometheus exporter (off by default). Port is OS-assigned unless pinned (the Docker stack pins `9100`). |
 | `ORRIN_CONTROL_TOKEN` | _(unset)_ | Require this token on the control endpoints (`/api/control/*`, e.g. the UI Stop button). The frontend reads `VITE_CONTROL_TOKEN`. Set it before exposing control beyond localhost. |
 | `ORRIN_DATA_DIR`, `ORRIN_GOALS_DIR`, `ORRIN_LOGS_DIR`, `ORRIN_REPO_ROOT`, `ORRIN_WORLD_ROOT` | _(repo-relative)_ | Relocate state trees — relevant to Docker volumes. |
+| `ORRIN_EXEMPLARS_DIR` | _(see note)_ | Where promoted quality exemplars are written. Default: the committed set (`tests/fixtures/quality_golden/exemplars/`) for a life run in place; `<ORRIN_DATA_DIR>/promoted_exemplars` when `ORRIN_DATA_DIR` is set, so an isolated life never edits the committed standard. Readers see both (`paths.exemplar_dirs()`). |
 
 ---
 

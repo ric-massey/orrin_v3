@@ -46,6 +46,7 @@ def _isolate(tmp_path, monkeypatch):
     ex.mkdir()
     anti.mkdir()
     monkeypatch.setattr(paths, "QUALITY_EXEMPLARS_DIR", ex)
+    monkeypatch.setattr(paths, "QUALITY_EXEMPLARS_WRITE_DIR", ex)  # one set, as a life in place
     monkeypatch.setattr(paths, "QUALITY_ANTI_EXEMPLARS_DIR", anti)
     revisions.save([])              # empty candidate store
     effect_ledger.reset_for_tests()

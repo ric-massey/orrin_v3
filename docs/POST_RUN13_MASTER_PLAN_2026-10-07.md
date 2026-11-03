@@ -123,10 +123,12 @@ Small, mostly independent fixes from the Run 13 live deep read
   self-searches dedup despite their ids. Smoke 4 + replay: summaries 41 % → 0 %, world
   9.1 % → 21.0 %. The rest of the gap to 25 % is non-commentary self-bookkeeping —
   regret notes, unanswered questions, self-reviews, underperformer warnings — **Ric's call**
-  which belong (`NEXT_RUN_TESTS.md`, Memory fix + smoke life 4). **Found by smoke 4, not
-  fixed:** exemplar promotion writes into the committed golden set
-  (`tests/fixtures/quality_golden/exemplars/`) whatever `ORRIN_DATA_DIR` says, and B15's
-  veto let an incubation-babble note through (removed by hand).
+  which belong (`NEXT_RUN_TESTS.md`, Memory fix + smoke life 4). **Exemplar leak (fixed
+  same day, Ric: "Fix the exemplar leak"):** promotion wrote into the committed golden
+  set whatever `ORRIN_DATA_DIR` said, and the self-talk veto missed an incubation-babble
+  note because its tags were capitalised (`[Incubation]`, `[Chunk:`). An isolated life now
+  writes to `<data dir>/promoted_exemplars` (`paths.QUALITY_EXEMPLARS_WRITE_DIR`; readers
+  use `paths.exemplar_dirs()`); the named tags match in any case.
 - **Before Run 14:** smoke lives 3 and 4 done 2026-11-02 (`NEXT_RUN_TESTS.md`). Still to do: hard
   reset + restore the two seeds, launch with the staged band (build brief §3).
 

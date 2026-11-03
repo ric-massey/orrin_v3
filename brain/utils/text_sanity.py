@@ -160,10 +160,14 @@ def _truncate_plain(text: str, limit: int) -> str:
 # [I_model], [intrinsic_goal], [metacog/pattern], [sym_dream:analogy]) plus the
 # named organs. World tags ([research], [rss:…], [EXTERNAL/UNTRUSTED …]) are not
 # matched: they mark outside content.
+# The named tags match in any case (2026-11-02): "[Incubation]" and "[Chunk:" got an
+# incubation-babble note past the exemplar veto because only "[incubation" and
+# "[chunk:" were tags. The [a-z]+/ branch stays lowercase on purpose — case-blind it
+# would tag "[EXTERNAL/UNTRUSTED", the wrapper on every real research finding.
 INTERNAL_TAG_RE = re.compile(
-    r"\[(?:[A-Za-z]+_[A-Za-z_]+|[a-z]+/[a-z_]+|chunk:|metacog|will\]|incubation|"
+    r"\[(?:[A-Za-z]+_[A-Za-z_]+|[a-z]+/[a-z_]+|(?i:chunk:|metacog|will\]|incubation|"
     r"sym_dream|dream|autobiography|working_memory|announced|reflection|symbolic|"
-    r"epistemic|behavioral_adapt|knowledge_formation|consciousness|affect)")
+    r"epistemic|behavioral_adapt|knowledge_formation|consciousness|affect))")
 # His status lines and failure notices, and the offline research footer.
 STATUS_LINE_RE = re.compile(
     r"I've been running for|💔|Goal failed:|Offline synthesis fallback|"

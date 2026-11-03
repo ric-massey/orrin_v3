@@ -35,7 +35,18 @@ even when the run "looks clean."
   `commitment_signals.json`, `production_loop.jsonl`, `production_funnel.json`,
   `aspiration_scoreboard.json`, `failures.jsonl`, `habituation.json`
 - `activity_log.txt` **plus all of `rotated/`** (the life usually spans 6–9
-  rotated files)
+  rotated files; since B22 they are `*.txt.gz` — read with `zcat`/`gzip.open`)
+- **Promoted exemplars**: a life run in place writes them into
+  `tests/fixtures/quality_golden/exemplars/` (untracked until the capture commit —
+  review each one, they become the standard); a life with `ORRIN_DATA_DIR` set writes
+  them to `<data dir>/promoted_exemplars/`. Never `git add -A` after a life without
+  looking: smoke life 4's junk note was swept into a commit that way (2026-11-02).
+- `brain/data/tracked_work/` (the manuscripts `compose_section` writes; Run 13's
+  75 credited babble sections were found only on the second pass)
+- Check **private-log retention** before scoring anything from it: Run 13's rotation
+  kept only the last ~10 h of `private_thoughts` (breaker/inhibition lines live there).
+  From Run 14 (B22) rotated segments are gzipped and bounded at 100 MB compressed
+  per log, so the whole life should be present.
 - The **full `data/goals/` daemon tree** (WAL + state + snapshots +
   artifacts) — verify the copy with `diff -rq`. Run 8 lost this and the
   diagnosis had to mine the live WAL.
@@ -62,6 +73,13 @@ even when the run "looks clean."
   `last_error`; a "FAILED" goal with artifacts on disk means either the
   runner race or misfiled drive-by intake — distinguish them (check artifact
   topic + provenance vs the goal title).
+- **Never score an intermediate event as learning** (F12, 2026-11-02). Topic
+  recurrences (the old "citations" — overlap counted after the pick, F4), reuse
+  rows, ladder rungs, prediction-scored answers and artifact counts are reported
+  as what they are. A verdict says "learned", "improved" or "used what he knows"
+  only when the learning gate in `docs/NEXT_RUN_TESTS.md` (E5/E6/E9: frozen code,
+  matched control, held-out situations) passed; a life-to-life difference is
+  never that evidence, because the code changed between lives.
 - **Reuse rows**: verify real `cycle` + `metadata.path`, subject-token
   overlap with the citing goal, and whether the citing goal succeeded (Run 8:
   reuse was time-locked ≤250 ms before failures — always check).
@@ -122,3 +140,7 @@ even when the run "looks clean."
   observables** (what number moves, read from which store).
 - Update memory (`project_staging_runN_capture`) and the `MEMORY.md` index
   line when the verdict lands.
+- Post the verdict to the Orrin page: `scripts/site_update.py --kind "run result"
+  --publish`, in plain English for friends and family (what passed, what didn't,
+  what's next), `--href` to the verdict on GitHub. Push the repo first so the link
+  resolves.

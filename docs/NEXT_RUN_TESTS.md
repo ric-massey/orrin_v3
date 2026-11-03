@@ -101,6 +101,36 @@ All three are unit-tested (`tests/brain/test_learning_contract_f1_f2.py`,
 what shows whether honest rewards change selection. Expect reward EMAs to sit lower
 than Run 13's — that is the point, not a regression.
 
+**Smoke life 3 — 2026-11-02, build `4babf2f`, 2,000 cycles in 66 min, symbolic-only.**
+After F1–F4, answer use and the registry fix; run in scratch dirs (`ORRIN_DATA_DIR` /
+`ORRIN_STATE_DIR`), not `brain/data`, launched without `run_orrin.sh` so the site status card
+stayed off; stopped by SIGTERM at 2,000, clean exit, no tracebacks. Scored with
+`scripts/score_life.py`.
+
+| Row | Smoke 3 | Pass | |
+|---|---|---|---|
+| B11 characterize share of daemon goal rows | 0.0 % | < 5 % | ✅ |
+| B11 orphan-RUNNING repairs | 0 | 0 | ✅ |
+| B20 "Answer:" goals failed unreachable | 0 of 8 | 0 | ✅ |
+| B13 generation skip lines / batches | 0 / 7 | < 10 % skipped | ✅ |
+| B6 longest daemon WAL silence | 19.9 min | ≤ 30 min | ✅ |
+| B5 max follow-on round | 4 | ≤ 4 | ✅ |
+| daemon goals | 41: 27 done, 11 failed (all "no URLs to fetch"), 3 ready | — | watch |
+| B1 `🧠 Chose:` rows in LTM | 0 | 0 | ✅ |
+| B1/B3 self-log summary share of LTM | **41.3 %** | < 10 % | 🔴 |
+| B3 world-finding share of LTM | **9.1 %** | ≥ 25 % | 🔴 |
+| top pick share | `repair_contradictions` 13.3 % | no monopoly | ✅ |
+| R1 undeclared picks | 0 | 0 | ✅ |
+| F1 `assess_goal_progress` EMA | 0.213 | low, not rewarded as pursuit | ✅ |
+| F2 history rows with their own reward | 478 / 478 (0 overrides, 0 fallbacks) | all | ✅ |
+| F3 functions per signal | 20, 20, 13, 10, 1 | > 1 where several ran | ✅ |
+| A1 answer-informed / changed decisions | 0 / 0 (10 answers, all world facts) | reported | as expected |
+
+The red is the summaries. Selection telemetry no longer reaches long memory, but
+working-memory summaries of his own state still do: 186 of 429 rows, led by "I've been
+running hot and flat…" (29), "Strongly defined dominant emotion" (40) and shadow questions
+(30). Fix before Run 14, or Run 14's Memory table goes red on this alone.
+
 **Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
 and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
 distinct questions, structured reuse ≥ 1). "An answer cited later" is no longer a green:

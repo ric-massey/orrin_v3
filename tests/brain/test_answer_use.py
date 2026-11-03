@@ -9,9 +9,7 @@ import inspect
 import json
 from pathlib import Path
 
-import pytest
 
-from tests.brain.test_e5_harness import restore_session_data  # noqa: F401 — fixture
 
 from brain.cognition import answer_use as au
 

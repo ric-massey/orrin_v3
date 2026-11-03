@@ -146,7 +146,8 @@ def _manifest_names() -> frozenset[str]:
         except Exception as exc:
             record_failure("candidates._manifest_names", exc)
             return frozenset()
-    return _declared_cache["names"]
+    names: frozenset[str] = _declared_cache["names"]
+    return names
 
 
 def _is_declared_cognition(name: str) -> bool:

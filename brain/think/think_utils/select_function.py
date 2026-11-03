@@ -268,15 +268,16 @@ def select_function(
                 actions, defs, _dc.replace(_score_inputs, answer_boost={}), context)
             _top_without = max(_without, key=lambda t: t[1])[0] if _without else ""
             _row = _score_inputs.answer_row or {}
+            _changed = scored[0][0] != _top_without
             _answer_use = {
                 "question": str(_row.get("question", ""))[:120],
                 "goal_id": _row.get("goal_id"),
                 "boost": {k: round(v, 3) for k, v in _score_inputs.answer_boost.items()},
-                "changed_decision": scored[0][0] != _top_without,
+                "changed_decision": _changed,
                 "pick_without": _top_without,
             }
             from brain.cognition.answer_use import _note_decision
-            _note_decision(_row, _answer_use["changed_decision"])
+            _note_decision(_row, _changed)
         except Exception as _e:
             record_failure("select_function.answer_use", _e)
 

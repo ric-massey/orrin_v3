@@ -11,7 +11,6 @@ from pathlib import Path
 import pytest
 
 import brain
-from tests.brain.test_e5_harness import restore_session_data  # noqa: F401 — fixture
 
 FIX = Path(__file__).resolve().parents[1] / "fixtures" / "run13"
 HELPERS = ["cpu_count", "cadence_multiplier", "heavy_cycle_frequency", "budget_bytes",

@@ -157,6 +157,11 @@ warnings (11), announcements of findings (9, which restate world facts but are n
 as world). Which of these belong in his long memory is Ric's call; filtering them only to
 pass a ratio would be gaming the row.
 
+**Ric's call, 2026-11-02: "Keep them all."** Regret notes, unanswered questions,
+self-reviews, underperformer warnings and announcements stay in long memory; no filter is
+added for them. The ≥ 25 % world row stands as written and is scored as is in Run 14. If
+it misses, the lever is more world coming in (the feed), not less of him kept.
+
 **Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
 and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
 distinct questions, structured reuse ≥ 1). "An answer cited later" is no longer a green:

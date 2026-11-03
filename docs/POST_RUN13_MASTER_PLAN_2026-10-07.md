@@ -122,8 +122,9 @@ Small, mostly independent fixes from the Run 13 live deep read
   longer reaches long memory beyond 10 % (not promoted from WM; held on every write),
   self-searches dedup despite their ids. Smoke 4 + replay: summaries 41 % → 0 %, world
   9.1 % → 21.0 %. The rest of the gap to 25 % is non-commentary self-bookkeeping —
-  regret notes, unanswered questions, self-reviews, underperformer warnings — **Ric's call**
-  which belong (`NEXT_RUN_TESTS.md`, Memory fix + smoke life 4). **Exemplar leak (fixed
+  regret notes, unanswered questions, self-reviews, underperformer warnings — all kept
+  (Ric, 2026-11-02: "Keep them all"); the 25 % row is scored as is, and the lever for it
+  is world intake, not filtering (`NEXT_RUN_TESTS.md`, Memory fix + smoke life 4). **Exemplar leak (fixed
   same day, Ric: "Fix the exemplar leak"):** promotion wrote into the committed golden
   set whatever `ORRIN_DATA_DIR` said, and the self-talk veto missed an incubation-babble
   note because its tags were capitalised (`[Incubation]`, `[Chunk:`). An isolated life now

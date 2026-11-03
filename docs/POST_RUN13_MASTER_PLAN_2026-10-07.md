@@ -113,7 +113,16 @@ Small, mostly independent fixes from the Run 13 live deep read
   `_DECLARED_WITHOUT_DESCRIPTION` list. Pool 285 → 147; of Run 13's 76 picks only
   `cpu_count`, `cadence_multiplier`, `heavy_cycle_frequency` drop out.
   `submit_finetune_job` and `run_pipeline` stay selectable on merit, never forced
-  (Ric, 2026-11-02: "Keep them"). Rows added to the Run 14 gate. Still open
+  (Ric, 2026-11-02: "Keep them").
+  **Memory about his world (same day, Ric: "Fix memory first"):** self-commentary no
+  longer reaches long memory beyond 10 % (not promoted from WM; held on every write),
+  self-searches dedup despite their ids. Smoke 4 + replay: summaries 41 % → 0 %, world
+  9.1 % → 21.0 %. The rest of the gap to 25 % is non-commentary self-bookkeeping —
+  regret notes, unanswered questions, self-reviews, underperformer warnings — **Ric's call**
+  which belong (`NEXT_RUN_TESTS.md`, Memory fix + smoke life 4). **Found by smoke 4, not
+  fixed:** exemplar promotion writes into the committed golden set
+  (`tests/fixtures/quality_golden/exemplars/`) whatever `ORRIN_DATA_DIR` says, and B15's
+  veto let an incubation-babble note through (removed by hand). Rows added to the Run 14 gate. Still open
   from that report: attention learning and rule verification in the same
   finalizer still score the previous function's reward against this cycle's context;
   and the report's F5–F10 (controller authority, four-bucket task context, delayed

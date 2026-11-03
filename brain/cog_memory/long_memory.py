@@ -17,27 +17,13 @@ from brain.utils.failure_counter import record_failure
 _log = get_logger(__name__)
 
 # Constants defining behaviour
-DUPLICATE_WINDOW: int = 10        # Number of recent entries to check for duplicates
 MAX_LONG_MEMORY: int = 2000       # Maximum allowed entries in long-term memory
 STRONG_EMOTIONS = {"reward_positive", "threat_level", "conflict_signal", "loss_signal", "pride", "exploration_drive"}
 
-# High-volume, low-information event types that recur as exact/near-duplicates and
-# slip past the 10-entry exact-match dedup window (verified: 'chunk' and
-# 'file_search' dominate long_memory.json with identical blocks). For these we scan
-# a much wider window and compare on a content prefix so repeats collapse.
-_REPETITIVE_EVENT_TYPES = frozenset({
-    "chunk", "file_search", "world_perception", "dream_insight", "body_sense_pattern",
-    # Respawn-loop floods (DATA_FILE_AUDIT 2026-06-11 §4): identical intrinsic
-    # goals, commitments, and metacog observations recur slower than the
-    # 10-entry default window, so they need the wide prefix-match window too.
-    "intrinsic_goal", "commitment", "metacog_pattern",
-    # AR6 (audit M1): known-periodic instrumentation — the same event recurring
-    # with only its numbers changed (mismatch=0.42 vs 0.43) slipped the prefix
-    # match and piled up 34–39 copies each, evicting real findings.
-    "prediction_error", "introspection_miss",
-})
-_REPETITIVE_DEDUP_WINDOW: int = 200
-_REPETITIVE_PREFIX: int = 120
+from brain.cog_memory.dedup_keys import (  # noqa: E402,F401 — re-exported
+    DUPLICATE_WINDOW, _REPETITIVE_EVENT_TYPES, _REPETITIVE_DEDUP_WINDOW, _REPETITIVE_PREFIX,
+    _DEDUP_NUM_RE, _DEDUP_ID_RE, _DEDUP_ID_RUN_RE, _dedup_key, _dedup_window_for,
+)
 
 # F17 (2026-07-08 addendum): self-instrumentation event types — records that
 # pursuit/housekeeping HAPPENED, not what was learned. They get no affect
@@ -64,27 +50,17 @@ _WORLD_EVENT_TYPES = frozenset({
 })
 _WORLD_PREFIXES = ("[research]", "[wikipedia]", "[rss", "[read]", "[EXTERNAL/UNTRUSTED")
 _WORLD_SCORE_BONUS = 8
+# Commentary on his own state (brain/utils/self_commentary.py) may be at most this
+# share of long memory, held on every write (2026-11-02). Smoke life 4 still wrote
+# 13 "I've been running hot and flat" rows straight to long memory after the
+# working-memory summaries stopped; one bound at the store catches every writer.
+_SELF_COMMENTARY_MAX_SHARE = 0.10
 
 
 def is_world_finding(mem: dict) -> bool:
     if mem.get("event_type") in _WORLD_EVENT_TYPES:
         return True
     return str(mem.get("content", "")).lstrip().startswith(_WORLD_PREFIXES)
-
-# AR6: digits are noise for periodic-event identity — normalize them out of the
-# dedup key so a recurring entry can't slip the window by carrying a fresh number.
-_DEDUP_NUM_RE = re.compile(r"\d+(?:\.\d+)?")
-
-
-def _dedup_key(event_type: str, content: str) -> str:
-    if event_type in _REPETITIVE_EVENT_TYPES:
-        return _DEDUP_NUM_RE.sub("#", content[:_REPETITIVE_PREFIX])
-    return content
-
-
-def _dedup_window_for(event_type: str) -> int:
-    return _REPETITIVE_DEDUP_WINDOW if event_type in _REPETITIVE_EVENT_TYPES else DUPLICATE_WINDOW
-
 
 # Self-identity affirmation blocks (e.g. "Orrin (AI): role=self; version=…").
 # Identity is already permanent in self_model.json + the knowledge graph
@@ -267,12 +243,23 @@ def update_long_memory(
                     continue
                 if _dedup_key(_et, m.get("content", "")) == _new_key:
                     raise AbortModify("duplicate")
+            if not (entry.get("pin") or entry.get("foundational")
+                    or _et in _INSTRUMENTATION_EVENT_TYPES):  # F17 caps those
+                from brain.utils.self_commentary import is_self_commentary
+                if is_self_commentary(entry):
+                    _n_sc = sum(1 for m in memories if is_self_commentary(m))
+                    if _n_sc + 1 > _SELF_COMMENTARY_MAX_SHARE * (len(memories) + 1):
+                        raise AbortModify("self_commentary_share")
             memories.append(entry)
             _edge_window = memories[-21:-1]
             _over_cap = len(memories) > MAX_LONG_MEMORY
     except AbortModify as _abort:
         if str(_abort) == "duplicate":
             log_private(f"[long_memory] Skipped duplicate memory: {_new_content[:50]}")
+            return
+        if str(_abort) == "self_commentary_share":
+            log_private(f"[long_memory] Skipped self-commentary (share at "
+                        f"{_SELF_COMMENTARY_MAX_SHARE:.0%}): {_new_content[:50]}")
             return
         # Non-list store (corrupt): rebuild with just this entry.
         log_error("update_long_memory: long_memory store was not a list; rebuilding.")

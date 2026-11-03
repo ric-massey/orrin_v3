@@ -60,3 +60,32 @@ def test_summary_share_is_held_at_write_time(tmp_path, monkeypatch):
     f.write_text(json.dumps(rows[:9] * 3 + rows[9:]))
     summarize_and_promote_working_memory([dict(RESEARCH, referenced=1)])
     assert len(json.loads(f.read_text())) == 29
+
+
+def test_repeated_self_searches_collapse_despite_their_ids(tmp_path, monkeypatch):
+    import brain.cog_memory.long_memory as lm
+    monkeypatch.setattr(lm, "LONG_MEMORY_FILE", tmp_path / "long_memory.json")
+    for ids in ("mem:87cdd22d; mem:aa800956; mem:b08986a8", "mem:1f3cdd2d; mem:a0a80956",
+                "mem:c08986a9; mem:0d0e0f12; mem:93ab77fe; mem:5c5c5c5c"):
+        lm.update_long_memory(f"[self_search] Query: 'Understand my own mind and how I work' "
+                              f"— 8 finding(s). Top: {ids}", event_type="file_search")
+    assert len(json.loads((tmp_path / "long_memory.json").read_text())) == 1
+
+
+def test_words_are_not_mistaken_for_ids():
+    from brain.cog_memory.long_memory import _dedup_key
+    assert "decade" in _dedup_key("file_search", "[research] the decade before")
+
+
+def test_self_commentary_share_is_held_on_every_write(tmp_path, monkeypatch):
+    import brain.cog_memory.long_memory as lm
+    f = tmp_path / "long_memory.json"
+    monkeypatch.setattr(lm, "LONG_MEMORY_FILE", f)
+    f.write_text(json.dumps([{"content": f"[research] fact {i}", "event_type": "world_perception"}
+                             for i in range(9)]))
+    lm.update_long_memory(dict(FLAT))                       # 1 of 10: allowed
+    lm.update_long_memory(dict(DOMINANT))                   # 2 of 11: over 10 %
+    kinds = [e["event_type"] for e in json.loads(f.read_text())]
+    assert kinds.count("affect_stagnation") == 1 and "dominant_affect" not in kinds
+    lm.update_long_memory(dict(DOMINANT, pin=True))         # pinned: always kept
+    assert "dominant_affect" in [e["event_type"] for e in json.loads(f.read_text())]

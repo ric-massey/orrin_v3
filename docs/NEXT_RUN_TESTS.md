@@ -131,6 +131,32 @@ working-memory summaries of his own state still do: 186 of 429 rows, led by "I'v
 running hot and flat…" (29), "Strongly defined dominant emotion" (40) and shadow questions
 (30). Fix before Run 14, or Run 14's Memory table goes red on this alone.
 
+**Memory fix + smoke life 4 — 2026-11-02, build `b56d64a`, 2,001 cycles in 64 min.**
+Self-commentary (`brain/utils/self_commentary.py` — the test appraisal already used) is no
+longer promoted from working memory, and the summary share is held at write time. Smoke
+life 4 then showed what was left: 72 `file_search` rows (45 of one self-search — the dedup
+key normalised digits but not `mem:<hex>` ids) and 13 "running hot and flat" rows written
+straight to long memory. So two more rules, checked by replaying smoke 4's 251 actual
+writes through them (no third hour-long life): repetitive-type dedup normalises ids
+(`brain/cog_memory/dedup_keys.py`), and self-commentary may be at most 10 % of long memory
+on every write (`_SELF_COMMENTARY_MAX_SHARE`; pinned, foundational and F17
+instrumentation types exempt).
+
+| Row | Smoke 3 | Smoke 4 (`b56d64a`) | Smoke 4 replayed (final rules) | Pass |
+|---|---|---|---|---|
+| WM self-summaries share of LTM | 41.3 % | 0.0 % | 0.0 % | < 10 % ✅ |
+| self-commentary share | — | — | 8.6 % | ≤ 10 % ✅ |
+| `file_search` rows | 34 | 72 | 6 | — |
+| world-finding share | 9.1 % | 13.9 % | **21.0 %** | ≥ 25 % 🔴 |
+| feed rows (B11, B20, B13, B6, B5) | ✅ | ✅ (silence 27.1 min, 14 goals) | — | |
+
+**Still red, and it is a design question, not a leak.** What separates 21 % from 25 % is
+self-bookkeeping that is not commentary: `[regret processed]` notes written as untyped
+`summary` (24), unanswered questions to Ric (19), self-reviews (13), "X is underperforming"
+warnings (11), announcements of findings (9, which restate world facts but are not counted
+as world). Which of these belong in his long memory is Ric's call; filtering them only to
+pass a ratio would be gaming the row.
+
 **Run 14 passes iff** the Feed and Memory tables pass, no Reward-honesty row is red,
 and the Run 13 greens hold (Growth: ≥ 1 prediction-scored answer, rung climb counted on
 distinct questions, structured reuse ≥ 1). "An answer cited later" is no longer a green:

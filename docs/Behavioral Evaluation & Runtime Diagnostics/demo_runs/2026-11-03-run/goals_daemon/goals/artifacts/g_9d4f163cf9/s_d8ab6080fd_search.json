@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "logic history and development",
+    "logic applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_logic",
+    "https://en.wikipedia.org/wiki/Term_logic",
+    "https://en.wikipedia.org/wiki/Mathematical_logic",
+    "https://en.wikipedia.org/wiki/Science_of_Logic",
+    "https://en.wikipedia.org/wiki/Logic_programming",
+    "https://en.wikipedia.org/wiki/Fuzzy_logic",
+    "https://en.wikipedia.org/wiki/Inductive_logic_programming",
+    "https://en.wikipedia.org/wiki/Many-valued_logic",
+    "https://en.wikipedia.org/wiki/Business_logic",
+    "https://en.wikipedia.org/wiki/Ladder_logic"
+  ],
+  "results": [
+    {
+      "title": "History of logic",
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "snippet": "The <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">logic</span> deals with the study of the <span class=\"searchmatch\">development</span> of the science of valid inference (<span class=\"searchmatch\">logic</span>). Formal <span class=\"searchmatch\">logics</span> developed in ancient times in India",
+      "query": "logic history and development"
+    },
+    {
+      "title": "Term logic",
+      "url": "https://en.wikipedia.org/wiki/Term_logic",
+      "snippet": "In <span class=\"searchmatch\">logic</span> <span class=\"searchmatch\">and</span> formal semantics, term <span class=\"searchmatch\">logic</span>, also known as traditional <span class=\"searchmatch\">logic</span>, syllogistic <span class=\"searchmatch\">logic</span> or Aristotelian <span class=\"searchmatch\">logic</span>, is a loose name for an approach to",
+      "query": "logic history and development"
+    },
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "Mathematical <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within mathematics. This is commonly done by means of formal systems called formal <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "logic history and development"
+    },
+    {
+      "title": "Science of Logic",
+      "url": "https://en.wikipedia.org/wiki/Science_of_Logic",
+      "snippet": "vision of <span class=\"searchmatch\">logic</span>. Hegel&#039;s <span class=\"searchmatch\">logic</span> is a system of dialectics, i.e., a dialectical metaphysics: it is a <span class=\"searchmatch\">development</span> of the principle that thought <span class=\"searchmatch\">and</span> being constitute",
+      "query": "logic history and development"
+    },
+    {
+      "title": "Logic programming",
+      "url": "https://en.wikipedia.org/wiki/Logic_programming",
+      "snippet": "<span class=\"searchmatch\">Logic</span> programming is a programming, database, <span class=\"searchmatch\">and</span> knowledge representation paradigm based on formal <span class=\"searchmatch\">logic</span>. A <span class=\"searchmatch\">logic</span> program is a set of sentences in logical",
+      "query": "logic history and development"
+    },
+    {
+      "title": "Fuzzy logic",
+      "url": "https://en.wikipedia.org/wiki/Fuzzy_logic",
+      "snippet": "Fuzzy <span class=\"searchmatch\">logic</span> is a form of many-valued <span class=\"searchmatch\">logic</span> in which the truth value of variables may be any real number between 0 <span class=\"searchmatch\">and</span> 1. It is employed to handle the",
+      "query": "logic applications and examples"
+    },
+    {
+      "title": "Inductive logic programming",
+      "url": "https://en.wikipedia.org/wiki/Inductive_logic_programming",
+      "snippet": "Inductive <span class=\"searchmatch\">logic</span> programming (ILP) is a subfield of symbolic artificial intelligence which uses <span class=\"searchmatch\">logic</span> programming as a uniform representation for <span class=\"searchmatch\">examples</span>, background",
+      "query": "logic applications and examples"
+    },
+    {
+      "title": "Many-valued logic",
+      "url": "https://en.wikipedia.org/wiki/Many-valued_logic",
+      "snippet": "possible values (i.e., true <span class=\"searchmatch\">and</span> false) for any proposition. Classical two-valued <span class=\"searchmatch\">logic</span> may be extended to n-valued <span class=\"searchmatch\">logic</span> for n greater than 2. Those most",
+      "query": "logic applications and examples"
+    },
+    {
+      "title": "Business logic",
+      "url": "https://en.wikipedia.org/wiki/Business_logic",
+      "snippet": "business <span class=\"searchmatch\">logic</span> or domain <span class=\"searchmatch\">logic</span> is the part of the program that encodes the real-world business rules that determine how data can be created, stored, <span class=\"searchmatch\">and</span> changed",
+      "query": "logic applications and examples"
+    },
+    {
+      "title": "Ladder logic",
+      "url": "https://en.wikipedia.org/wiki/Ladder_logic",
+      "snippet": "relay <span class=\"searchmatch\">logic</span> hardware. Ladder <span class=\"searchmatch\">logic</span> is used to develop software for programmable <span class=\"searchmatch\">logic</span> controllers (PLCs) used in industrial control <span class=\"searchmatch\">applications</span>. The name",
+      "query": "logic applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T11:46:39.676524+00:00"
+}

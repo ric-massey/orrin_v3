@@ -1,0 +1,16 @@
+[2026-11-03T06:15:37.628201Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:15:39.450727Z] context.json bloat guard: stripped key 'behavior_changes' (224596 bytes > 100000) — add it to its own file or to _CTX_STRIP
+[2026-11-03T06:15:39.453300Z] context.json bloat guard: stripped key 'cognitive_functions' (209352 bytes > 100000) — add it to its own file or to _CTX_STRIP
+[2026-11-03T06:15:39.455102Z] context.json bloat guard: stripped key 'comp_goals' (140274 bytes > 100000) — add it to its own file or to _CTX_STRIP
+[2026-11-03T06:15:39.459952Z] context.json bloat guard: stripped key 'world_model' (203305 bytes > 100000) — add it to its own file or to _CTX_STRIP
+[2026-11-03T06:15:46.579223Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:20:36.116387Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:21:26.475360Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:23:34.300080Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:26:56.066928Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:27:29.751570Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T06:31:04.021173Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T09:36:13.230256Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T09:36:16.124529Z] context.json bloat guard: stripped key 'aspiration_scoreboard' (117477 bytes > 100000) — add it to its own file or to _CTX_STRIP
+[2026-11-03T17:04:32.744428Z] ⚠️ Missing or invalid prompt: reflect_on_cognition_rhythm
+[2026-11-03T17:04:38.417829Z] context.json bloat guard: stripped key 'production_funnel' (185434 bytes > 100000) — add it to its own file or to _CTX_STRIP

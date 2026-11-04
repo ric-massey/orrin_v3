@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "structures history and development",
+    "structures applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures",
+    "https://en.wikipedia.org/wiki/History_of_lighthouses",
+    "https://en.wikipedia.org/wiki/History_of_geology",
+    "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants",
+    "https://en.wikipedia.org/wiki/History_of_atomic_theory",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/Structure",
+    "https://en.wikipedia.org/wiki/Biomaterial",
+    "https://en.wikipedia.org/wiki/Data_structure",
+    "https://en.wikipedia.org/wiki/Amphiphile"
+  ],
+  "results": [
+    {
+      "title": "History of the world's tallest structures",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures",
+      "snippet": "(secondary coordinates) This is the <span class=\"searchmatch\">history</span> of the world&#039;s tallest <span class=\"searchmatch\">structures</span>. Below is a list of the tallest <span class=\"searchmatch\">structures</span> supported by land. For most of the",
+      "query": "structures history and development"
+    },
+    {
+      "title": "History of lighthouses",
+      "url": "https://en.wikipedia.org/wiki/History_of_lighthouses",
+      "snippet": "The <span class=\"searchmatch\">history</span> of lighthouses refers to the <span class=\"searchmatch\">development</span> of the use of towers, buildings, or other types of <span class=\"searchmatch\">structures</span> as an aid to navigation for maritime",
+      "query": "structures history and development"
+    },
+    {
+      "title": "History of geology",
+      "url": "https://en.wikipedia.org/wiki/History_of_geology",
+      "snippet": "<span class=\"searchmatch\">history</span> of geology is concerned with the <span class=\"searchmatch\">development</span> of the natural science of geology. Geology is the scientific study of the origin, <span class=\"searchmatch\">history</span>, <span class=\"searchmatch\">and</span> structure",
+      "query": "structures history and development"
+    },
+    {
+      "title": "Fossil history of flowering plants",
+      "url": "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants",
+      "snippet": "The fossil <span class=\"searchmatch\">history</span> of flowering plants records the <span class=\"searchmatch\">development</span> of flowers <span class=\"searchmatch\">and</span> other distinctive <span class=\"searchmatch\">structures</span> of the angiosperms, now the dominant group",
+      "query": "structures history and development"
+    },
+    {
+      "title": "History of atomic theory",
+      "url": "https://en.wikipedia.org/wiki/History_of_atomic_theory",
+      "snippet": "internal <span class=\"searchmatch\">structure</span> of their own <span class=\"searchmatch\">and</span> therefore could be divided after all. Atomic theory is one of the most important scientific <span class=\"searchmatch\">developments</span> in <span class=\"searchmatch\">history</span>, crucial",
+      "query": "structures history and development"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "for privacy <span class=\"searchmatch\">and</span> security. The REST architectural style is designed for network-based <span class=\"searchmatch\">applications</span>, specifically client-server <span class=\"searchmatch\">applications</span>. But more than",
+      "query": "structures applications and examples"
+    },
+    {
+      "title": "Structure",
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "snippet": "<span class=\"searchmatch\">and</span> salt domes are all <span class=\"searchmatch\">examples</span> of load-bearing <span class=\"searchmatch\">structures</span>. The results of construction are divided into buildings <span class=\"searchmatch\">and</span> non-building <span class=\"searchmatch\">structures</span>, <span class=\"searchmatch\">and</span> make",
+      "query": "structures applications and examples"
+    },
+    {
+      "title": "Biomaterial",
+      "url": "https://en.wikipedia.org/wiki/Biomaterial",
+      "snippet": "phase-separated polymers, thin films <span class=\"searchmatch\">and</span> self-assembled monolayers all represent <span class=\"searchmatch\">examples</span> of the types of highly ordered <span class=\"searchmatch\">structures</span>, which are obtained using these",
+      "query": "structures applications and examples"
+    },
+    {
+      "title": "Data structure",
+      "url": "https://en.wikipedia.org/wiki/Data_structure",
+      "snippet": "type&quot; <span class=\"searchmatch\">and</span> simply refer to the logical <span class=\"searchmatch\">and</span> physical forms of the data <span class=\"searchmatch\">structure</span>. Efficient data <span class=\"searchmatch\">structures</span> are essential for managing large datasets <span class=\"searchmatch\">and</span> are",
+      "query": "structures applications and examples"
+    },
+    {
+      "title": "Amphiphile",
+      "url": "https://en.wikipedia.org/wiki/Amphiphile",
+      "snippet": "Proteins <span class=\"searchmatch\">and</span> some block copolymers are such <span class=\"searchmatch\">examples</span>.[citation needed] Amphiphilic compounds have lipophilic (typically hydrocarbon) <span class=\"searchmatch\">structures</span> <span class=\"searchmatch\">and</span> hydrophilic",
+      "query": "structures applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T18:52:59.142213+00:00"
+}

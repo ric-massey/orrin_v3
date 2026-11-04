@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Attempt",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Suicide_attempt",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_02.txt",
+      "chars": 19068
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Attempted_murder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_04.txt",
+      "chars": 13140
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Assassination_attempts_on_Hirohito",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_05.txt",
+      "chars": 3187
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Parliament_of_Whores",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_06.txt",
+      "chars": 4799
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_07.txt",
+      "chars": 9114
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thing_Explainer",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_08.txt",
+      "chars": 7403
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_09.txt",
+      "chars": 16851
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_United_States_presidential_assassination_attempts_and_plots",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cc99f134b1/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T15:09:46.006647+00:00"
+}

@@ -1,0 +1,74 @@
+{
+  "question": "What actually is Meta Runner, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "meta",
+    "runner"
+  ],
+  "entities": [
+    "Among members of society",
+    "Meta Runners",
+    "Meta Runner who",
+    "the subject of an experiment called Project Blue",
+    "Meta Runner",
+    "later reuploaded to the Glitch Productions YouTube channel",
+    "The competition began in 2011 as a",
+    "to identify top engineering talent for potential employment at Meta Platforms"
+  ],
+  "relations": [
+    {
+      "subject": "Among members of society",
+      "predicate": "are",
+      "object": "Meta Runners",
+      "source": "https://en.wikipedia.org/wiki/Meta_Runner"
+    },
+    {
+      "subject": "Meta Runner who",
+      "predicate": "was",
+      "object": "the subject of an experiment called Project Blue",
+      "source": "https://en.wikipedia.org/wiki/Meta_Runner"
+    },
+    {
+      "subject": "Meta Runner",
+      "predicate": "was",
+      "object": "later reuploaded to the Glitch Productions YouTube channel",
+      "source": "https://en.wikipedia.org/wiki/Glitch_Productions"
+    },
+    {
+      "subject": "The competition began in 2011 as a",
+      "predicate": "means",
+      "object": "to identify top engineering talent for potential employment at Meta Platforms",
+      "source": "https://en.wikipedia.org/wiki/Meta_Hacker_Cup"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meta_Runner"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glitch_Productions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Belle_%28given_name%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Amber_Lee_Connors"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Crunchyroll"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Instagram"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meta_Hacker_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Story_within_a_story"
+    }
+  ],
+  "ts": "2026-11-03T18:52:50.601375+00:00"
+}

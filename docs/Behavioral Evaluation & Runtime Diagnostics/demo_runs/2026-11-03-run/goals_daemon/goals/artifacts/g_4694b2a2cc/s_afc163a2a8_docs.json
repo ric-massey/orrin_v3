@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drug_overdose",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Self-medication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Amlodipine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_deaths_from_drug_overdose_and_intoxication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Charlie_Kirk",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Obsessive%E2%80%93compulsive_disorder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Methylphenidate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4694b2a2cc/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:17:14.405989+00:00"
+}

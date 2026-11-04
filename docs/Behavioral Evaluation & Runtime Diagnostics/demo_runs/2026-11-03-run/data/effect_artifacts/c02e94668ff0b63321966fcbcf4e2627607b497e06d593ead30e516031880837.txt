@@ -1,0 +1,132 @@
+{
+  "question": "What actually is theory, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "theory"
+  ],
+  "entities": [
+    "which",
+    "opposed to theory",
+    "medical theory involves trying to understand the",
+    "and nature of health and sickness",
+    "Theory X and Theory Y",
+    "theories of human work motivation and management",
+    "work",
+    "rooted in motivation theory alongside the works of Abraham Maslow",
+    "hierarchy of needs",
+    "both rooted in motivation theory",
+    "Theory X",
+    "based on negative assumptions regarding the typical worker",
+    "Theory X style managers believe their employees",
+    "less intelligent",
+    "there",
+    "two opposing approaches to implementing Theory X"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is",
+      "object": "opposed to theory",
+      "source": "https://en.wikipedia.org/wiki/Theory"
+    },
+    {
+      "subject": "medical theory involves trying to understand the",
+      "predicate": "causes",
+      "object": "and nature of health and sickness",
+      "source": "https://en.wikipedia.org/wiki/Theory"
+    },
+    {
+      "subject": "Theory X and Theory Y",
+      "predicate": "are",
+      "object": "theories of human work motivation and management",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "work",
+      "predicate": "was",
+      "object": "rooted in motivation theory alongside the works of Abraham Maslow",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "hierarchy of needs",
+      "predicate": "are",
+      "object": "both rooted in motivation theory",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "Theory X",
+      "predicate": "is",
+      "object": "based on negative assumptions regarding the typical worker",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "Theory X style managers believe their employees",
+      "predicate": "are",
+      "object": "less intelligent",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "two opposing approaches to implementing Theory X",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "Theory Y",
+      "predicate": "is",
+      "object": "based on positive assumptions regarding the typical worker",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "Theory Y managers assume employees",
+      "predicate": "are",
+      "object": "internally motivated",
+      "source": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "subject": "string theory",
+      "predicate": "is a",
+      "object": "theory of quantum gravity",
+      "source": "https://en.wikipedia.org/wiki/String_theory"
+    },
+    {
+      "subject": "String theory",
+      "predicate": "was",
+      "object": "first studied in the late 1960s as a theory of the strong nuclear force",
+      "source": "https://en.wikipedia.org/wiki/String_theory"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/String_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory-theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Game_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Light"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Olive_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Spoon_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Miasma_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+    }
+  ],
+  "ts": "2026-11-03T18:52:38.299178+00:00"
+}

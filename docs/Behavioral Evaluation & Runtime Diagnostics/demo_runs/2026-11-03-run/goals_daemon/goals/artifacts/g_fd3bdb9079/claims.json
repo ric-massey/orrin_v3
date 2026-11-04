@@ -1,0 +1,100 @@
+{
+  "question": "What actually is Often these, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "often"
+  ],
+  "entities": [
+    "release often philosophy",
+    "aiming to provide only polished",
+    "they",
+    "often referred to as deep-lying midfielders",
+    "Midfielders",
+    "often assigned the task of assisting forwards to create scoring opportunities",
+    "The mezzala",
+    "often a qui",
+    "People often",
+    "not themselves clear on whether they are arguing for or explaining something",
+    "Explanations",
+    "often used within arguments and presented so as to serve as arguments",
+    "and",
+    "often referred to in this manner"
+  ],
+  "relations": [
+    {
+      "subject": "release often philosophy",
+      "predicate": "is",
+      "object": "aiming to provide only polished",
+      "source": "https://en.wikipedia.org/wiki/Release_early%2C_release_often"
+    },
+    {
+      "subject": "they",
+      "predicate": "are",
+      "object": "often referred to as deep-lying midfielders",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "Midfielders",
+      "predicate": "are",
+      "object": "often assigned the task of assisting forwards to create scoring opportunities",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "The mezzala",
+      "predicate": "is",
+      "object": "often a qui",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "People often",
+      "predicate": "are",
+      "object": "not themselves clear on whether they are arguing for or explaining something",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "Explanations",
+      "predicate": "are",
+      "object": "often used within arguments and presented so as to serve as arguments",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "and",
+      "predicate": "is",
+      "object": "often referred to in this manner",
+      "source": "https://en.wikipedia.org/wiki/Prequel"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Often"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Release_early%2C_release_often"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Sun_Is_Often_Out"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Populism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_variation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Prequel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thing_Explainer"
+    }
+  ],
+  "ts": "2026-11-03T19:21:23.859587+00:00"
+}

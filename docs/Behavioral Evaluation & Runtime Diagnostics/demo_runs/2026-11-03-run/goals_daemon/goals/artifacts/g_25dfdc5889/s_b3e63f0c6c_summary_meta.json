@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_25dfdc5889",
+    "title": "Understand study found that there more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "study found that there",
+        "study found that there explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T12:58:45.331788Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T12:58:45.331796Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T12:58:45.331798Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T12:58:45.331799Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T12:58:45.331801Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "study found that there was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about study found that there was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T12:58:45.331821Z",
+      "question": "What actually is study found that there, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 12:58:45.381649+00:00",
+    "updated_at": "2026-11-03 12:58:46.839071+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Libido",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Colorism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_attractiveness",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Human_penis_size",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Backrooms_%28web_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stanford_prison_experiment",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Genome-wide_association_study",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_25dfdc5889/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T12:58:53.151702+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Overdosing on medication recent research",
+    "Overdosing on medication common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+    "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+    "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+    "https://en.wikipedia.org/wiki/Jack_Fishman",
+    "https://en.wikipedia.org/wiki/Self-medication",
+    "https://en.wikipedia.org/wiki/Allopurinol",
+    "https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder",
+    "https://en.wikipedia.org/wiki/Urban_legends_about_drugs",
+    "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States",
+    "https://en.wikipedia.org/wiki/Anxiety_disorder"
+  ],
+  "results": [
+    {
+      "title": "Alzheimer's disease",
+      "url": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+      "snippet": "60–70% of cases. The most common early symptom is difficulty in remembering <span class=\"searchmatch\">recent</span> events. As the disease advances, symptoms can include problems with language",
+      "query": "Overdosing on medication recent research"
+    },
+    {
+      "title": "Paracetamol poisoning",
+      "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+      "snippet": "use of the <span class=\"searchmatch\">medication</span> paracetamol (acetaminophen). Most people have few or non-specific symptoms in the first 24 hours following <span class=\"searchmatch\">overdose</span>. These symptoms",
+      "query": "Overdosing on medication recent research"
+    },
+    {
+      "title": "Lithium (medication)",
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "snippet": "lithium compounds, also known as lithium salts, are used as psychiatric <span class=\"searchmatch\">medication</span>, primarily for bipolar disorder and for major depressive disorder. Lithium",
+      "query": "Overdosing on medication recent research"
+    },
+    {
+      "title": "Jack Fishman",
+      "url": "https://en.wikipedia.org/wiki/Jack_Fishman",
+      "snippet": "<span class=\"searchmatch\">researcher</span> from Kraków, Poland. In 1961, along with Mozes J. Lewenstein, he developed the <span class=\"searchmatch\">medication</span> naloxone, which can reverse an opioid <span class=\"searchmatch\">overdose</span>,",
+      "query": "Overdosing on medication recent research"
+    },
+    {
+      "title": "Self-medication",
+      "url": "https://en.wikipedia.org/wiki/Self-medication",
+      "snippet": "Self-<span class=\"searchmatch\">medication</span>, sometimes called do-it-yourself (DIY) medicine, is a human behavior in which an individual uses a substance or any exogenous influence",
+      "query": "Overdosing on medication recent research"
+    },
+    {
+      "title": "Allopurinol",
+      "url": "https://en.wikipedia.org/wiki/Allopurinol",
+      "snippet": "Allopurinol is a <span class=\"searchmatch\">medication</span> used to decrease high blood uric acid levels. It is specifically used to prevent gout, prevent specific types of kidney stones",
+      "query": "Overdosing on medication common misconceptions"
+    },
+    {
+      "title": "Attention deficit hyperactivity disorder",
+      "url": "https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder",
+      "snippet": "result of <span class=\"searchmatch\">medication</span>. A 2021 review reported that several neurometabolic disorders caused by inborn errors of metabolism converge <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">common</span> neurochemical",
+      "query": "Overdosing on medication common misconceptions"
+    },
+    {
+      "title": "Urban legends about drugs",
+      "url": "https://en.wikipedia.org/wiki/Urban_legends_about_drugs",
+      "snippet": "and less scrutinized. The most <span class=\"searchmatch\">common</span> subjects of such false beliefs are LSD, cannabis, and PCP. These <span class=\"searchmatch\">misconceptions</span> include misinformation about adulterants",
+      "query": "Overdosing on medication common misconceptions"
+    },
+    {
+      "title": "Opioid epidemic in the United States",
+      "url": "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States",
+      "snippet": "access to <span class=\"searchmatch\">medications</span> for treatment, reduce <span class=\"searchmatch\">overdose</span> deaths, and sustain prevention and recovery. When people continue to use opioid <span class=\"searchmatch\">medications</span> beyond what",
+      "query": "Overdosing on medication common misconceptions"
+    },
+    {
+      "title": "Anxiety disorder",
+      "url": "https://en.wikipedia.org/wiki/Anxiety_disorder",
+      "snippet": "other people, most likely as a result of <span class=\"searchmatch\">misconceptions</span> around anxiety and anxiety disorders. <span class=\"searchmatch\">Misconceptions</span> found in a data analysis from the National",
+      "query": "Overdosing on medication common misconceptions"
+    }
+  ],
+  "ts": "2026-11-03T16:39:46.280036+00:00"
+}

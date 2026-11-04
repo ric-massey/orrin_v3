@@ -1,0 +1,132 @@
+{
+  "question": "What actually is Quantization, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "quantization"
+  ],
+  "entities": [
+    "between the original signal and the reconstructed signal",
+    "quantization error and",
+    "Rounding and truncation",
+    "typical examples of quantization processes",
+    "Quantization",
+    "involved to some degree in nearly all digital signal processing",
+    "device or algorithmic function that performs quantization",
+    "called a quantizer",
+    "Mean squared error",
+    "also called the quantization noise power",
+    "This decomposition",
+    "useful for the design and analysis of quantization behavior",
+    "Because quantization",
+    "many-to-few mapping",
+    "Trellis quantization",
+    "algorithm that can improve data compression in DCT -based encoding methods"
+  ],
+  "relations": [
+    {
+      "subject": "between the original signal and the reconstructed signal",
+      "predicate": "is the",
+      "object": "quantization error and",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "Rounding and truncation",
+      "predicate": "are",
+      "object": "typical examples of quantization processes",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "Quantization",
+      "predicate": "is",
+      "object": "involved to some degree in nearly all digital signal processing",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "device or algorithmic function that performs quantization",
+      "predicate": "is",
+      "object": "called a quantizer",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "Mean squared error",
+      "predicate": "is",
+      "object": "also called the quantization noise power",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "This decomposition",
+      "predicate": "is",
+      "object": "useful for the design and analysis of quantization behavior",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "Because quantization",
+      "predicate": "is a",
+      "object": "many-to-few mapping",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "subject": "Trellis quantization",
+      "predicate": "is an",
+      "object": "algorithm that can improve data compression in DCT -based encoding methods",
+      "source": "https://en.wikipedia.org/wiki/Trellis_quantization"
+    },
+    {
+      "subject": "quantization",
+      "predicate": "is the",
+      "object": "studio-software process of transforming performed musical notes",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28music%29"
+    },
+    {
+      "subject": "The purpose of quantization in music processing",
+      "predicate": "is",
+      "object": "to provide a more beat-accurate timing of sounds",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28music%29"
+    },
+    {
+      "subject": "quantization",
+      "predicate": "is",
+      "object": "applied in terms of a percentage to partially align the notes to a certain beat",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28music%29"
+    },
+    {
+      "subject": "question in quantization",
+      "predicate": "is",
+      "object": "determining which rhythmic fluctuations are imprecise",
+      "source": "https://en.wikipedia.org/wiki/Quantization_%28music%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantization"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Trellis_quantization"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantization_%28music%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vector_quantization"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantization_%28physics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Old_quantum_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Elementary_charge"
+    }
+  ],
+  "ts": "2026-11-03T06:40:26.013884+00:00"
+}

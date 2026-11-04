@@ -1,0 +1,141 @@
+{
+  "goal": {
+    "id": "g_d64e1c1066",
+    "title": "Open question: Is There Anything Left in the Dream of Cold Fusion?",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Is There Anything Left in the Dream of Cold Fusion?"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.252473Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.252481Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.252483Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.252485Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.252487Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Investigated: Is There Anything Left in the Dream of Cold Fusion",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A finding was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T06:40:20.252511Z",
+      "question": "Is There Anything Left in the Dream of Cold Fusion?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 06:40:20.252851+00:00",
+    "updated_at": "2026-11-03 06:40:20.830990+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cold_fusion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Digimon_Fusion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hell%27s_Kitchen_%28American_TV_series%29_season_22",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Slipknot_%28band%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nyarlathotep",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d64e1c1066/doc_05.txt"
+    }
+  ],
+  "ts": "2026-11-03T06:40:24.845875+00:00"
+}

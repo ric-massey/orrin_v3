@@ -1,0 +1,88 @@
+{
+  "question": "What actually is early productions, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "early",
+    "productions"
+  ],
+  "entities": [
+    "The double album",
+    "released early next year",
+    "Meta Runner",
+    "later reuploaded to the Glitch Productions YouTube channel",
+    "the most important feature of the early modern period",
+    "the spread of globalization",
+    "Others argued that early modern Eurasia",
+    "distinguished by interconnections and common experiences",
+    "Early life and education Douglas",
+    "born in New Brunswick"
+  ],
+  "relations": [
+    {
+      "subject": "The double album",
+      "predicate": "was",
+      "object": "released early next year",
+      "source": "my prior claims [g_48bdc84a72]"
+    },
+    {
+      "subject": "Meta Runner",
+      "predicate": "was",
+      "object": "later reuploaded to the Glitch Productions YouTube channel",
+      "source": "https://en.wikipedia.org/wiki/Glitch_Productions"
+    },
+    {
+      "subject": "the most important feature of the early modern period",
+      "predicate": "was",
+      "object": "the spread of globalization",
+      "source": "https://en.wikipedia.org/wiki/Early_modern_period"
+    },
+    {
+      "subject": "Others argued that early modern Eurasia",
+      "predicate": "was",
+      "object": "distinguished by interconnections and common experiences",
+      "source": "https://en.wikipedia.org/wiki/Early_modern_period"
+    },
+    {
+      "subject": "Early life and education Douglas",
+      "predicate": "was",
+      "object": "born in New Brunswick",
+      "source": "https://en.wikipedia.org/wiki/Michael_Douglas"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_48bdc84a72]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Early_Spring"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/A_Streetcar_Named_Desire"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Rocky_Horror_Show"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Johnny_%22J%22"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Little_Shop_of_Horrors_%28musical%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glitch_Productions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lyca_Productions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Early_modern_period"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Michael_Douglas"
+    }
+  ],
+  "ts": "2026-11-03T16:39:54.520063+00:00"
+}

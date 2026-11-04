@@ -1,0 +1,131 @@
+{
+  "goal": {
+    "id": "g_2346e06552",
+    "title": "Understand world more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "world",
+        "world explained",
+        "what is not obvious about world"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:11.957404Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:11.957411Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:11.957413Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:11.957414Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:11.957416Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on world was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about world was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T03:16:11.957433Z",
+      "question": "What is there about world that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 03:16:11.958193+00:00",
+    "updated_at": "2026-11-03 03:16:12.935915+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 1
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/WWE",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_05.txt"
+    }
+  ],
+  "ts": "2026-11-03T03:16:15.553772+00:00"
+}

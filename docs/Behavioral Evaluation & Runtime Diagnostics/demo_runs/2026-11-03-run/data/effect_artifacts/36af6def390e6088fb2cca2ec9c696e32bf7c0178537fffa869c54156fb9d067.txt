@@ -1,0 +1,8 @@
+What I learned about Scholars more deeply:
+
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Understand Scholars more deeply — This doesn't clearly… / [will] I resolve (held lightly, strength 0.20) to: pursue: Understand Probability theory more deeply — This doesn't…]
+- [Chunk: 💔 Goal failed: Understand evolutionary biology and cooperation more deeply — round 3. ValueError: no URLs to fetch / 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch]
+- [Chunk: 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch / 💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch]
+- [Chunk: [Incubation] While sitting with: '[will] I resolve to: pursue: Understand history of written language more deeply — I… / [Incubation] While sitting with: '[will] I resolve to: pursue: Understand formal logic more deeply — I stand behind…]
+- [Chunk: [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53) / [will] I resolve to: pursue: Understand foundations of quantum mechanics more deeply — I stand behind this. (strength 0.]
+- [Chunk: [Incubation] While sitting with: '💔 Goal failed: Understand the nature of mathematics more deeply — round 3. / [Incubation] While sitting with: '💔 Goal failed: Understand formal logic more deeply.]

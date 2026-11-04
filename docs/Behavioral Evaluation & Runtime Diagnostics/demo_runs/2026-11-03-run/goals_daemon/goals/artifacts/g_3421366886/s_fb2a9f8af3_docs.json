@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_01.txt",
+      "chars": 4984
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cyber-physical_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_02.txt",
+      "chars": 16870
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_property",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_04.txt",
+      "chars": 5513
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_object",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_05.txt",
+      "chars": 13415
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_06.txt",
+      "chars": 13002
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_constant",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Outline_of_physical_science",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T14:44:08.416046+00:00"
+}

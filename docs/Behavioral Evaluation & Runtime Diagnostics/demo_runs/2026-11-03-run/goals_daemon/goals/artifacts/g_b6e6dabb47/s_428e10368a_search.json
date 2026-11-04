@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "history of written language history and development",
+    "history of written language applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_programming_languages",
+    "https://en.wikipedia.org/wiki/History_of_English",
+    "https://en.wikipedia.org/wiki/Evolution_of_languages",
+    "https://en.wikipedia.org/wiki/History_of_the_Polish_language",
+    "https://en.wikipedia.org/wiki/History_of_French",
+    "https://en.wikipedia.org/wiki/Writing",
+    "https://en.wikipedia.org/wiki/System_programming_language",
+    "https://en.wikipedia.org/wiki/Programming_language_generations",
+    "https://en.wikipedia.org/wiki/R_%28programming_language%29",
+    "https://en.wikipedia.org/wiki/API"
+  ],
+  "results": [
+    {
+      "title": "History of programming languages",
+      "url": "https://en.wikipedia.org/wiki/History_of_programming_languages",
+      "snippet": "The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> programming <span class=\"searchmatch\">languages</span> spans from documentation <span class=\"searchmatch\">of</span> early mechanical computers to modern tools for software <span class=\"searchmatch\">development</span>. Early programming",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of English",
+      "url": "https://en.wikipedia.org/wiki/History_of_English",
+      "snippet": "<span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Development</span> <span class=\"searchmatch\">of</span> the English <span class=\"searchmatch\">Language</span>. Boston, MA: Wadsworth. pp. 140–141. Algeo, John. 2010. The Origins <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Development</span> <span class=\"searchmatch\">of</span> the English <span class=\"searchmatch\">Language</span>.",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "Evolution of languages",
+      "url": "https://en.wikipedia.org/wiki/Evolution_of_languages",
+      "snippet": "The evolution <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">languages</span> or <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">language</span> includes the evolution, divergence <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">development</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">languages</span> throughout time, as reconstructed based",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of the Polish language",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Polish_language",
+      "snippet": "establishment <span class=\"searchmatch\">of</span> Polish statehood <span class=\"searchmatch\">and</span> the Christianization <span class=\"searchmatch\">of</span> Poland. The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> the <span class=\"searchmatch\">language</span> can then be divided into the following periods <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">development</span>: Old",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "History of French",
+      "url": "https://en.wikipedia.org/wiki/History_of_French",
+      "snippet": "discussion <span class=\"searchmatch\">of</span> the <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> a <span class=\"searchmatch\">language</span> is typically divided into &quot;external <span class=\"searchmatch\">history</span>&quot;, describing the ethnic, political, social, technological, <span class=\"searchmatch\">and</span> other changes",
+      "query": "history of written language history and development"
+    },
+    {
+      "title": "Writing",
+      "url": "https://en.wikipedia.org/wiki/Writing",
+      "snippet": "known as <span class=\"searchmatch\">written</span> <span class=\"searchmatch\">language</span>. Historically, <span class=\"searchmatch\">written</span> <span class=\"searchmatch\">languages</span> have emerged as a way to record corresponding spoken <span class=\"searchmatch\">languages</span>. A particular set <span class=\"searchmatch\">of</span> symbols",
+      "query": "history of written language applications and examples"
+    },
+    {
+      "title": "System programming language",
+      "url": "https://en.wikipedia.org/wiki/System_programming_language",
+      "snippet": "<span class=\"searchmatch\">languages</span> tend to focus on generic features to allow programs <span class=\"searchmatch\">written</span> in the <span class=\"searchmatch\">language</span> to use the same code on different computing platforms. <span class=\"searchmatch\">Examples</span>",
+      "query": "history of written language applications and examples"
+    },
+    {
+      "title": "Programming language generations",
+      "url": "https://en.wikipedia.org/wiki/Programming_language_generations",
+      "snippet": "research. OPS5 <span class=\"searchmatch\">and</span> Mercury are <span class=\"searchmatch\">examples</span> <span class=\"searchmatch\">of</span> fifth-generation <span class=\"searchmatch\">languages</span>, as is ICAD, which was built upon Lisp. KL-ONE is an <span class=\"searchmatch\">example</span> <span class=\"searchmatch\">of</span> a related idea,",
+      "query": "history of written language applications and examples"
+    },
+    {
+      "title": "R (programming language)",
+      "url": "https://en.wikipedia.org/wiki/R_%28programming_language%29",
+      "snippet": "MacOS, <span class=\"searchmatch\">and</span> Microsoft Windows). Its core is an interpreted <span class=\"searchmatch\">language</span> with a native command line interface. In addition, multiple third-party <span class=\"searchmatch\">applications</span> are",
+      "query": "history of written language applications and examples"
+    },
+    {
+      "title": "API",
+      "url": "https://en.wikipedia.org/wiki/API",
+      "snippet": "(1994). &quot;The design <span class=\"searchmatch\">and</span> implementation <span class=\"searchmatch\">of</span> a <span class=\"searchmatch\">language</span> for extending <span class=\"searchmatch\">applications</span>&quot;. Proceedings <span class=\"searchmatch\">of</span> XXI Brazilian Seminar on Software <span class=\"searchmatch\">and</span> Hardware. pp. 273–284",
+      "query": "history of written language applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T06:34:59.529345+00:00"
+}

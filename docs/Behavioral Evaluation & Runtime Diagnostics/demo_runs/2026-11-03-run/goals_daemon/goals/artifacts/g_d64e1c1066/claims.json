@@ -1,0 +1,81 @@
+{
+  "question": "Is There Anything Left in the Dream of Cold Fusion?",
+  "subject_terms": [
+    "anything",
+    "left",
+    "dream",
+    "cold",
+    "fusion"
+  ],
+  "entities": [
+    "at the New Hydrogen Energy Institute in Japan Cold fusion",
+    "hypothesized type of nuclear reaction that would occur at",
+    "fusion that",
+    "known to take place naturally within stars",
+    "both of which",
+    "produced by fusion of deuterium",
+    "since articles about cold fusion",
+    "rarely published in peer-reviewed mainstream scientific journals",
+    "Nuclear fusion",
+    "normally understood to occur at temperatures in the tens of millions of degrees",
+    "influence",
+    "generally left deliberately ambiguous"
+  ],
+  "relations": [
+    {
+      "subject": "at the New Hydrogen Energy Institute in Japan Cold fusion",
+      "predicate": "is a",
+      "object": "hypothesized type of nuclear reaction that would occur at",
+      "source": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "subject": "fusion that",
+      "predicate": "is",
+      "object": "known to take place naturally within stars",
+      "source": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "subject": "both of which",
+      "predicate": "are",
+      "object": "produced by fusion of deuterium",
+      "source": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "subject": "since articles about cold fusion",
+      "predicate": "are",
+      "object": "rarely published in peer-reviewed mainstream scientific journals",
+      "source": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "subject": "Nuclear fusion",
+      "predicate": "is",
+      "object": "normally understood to occur at temperatures in the tens of millions of degrees",
+      "source": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "subject": "influence",
+      "predicate": "is",
+      "object": "generally left deliberately ambiguous",
+      "source": "https://en.wikipedia.org/wiki/Nyarlathotep"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Cold_fusion"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Digimon_Fusion"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hell%27s_Kitchen_%28American_TV_series%29_season_22"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Slipknot_%28band%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Nyarlathotep"
+    }
+  ],
+  "ts": "2026-11-03T06:40:24.831343+00:00"
+}

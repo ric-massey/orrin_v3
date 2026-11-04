@@ -1,0 +1,35 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Close_Encounters_of_the_Third_Kind",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_ancient_Roman_religion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Slavery_in_ancient_Rome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Charles_III%2C_Duke_of_Bourbon",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_Hungary",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2017_in_American_television",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_06.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T18:54:42.386476+00:00"
+}

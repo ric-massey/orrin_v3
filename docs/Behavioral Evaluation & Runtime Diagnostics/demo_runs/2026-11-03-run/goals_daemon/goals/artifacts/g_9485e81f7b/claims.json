@@ -1,0 +1,64 @@
+{
+  "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "saltiness",
+    "sourness"
+  ],
+  "entities": [
+    "Saltiness and sourness",
+    "perceived when alkali metals or hydrogen ions meet taste buds",
+    "The five specific tastes received by taste receptors",
+    "saltiness"
+  ],
+  "relations": [
+    {
+      "subject": "Saltiness and sourness",
+      "predicate": "are",
+      "object": "perceived when alkali metals or hydrogen ions meet taste buds",
+      "source": "my prior claims [g_8878f0e50a]"
+    },
+    {
+      "subject": "The five specific tastes received by taste receptors",
+      "predicate": "are",
+      "object": "saltiness",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8878f0e50a]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pisco_sour"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Human_food"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mish"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Best_Medicine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Traditional_Chinese_medicine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philippines"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Salt_in_Chinese_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/MasterChef_Australia_series_2"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Society_and_culture_of_the_Han_dynasty"
+    }
+  ],
+  "ts": "2026-11-04T02:32:18.149281+00:00"
+}

@@ -1,0 +1,47 @@
+{
+  "queries": [
+    "world",
+    "world explained",
+    "what is not obvious about world"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/World_War_II",
+    "https://en.wikipedia.org/wiki/World_War_I",
+    "https://en.wikipedia.org/wiki/WWE"
+  ],
+  "results": [
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "A <span class=\"searchmatch\">world</span> is a totality of entities. In philosophy, the <span class=\"searchmatch\">world</span> is customarily viewed as all of existence or the whole of reality. Some conceptions see the",
+      "query": "world"
+    },
+    {
+      "title": "World (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+      "snippet": "Look up <span class=\"searchmatch\">world</span> in Wiktionary, the free dictionary. The <span class=\"searchmatch\">world</span> is the totality of existing entities. It is also common name for the whole of human civilization",
+      "query": "world"
+    },
+    {
+      "title": "World War II",
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "snippet": "<span class=\"searchmatch\">World</span> War II, or the Second <span class=\"searchmatch\">World</span> War (1 September 1939 – 2 September 1945), was a global conflict between two coalitions: the Allies and the Axis powers",
+      "query": "world"
+    },
+    {
+      "title": "World War I",
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "snippet": "<span class=\"searchmatch\">World</span> War I, or the First <span class=\"searchmatch\">World</span> War (28 July 1914 – 11 November 1918), also known as the Great War, was a global conflict between two coalitions: the",
+      "query": "world"
+    },
+    {
+      "title": "WWE",
+      "url": "https://en.wikipedia.org/wiki/WWE",
+      "snippet": "<span class=\"searchmatch\">World</span> Wrestling Entertainment (WWE) is an American professional wrestling promotion. It is the largest and most valuable wrestling promotion in the world",
+      "query": "world"
+    }
+  ],
+  "ts": "2026-11-03T03:16:12.935420+00:00"
+}

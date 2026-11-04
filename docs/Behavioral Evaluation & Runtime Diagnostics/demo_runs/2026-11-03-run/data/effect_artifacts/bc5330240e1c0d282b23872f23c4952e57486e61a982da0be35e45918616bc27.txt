@@ -1,0 +1,64 @@
+{
+  "question": "What actually is early productions, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "early",
+    "productions"
+  ],
+  "entities": [
+    "The double album",
+    "released early next year",
+    "and inexperienced staff",
+    "all factors in its chaotic production"
+  ],
+  "relations": [
+    {
+      "subject": "The double album",
+      "predicate": "was",
+      "object": "released early next year",
+      "source": "my prior claims [g_df3217dcf8]"
+    },
+    {
+      "subject": "and inexperienced staff",
+      "predicate": "were",
+      "object": "all factors in its chaotic production",
+      "source": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_df3217dcf8]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Production_of_The_Lord_of_the_Rings_film_series"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Laid-Off_Cheat-Granting_Mage_Enjoys_a_Second_Lease_on_Life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Henry_VI%2C_Part_3"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wikipedia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Superman"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Project_2025"
+    }
+  ],
+  "ts": "2026-11-03T16:40:24.856383+00:00"
+}

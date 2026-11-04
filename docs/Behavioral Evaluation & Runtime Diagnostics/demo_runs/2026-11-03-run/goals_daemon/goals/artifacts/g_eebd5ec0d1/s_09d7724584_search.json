@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "formal logic",
+    "formal logic explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematical_logic",
+    "https://en.wikipedia.org/wiki/Logic",
+    "https://en.wikipedia.org/wiki/Formal_system",
+    "https://en.wikipedia.org/wiki/Outline_of_logic",
+    "https://en.wikipedia.org/wiki/Formal_language",
+    "https://en.wikipedia.org/wiki/Term_logic",
+    "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+    "https://en.wikipedia.org/wiki/Formal_semantics_%28natural_language%29",
+    "https://en.wikipedia.org/wiki/Informal_logic"
+  ],
+  "results": [
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "Mathematical <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within mathematics. This is commonly done by means of <span class=\"searchmatch\">formal</span> systems called <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "formal logic"
+    },
+    {
+      "title": "Logic",
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "snippet": "<span class=\"searchmatch\">Logic</span> is the study of correct reasoning. It includes both <span class=\"searchmatch\">formal</span> and informal <span class=\"searchmatch\">logic</span>. <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logic</span> is the study of deductively valid inferences or logical",
+      "query": "formal logic"
+    },
+    {
+      "title": "Formal system",
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "snippet": "equality used in first order <span class=\"searchmatch\">logic</span>. The two main types of deductive systems are proof systems and <span class=\"searchmatch\">formal</span> semantics. <span class=\"searchmatch\">Formal</span> proofs are sequences of well-formed",
+      "query": "formal logic"
+    },
+    {
+      "title": "Outline of logic",
+      "url": "https://en.wikipedia.org/wiki/Outline_of_logic",
+      "snippet": "Classical <span class=\"searchmatch\">logic</span> Computability <span class=\"searchmatch\">logic</span> Deontic <span class=\"searchmatch\">logic</span> Dependence <span class=\"searchmatch\">logic</span> Description <span class=\"searchmatch\">logic</span> Deviant <span class=\"searchmatch\">logic</span> Doxastic <span class=\"searchmatch\">logic</span> Epistemic <span class=\"searchmatch\">logic</span> First-order <span class=\"searchmatch\">logic</span> <span class=\"searchmatch\">Formal</span> logic",
+      "query": "formal logic"
+    },
+    {
+      "title": "Formal language",
+      "url": "https://en.wikipedia.org/wiki/Formal_language",
+      "snippet": "In <span class=\"searchmatch\">logic</span>, mathematics, computer science, and linguistics, a <span class=\"searchmatch\">formal</span> language is a set of strings whose symbols are taken from a set called &quot;alphabet&quot;.",
+      "query": "formal logic"
+    },
+    {
+      "title": "Logic",
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "snippet": "<span class=\"searchmatch\">Logic</span> is the study of correct reasoning. It includes both <span class=\"searchmatch\">formal</span> and informal <span class=\"searchmatch\">logic</span>. <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logic</span> is the study of deductively valid inferences or logical",
+      "query": "formal logic explained"
+    },
+    {
+      "title": "Term logic",
+      "url": "https://en.wikipedia.org/wiki/Term_logic",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and <span class=\"searchmatch\">formal</span> semantics, term <span class=\"searchmatch\">logic</span>, also known as traditional <span class=\"searchmatch\">logic</span>, syllogistic <span class=\"searchmatch\">logic</span> or Aristotelian <span class=\"searchmatch\">logic</span>, is a loose name for an approach to",
+      "query": "formal logic explained"
+    },
+    {
+      "title": "Philosophy of logic",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+      "snippet": "investigating the properties of <span class=\"searchmatch\">formal</span> logical systems, like consistency and completeness. Various characterizations of the nature of <span class=\"searchmatch\">logic</span> are found in the academic",
+      "query": "formal logic explained"
+    },
+    {
+      "title": "Formal semantics (natural language)",
+      "url": "https://en.wikipedia.org/wiki/Formal_semantics_%28natural_language%29",
+      "snippet": "<span class=\"searchmatch\">Formal</span> semantics is the scientific study of linguistic meaning through <span class=\"searchmatch\">formal</span> tools from <span class=\"searchmatch\">logic</span> and mathematics. It is an interdisciplinary field, sometimes",
+      "query": "formal logic explained"
+    },
+    {
+      "title": "Informal logic",
+      "url": "https://en.wikipedia.org/wiki/Informal_logic",
+      "snippet": "Informal <span class=\"searchmatch\">logic</span> encompasses the principles of <span class=\"searchmatch\">logic</span> and logical thought outside of a <span class=\"searchmatch\">formal</span> setting (characterized by the usage of particular statements)",
+      "query": "formal logic explained"
+    }
+  ],
+  "ts": "2026-11-03T03:36:25.727827+00:00"
+}

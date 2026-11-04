@@ -1,0 +1,131 @@
+{
+  "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+  "subject_terms": [
+    "consciousness",
+    "subjective",
+    "experience"
+  ],
+  "entities": [
+    "Subjective experience",
+    "commonly described as encompassing sensory experiences and mental events",
+    "Scholars",
+    "divided as to whether Aristotle had a concept of consciousness",
+    "the central structure of an experience",
+    "its intentionality",
+    "at all when the experience of the world and its objects",
+    "thoroughly subjective",
+    "is a subjective experience which",
+    "interpreted within a religious framework",
+    "The interpretation of mystical experiences",
+    "matter of debate",
+    "and states that mystical experiences",
+    "mediated by pre-existing frames of reference",
+    "subjective experiences which",
+    "typically interpreted in a religious framework"
+  ],
+  "relations": [
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "commonly described as encompassing sensory experiences and mental events",
+      "source": "my prior claims [g_de9f353868]"
+    },
+    {
+      "subject": "Scholars",
+      "predicate": "are",
+      "object": "divided as to whether Aristotle had a concept of consciousness",
+      "source": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "subject": "the central structure of an experience",
+      "predicate": "is",
+      "object": "its intentionality",
+      "source": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "subject": "at all when the experience of the world and its objects",
+      "predicate": "is",
+      "object": "thoroughly subjective",
+      "source": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "subject": "is a subjective experience which",
+      "predicate": "is",
+      "object": "interpreted within a religious framework",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "The interpretation of mystical experiences",
+      "predicate": "is a",
+      "object": "matter of debate",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "and states that mystical experiences",
+      "predicate": "are",
+      "object": "mediated by pre-existing frames of reference",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "subjective experiences which",
+      "predicate": "are",
+      "object": "typically interpreted in a religious framework",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "may specifically",
+      "predicate": "refers to",
+      "object": "unitive or nondual experiences",
+      "source": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "subject": "propose that the variables giving rise to consciousness",
+      "predicate": "are",
+      "object": "to be found at the neuronal level",
+      "source": "https://en.wikipedia.org/wiki/Neural_correlates_of_consciousness"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "theories proposed of quantum consciousness based on quantum mechanics",
+      "source": "https://en.wikipedia.org/wiki/Neural_correlates_of_consciousness"
+    },
+    {
+      "subject": "This early stage of consciousness",
+      "predicate": "is",
+      "object": "crucial",
+      "source": "https://en.wikipedia.org/wiki/Neural_correlates_of_consciousness"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_de9f353868]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Phenomenology_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mystical_or_religious_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Neural_correlates_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjective_well-being"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjective_character_of_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Subjectivity_and_objectivity_%28philosophy%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ego_death"
+    }
+  ],
+  "ts": "2026-11-03T11:46:58.698586+00:00"
+}

@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "Taste",
+    "Taste explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Taste",
+    "https://en.wikipedia.org/wiki/The_Taste",
+    "https://en.wikipedia.org/wiki/Umami",
+    "https://en.wikipedia.org/wiki/Taste_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/Bad_Taste",
+    "https://en.wikipedia.org/wiki/Max_Miller_%28YouTuber%29",
+    "https://en.wikipedia.org/wiki/Acquired_taste",
+    "https://en.wikipedia.org/wiki/Conditioned_taste_aversion"
+  ],
+  "results": [
+    {
+      "title": "Taste",
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "snippet": "gustatory system or sense of <span class=\"searchmatch\">taste</span> is the sensory system that is partially responsible for the perception of <span class=\"searchmatch\">taste</span>. <span class=\"searchmatch\">Taste</span> is the perception stimulated",
+      "query": "Taste"
+    },
+    {
+      "title": "The Taste",
+      "url": "https://en.wikipedia.org/wiki/The_Taste",
+      "snippet": "The <span class=\"searchmatch\">Taste</span> is an American cooking-themed reality competition series on ABC. It aired from January 22, 2013, to January 22, 2015. On May 7, 2015, ABC canceled",
+      "query": "Taste"
+    },
+    {
+      "title": "Umami",
+      "url": "https://en.wikipedia.org/wiki/Umami",
+      "snippet": "savoriness, is one of the five basic <span class=\"searchmatch\">tastes</span>. It is characteristic of broths and cooked meats. People <span class=\"searchmatch\">taste</span> umami through <span class=\"searchmatch\">taste</span> receptors that typically respond",
+      "query": "Taste"
+    },
+    {
+      "title": "Taste (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/Taste_%28disambiguation%29",
+      "snippet": "Look up <span class=\"searchmatch\">taste</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Taste</span> is the sensation and/or perception of flavors. <span class=\"searchmatch\">Taste</span> may also refer to: Aesthetic <span class=\"searchmatch\">taste</span>, the ability",
+      "query": "Taste"
+    },
+    {
+      "title": "Bad Taste",
+      "url": "https://en.wikipedia.org/wiki/Bad_Taste",
+      "snippet": "Bad <span class=\"searchmatch\">Taste</span> is a 1987 New Zealand science-fiction action comedy horror film written, produced, filmed, directed by and co-starring Peter Jackson. Independently",
+      "query": "Taste"
+    },
+    {
+      "title": "Umami",
+      "url": "https://en.wikipedia.org/wiki/Umami",
+      "snippet": "savoriness, is one of the five basic <span class=\"searchmatch\">tastes</span>. It is characteristic of broths and cooked meats. People <span class=\"searchmatch\">taste</span> umami through <span class=\"searchmatch\">taste</span> receptors that typically respond",
+      "query": "Taste explained"
+    },
+    {
+      "title": "Taste",
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "snippet": "gustatory system or sense of <span class=\"searchmatch\">taste</span> is the sensory system that is partially responsible for the perception of <span class=\"searchmatch\">taste</span>. <span class=\"searchmatch\">Taste</span> is the perception stimulated",
+      "query": "Taste explained"
+    },
+    {
+      "title": "Max Miller (YouTuber)",
+      "url": "https://en.wikipedia.org/wiki/Max_Miller_%28YouTuber%29",
+      "snippet": "creator and host of <span class=\"searchmatch\">Tasting</span> History, a culinary and history fusion web-show that recreates ancient or historical recipes and <span class=\"searchmatch\">explains</span> the history around",
+      "query": "Taste explained"
+    },
+    {
+      "title": "Acquired taste",
+      "url": "https://en.wikipedia.org/wiki/Acquired_taste",
+      "snippet": "An acquired <span class=\"searchmatch\">taste</span> is an appreciation for something unlikely to be enjoyed by a person who has not had substantial exposure to it. It is the opposite of",
+      "query": "Taste explained"
+    },
+    {
+      "title": "Conditioned taste aversion",
+      "url": "https://en.wikipedia.org/wiki/Conditioned_taste_aversion",
+      "snippet": "Conditioned <span class=\"searchmatch\">taste</span> aversion occurs when an animal acquires an aversion to the <span class=\"searchmatch\">taste</span> of a food that was paired with aversive stimuli. The effect <span class=\"searchmatch\">explains</span> how the",
+      "query": "Taste explained"
+    }
+  ],
+  "ts": "2026-11-03T22:39:50.368943+00:00"
+}

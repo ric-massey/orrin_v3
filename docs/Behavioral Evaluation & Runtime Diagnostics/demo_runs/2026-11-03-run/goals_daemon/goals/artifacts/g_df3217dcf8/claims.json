@@ -1,0 +1,80 @@
+{
+  "question": "What actually is early productions, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "early",
+    "productions"
+  ],
+  "entities": [
+    "The double album",
+    "released early next year",
+    "and inexperienced staff",
+    "all factors in its chaotic production",
+    "they argue that information",
+    "lacking on Jesus in secular sources from the first and early second centuries",
+    "with early phénakisticope-based animation projectors",
+    "made at least as early as 1843 and publicly screened in 1847"
+  ],
+  "relations": [
+    {
+      "subject": "The double album",
+      "predicate": "was",
+      "object": "released early next year",
+      "source": "my prior claims [g_aed70f5f61]"
+    },
+    {
+      "subject": "and inexperienced staff",
+      "predicate": "were",
+      "object": "all factors in its chaotic production",
+      "source": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise"
+    },
+    {
+      "subject": "they argue that information",
+      "predicate": "is",
+      "object": "lacking on Jesus in secular sources from the first and early second centuries",
+      "source": "https://en.wikipedia.org/wiki/Christ_myth_theory"
+    },
+    {
+      "subject": "with early phénakisticope-based animation projectors",
+      "predicate": "were",
+      "object": "made at least as early as 1843 and publicly screened in 1847",
+      "source": "https://en.wikipedia.org/wiki/Film"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_aed70f5f61]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Production_of_The_Lord_of_the_Rings_film_series"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Too_Many_Losing_Heroines%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Being_Ian"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jello_Biafra"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Utopia_%28book%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quran"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Christ_myth_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Film"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Blade_Runner_2049"
+    }
+  ],
+  "ts": "2026-11-03T16:40:08.723285+00:00"
+}

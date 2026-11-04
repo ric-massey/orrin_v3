@@ -1,0 +1,128 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "The majority of these models",
+    "language models",
+    "writing",
+    "also known as written language",
+    "While the use of language",
+    "universal across human societies",
+    "all of which",
+    "largely reliant on portable and easily reproducible forms of inscribed language",
+    "although these instances of written Egyptian",
+    "rebus -like and confined to semi-grammatical captions",
+    "Philosophy of history",
+    "philosophical study of history and its discipline",
+    "History",
+    "supposed to teach good examples for one to follow",
+    "Indo-European languages The Indo-European languages",
+    "primarily represented in Asia by the Indo-Iranian branch"
+  ],
+  "relations": [
+    {
+      "subject": "The majority of these models",
+      "predicate": "are",
+      "object": "language models",
+      "source": "my prior claims [g_edfbe63ebf]"
+    },
+    {
+      "subject": "writing",
+      "predicate": "is",
+      "object": "also known as written language",
+      "source": "https://en.wikipedia.org/wiki/Writing"
+    },
+    {
+      "subject": "While the use of language",
+      "predicate": "is",
+      "object": "universal across human societies",
+      "source": "https://en.wikipedia.org/wiki/Writing"
+    },
+    {
+      "subject": "all of which",
+      "predicate": "were",
+      "object": "largely reliant on portable and easily reproducible forms of inscribed language",
+      "source": "https://en.wikipedia.org/wiki/Writing"
+    },
+    {
+      "subject": "although these instances of written Egyptian",
+      "predicate": "are",
+      "object": "rebus -like and confined to semi-grammatical captions",
+      "source": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account"
+    },
+    {
+      "subject": "Philosophy of history",
+      "predicate": "is the",
+      "object": "philosophical study of history and its discipline",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_history"
+    },
+    {
+      "subject": "History",
+      "predicate": "was",
+      "object": "supposed to teach good examples for one to follow",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_history"
+    },
+    {
+      "subject": "Indo-European languages The Indo-European languages",
+      "predicate": "are",
+      "object": "primarily represented in Asia by the Indo-Iranian branch",
+      "source": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    },
+    {
+      "subject": "Indo-Aryan languages",
+      "predicate": "are",
+      "object": "mainly spoken in the Indian subcontinent",
+      "source": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    },
+    {
+      "subject": "Iranic languages",
+      "predicate": "are",
+      "object": "mainly spoken in and around the Iranian Plateau",
+      "source": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    },
+    {
+      "subject": "Languages given official status",
+      "predicate": "are",
+      "object": "Vietnamese",
+      "source": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    },
+    {
+      "subject": "Austronesian languages The Austronesian languages",
+      "predicate": "are",
+      "object": "widespread throughout Maritime Southeast Asia",
+      "source": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_edfbe63ebf]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Writing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Languages_of_Asia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hebrew_language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_Chinese_language"
+    }
+  ],
+  "ts": "2026-11-03T05:38:05.652299+00:00"
+}

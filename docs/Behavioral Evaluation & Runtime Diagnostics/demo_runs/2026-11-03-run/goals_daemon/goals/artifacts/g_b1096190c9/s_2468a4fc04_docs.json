@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_space",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dimension",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Assemblage_%28art%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_chess",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_05.txt",
+      "chars": 16631
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Periodic_table",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/3D_rotation_group",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b1096190c9/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T19:21:37.884834+00:00"
+}

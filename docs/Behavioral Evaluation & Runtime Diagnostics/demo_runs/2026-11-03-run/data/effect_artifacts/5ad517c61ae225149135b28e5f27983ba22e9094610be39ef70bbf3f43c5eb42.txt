@@ -1,0 +1,1 @@
+[crystallized skill] query: analyze recent emotional patterns and stability; conditions: analyze, recent, emotional, patterns, stability; rules: [causal] 'evaluate_recent_cognition' causes (intervention) 'curiosity grows' (score=0.36, n=1, L2)

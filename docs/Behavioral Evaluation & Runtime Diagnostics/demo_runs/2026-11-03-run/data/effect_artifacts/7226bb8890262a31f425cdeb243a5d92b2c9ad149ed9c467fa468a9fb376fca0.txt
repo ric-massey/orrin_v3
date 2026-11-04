@@ -1,0 +1,56 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "the Heroic in History",
+    "book by the Scottish essayist",
+    "view that for him",
+    "supported by a complex faith in history and evolutionary progress"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_6f4ce4e0dd]"
+    },
+    {
+      "subject": "the Heroic in History",
+      "predicate": "is a",
+      "object": "book by the Scottish essayist",
+      "source": "https://en.wikipedia.org/wiki/On_Heroes%2C_Hero-Worship%2C_%26_the_Heroic_in_History"
+    },
+    {
+      "subject": "view that for him",
+      "predicate": "was",
+      "object": "supported by a complex faith in history and evolutionary progress",
+      "source": "https://en.wikipedia.org/wiki/On_Heroes%2C_Hero-Worship%2C_%26_the_Heroic_in_History"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_6f4ce4e0dd]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/On_Heroes%2C_Hero-Worship%2C_%26_the_Heroic_in_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WhatsApp"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    }
+  ],
+  "ts": "2026-11-03T06:35:28.840317+00:00"
+}

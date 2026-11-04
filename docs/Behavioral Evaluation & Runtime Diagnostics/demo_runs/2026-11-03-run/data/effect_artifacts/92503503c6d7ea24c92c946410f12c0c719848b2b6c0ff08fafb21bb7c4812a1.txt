@@ -1,0 +1,97 @@
+{
+  "question": "What actually is stoic philosophy and daily life, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "stoic",
+    "philosophy",
+    "daily",
+    "life"
+  ],
+  "entities": [
+    "the Our Band Could Be Your Life audiobook",
+    "released",
+    "Our Life",
+    "compassed round with Necessity",
+    "Aesthetics",
+    "closely related to the philosophy of art",
+    "One difference",
+    "that the philosophy of art focuses on art",
+    "one outlook argues that the philosophy of art",
+    "subfield of aesthetics",
+    "philosophy",
+    "the unity of opposites and the concept of change",
+    "The main source for the life of Heraclitus",
+    "doxographer Diogenes Laërtius"
+  ],
+  "relations": [
+    {
+      "subject": "the Our Band Could Be Your Life audiobook",
+      "predicate": "was",
+      "object": "released",
+      "source": "my prior claims [g_fa015c3457]"
+    },
+    {
+      "subject": "Our Life",
+      "predicate": "is",
+      "object": "compassed round with Necessity",
+      "source": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "subject": "Aesthetics",
+      "predicate": "is",
+      "object": "closely related to the philosophy of art",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "One difference",
+      "predicate": "is",
+      "object": "that the philosophy of art focuses on art",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "one outlook argues that the philosophy of art",
+      "predicate": "is a",
+      "object": "subfield of aesthetics",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "philosophy",
+      "predicate": "are",
+      "object": "the unity of opposites and the concept of change",
+      "source": "https://en.wikipedia.org/wiki/Heraclitus"
+    },
+    {
+      "subject": "The main source for the life of Heraclitus",
+      "predicate": "is the",
+      "object": "doxographer Diogenes Laërtius",
+      "source": "https://en.wikipedia.org/wiki/Heraclitus"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_fa015c3457]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Massimo_Pigliucci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socrates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Michel_Foucault"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Anarchism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Heraclitus"
+    }
+  ],
+  "ts": "2026-11-03T23:21:25.777810+00:00"
+}

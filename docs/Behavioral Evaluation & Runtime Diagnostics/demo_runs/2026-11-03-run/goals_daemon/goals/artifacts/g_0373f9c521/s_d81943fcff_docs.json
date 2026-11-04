@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Two_envelopes_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/%C3%89variste_Galois",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Problem_of_induction",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bill_Nye%E2%80%93Ken_Ham_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2008_United_States_presidential_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Oxford_Union",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T23:00:24.117697+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_decompression_research_and_development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/RuneScape",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Electronics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Human_Development_Index",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gender_and_development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_06.txt",
+      "chars": 15164
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_07.txt",
+      "chars": 16118
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Database_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_08.txt",
+      "chars": 5812
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Authorization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_09.txt",
+      "chars": 8366
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_10.txt",
+      "chars": 15467
+    }
+  ],
+  "ts": "2026-11-03T21:45:50.337552+00:00"
+}

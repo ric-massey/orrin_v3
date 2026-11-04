@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_6ed95fbb91",
+    "title": "Understand Explanations more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Explanations open problems",
+        "Explanations criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_0cb373c400",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:42:45.696444Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:42:45.696453Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:42:45.696456Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:42:45.696458Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:42:45.696459Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Explanations was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Explanations was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:42:45.696475Z",
+      "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:42:45.696853+00:00",
+    "updated_at": "2026-11-03 21:42:46.700177+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_0cb373c400]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Explanations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Smale%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Right_to_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Software_patent_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:42:53.257582+00:00"
+}

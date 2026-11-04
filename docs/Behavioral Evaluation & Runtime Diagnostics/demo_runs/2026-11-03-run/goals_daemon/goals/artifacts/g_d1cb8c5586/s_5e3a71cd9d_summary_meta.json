@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_d1cb8c5586",
+    "title": "Understand Quantization more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Quantization",
+        "Quantization explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.278028Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.278034Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.278036Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.278038Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T06:40:20.278039Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Quantization was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Quantization was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T06:40:20.278192Z",
+      "question": "What actually is Quantization, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 06:40:20.278722+00:00",
+    "updated_at": "2026-11-03 06:40:21.451137+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 4
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Trellis_quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28music%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vector_quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28physics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Old_quantum_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Elementary_charge",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T06:40:26.014288+00:00"
+}

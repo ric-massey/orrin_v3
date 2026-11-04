@@ -1,0 +1,95 @@
+{
+  "question": "What is there about world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "The Seven Wonders of the Ancient World",
+    "oldest known list of this type",
+    "Many of the structures on these lists",
+    "built much earlier than the Middle Ages but were well known throughout the world",
+    "These exhibitions vary in character and",
+    "held in different parts of the world at a specific site for a period of time",
+    "world expositions",
+    "largely focused on trade and displayed technological advances and inventions",
+    "World expositions",
+    "platforms for state-of-the-art science and technology from around the world"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [g_e73ec00c77]"
+    },
+    {
+      "subject": "The Seven Wonders of the Ancient World",
+      "predicate": "is the",
+      "object": "oldest known list of this type",
+      "source": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "subject": "Many of the structures on these lists",
+      "predicate": "were",
+      "object": "built much earlier than the Middle Ages but were well known throughout the world",
+      "source": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "subject": "These exhibitions vary in character and",
+      "predicate": "are",
+      "object": "held in different parts of the world at a specific site for a period of time",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "world expositions",
+      "predicate": "were",
+      "object": "largely focused on trade and displayed technological advances and inventions",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "subject": "World expositions",
+      "predicate": "were",
+      "object": "platforms for state-of-the-art science and technology from around the world",
+      "source": "https://en.wikipedia.org/wiki/World%27s_fair"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_e73ec00c77]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Holocene"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wonders_of_the_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Omaliini"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World%27s_fair"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Momordica"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages"
+    }
+  ],
+  "ts": "2026-11-03T11:07:55.936964+00:00"
+}

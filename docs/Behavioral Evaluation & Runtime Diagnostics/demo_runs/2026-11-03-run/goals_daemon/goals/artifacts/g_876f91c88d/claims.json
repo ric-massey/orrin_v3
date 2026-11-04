@@ -1,0 +1,42 @@
+{
+  "question": "What actually is may specifically, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "specifically"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Brian_May"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyclopedia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Refractory_period"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Typhoid_fever"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Olympic_Stadium_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Devil_May_Cry_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ChatGPT"
+    }
+  ],
+  "ts": "2026-11-03T14:44:12.141903+00:00"
+}

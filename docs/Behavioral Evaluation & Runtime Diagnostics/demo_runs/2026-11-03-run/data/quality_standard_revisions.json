@@ -1,0 +1,2600 @@
+[
+  {
+    "id": "486bc90c54fb212d",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T02:55:37.824627Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T02:55:37.830292Z"
+  },
+  {
+    "id": "1d035f39dde67179",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:00:26.743328Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:00:26.752998Z"
+  },
+  {
+    "id": "b4686906c31b1136",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.35,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:00:26.749663Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:00:26.753840Z"
+  },
+  {
+    "id": "b3ea435683ee86e4",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:13:16.342435Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:13:16.356434Z"
+  },
+  {
+    "id": "23408a3939393402",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.35,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:13:16.354468Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:13:16.357380Z"
+  },
+  {
+    "id": "dce396cca2eadddb",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:15:07.951355Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:15:07.973836Z"
+  },
+  {
+    "id": "d28557989568bdcd",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.35,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:15:07.971149Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:15:07.974911Z"
+  },
+  {
+    "id": "88be1d583c1dcb7d",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:17:49.708615Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:17:49.750182Z"
+  },
+  {
+    "id": "be5d8925506b4677",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:17:49.724697Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:17:49.753170Z"
+  },
+  {
+    "id": "8ae5a3b95bc3ec9d",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "intrinsic-2026-11-03T03:16:11.881924+00:00",
+      "content_hash": "a729dbe3bc308b293f79dc274d87e134689612ddc5875a66f06e337baab8ded0",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "intrinsic-2026-11-03T03:16:11.881924+00:00"
+      ],
+      "effect_rows": [
+        "a729dbe3bc308b293f79dc274d87e134689612ddc5875a66f06e337baab8ded0"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "pending",
+    "note": "downstream-credited file_write artifact for goal intrinsic-2026-11-03T03:16:11.881924+00:00",
+    "ts": "2026-11-03T03:17:49.735584Z",
+    "needs_rule_review": true,
+    "failing_reason": "originality:offline_synthesis_stitch",
+    "copy_report": {
+      "quote_ratio": 0.0,
+      "verbatim_ratio": 0.0,
+      "offline_stitch": true,
+      "original_prose_chars": 1181,
+      "sources_found": 0
+    },
+    "updated_ts": "2026-11-04T01:23:21.126348Z"
+  },
+  {
+    "id": "2e38f98b7e860fcb",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:20:14.190551Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:20:14.233609Z"
+  },
+  {
+    "id": "034ed0955a98be3b",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:20:14.206074Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:20:14.235027Z"
+  },
+  {
+    "id": "651b83427c4c6c56",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:22:35.839539Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:22:35.893041Z"
+  },
+  {
+    "id": "85108b4cdb774662",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:22:35.858313Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:22:35.894896Z"
+  },
+  {
+    "id": "e5d018fa00ed7540",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T03:30:00.370368Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:30:00.411633Z"
+  },
+  {
+    "id": "a03199b1cdc9c06f",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T03:30:00.382711Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T03:30:00.412857Z"
+  },
+  {
+    "id": "f8acca6043c688bd",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T06:30:03.339838Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T06:30:04.054231Z"
+  },
+  {
+    "id": "aa06845bdb8547a4",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T06:30:03.378838Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T06:30:04.056813Z"
+  },
+  {
+    "id": "dd5e25e745b3be16",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T09:30:06.642588Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T09:30:08.836768Z"
+  },
+  {
+    "id": "f72885c51196d932",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T09:30:06.782533Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T09:30:08.843158Z"
+  },
+  {
+    "id": "bc8dfc7eb657f0d8",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-03T09:30:08.369670Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T09:30:08.885534Z"
+  },
+  {
+    "id": "36e4b954c08bc1a3",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T12:35:14.740358Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T12:35:19.371399Z"
+  },
+  {
+    "id": "3ff502995bfbd5c8",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e",
+        "5ed7cbb2-d5b6-44db-8c65-fddaa49ee2b6"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T12:35:14.918559Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T12:35:19.374123Z"
+  },
+  {
+    "id": "fb7a65d7c1fb1d4e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-03T12:35:17.749740Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T12:35:19.406672Z"
+  },
+  {
+    "id": "a1e6736710592356",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_44425a164a2a",
+      "content_hash": "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_44425a164a2a"
+      ],
+      "effect_rows": [
+        "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_44425a164a2a",
+    "ts": "2026-11-03T12:35:18.892483Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T12:35:19.409027Z"
+  },
+  {
+    "id": "f263f485409083dd",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T15:44:10.300527Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T15:44:19.908746Z"
+  },
+  {
+    "id": "a87569cee0400e8c",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e",
+        "5ed7cbb2-d5b6-44db-8c65-fddaa49ee2b6"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T15:44:10.550124Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T15:44:19.912326Z"
+  },
+  {
+    "id": "84b21eb24130df03",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-03T15:44:14.953503Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T15:44:19.980567Z"
+  },
+  {
+    "id": "ca09836f5f4c63aa",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_44425a164a2a",
+      "content_hash": "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_44425a164a2a"
+      ],
+      "effect_rows": [
+        "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_44425a164a2a",
+    "ts": "2026-11-03T15:44:16.651117Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T15:44:19.984368Z"
+  },
+  {
+    "id": "0bda102350eed2d2",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ae550ce5949b",
+      "content_hash": "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ae550ce5949b"
+      ],
+      "effect_rows": [
+        "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "922e3837-9b02-42de-9fc0-23f97fbc7e5e",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ae550ce5949b",
+    "ts": "2026-11-03T15:44:18.142645Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T15:44:19.988403Z"
+  },
+  {
+    "id": "ce963da45f7b4aa6",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1e0869be716c",
+      "content_hash": "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1e0869be716c"
+      ],
+      "effect_rows": [
+        "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_1e0869be716c",
+    "ts": "2026-11-03T15:44:18.746699Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T15:44:19.991475Z"
+  },
+  {
+    "id": "17e9680370bad080",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ede699a8046c",
+      "content_hash": "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ede699a8046c"
+      ],
+      "effect_rows": [
+        "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "06698b25-7bc4-4e19-9997-da14abc4b3a9",
+        "077cd626-664a-4bed-9114-80d8653897f8",
+        "33a2f797-615a-4a48-9403-a761fdc21efb",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "6db82838-3f43-49a1-8b5a-90a8adcf924b",
+        "a0d9ee60-4a41-432a-9413-c9294e224e48",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "24f77d48-1aac-4f29-b69c-3bceb8ee4f2b"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ede699a8046c",
+    "ts": "2026-11-03T15:44:19.783047Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T15:44:20.031063Z"
+  },
+  {
+    "id": "09d2514adc570010",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T18:46:38.713635Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T18:46:50.318634Z"
+  },
+  {
+    "id": "f40fb946337f586d",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e",
+        "5ed7cbb2-d5b6-44db-8c65-fddaa49ee2b6"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T18:46:39.019171Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T18:46:50.322299Z"
+  },
+  {
+    "id": "15c253d634920762",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-03T18:46:43.223522Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T18:46:50.359889Z"
+  },
+  {
+    "id": "d734843ece23757a",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_44425a164a2a",
+      "content_hash": "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_44425a164a2a"
+      ],
+      "effect_rows": [
+        "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_44425a164a2a",
+    "ts": "2026-11-03T18:46:44.887888Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.364716Z"
+  },
+  {
+    "id": "90fa05fa57e3a1b5",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ae550ce5949b",
+      "content_hash": "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ae550ce5949b"
+      ],
+      "effect_rows": [
+        "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "922e3837-9b02-42de-9fc0-23f97fbc7e5e",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ae550ce5949b",
+    "ts": "2026-11-03T18:46:46.618913Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.368878Z"
+  },
+  {
+    "id": "2c5da1d51d07e401",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1e0869be716c",
+      "content_hash": "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1e0869be716c"
+      ],
+      "effect_rows": [
+        "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_1e0869be716c",
+    "ts": "2026-11-03T18:46:47.165106Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.406490Z"
+  },
+  {
+    "id": "da5c76d331879abe",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ede699a8046c",
+      "content_hash": "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ede699a8046c"
+      ],
+      "effect_rows": [
+        "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "06698b25-7bc4-4e19-9997-da14abc4b3a9",
+        "077cd626-664a-4bed-9114-80d8653897f8",
+        "33a2f797-615a-4a48-9403-a761fdc21efb",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "6db82838-3f43-49a1-8b5a-90a8adcf924b",
+        "a0d9ee60-4a41-432a-9413-c9294e224e48",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "24f77d48-1aac-4f29-b69c-3bceb8ee4f2b",
+        "9dc27f10-6057-4c82-b2f2-c0ad5f91ec95",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ede699a8046c",
+    "ts": "2026-11-03T18:46:48.275124Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.410351Z"
+  },
+  {
+    "id": "c2ba8caa77b8715e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_0659ca8cf113",
+      "content_hash": "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_0659ca8cf113"
+      ],
+      "effect_rows": [
+        "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_0659ca8cf113",
+    "ts": "2026-11-03T18:46:50.118283Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.414098Z"
+  },
+  {
+    "id": "dd4394eeeaace747",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_5eb24601ce0d",
+      "content_hash": "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_5eb24601ce0d"
+      ],
+      "effect_rows": [
+        "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2048f3e6-53d9-49b1-aeaf-efbd08c17f60",
+        "261ea406-b8d5-4a75-b982-160c7b65d2c7",
+        "d7bdabbf-b571-4778-8c1d-db366d84748f",
+        "2d2811e2-65f8-4bde-8f3b-a1233468c9b8",
+        "625ca475-2c3e-464c-9174-cd9db109f3b6",
+        "7acb7d11-1944-4363-838f-6ead643b6dac",
+        "d5c37061-9261-426e-a67e-df18723ab1b6",
+        "6166638f-2e01-4a92-b822-3766621392d5",
+        "8ede91cd-5142-45ef-a3c0-15ca056405a8",
+        "e96a8d85-a43b-4df1-9ca2-c632afd839ec",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_5eb24601ce0d",
+    "ts": "2026-11-03T18:46:50.175576Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.419272Z"
+  },
+  {
+    "id": "a99827fae42ffc46",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_41bd78b6a86a",
+      "content_hash": "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_41bd78b6a86a"
+      ],
+      "effect_rows": [
+        "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "19141362-8076-46db-820b-5229f4f59908",
+        "88aea964-8007-4b9a-bf9e-d64029e6b6e2",
+        "02c0fb8d-2827-43ef-a4f1-a5408ff06ded",
+        "ca5e4085-12b4-4828-a6c6-31607928f5ee",
+        "d6976342-7fba-4e8c-910a-8dffeb09b194",
+        "eb40302b-7efd-4a2d-b654-d7460c380da3",
+        "0879a55c-265a-4b9d-877f-427113b2d758",
+        "465b0782-b3fc-4123-9953-b4a7c8690be4",
+        "1d7da7e8-c0a5-4503-ad13-5e8ef975090c",
+        "8a1987bc-ba6c-4aac-bc8f-785438f74f25",
+        "7fe86229-01fd-4a8e-825e-dfcda2614b98",
+        "3396d1c4-d104-4360-93c6-664e5a9976b8",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_41bd78b6a86a",
+    "ts": "2026-11-03T18:46:50.223181Z",
+    "reason": "self_talk_5_of_7_lines",
+    "updated_ts": "2026-11-03T18:46:50.459035Z"
+  },
+  {
+    "id": "733f4740c97bc091",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-03T22:21:41.334996Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T22:22:05.159366Z"
+  },
+  {
+    "id": "fbbd52bcce419d5e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e",
+        "5ed7cbb2-d5b6-44db-8c65-fddaa49ee2b6"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-03T22:21:41.664615Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T22:22:05.169285Z"
+  },
+  {
+    "id": "babb33e2306a001e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-03T22:21:48.318818Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-03T22:22:05.213148Z"
+  },
+  {
+    "id": "615fb964e82631db",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_44425a164a2a",
+      "content_hash": "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_44425a164a2a"
+      ],
+      "effect_rows": [
+        "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_44425a164a2a",
+    "ts": "2026-11-03T22:21:50.620612Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.218984Z"
+  },
+  {
+    "id": "c06426c12098f24f",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ae550ce5949b",
+      "content_hash": "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ae550ce5949b"
+      ],
+      "effect_rows": [
+        "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "922e3837-9b02-42de-9fc0-23f97fbc7e5e",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da",
+        "89b2daaf-3e93-462f-8903-977666cbebcf",
+        "49f108f0-9ca9-4ff6-a867-a6e3244a7d1a"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ae550ce5949b",
+    "ts": "2026-11-03T22:21:53.072032Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.223557Z"
+  },
+  {
+    "id": "20acca34cda2276c",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1e0869be716c",
+      "content_hash": "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1e0869be716c"
+      ],
+      "effect_rows": [
+        "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da",
+        "89b2daaf-3e93-462f-8903-977666cbebcf",
+        "49f108f0-9ca9-4ff6-a867-a6e3244a7d1a"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_1e0869be716c",
+    "ts": "2026-11-03T22:21:54.044025Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.297972Z"
+  },
+  {
+    "id": "e3d44e693b44ef3b",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ede699a8046c",
+      "content_hash": "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ede699a8046c"
+      ],
+      "effect_rows": [
+        "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "06698b25-7bc4-4e19-9997-da14abc4b3a9",
+        "077cd626-664a-4bed-9114-80d8653897f8",
+        "33a2f797-615a-4a48-9403-a761fdc21efb",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "6db82838-3f43-49a1-8b5a-90a8adcf924b",
+        "a0d9ee60-4a41-432a-9413-c9294e224e48",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "24f77d48-1aac-4f29-b69c-3bceb8ee4f2b",
+        "9dc27f10-6057-4c82-b2f2-c0ad5f91ec95",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ede699a8046c",
+    "ts": "2026-11-03T22:21:55.473204Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.303234Z"
+  },
+  {
+    "id": "1fbcdd188c3c35c3",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_0659ca8cf113",
+      "content_hash": "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_0659ca8cf113"
+      ],
+      "effect_rows": [
+        "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_0659ca8cf113",
+    "ts": "2026-11-03T22:21:58.269901Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.307930Z"
+  },
+  {
+    "id": "2be786de43f7facc",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_5eb24601ce0d",
+      "content_hash": "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_5eb24601ce0d"
+      ],
+      "effect_rows": [
+        "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2048f3e6-53d9-49b1-aeaf-efbd08c17f60",
+        "261ea406-b8d5-4a75-b982-160c7b65d2c7",
+        "d7bdabbf-b571-4778-8c1d-db366d84748f",
+        "2d2811e2-65f8-4bde-8f3b-a1233468c9b8",
+        "625ca475-2c3e-464c-9174-cd9db109f3b6",
+        "7acb7d11-1944-4363-838f-6ead643b6dac",
+        "d5c37061-9261-426e-a67e-df18723ab1b6",
+        "6166638f-2e01-4a92-b822-3766621392d5",
+        "8ede91cd-5142-45ef-a3c0-15ca056405a8",
+        "e96a8d85-a43b-4df1-9ca2-c632afd839ec",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_5eb24601ce0d",
+    "ts": "2026-11-03T22:21:58.334266Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.355042Z"
+  },
+  {
+    "id": "01b69b9193743575",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_41bd78b6a86a",
+      "content_hash": "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_41bd78b6a86a"
+      ],
+      "effect_rows": [
+        "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "19141362-8076-46db-820b-5229f4f59908",
+        "88aea964-8007-4b9a-bf9e-d64029e6b6e2",
+        "02c0fb8d-2827-43ef-a4f1-a5408ff06ded",
+        "ca5e4085-12b4-4828-a6c6-31607928f5ee",
+        "d6976342-7fba-4e8c-910a-8dffeb09b194",
+        "eb40302b-7efd-4a2d-b654-d7460c380da3",
+        "0879a55c-265a-4b9d-877f-427113b2d758",
+        "465b0782-b3fc-4123-9953-b4a7c8690be4",
+        "1d7da7e8-c0a5-4503-ad13-5e8ef975090c",
+        "8a1987bc-ba6c-4aac-bc8f-785438f74f25",
+        "7fe86229-01fd-4a8e-825e-dfcda2614b98",
+        "3396d1c4-d104-4360-93c6-664e5a9976b8",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_41bd78b6a86a",
+    "ts": "2026-11-03T22:21:58.461572Z",
+    "reason": "self_talk_5_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.403103Z"
+  },
+  {
+    "id": "a98086b9bdcdfb9e",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_7a2147f25f0f",
+      "content_hash": "ce76b449f87d022bd7023d51aeb5ae69e3f0903e86441360787a324c8ce1bc7e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_7a2147f25f0f"
+      ],
+      "effect_rows": [
+        "ce76b449f87d022bd7023d51aeb5ae69e3f0903e86441360787a324c8ce1bc7e"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "85971175-118f-485b-84e3-77d52581d945"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_7a2147f25f0f",
+    "ts": "2026-11-03T22:22:00.928081Z",
+    "reason": "self_talk_5_of_6_lines",
+    "updated_ts": "2026-11-03T22:22:05.409662Z"
+  },
+  {
+    "id": "dc823677b88a8fcc",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_346bd963b186",
+      "content_hash": "43e98983ca7f4a4df9cbe6ef5a8dbab40112a0e3c1e86fbf53e1b05d95d64b33",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_346bd963b186"
+      ],
+      "effect_rows": [
+        "43e98983ca7f4a4df9cbe6ef5a8dbab40112a0e3c1e86fbf53e1b05d95d64b33"
+      ],
+      "significance": 0.4,
+      "reuse_count": 0,
+      "memory_refs": [
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_346bd963b186",
+    "ts": "2026-11-03T22:22:01.054366Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.415682Z"
+  },
+  {
+    "id": "67cba9230c4006b5",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ee1cf3251216",
+      "content_hash": "d28a78e84172d664287506ae4945ed297cf3c4e9ac89844869925130bbd64664",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ee1cf3251216"
+      ],
+      "effect_rows": [
+        "d28a78e84172d664287506ae4945ed297cf3c4e9ac89844869925130bbd64664"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2048f3e6-53d9-49b1-aeaf-efbd08c17f60",
+        "261ea406-b8d5-4a75-b982-160c7b65d2c7",
+        "d7bdabbf-b571-4778-8c1d-db366d84748f",
+        "2d2811e2-65f8-4bde-8f3b-a1233468c9b8",
+        "625ca475-2c3e-464c-9174-cd9db109f3b6",
+        "7acb7d11-1944-4363-838f-6ead643b6dac",
+        "d5c37061-9261-426e-a67e-df18723ab1b6",
+        "6166638f-2e01-4a92-b822-3766621392d5",
+        "8ede91cd-5142-45ef-a3c0-15ca056405a8",
+        "e96a8d85-a43b-4df1-9ca2-c632afd839ec",
+        "6efec42e-ec37-4de6-876e-cc46bcee5790",
+        "94a72cca-166c-430e-be43-64232bcfa72c",
+        "5e7dd1cb-124d-42df-b68f-6ae17e2eebe2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ee1cf3251216",
+    "ts": "2026-11-03T22:22:01.109596Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-03T22:22:05.534579Z"
+  },
+  {
+    "id": "72d82d7948bc7c33",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_fee4ad0d01",
+      "content_hash": "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_fee4ad0d01"
+      ],
+      "effect_rows": [
+        "a9898f9e24c59160d4014312071ff967f8329d40b89670a6d11bba5425502438"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "b601936c-2f4e-4a7e-9f67-24691db9f205"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_fee4ad0d01",
+    "ts": "2026-11-04T01:22:52.777629Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-04T01:23:21.249809Z"
+  },
+  {
+    "id": "39146fc5c2acbb29",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "aspiration-world_knowledge",
+      "content_hash": "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "aspiration-world_knowledge"
+      ],
+      "effect_rows": [
+        "fd756af212e9cb9eb907f15f573c61de42077de44aa61f2d2e73a6c67501502e"
+      ],
+      "significance": 0.7999999999999999,
+      "reuse_count": 0,
+      "memory_refs": [
+        "035ef52a-d665-4fcd-8fb4-803134b2c068",
+        "5c3009fe-7a2b-4d67-ab2d-357fa2bb753a",
+        "e2910492-d5fc-418b-9f20-18a93f213c3e",
+        "5ed7cbb2-d5b6-44db-8c65-fddaa49ee2b6"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal aspiration-world_knowledge",
+    "ts": "2026-11-04T01:22:53.397089Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-04T01:23:21.305061Z"
+  },
+  {
+    "id": "64758ea5f5150070",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_39608ad9cf38",
+      "content_hash": "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_39608ad9cf38"
+      ],
+      "effect_rows": [
+        "837de66d08bdcd75ef59fa60fdd4b277f0efd5ba99dd5db280af0b1317cd669a"
+      ],
+      "significance": 0.6,
+      "reuse_count": 0,
+      "memory_refs": [
+        "ed40ee7f-3de4-45fe-b15a-183bc72648a3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited file_write artifact for goal g_39608ad9cf38",
+    "ts": "2026-11-04T01:23:00.373447Z",
+    "reason": "verbatim_research_topic_memo",
+    "updated_ts": "2026-11-04T01:23:21.313931Z"
+  },
+  {
+    "id": "e42371a25dc9cfca",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_44425a164a2a",
+      "content_hash": "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_44425a164a2a"
+      ],
+      "effect_rows": [
+        "03178ab513385741cbf04aae09bee0ace4af09e7196c01a99012c2154eed290b"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_44425a164a2a",
+    "ts": "2026-11-04T01:23:02.519632Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.404523Z"
+  },
+  {
+    "id": "6d49441678629c4c",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ae550ce5949b",
+      "content_hash": "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ae550ce5949b"
+      ],
+      "effect_rows": [
+        "8c5d71ff84639f0997126c9e499037c4cf0d6f963fedf04765cbc4a7b582831c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "922e3837-9b02-42de-9fc0-23f97fbc7e5e",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da",
+        "89b2daaf-3e93-462f-8903-977666cbebcf",
+        "49f108f0-9ca9-4ff6-a867-a6e3244a7d1a",
+        "176297b0-f31e-492e-93b2-6d367db2af40",
+        "feeebff0-b6a5-4626-baa5-d2ac2f66c6e2",
+        "5ad363d5-6030-40e3-8b50-f58dc2ee1e93",
+        "53f03157-89d5-44ab-8e91-cfea8fa2a5d3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ae550ce5949b",
+    "ts": "2026-11-04T01:23:04.819998Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.456709Z"
+  },
+  {
+    "id": "59b08f19677c846f",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_1e0869be716c",
+      "content_hash": "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_1e0869be716c"
+      ],
+      "effect_rows": [
+        "54506730cc81154c7a7add37e421cd510e3277cee2e21baa848344ee0f789d4c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da",
+        "89b2daaf-3e93-462f-8903-977666cbebcf",
+        "49f108f0-9ca9-4ff6-a867-a6e3244a7d1a",
+        "176297b0-f31e-492e-93b2-6d367db2af40",
+        "feeebff0-b6a5-4626-baa5-d2ac2f66c6e2",
+        "5ad363d5-6030-40e3-8b50-f58dc2ee1e93",
+        "53f03157-89d5-44ab-8e91-cfea8fa2a5d3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_1e0869be716c",
+    "ts": "2026-11-04T01:23:05.673555Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.465486Z"
+  },
+  {
+    "id": "6803021e294a6ac6",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ede699a8046c",
+      "content_hash": "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ede699a8046c"
+      ],
+      "effect_rows": [
+        "c665d65da09410e26aa6e244faa7528024e089de353c2701181e425cba7e015c"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "06698b25-7bc4-4e19-9997-da14abc4b3a9",
+        "077cd626-664a-4bed-9114-80d8653897f8",
+        "33a2f797-615a-4a48-9403-a761fdc21efb",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "6db82838-3f43-49a1-8b5a-90a8adcf924b",
+        "a0d9ee60-4a41-432a-9413-c9294e224e48",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "24f77d48-1aac-4f29-b69c-3bceb8ee4f2b",
+        "9dc27f10-6057-4c82-b2f2-c0ad5f91ec95",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ede699a8046c",
+    "ts": "2026-11-04T01:23:07.177143Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.630952Z"
+  },
+  {
+    "id": "4d10193a2730c718",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_0659ca8cf113",
+      "content_hash": "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_0659ca8cf113"
+      ],
+      "effect_rows": [
+        "c87b53b3db4ec4b47d18b97ef228d723ac489e2edcff888fff48e0da7328e2c5"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_0659ca8cf113",
+    "ts": "2026-11-04T01:23:10.054049Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.639060Z"
+  },
+  {
+    "id": "d69eb5c5b56b7cb2",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_5eb24601ce0d",
+      "content_hash": "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_5eb24601ce0d"
+      ],
+      "effect_rows": [
+        "e913429364814a85cac1139b97f9a0de1ce9ec6215e03611bfcac58f7c970cea"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2048f3e6-53d9-49b1-aeaf-efbd08c17f60",
+        "261ea406-b8d5-4a75-b982-160c7b65d2c7",
+        "d7bdabbf-b571-4778-8c1d-db366d84748f",
+        "2d2811e2-65f8-4bde-8f3b-a1233468c9b8",
+        "625ca475-2c3e-464c-9174-cd9db109f3b6",
+        "7acb7d11-1944-4363-838f-6ead643b6dac",
+        "d5c37061-9261-426e-a67e-df18723ab1b6",
+        "6166638f-2e01-4a92-b822-3766621392d5",
+        "8ede91cd-5142-45ef-a3c0-15ca056405a8",
+        "e96a8d85-a43b-4df1-9ca2-c632afd839ec",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_5eb24601ce0d",
+    "ts": "2026-11-04T01:23:10.208373Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.691354Z"
+  },
+  {
+    "id": "d6752f4e51c82db3",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_41bd78b6a86a",
+      "content_hash": "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_41bd78b6a86a"
+      ],
+      "effect_rows": [
+        "ecf7bd9941b3b23d5925093acafc8a18c87dd119bd735e4ba0e1ef3fa8399878"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "19141362-8076-46db-820b-5229f4f59908",
+        "88aea964-8007-4b9a-bf9e-d64029e6b6e2",
+        "02c0fb8d-2827-43ef-a4f1-a5408ff06ded",
+        "ca5e4085-12b4-4828-a6c6-31607928f5ee",
+        "d6976342-7fba-4e8c-910a-8dffeb09b194",
+        "eb40302b-7efd-4a2d-b654-d7460c380da3",
+        "0879a55c-265a-4b9d-877f-427113b2d758",
+        "465b0782-b3fc-4123-9953-b4a7c8690be4",
+        "1d7da7e8-c0a5-4503-ad13-5e8ef975090c",
+        "8a1987bc-ba6c-4aac-bc8f-785438f74f25",
+        "7fe86229-01fd-4a8e-825e-dfcda2614b98",
+        "3396d1c4-d104-4360-93c6-664e5a9976b8",
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_41bd78b6a86a",
+    "ts": "2026-11-04T01:23:10.280453Z",
+    "reason": "self_talk_5_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.742990Z"
+  },
+  {
+    "id": "9c37ff56236a9b39",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_7a2147f25f0f",
+      "content_hash": "ce76b449f87d022bd7023d51aeb5ae69e3f0903e86441360787a324c8ce1bc7e",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_7a2147f25f0f"
+      ],
+      "effect_rows": [
+        "ce76b449f87d022bd7023d51aeb5ae69e3f0903e86441360787a324c8ce1bc7e"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "85971175-118f-485b-84e3-77d52581d945"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_7a2147f25f0f",
+    "ts": "2026-11-04T01:23:12.869157Z",
+    "reason": "self_talk_5_of_6_lines",
+    "updated_ts": "2026-11-04T01:23:21.752251Z"
+  },
+  {
+    "id": "2a65c1abacc4dd0f",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_346bd963b186",
+      "content_hash": "43e98983ca7f4a4df9cbe6ef5a8dbab40112a0e3c1e86fbf53e1b05d95d64b33",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_346bd963b186"
+      ],
+      "effect_rows": [
+        "43e98983ca7f4a4df9cbe6ef5a8dbab40112a0e3c1e86fbf53e1b05d95d64b33"
+      ],
+      "significance": 0.4,
+      "reuse_count": 0,
+      "memory_refs": [
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_346bd963b186",
+    "ts": "2026-11-04T01:23:12.925743Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.876353Z"
+  },
+  {
+    "id": "58a07d526e261541",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_ee1cf3251216",
+      "content_hash": "d28a78e84172d664287506ae4945ed297cf3c4e9ac89844869925130bbd64664",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_ee1cf3251216"
+      ],
+      "effect_rows": [
+        "d28a78e84172d664287506ae4945ed297cf3c4e9ac89844869925130bbd64664"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "2048f3e6-53d9-49b1-aeaf-efbd08c17f60",
+        "261ea406-b8d5-4a75-b982-160c7b65d2c7",
+        "d7bdabbf-b571-4778-8c1d-db366d84748f",
+        "2d2811e2-65f8-4bde-8f3b-a1233468c9b8",
+        "625ca475-2c3e-464c-9174-cd9db109f3b6",
+        "7acb7d11-1944-4363-838f-6ead643b6dac",
+        "d5c37061-9261-426e-a67e-df18723ab1b6",
+        "6166638f-2e01-4a92-b822-3766621392d5",
+        "8ede91cd-5142-45ef-a3c0-15ca056405a8",
+        "e96a8d85-a43b-4df1-9ca2-c632afd839ec",
+        "6efec42e-ec37-4de6-876e-cc46bcee5790",
+        "94a72cca-166c-430e-be43-64232bcfa72c",
+        "5e7dd1cb-124d-42df-b68f-6ae17e2eebe2"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_ee1cf3251216",
+    "ts": "2026-11-04T01:23:12.983407Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.884151Z"
+  },
+  {
+    "id": "dcd08c3f0ca21190",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_b1906204ee2e",
+      "content_hash": "835610902330d47fc3150fe20ded297423db6b6cbc442536d0b004cf5eb102cb",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_b1906204ee2e"
+      ],
+      "effect_rows": [
+        "835610902330d47fc3150fe20ded297423db6b6cbc442536d0b004cf5eb102cb"
+      ],
+      "significance": 0.25,
+      "reuse_count": 0,
+      "memory_refs": [
+        "a7d9db9a-e605-4c7f-a7e3-9cbe0aeb1753",
+        "2b5e8477-25d3-4f9f-9f9a-65138400bef5",
+        "a5d1e75d-efb3-43f3-8847-c6208381148a",
+        "be4f97dd-7ed3-45b7-b673-86f8ea32b22c",
+        "35c765a6-b91c-4082-8c2c-62925f2382a4",
+        "b41a3f3f-4f55-41a6-a332-8214f3513417",
+        "834cc714-acbc-41d7-8391-3f4661613127",
+        "f7cc61d0-33b2-449c-8541-2fe1d119bb21",
+        "69581570-fcaf-4a15-8855-7b988ea65dc6",
+        "38cf8049-46ea-4bd1-bbe4-d0a15884e727",
+        "586785aa-9c0f-48b6-bda1-f60ea0ff592d",
+        "db4886c9-794f-4fec-b0c9-8e2fab73cfa2",
+        "6efec42e-ec37-4de6-876e-cc46bcee5790",
+        "94a72cca-166c-430e-be43-64232bcfa72c",
+        "5e7dd1cb-124d-42df-b68f-6ae17e2eebe2",
+        "2457d2e6-253e-462b-926d-dcb3e650cb0c",
+        "7683737f-9f6c-4e16-9772-f16a3d452232",
+        "4e3f8016-59ba-4cdb-9bfa-ff5a791e0cad",
+        "ea8776af-ec9b-48ea-8f61-823a3d51bbfe",
+        "a0140030-60b9-468b-9830-a449abc355e9"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_b1906204ee2e",
+    "ts": "2026-11-04T01:23:20.999631Z",
+    "reason": "self_talk_6_of_7_lines",
+    "updated_ts": "2026-11-04T01:23:21.931425Z"
+  },
+  {
+    "id": "d915fea6bce8ac33",
+    "kind": "promote",
+    "direction": "raise",
+    "artifact_ref": {
+      "goal_id": "g_80d4fd7e388b",
+      "content_hash": "d203a3f577793323d156a02424a70bea7bc1b0d35404cf1e72cdc235c971b925",
+      "artifact_path": null
+    },
+    "evidence": {
+      "goals": [
+        "g_80d4fd7e388b"
+      ],
+      "effect_rows": [
+        "d203a3f577793323d156a02424a70bea7bc1b0d35404cf1e72cdc235c971b925"
+      ],
+      "significance": 0.4,
+      "reuse_count": 0,
+      "memory_refs": [
+        "3d62cfe8-9d72-408c-bc89-d087f507e57d",
+        "869a9625-027a-45e8-801a-831ddea12dc6",
+        "60031548-bc65-44b6-a553-fb1db7865318",
+        "8c2b6c0a-7a1c-4067-9cff-ef0062b31320",
+        "a6e742d5-4a28-42a2-aea2-c94afbdb632b",
+        "fba21b35-942a-4b0b-bd1c-13b3e8539e7b",
+        "e17fa461-9b78-4a75-9c70-7696f5663434",
+        "4bff17c1-0962-4b82-8c04-0ec0f614071f",
+        "10cb4155-e5a1-4399-9327-b4ea2f8cc429",
+        "011ae462-2853-42c0-a6ae-284f6ea7815e",
+        "22a25d11-add8-4666-81db-b7165cd330ab",
+        "52768593-e3f7-4920-b4e9-309640ac6e7c",
+        "f0785888-bcab-413c-ad5f-014787095d02",
+        "66788668-eb14-4612-b284-e8ec283e7c71",
+        "01b07942-6d5a-4e50-8de1-b640fc43e632",
+        "38912afd-68b3-4f19-9f42-39db7944f9e2",
+        "058316b4-a2f4-4dc8-8700-e0749887f9f0",
+        "8e64d689-ba58-4851-a459-e36a177f9b31",
+        "89f8e930-506d-4454-b21b-12fa6b53bfc4",
+        "b35b2acb-6f32-411d-bd8d-e8d7fcd0aa12",
+        "0de4ae6a-2632-4730-a86e-8554dec02ebe",
+        "5dfab7b3-da97-4b3b-a5d8-0c87530cf999",
+        "2c71e6f9-8932-40fc-a339-75a0a779bc3f",
+        "61d69951-878b-4c5e-a92f-9a40b1dfaa16",
+        "ccb31c6d-0840-4810-8bec-41df19bec168",
+        "4003fb8d-3e10-427c-af44-453f76ae8e4c",
+        "28143128-9adf-4948-b891-93f6c95655da",
+        "89b2daaf-3e93-462f-8903-977666cbebcf",
+        "49f108f0-9ca9-4ff6-a867-a6e3244a7d1a",
+        "176297b0-f31e-492e-93b2-6d367db2af40",
+        "feeebff0-b6a5-4626-baa5-d2ac2f66c6e2",
+        "5ad363d5-6030-40e3-8b50-f58dc2ee1e93",
+        "53f03157-89d5-44ab-8e91-cfea8fa2a5d3"
+      ],
+      "signal_prior": null
+    },
+    "status": "rejected",
+    "note": "downstream-credited note_novel artifact for goal g_80d4fd7e388b",
+    "ts": "2026-11-04T01:23:21.044570Z",
+    "reason": "self_talk_4_of_5_lines",
+    "updated_ts": "2026-11-04T01:23:21.940958Z"
+  }
+]

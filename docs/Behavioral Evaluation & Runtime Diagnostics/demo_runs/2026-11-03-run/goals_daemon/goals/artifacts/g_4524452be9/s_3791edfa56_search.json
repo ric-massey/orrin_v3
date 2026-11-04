@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Products open problems",
+    "Products criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI",
+    "https://en.wikipedia.org/wiki/OpenAI",
+    "https://en.wikipedia.org/wiki/Matrix_mortality_problem",
+    "https://en.wikipedia.org/wiki/Fair-trade_debate",
+    "https://en.wikipedia.org/wiki/ChatGPT",
+    "https://en.wikipedia.org/wiki/Criticism_of_Walmart",
+    "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+    "https://en.wikipedia.org/wiki/Software_patent_debate"
+  ],
+  "results": [
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "Many mathematical <span class=\"searchmatch\">problems</span> have been stated but not yet solved. These <span class=\"searchmatch\">problems</span> come from many areas of mathematics, such as theoretical physics, computer",
+      "query": "Products open problems"
+    },
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "15 <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> on quantum operators (about 5 already solved in 2000). A second list of 15 Simon <span class=\"searchmatch\">problems</span> was released in 2000 (at least 3 <span class=\"searchmatch\">problems</span> solved)",
+      "query": "Products open problems"
+    },
+    {
+      "title": "Products and applications of OpenAI",
+      "url": "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI",
+      "snippet": "<span class=\"searchmatch\">Open</span>AI has released a variety of <span class=\"searchmatch\">products</span> and applications since its founding in 2015. At its beginning, <span class=\"searchmatch\">Open</span>AI&#039;s research included many projects focused",
+      "query": "Products open problems"
+    },
+    {
+      "title": "OpenAI",
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "snippet": "Australia&#039;s Medicare. In late 2026, <span class=\"searchmatch\">Open</span>AI published hundreds of claimed solutions to <span class=\"searchmatch\">open</span> mathematics <span class=\"searchmatch\">problems</span>, including Navier–Stokes existence and",
+      "query": "Products open problems"
+    },
+    {
+      "title": "Matrix mortality problem",
+      "url": "https://en.wikipedia.org/wiki/Matrix_mortality_problem",
+      "snippet": "Zero-in-the-Corner <span class=\"searchmatch\">Problems</span>, and More&quot;. arXiv:1404.0644 [cs.DM]. Bournez, Olivier; Branicky, Michael (2002). &quot;The Mortality <span class=\"searchmatch\">Problem</span> for Matrices of Low",
+      "query": "Products open problems"
+    },
+    {
+      "title": "Fair-trade debate",
+      "url": "https://en.wikipedia.org/wiki/Fair-trade_debate",
+      "snippet": "The fair-trade <span class=\"searchmatch\">debate</span> concerns the ethics <span class=\"searchmatch\">and</span> economic implications of fair trade, a term for an arrangement designed to help producers in developing countries",
+      "query": "Products criticism and debate"
+    },
+    {
+      "title": "ChatGPT",
+      "url": "https://en.wikipedia.org/wiki/ChatGPT",
+      "snippet": "transform numerous professional fields, <span class=\"searchmatch\">and</span> it has instigated public <span class=\"searchmatch\">debate</span> about the nature of creativity <span class=\"searchmatch\">and</span> the future of knowledge work. The chatbot",
+      "query": "Products criticism and debate"
+    },
+    {
+      "title": "Criticism of Walmart",
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Walmart",
+      "snippet": "Walmart has received <span class=\"searchmatch\">criticism</span> from parties such as labor unions <span class=\"searchmatch\">and</span> small town advocates for its policies <span class=\"searchmatch\">and</span> business practices. <span class=\"searchmatch\">Criticisms</span> include charges",
+      "query": "Products criticism and debate"
+    },
+    {
+      "title": "Criticism of Israel",
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "snippet": "Israel has faced international <span class=\"searchmatch\">criticism</span> since its establishment in 1948 relating to Zionist political violence <span class=\"searchmatch\">and</span> a variety of other issues, many of",
+      "query": "Products criticism and debate"
+    },
+    {
+      "title": "Software patent debate",
+      "url": "https://en.wikipedia.org/wiki/Software_patent_debate",
+      "snippet": "software patent <span class=\"searchmatch\">debate</span> is the argument about the extent to which, as a matter of public policy, it should be possible to patent software <span class=\"searchmatch\">and</span> computer-implemented",
+      "query": "Products criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T18:53:51.724905+00:00"
+}

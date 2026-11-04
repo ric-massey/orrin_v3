@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_01.txt",
+      "chars": 16631
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Avery_Island_%28Louisiana%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_02.txt",
+      "chars": 12098
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Salt_Lake_City",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Lost_Tour",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_04.txt",
+      "chars": 5678
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_05.txt",
+      "chars": 7901
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Roman_concrete",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Grand_Canal_%28Venice%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_07.txt",
+      "chars": 18282
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dead_Sea",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wayward_Pines",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T18:54:11.180926+00:00"
+}

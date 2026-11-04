@@ -1,0 +1,1657 @@
+{
+  "event_type:dominant_affect": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:generate_intrinsic_goals→reward_positive falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:look_outward→reward_positive rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:research_topic→reward_positive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:search_own_files→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "event_type:action": {
+    "confirms": 15,
+    "fails": 8,
+    "promoted": true
+  },
+  "event_type:dream": {
+    "confirms": 18,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:decide_to_write_code→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:attend_goal→stagnation_signal falls": {
+    "confirms": 8,
+    "fails": 8,
+    "promoted": true
+  },
+  "event_type:self_query": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→exploration_drive rises": {
+    "confirms": 49,
+    "fails": 88,
+    "promoted": true
+  },
+  "causal:attend_goal→exploration_drive rises": {
+    "confirms": 8,
+    "fails": 11,
+    "promoted": true
+  },
+  "causal:detect_tensions→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:detect_tensions→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:leave_note→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:generate_intrinsic_goals→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:generate_intrinsic_goals→motivation falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_self_beliefs→novelty_signal falls": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:wikipedia_search→stagnation_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:thread_continue→impasse_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:narrative_update→exploration_drive rises": {
+    "confirms": 27,
+    "fails": 45,
+    "promoted": true
+  },
+  "causal:associative_recall→motivation rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:periodic_self_review→uncertainty falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:periodic_self_review→novelty_signal rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:generate_concepts_from_memories→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:fetch_and_read→stagnation_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:associative_recall→novelty_signal falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:compose_consolidation→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_outcomes→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:process_regret→stagnation_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_growth_history→impasse_signal falls": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_growth_history→satisfaction_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:produce_and_check→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_rss→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:consolidate_from_long_memory→confidence rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:consolidate_from_long_memory→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:detect_memory_contradictions→stagnation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:detect_memory_contradictions→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:search_own_files→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_emotion_sensitivity→motivation rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:write_desktop_note→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 0,
+    "promoted": true
+  },
+  "event_type:affective_reflection": {
+    "confirms": 12,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:survey_environment→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:fetch_wikipedia→uncertainty falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:fetch_wikipedia→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:research_topic→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:grep_files→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:adapt_subgoals→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_missed_goals→reward_positive falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_missed_goals→novelty_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_emotion_sensitivity→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:narrate_experience→motivation rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:pick_book→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→impasse_signal rises": {
+    "confirms": 4,
+    "fails": 6,
+    "promoted": true
+  },
+  "causal:reflect_on_effectiveness→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_effectiveness→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:evolve_core_value→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:evolve_core_value→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:announce_to_dashboard→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:announce_to_dashboard→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_as_agents→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_as_agents→confidence rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:adapt_subgoals→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:compose_section→uncertainty falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:compose_section→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:produce_and_check→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_cognition_patterns→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:exploration_drive_loop→stagnation_signal rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:exploration_drive_loop→satisfaction_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→affiliation_signal falls": {
+    "confirms": 6,
+    "fails": 3,
+    "promoted": true
+  },
+  "causal:survey_environment→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:generate_concepts_from_memories→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:consolidate_language→stagnation_signal falls": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reconcile_identity→stagnation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reconcile_identity→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:reconcile_identity→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→stagnation_signal rises": {
+    "confirms": 46,
+    "fails": 92,
+    "promoted": true
+  },
+  "causal:adjust_goal_weights→stagnation_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:adjust_goal_weights→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:experience_corpus→uncertainty falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→motivation falls": {
+    "confirms": 10,
+    "fails": 8,
+    "promoted": true
+  },
+  "causal:list_books→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:list_books→affiliation_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_embodied_cycle→affiliation_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_embodied_cycle→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:research_topic→exploration_drive rises": {
+    "confirms": 9,
+    "fails": 7,
+    "promoted": true
+  },
+  "causal:reflect_on_opinions→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:maybe_surface_association→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:maybe_surface_association→motivation falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:search_files→stagnation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:fetch_and_read→stagnation_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:maybe_surface_regret→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:maybe_surface_regret→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:select_focus_goals→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:summarize_relationships→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:summarize_relationships→uncertainty falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:idle_consolidation_cycle→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:idle_consolidation_cycle→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:fetch_and_read→reward_positive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:simulate_conflicting_beliefs→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:simulate_conflicting_beliefs→stagnation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:process_regret→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_desire→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_desire→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:review_failures_internal→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:review_failures_internal→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_around→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:redirect_goal_plan→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:research_topic→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_conversation_patterns→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:reflect_on_think→uncertainty falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:reflect_on_think→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:reflect_on_opinions→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:current_awareness→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:current_awareness→novelty_signal rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:check_orphaned_commitments→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:tick_commitment→confidence falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:tick_commitment→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:introspective_planning→affiliation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:introspective_planning→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:consolidate_language→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:repair_contradictions→confidence rises": {
+    "confirms": 67,
+    "fails": 122,
+    "promoted": true
+  },
+  "causal:repair_contradictions→motivation falls": {
+    "confirms": 8,
+    "fails": 13,
+    "promoted": true
+  },
+  "causal:detect_self_model_conflicts→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:metacog_analyze→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:resolve_conflicts→novelty_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:resolve_conflicts→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:narrative_update→exploration_drive falls": {
+    "confirms": 16,
+    "fails": 65,
+    "promoted": true
+  },
+  "causal:repair_contradictions→exploration_drive rises": {
+    "confirms": 84,
+    "fails": 146,
+    "promoted": true
+  },
+  "causal:active_commitment→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:extract_semantic_facts→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:extract_semantic_facts→uncertainty rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:mark_private→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:mark_private→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attempt_regulation→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attempt_regulation→motivation rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:synthesize_from_gap→motivation falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:synthesize_from_gap→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_text→stagnation_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:read_text→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:self_supervised_repair→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:self_supervised_repair→stagnation_signal falls": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:decide_to_write_code→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:fetch_and_read→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:wikipedia_search→uncertainty rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_rule_compression→exploration_drive rises": {
+    "confirms": 102,
+    "fails": 168,
+    "promoted": true
+  },
+  "causal:notify_user→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:notify_user→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:check_for_answer→exploration_drive rises": {
+    "confirms": 3,
+    "fails": 1,
+    "promoted": true
+  },
+  "causal:repair_contradictions→stagnation_signal rises": {
+    "confirms": 79,
+    "fails": 148,
+    "promoted": true
+  },
+  "causal:write_desktop_note→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:symbolic_route→confidence rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:update_world_model→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:update_world_model→satisfaction_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_forgetting_cycle→exploration_drive rises": {
+    "confirms": 30,
+    "fails": 70,
+    "promoted": true
+  },
+  "causal:experience_corpus→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_forgetting_cycle→uncertainty falls": {
+    "confirms": 13,
+    "fails": 21,
+    "promoted": true
+  },
+  "causal:decide_to_search→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:decide_to_search→uncertainty falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→motivation falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_rule_compression→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:maybe_complete_goals→uncertainty falls": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:write_desktop_note→confidence rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "event_type:embodied_observation": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:review_failures→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:review_failures→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→uncertainty rises": {
+    "confirms": 3,
+    "fails": 3,
+    "promoted": true
+  },
+  "causal:emergency_self_modification→motivation rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:emergency_self_modification→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_a_book→impasse_signal falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:abandon_goal→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:abandon_goal→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:learn_from_reading→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:learn_from_reading→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:decide_to_use_tools→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_self_improvement→stagnation_signal rises": {
+    "confirms": 22,
+    "fails": 50,
+    "promoted": true
+  },
+  "causal:executive_tick→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:executive_tick→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "event_type:goal_failure": {
+    "confirms": 38,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:search_own_files→affiliation_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:search_own_files→exploration_drive rises": {
+    "confirms": 6,
+    "fails": 4,
+    "promoted": true
+  },
+  "causal:run_self_improvement→exploration_drive rises": {
+    "confirms": 42,
+    "fails": 71,
+    "promoted": true
+  },
+  "causal:reflect_on_self_beliefs→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_embodied_observation→uncertainty rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:audit_reflective_claims→stagnation_signal rises": {
+    "confirms": 3,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:audit_reflective_claims→novelty_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:list_directory→uncertainty falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→stagnation_signal rises": {
+    "confirms": 3,
+    "fails": 2,
+    "promoted": true
+  },
+  "causal:narrative_update→motivation falls": {
+    "confirms": 5,
+    "fails": 13,
+    "promoted": true
+  },
+  "causal:attend_goal→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:symbolic_route→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_internal_agents→motivation rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:process_regret→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:process_regret→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:weave_threads→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:weave_threads→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:run_symbolic_experiments→affiliation_signal rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:wikipedia_search→motivation falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→novelty_signal rises": {
+    "confirms": 11,
+    "fails": 45,
+    "promoted": true
+  },
+  "causal:wikipedia_search→uncertainty falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:maybe_form_opinion→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:look_around→exploration_drive falls": {
+    "confirms": 5,
+    "fails": 6,
+    "promoted": true
+  },
+  "causal:run_episode_replay→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_rule_compression→motivation rises": {
+    "confirms": 64,
+    "fails": 161,
+    "promoted": true
+  },
+  "causal:reflect_on_missed_goals→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:reflect_on_missed_goals→stagnation_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "event_type:user_input": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_growth_history→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_a_book→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_around→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:check_affect_drift→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→novelty_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→uncertainty falls": {
+    "confirms": 18,
+    "fails": 19,
+    "promoted": true
+  },
+  "causal:wikipedia_search→exploration_drive rises": {
+    "confirms": 12,
+    "fails": 10,
+    "promoted": true
+  },
+  "causal:search_own_files→uncertainty falls": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:list_directory→confidence rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_symbolic_consolidation→exploration_drive rises": {
+    "confirms": 8,
+    "fails": 25,
+    "promoted": true
+  },
+  "causal:look_around→uncertainty rises": {
+    "confirms": 8,
+    "fails": 13,
+    "promoted": true
+  },
+  "causal:assess_goal_progress→confidence falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:propose_value_revision→exploration_drive rises": {
+    "confirms": 6,
+    "fails": 15,
+    "promoted": true
+  },
+  "causal:propose_value_revision→confidence rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:check_affect_drift→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→stagnation_signal rises": {
+    "confirms": 6,
+    "fails": 5,
+    "promoted": true
+  },
+  "causal:research_topic→motivation falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "event_type:commitment": {
+    "confirms": 503,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:check_predictions→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:check_for_answer→reward_positive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:self_supervised_repair→motivation rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→uncertainty rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:check_predictions→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_outward→satisfaction_signal rises": {
+    "confirms": 3,
+    "fails": 3,
+    "promoted": true
+  },
+  "causal:look_outward→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:final_reflection→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:final_reflection→confidence rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_symbolic_experiments→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:check_pending_jobs→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:archive_dead_threads→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:archive_dead_threads→uncertainty falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→impasse_signal falls": {
+    "confirms": 2,
+    "fails": 4,
+    "promoted": false
+  },
+  "causal:maybe_complete_goals→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_desire→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_desire→confidence rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:decide_to_run_code→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:decide_to_run_code→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_self_beliefs→satisfaction_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:generate_intrinsic_goals→uncertainty falls": {
+    "confirms": 3,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:generate_intrinsic_goals→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_pipeline→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_pipeline→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_symbolic_prediction_cycle→exploration_drive rises": {
+    "confirms": 19,
+    "fails": 22,
+    "promoted": true
+  },
+  "causal:narrative_update→confidence falls": {
+    "confirms": 21,
+    "fails": 104,
+    "promoted": true
+  },
+  "causal:search_files→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:search_files→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "event_type:incubated_insight": {
+    "confirms": 1060,
+    "fails": 0,
+    "promoted": true
+  },
+  "causal:process_regret→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:process_regret→impasse_signal falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:take_snapshot→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_self_beliefs→exploration_drive falls": {
+    "confirms": 6,
+    "fails": 21,
+    "promoted": true
+  },
+  "causal:search_own_files→exploration_drive falls": {
+    "confirms": 3,
+    "fails": 7,
+    "promoted": true
+  },
+  "causal:narrative_update→uncertainty falls": {
+    "confirms": 27,
+    "fails": 34,
+    "promoted": true
+  },
+  "causal:run_forgetting_cycle→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→stagnation_signal falls": {
+    "confirms": 2,
+    "fails": 4,
+    "promoted": false
+  },
+  "causal:run_symbolic_prediction_cycle→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:research_topic→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:assess_goal_progress→exploration_drive falls": {
+    "confirms": 22,
+    "fails": 50,
+    "promoted": true
+  },
+  "causal:narrative_update→stagnation_signal rises": {
+    "confirms": 14,
+    "fails": 14,
+    "promoted": true
+  },
+  "causal:seek_novelty→exploration_drive falls": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:reflect_on_self_beliefs→exploration_drive rises": {
+    "confirms": 10,
+    "fails": 10,
+    "promoted": true
+  },
+  "causal:repair_contradictions→impasse_signal falls": {
+    "confirms": 7,
+    "fails": 39,
+    "promoted": true
+  },
+  "causal:narrative_update→stagnation_signal falls": {
+    "confirms": 13,
+    "fails": 18,
+    "promoted": true
+  },
+  "causal:run_self_improvement→motivation rises": {
+    "confirms": 10,
+    "fails": 36,
+    "promoted": true
+  },
+  "causal:reflect_on_think→motivation rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_forgetting_cycle→motivation falls": {
+    "confirms": 10,
+    "fails": 18,
+    "promoted": true
+  },
+  "causal:prune_old_threads→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:wikipedia_search→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:narrative_update→uncertainty rises": {
+    "confirms": 39,
+    "fails": 65,
+    "promoted": true
+  },
+  "causal:reflect_on_growth_history→motivation rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:propose_value_revision→stagnation_signal rises": {
+    "confirms": 3,
+    "fails": 5,
+    "promoted": true
+  },
+  "causal:repair_contradictions→exploration_drive falls": {
+    "confirms": 9,
+    "fails": 15,
+    "promoted": true
+  },
+  "causal:narrative_update→satisfaction_signal rises": {
+    "confirms": 26,
+    "fails": 85,
+    "promoted": true
+  },
+  "causal:repair_contradictions→motivation rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:generate_intrinsic_goals→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_internal_agents→motivation falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:wikipedia_search→exploration_drive falls": {
+    "confirms": 5,
+    "fails": 4,
+    "promoted": true
+  },
+  "causal:repair_contradictions→novelty_signal rises": {
+    "confirms": 5,
+    "fails": 8,
+    "promoted": true
+  },
+  "causal:reflect_on_think→uncertainty rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:archive_dead_threads→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:look_around→motivation rises": {
+    "confirms": 3,
+    "fails": 5,
+    "promoted": true
+  },
+  "causal:repair_contradictions→satisfaction_signal rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:detect_tensions→exploration_drive rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:repair_contradictions→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_a_book→exploration_drive rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_conversation_patterns→motivation rises": {
+    "confirms": 1,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:attend_goal→motivation rises": {
+    "confirms": 2,
+    "fails": 3,
+    "promoted": false
+  },
+  "causal:search_own_files→novelty_signal rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→affiliation_signal rises": {
+    "confirms": 8,
+    "fails": 13,
+    "promoted": true
+  },
+  "causal:run_rule_compression→reward_positive rises": {
+    "confirms": 20,
+    "fails": 27,
+    "promoted": true
+  },
+  "causal:reflect_on_growth_history→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:audit_map_territory→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_benchmark→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_benchmark→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→confidence falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:thread_continue→uncertainty rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:repair_contradictions→stagnation_signal falls": {
+    "confirms": 20,
+    "fails": 30,
+    "promoted": true
+  },
+  "causal:repair_contradictions→reward_positive rises": {
+    "confirms": 26,
+    "fails": 59,
+    "promoted": true
+  },
+  "causal:audit_reflective_claims→uncertainty falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:thread_continue→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:reflect_on_internal_voices→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_embodied_observation→novelty_signal rises": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:run_embodied_observation→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→rejection_signal rises": {
+    "confirms": 27,
+    "fails": 84,
+    "promoted": true
+  },
+  "causal:thread_continue→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→uncertainty rises": {
+    "confirms": 37,
+    "fails": 89,
+    "promoted": true
+  },
+  "causal:read_a_book→exploration_drive falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→uncertainty falls": {
+    "confirms": 31,
+    "fails": 47,
+    "promoted": true
+  },
+  "causal:run_rule_compression→confidence falls": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_rule_compression→confidence rises": {
+    "confirms": 2,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:narrative_update→affiliation_signal rises": {
+    "confirms": 4,
+    "fails": 42,
+    "promoted": true
+  },
+  "causal:read_rss→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:read_rss→exploration_drive rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:run_rule_compression→novelty_signal rises": {
+    "confirms": 6,
+    "fails": 11,
+    "promoted": true
+  },
+  "causal:attend_goal→impasse_signal rises": {
+    "confirms": 2,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:attend_goal→novelty_signal rises": {
+    "confirms": 1,
+    "fails": 2,
+    "promoted": false
+  },
+  "causal:run_rule_compression→satisfaction_signal rises": {
+    "confirms": 5,
+    "fails": 6,
+    "promoted": true
+  },
+  "causal:propose_value_revision→motivation rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  },
+  "causal:repair_contradictions→reward_positive falls": {
+    "confirms": 2,
+    "fails": 0,
+    "promoted": false
+  },
+  "causal:look_outward→impasse_signal rises": {
+    "confirms": 0,
+    "fails": 1,
+    "promoted": false
+  }
+}

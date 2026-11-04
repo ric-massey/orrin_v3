@@ -1,0 +1,12 @@
+{
+  "updated": "2026-11-04T02:29:13.197194+00:00",
+  "total_sites": 1,
+  "sites": {
+    "wikipedia_search._wiki_opensearch": {
+      "count": 19,
+      "first_seen": "2026-11-03T07:42:04.706267+00:00",
+      "last_seen": "2026-11-04T01:02:44.599081+00:00",
+      "last_error": "HTTPError: HTTP Error 429: Too Many Requests"
+    }
+  }
+}

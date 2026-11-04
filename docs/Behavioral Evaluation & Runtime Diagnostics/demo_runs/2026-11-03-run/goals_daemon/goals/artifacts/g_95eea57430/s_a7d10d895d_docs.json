@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sawdust",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_bread",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wood-waste_burner",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_03.txt",
+      "chars": 13355
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Briquette",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_04.txt",
+      "chars": 14417
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Great_Lakes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chopper_pump",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_06.txt",
+      "chars": 9365
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pie_and_mash",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_07.txt",
+      "chars": 15130
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Truss",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_95eea57430/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T20:40:08.119004+00:00"
+}

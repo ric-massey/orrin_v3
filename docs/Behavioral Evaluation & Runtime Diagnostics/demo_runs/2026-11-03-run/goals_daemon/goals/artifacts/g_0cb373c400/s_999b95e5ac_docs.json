@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_01.txt",
+      "chars": 9114
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Explanations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_02.txt",
+      "chars": 13999
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explorable_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_03.txt",
+      "chars": 17142
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation_of_benefits",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_04.txt",
+      "chars": 4889
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Right_to_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_05.txt",
+      "chars": 18531
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hanlon%27s_razor",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_07.txt",
+      "chars": 6297
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_08.txt",
+      "chars": 16851
+    }
+  ],
+  "ts": "2026-11-03T21:06:29.587245+00:00"
+}

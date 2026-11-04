@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_6c85edc3ad",
+    "title": "Understand physical system more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "physical system open problems",
+        "physical system criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_3421366886",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:09:17.198148Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:09:17.198157Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:09:17.198159Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:09:17.198160Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:09:17.198162Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "physical system was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about physical system was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T15:09:17.198267Z",
+      "question": "What actually is physical system, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 15:09:17.213773+00:00",
+    "updated_at": "2026-11-03 15:09:18.682557+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_3421366886]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thermodynamic_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Socialist_calculation_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical%3A_Asia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bohr%E2%80%93Einstein_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hasan_Piker",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6c85edc3ad/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T15:09:24.114282+00:00"
+}

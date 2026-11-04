@@ -1,0 +1,59 @@
+{
+  "queries": [
+    "Oxypurinol",
+    "Oxypurinol explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Oxipurinol",
+    "https://en.wikipedia.org/wiki/Xanthine_oxidase_inhibitor",
+    "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+    "https://en.wikipedia.org/wiki/Allopurinol",
+    "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome",
+    "https://en.wikipedia.org/wiki/P-i_mechanism"
+  ],
+  "results": [
+    {
+      "title": "Oxipurinol",
+      "url": "https://en.wikipedia.org/wiki/Oxipurinol",
+      "snippet": "Oxipurinol (INN, or <span class=\"searchmatch\">oxypurinol</span> USAN) is an inhibitor of xanthine oxidase. It is an active metabolite of allopurinol and it is cleared renally. In cases",
+      "query": "Oxypurinol"
+    },
+    {
+      "title": "Xanthine oxidase inhibitor",
+      "url": "https://en.wikipedia.org/wiki/Xanthine_oxidase_inhibitor",
+      "snippet": "kinds: purine analogues and others. Purine analogues include allopurinol, <span class=\"searchmatch\">oxypurinol</span>, and tisopurine. Others include febuxostat, topiroxostat, and inositols",
+      "query": "Oxypurinol"
+    },
+    {
+      "title": "Xanthine oxidase",
+      "url": "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+      "snippet": "with some overlapping activities (such as conversion of allopurinol to <span class=\"searchmatch\">oxypurinol</span>). Inhibition of xanthine oxidase has been proposed as a mechanism for",
+      "query": "Oxypurinol"
+    },
+    {
+      "title": "Allopurinol",
+      "url": "https://en.wikipedia.org/wiki/Allopurinol",
+      "snippet": "(2007). &quot;Clinical pharmacokinetics and pharmacodynamics of allopurinol and <span class=\"searchmatch\">oxypurinol</span>&quot;. Clinical Pharmacokinetics. 46 (8): 623–44. doi:10.2165/00003088-200746080-00001",
+      "query": "Oxypurinol"
+    },
+    {
+      "title": "Allopurinol hypersensitivity syndrome",
+      "url": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome",
+      "snippet": "linked to AHS. <span class=\"searchmatch\">Oxypurinol</span> is quickly transformed from allopurinol and then eliminated by the kidneys. The mean half-life of <span class=\"searchmatch\">oxypurinol</span> in patients with",
+      "query": "Oxypurinol"
+    },
+    {
+      "title": "Xanthine oxidase",
+      "url": "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+      "snippet": "with some overlapping activities (such as conversion of allopurinol to <span class=\"searchmatch\">oxypurinol</span>). Inhibition of xanthine oxidase has been proposed as a mechanism for",
+      "query": "Oxypurinol explained"
+    },
+    {
+      "title": "P-i mechanism",
+      "url": "https://en.wikipedia.org/wiki/P-i_mechanism",
+      "snippet": "drugs which develop DHR and have a strong HLA-linkage (e.g. allopurinol/<span class=\"searchmatch\">oxypurinol</span> and B*58:01) stimulate via p-i. Protein reactions are not HLA restricted:",
+      "query": "Oxypurinol explained"
+    }
+  ],
+  "ts": "2026-11-03T18:54:36.569772+00:00"
+}

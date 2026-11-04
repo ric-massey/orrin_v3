@@ -1,0 +1,182 @@
+[
+  {
+    "timestamp": "2026-11-03T05:37:44.874074+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.89,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.89). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth' is currently framed.",
+    "target_value": "growth",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T05:37:45.130504+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T08:44:30.848935+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.876,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.88). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T08:44:31.212053+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T11:25:17.711461+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.88,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.88). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T11:25:18.154102+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T12:56:39.149196+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.888,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.89). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T12:56:39.556719+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T14:28:37.254748+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.875,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.88). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T14:28:37.762476+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T16:06:28.265065+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.804,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.80). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T16:06:28.855003+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T17:38:12.025801+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.792,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.79). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T17:38:12.638633+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T19:09:29.301392+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.847,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.85). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T19:09:29.928829+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T20:41:19.483922+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.841,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.84). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T20:41:20.250957+00:00"
+  },
+  {
+    "timestamp": "2026-11-03T22:14:13.121398+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.861,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.86). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-03T22:14:13.927584+00:00"
+  },
+  {
+    "timestamp": "2026-11-04T00:01:53.938825+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.836,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.84). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-04T00:01:54.792127+00:00"
+  },
+  {
+    "timestamp": "2026-11-04T01:42:12.026202+00:00",
+    "source": "drive_conflict",
+    "drives": [
+      "usefulness",
+      "stability"
+    ],
+    "label": "urgency vs. routine",
+    "intensity": 0.841,
+    "evidence": "Sustained drive conflict: urgency vs. routine (intensity=0.84). Drives involved: usefulness, stability. This collision is recurring every cycle — it may reveal a tension in how 'growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine' is currently framed.",
+    "target_value": "growth, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine, without suppressing routine",
+    "status": "resolved",
+    "resolution": "revise",
+    "resolved_ts": "2026-11-04T01:42:12.900294+00:00"
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "question": "What actually is Sisu, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "sisu"
+  ],
+  "entities": [
+    "Sisu",
+    "Finnish word variously translated as stoic determination",
+    "The currently available Sisu Polar variants",
+    "with three",
+    "the system",
+    "now used in Sisu vehicles",
+    "Application to SiSU",
+    "available in three ways",
+    "of Education to ensure that people with disabilities",
+    "guaranteed vacancies at higher education institutions that use SISU"
+  ],
+  "relations": [
+    {
+      "subject": "Sisu",
+      "predicate": "is a",
+      "object": "Finnish word variously translated as stoic determination",
+      "source": "my prior claims [g_5bed82218d]"
+    },
+    {
+      "subject": "The currently available Sisu Polar variants",
+      "predicate": "are",
+      "object": "with three",
+      "source": "https://en.wikipedia.org/wiki/Sisu_Auto"
+    },
+    {
+      "subject": "the system",
+      "predicate": "is",
+      "object": "now used in Sisu vehicles",
+      "source": "https://en.wikipedia.org/wiki/Vanajan_Autotehdas"
+    },
+    {
+      "subject": "Application to SiSU",
+      "predicate": "is",
+      "object": "available in three ways",
+      "source": "https://en.wikipedia.org/wiki/Sistema_de_Sele%C3%A7%C3%A3o_Unificada"
+    },
+    {
+      "subject": "of Education to ensure that people with disabilities",
+      "predicate": "are",
+      "object": "guaranteed vacancies at higher education institutions that use SISU",
+      "source": "https://en.wikipedia.org/wiki/Sistema_de_Sele%C3%A7%C3%A3o_Unificada"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_5bed82218d]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu_Auto"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vanajan_Autotehdas"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sistema_de_Sele%C3%A7%C3%A3o_Unificada"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Raya_%28Disney_character%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Openness_to_experience"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Nudity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fernando_Haddad"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Decorum"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Phronesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/White_nationalism"
+    }
+  ],
+  "ts": "2026-11-03T15:09:59.506327+00:00"
+}

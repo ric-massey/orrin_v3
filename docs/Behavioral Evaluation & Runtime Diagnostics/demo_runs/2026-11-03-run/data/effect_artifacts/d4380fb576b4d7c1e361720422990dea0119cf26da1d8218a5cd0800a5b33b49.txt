@@ -1,0 +1,55 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [
+    "Our Life",
+    "compassed round with Necessity"
+  ],
+  "relations": [
+    {
+      "subject": "Our Life",
+      "predicate": "is",
+      "object": "compassed round with Necessity",
+      "source": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_drone_sightings"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Scientific_method"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Eichmann_in_Jerusalem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Ghosts_%28American_TV_series%29_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Critique_of_Pure_Reason"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cruising_for_sex"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Latin_phrases_%28full%29"
+    }
+  ],
+  "ts": "2026-11-03T21:42:55.834610+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "they",
+    "they explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/They",
+    "https://en.wikipedia.org/wiki/They_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/They_Live",
+    "https://en.wikipedia.org/wiki/First_They_Came",
+    "https://en.wikipedia.org/wiki/Singular_they",
+    "https://en.wikipedia.org/wiki/Money%2C_Explained",
+    "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+    "https://en.wikipedia.org/wiki/Consciousness_Explained",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+  ],
+  "results": [
+    {
+      "title": "They",
+      "url": "https://en.wikipedia.org/wiki/They",
+      "snippet": "Look up <span class=\"searchmatch\">they</span>, them, their, theirs, themselves, or themself in Wiktionary, the free dictionary. In Modern English, <span class=\"searchmatch\">they</span> is a third-person pronoun relating",
+      "query": "they"
+    },
+    {
+      "title": "They (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/They_%28disambiguation%29",
+      "snippet": "Look up <span class=\"searchmatch\">they</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">They</span> is a third-person, personal pronoun. <span class=\"searchmatch\">They</span> may also refer to: <span class=\"searchmatch\">They</span> (1993 film), a 1993 television",
+      "query": "they"
+    },
+    {
+      "title": "They Live",
+      "url": "https://en.wikipedia.org/wiki/They_Live",
+      "snippet": "<span class=\"searchmatch\">They</span> Live is a 1988 American science fiction action horror film written, directed, and scored by John Carpenter, and starring Roddy Piper, Keith David",
+      "query": "they"
+    },
+    {
+      "title": "First They Came",
+      "url": "https://en.wikipedia.org/wiki/First_They_Came",
+      "snippet": "&quot;First <span class=\"searchmatch\">They</span> Came&quot; (German: Als sie kamen lit. &#039;When <span class=\"searchmatch\">they</span> came&#039;, or Habe ich geschwiegen lit. &#039;I did not speak out&#039;) is the poetic form of a 1946 postwar",
+      "query": "they"
+    },
+    {
+      "title": "Singular they",
+      "url": "https://en.wikipedia.org/wiki/Singular_they",
+      "snippet": "Singular <span class=\"searchmatch\">they</span> is an epicene (gender-neutral) third-person pronoun in English. It typically occurs with an indeterminate antecedent, to refer to an unknown",
+      "query": "they"
+    },
+    {
+      "title": "Money, Explained",
+      "url": "https://en.wikipedia.org/wiki/Money%2C_Explained",
+      "snippet": "Money, <span class=\"searchmatch\">Explained</span> is a 2021 docuseries. The 5-episode series, a spin-off of <span class=\"searchmatch\">Explained</span>, is narrated by Tiffany Haddish, Jane Lynch, Edie Falco, Bobby Cannavale",
+      "query": "they explained"
+    },
+    {
+      "title": "Coronavirus, Explained",
+      "url": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+      "snippet": "Coronavirus, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span> and Sex, <span class=\"searchmatch\">Explained</span>, is a spin-off",
+      "query": "they explained"
+    },
+    {
+      "title": "Consciousness Explained",
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "snippet": "a theory that <span class=\"searchmatch\">explained</span> conscious events in terms of unconscious events could <span class=\"searchmatch\">explain</span> consciousness at all: &quot;To <span class=\"searchmatch\">explain</span> is to <span class=\"searchmatch\">explain</span> away&quot;.[page needed]",
+      "query": "they explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "they explained"
+    },
+    {
+      "title": "Sex, Explained",
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "snippet": "Sex, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span>, is a spin-off of the television",
+      "query": "they explained"
+    }
+  ],
+  "ts": "2026-11-03T20:40:17.487012+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "logic open problems",
+    "logic criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Description_logic",
+    "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+    "https://en.wikipedia.org/wiki/Ladder_logic",
+    "https://en.wikipedia.org/wiki/Frame_problem",
+    "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+    "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic",
+    "https://en.wikipedia.org/wiki/History_of_logic",
+    "https://en.wikipedia.org/wiki/Logic",
+    "https://en.wikipedia.org/wiki/Debate",
+    "https://en.wikipedia.org/wiki/Modal_logic"
+  ],
+  "results": [
+    {
+      "title": "Description logic",
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "snippet": "logic but less expressive than first-order <span class=\"searchmatch\">logic</span>. In contrast to the latter, the core reasoning <span class=\"searchmatch\">problems</span> for DLs are (usually) decidable, and efficient",
+      "query": "logic open problems"
+    },
+    {
+      "title": "Boolean satisfiability problem",
+      "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and computer science, the Boolean satisfiability <span class=\"searchmatch\">problem</span> (sometimes called propositional satisfiability <span class=\"searchmatch\">problem</span> and abbreviated SATISFIABILITY",
+      "query": "logic open problems"
+    },
+    {
+      "title": "Ladder logic",
+      "url": "https://en.wikipedia.org/wiki/Ladder_logic",
+      "snippet": "Ladder <span class=\"searchmatch\">logic</span> was originally a written method to document the design and construction of relay racks as used in manufacturing and process control. Each",
+      "query": "logic open problems"
+    },
+    {
+      "title": "Frame problem",
+      "url": "https://en.wikipedia.org/wiki/Frame_problem",
+      "snippet": "implications for cognitive science, the frame <span class=\"searchmatch\">problem</span> describes an issue with using first-order <span class=\"searchmatch\">logic</span> to express facts about a robot in the world. Representing",
+      "query": "logic open problems"
+    },
+    {
+      "title": "Entscheidungsproblem",
+      "url": "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+      "snippet": "undecidable <span class=\"searchmatch\">problems</span>. Below it are the decidable <span class=\"searchmatch\">problems</span>. Furthermore, the decidable <span class=\"searchmatch\">problems</span> can be divided into a complexity hierarchy. Aristotelian <span class=\"searchmatch\">logic</span> considers",
+      "query": "logic open problems"
+    },
+    {
+      "title": "Language, Truth, and Logic",
+      "url": "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic",
+      "snippet": "Language, Truth <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Logic</span> is a 1936 book about meaning by the philosopher Alfred Jules Ayer, in which the author defines, explains, <span class=\"searchmatch\">and</span> argues for the",
+      "query": "logic criticism and debate"
+    },
+    {
+      "title": "History of logic",
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "snippet": "India, China, <span class=\"searchmatch\">and</span> Greece. Greek methods, particularly Aristotelian <span class=\"searchmatch\">logic</span> (or term <span class=\"searchmatch\">logic</span>) as found in the Organon, found wide application <span class=\"searchmatch\">and</span> acceptance in",
+      "query": "logic criticism and debate"
+    },
+    {
+      "title": "Logic",
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "snippet": "<span class=\"searchmatch\">Logic</span> is the study of correct reasoning. It includes both formal <span class=\"searchmatch\">and</span> informal <span class=\"searchmatch\">logic</span>. Formal <span class=\"searchmatch\">logic</span> is the study of deductively valid inferences or logical",
+      "query": "logic criticism and debate"
+    },
+    {
+      "title": "Debate",
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "snippet": "<span class=\"searchmatch\">Debate</span> is a process that involves formal discourse, discussion, <span class=\"searchmatch\">and</span> oral addresses on a particular collection of topics, often with a moderator <span class=\"searchmatch\">and</span> an",
+      "query": "logic criticism and debate"
+    },
+    {
+      "title": "Modal logic",
+      "url": "https://en.wikipedia.org/wiki/Modal_logic",
+      "snippet": "Modal <span class=\"searchmatch\">logic</span> is a kind of <span class=\"searchmatch\">logic</span> used to represent statements about necessity <span class=\"searchmatch\">and</span> possibility. In philosophy <span class=\"searchmatch\">and</span> related fields it is used as a tool for",
+      "query": "logic criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T08:25:24.545533+00:00"
+}

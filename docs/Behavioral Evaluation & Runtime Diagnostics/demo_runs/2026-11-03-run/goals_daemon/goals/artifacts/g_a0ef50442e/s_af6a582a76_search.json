@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "What is there about the world that my earlier notes on it are missing? history and development",
+    "What is there about the world that my earlier notes on it are missing? applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Tonight%27s_the_Night_%28Neil_Young_album%29",
+    "https://en.wikipedia.org/wiki/My_Bloody_Valentine_%28film%29",
+    "https://en.wikipedia.org/wiki/My_Secret_History",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+    "https://en.wikipedia.org/wiki/World_Wide_Web",
+    "https://en.wikipedia.org/wiki/Meaning_of_life",
+    "https://en.wikipedia.org/wiki/Tractatus_Logico-Philosophicus",
+    "https://en.wikipedia.org/wiki/Danilo_Restivo"
+  ],
+  "results": [
+    {
+      "title": "Tonight's the Night (Neil Young album)",
+      "url": "https://en.wikipedia.org/wiki/Tonight%27s_the_Night_%28Neil_Young_album%29",
+      "snippet": "until June 1975. <span class=\"searchmatch\">It</span> peaked at No. 25 <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">the</span> Billboard 200. <span class=\"searchmatch\">The</span> album <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> third <span class=\"searchmatch\">and</span> final of <span class=\"searchmatch\">the</span> so-called &quot;Ditch Trilogy&quot; of albums <span class=\"searchmatch\">that</span> Young released",
+      "query": "What is there about the world that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "My Bloody Valentine (film)",
+      "url": "https://en.wikipedia.org/wiki/My_Bloody_Valentine_%28film%29",
+      "snippet": "<span class=\"searchmatch\">My</span> Bloody Valentine <span class=\"searchmatch\">is</span> a 1981 Canadian slasher film directed by George Mihalka <span class=\"searchmatch\">and</span> written by John Beaird, from a story by Stephen Miller. <span class=\"searchmatch\">The</span> film stars",
+      "query": "What is there about the world that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "My Secret History",
+      "url": "https://en.wikipedia.org/wiki/My_Secret_History",
+      "snippet": "<span class=\"searchmatch\">My</span> Secret <span class=\"searchmatch\">History</span> <span class=\"searchmatch\">is</span> a novel by Paul Theroux published in June 1989 by Putnam Adult in <span class=\"searchmatch\">the</span> US <span class=\"searchmatch\">and</span> Hamish Hamilton in <span class=\"searchmatch\">the</span> UK. <span class=\"searchmatch\">The</span> novel follows <span class=\"searchmatch\">the</span> life",
+      "query": "What is there about the world that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "entry <span class=\"searchmatch\">on</span> this list of common misconceptions <span class=\"searchmatch\">is</span> worded as a correction; <span class=\"searchmatch\">the</span> misconceptions themselves <span class=\"searchmatch\">are</span> implied rather than stated. These entries <span class=\"searchmatch\">are</span> concise",
+      "query": "What is there about the world that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "History of the World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+      "snippet": "videoconferencing do. <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">the</span> Internet <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">history</span> of hypertext date back significantly further than <span class=\"searchmatch\">that</span> of <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">World</span> Wide Web. Tim Berners-Lee",
+      "query": "What is there about the world that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/World_Wide_Web",
+      "snippet": "surfing, <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> common practice of following such hyperlinks across multiple websites. Web <span class=\"searchmatch\">applications</span> <span class=\"searchmatch\">are</span> web pages <span class=\"searchmatch\">that</span> function as <span class=\"searchmatch\">application</span> software",
+      "query": "What is there about the world that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "Meaning of life",
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "snippet": "life? <span class=\"searchmatch\">What&#039;s</span> <span class=\"searchmatch\">it</span> all <span class=\"searchmatch\">about</span>? Who <span class=\"searchmatch\">are</span> we? Why <span class=\"searchmatch\">are</span> we here? <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">are</span> we here for? <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> origin of life? <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> nature of life? <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> nature",
+      "query": "What is there about the world that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "History of the World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Wide Web (&quot;WWW&quot;, &quot;W3&quot; or simply &quot;<span class=\"searchmatch\">the</span> Web&quot;) <span class=\"searchmatch\">is</span> a global information medium <span class=\"searchmatch\">that</span> users can access via computers connected to <span class=\"searchmatch\">the</span> Internet. The",
+      "query": "What is there about the world that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "Tractatus Logico-Philosophicus",
+      "url": "https://en.wikipedia.org/wiki/Tractatus_Logico-Philosophicus",
+      "snippet": "believe <span class=\"searchmatch\">that</span> where many others today <span class=\"searchmatch\">are</span> just gassing, I have managed in <span class=\"searchmatch\">my</span> book to put everything firmly into place by being silent <span class=\"searchmatch\">about</span> <span class=\"searchmatch\">it</span>. <span class=\"searchmatch\">There</span> <span class=\"searchmatch\">are</span> seven",
+      "query": "What is there about the world that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "Danilo Restivo",
+      "url": "https://en.wikipedia.org/wiki/Danilo_Restivo",
+      "snippet": "of <span class=\"searchmatch\">the</span> trial, stating <span class=\"searchmatch\">that</span> she <span class=\"searchmatch\">and</span> Terry had &quot;not really ever talked <span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> happened&quot;, adding <span class=\"searchmatch\">that</span> Terry found <span class=\"searchmatch\">it</span> &quot;difficult&quot;. She stated <span class=\"searchmatch\">there</span> were",
+      "query": "What is there about the world that my earlier notes on it are missing? applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T11:47:19.455640+00:00"
+}

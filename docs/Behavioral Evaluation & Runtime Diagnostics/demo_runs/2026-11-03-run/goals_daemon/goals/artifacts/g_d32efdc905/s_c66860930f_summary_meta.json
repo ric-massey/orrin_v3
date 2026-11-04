@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_d32efdc905",
+    "title": "Understand Robertson more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Robertson open problems",
+        "Robertson criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_c49aa1028d",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:39:27.408839Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:39:27.408844Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:39:27.408846Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:39:27.408848Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:39:27.408850Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Robertson was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Robertson was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T22:39:27.408864Z",
+      "question": "What actually is Robertson, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 22:39:27.409835+00:00",
+    "updated_at": "2026-11-03 22:39:30.160928+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_c49aa1028d]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_conjectures_by_Paul_Erd%C5%91s",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thorburn_Brailsford_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sir_William_Robertson%2C_1st_Baronet",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/D._W._Robertson_Jr.",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Republican_Party_presidential_debates_and_forums",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biblical_criticism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cranfield_experiments",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d32efdc905/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T22:39:36.765215+00:00"
+}

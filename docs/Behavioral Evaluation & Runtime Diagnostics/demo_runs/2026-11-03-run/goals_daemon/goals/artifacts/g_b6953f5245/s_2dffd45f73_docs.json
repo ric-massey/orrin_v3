@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Theory_of_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Relativity%3A_The_Special_and_the_General_Theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_03.txt",
+      "chars": 18859
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/General_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_general_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_06.txt",
+      "chars": 15885
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_b6953f5245/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-04T00:24:36.776240+00:00"
+}

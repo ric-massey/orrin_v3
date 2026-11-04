@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "intrinsic-2026-11-03T18:54:05.283343+00:00",
+    "title": "Understand bridges and salt domes more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "bridges and salt domes",
+        "bridges and salt domes explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:05.814958Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:05.814968Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:05.814970Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:05.814971Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:05.814973Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "bridges and salt domes was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about bridges and salt domes was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T18:54:05.814987Z",
+      "question": "What actually is bridges and salt domes, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 18:54:05.815018+00:00",
+    "updated_at": "2026-11-03 18:54:07.191221+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior memo: synthesis.md",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Avery_Island_%28Louisiana%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Salt_Lake_City",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Lost_Tour",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Roman_concrete",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Grand_Canal_%28Venice%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dead_Sea",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/intrinsic-2026-11-03T18:54:05.283343+00:00/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T18:54:12.211737+00:00"
+}

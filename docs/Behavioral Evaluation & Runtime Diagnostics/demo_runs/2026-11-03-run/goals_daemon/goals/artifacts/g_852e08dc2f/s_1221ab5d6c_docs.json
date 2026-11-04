@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_02.txt",
+      "chars": 2975
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_03.txt",
+      "chars": 873
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live_by_Night",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_04.txt",
+      "chars": 17040
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Live_and_Let_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_05.txt",
+      "chars": 1767
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_06.txt",
+      "chars": 16608
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Moana_%282026_film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T21:44:00.348797+00:00"
+}

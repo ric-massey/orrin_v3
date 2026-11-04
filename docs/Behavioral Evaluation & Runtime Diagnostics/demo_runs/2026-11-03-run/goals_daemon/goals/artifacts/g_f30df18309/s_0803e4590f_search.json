@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "consistency proof",
+    "consistency proof explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Consistency",
+    "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof",
+    "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+    "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+    "https://en.wikipedia.org/wiki/Proof_theory",
+    "https://en.wikipedia.org/wiki/Mathematical_induction",
+    "https://en.wikipedia.org/wiki/Peano_axioms",
+    "https://en.wikipedia.org/wiki/Mathematical_proof"
+  ],
+  "results": [
+    {
+      "title": "Consistency",
+      "url": "https://en.wikipedia.org/wiki/Consistency",
+      "snippet": "complete. A <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proof</span> is a mathematical <span class=\"searchmatch\">proof</span> that a particular theory is consistent. The early development of mathematical <span class=\"searchmatch\">proof</span> theory was driven",
+      "query": "consistency proof"
+    },
+    {
+      "title": "Gentzen's consistency proof",
+      "url": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof",
+      "snippet": "Gentzen&#039;s <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proof</span> is a result of <span class=\"searchmatch\">proof</span> theory in mathematical logic, published by Gerhard Gentzen in 1936. It shows that the Peano axioms of",
+      "query": "consistency proof"
+    },
+    {
+      "title": "Hilbert's second problem",
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+      "snippet": "does not exclude a meta-mathematical <span class=\"searchmatch\">proof</span> of the <span class=\"searchmatch\">consistency</span> of arithmetic. What it excludes is a <span class=\"searchmatch\">proof</span> of <span class=\"searchmatch\">consistency</span> that can be mirrored by the formal",
+      "query": "consistency proof"
+    },
+    {
+      "title": "Gödel's incompleteness theorems",
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+      "snippet": "<span class=\"searchmatch\">consistency</span> of F would be resolved by such a <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proof</span>. The interest in <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proofs</span> lies in the possibility of proving the <span class=\"searchmatch\">consistency</span>",
+      "query": "consistency proof"
+    },
+    {
+      "title": "Proof theory",
+      "url": "https://en.wikipedia.org/wiki/Proof_theory",
+      "snippet": "central idea of this program was that if we could give finitary <span class=\"searchmatch\">proofs</span> of <span class=\"searchmatch\">consistency</span> for all the sophisticated formal theories needed by mathematicians",
+      "query": "consistency proof"
+    },
+    {
+      "title": "Gödel's incompleteness theorems",
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+      "snippet": "<span class=\"searchmatch\">consistency</span> of F would be resolved by such a <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proof</span>. The interest in <span class=\"searchmatch\">consistency</span> <span class=\"searchmatch\">proofs</span> lies in the possibility of proving the <span class=\"searchmatch\">consistency</span>",
+      "query": "consistency proof explained"
+    },
+    {
+      "title": "Hilbert's second problem",
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+      "snippet": "does not exclude a meta-mathematical <span class=\"searchmatch\">proof</span> of the <span class=\"searchmatch\">consistency</span> of arithmetic. What it excludes is a <span class=\"searchmatch\">proof</span> of <span class=\"searchmatch\">consistency</span> that can be mirrored by the formal",
+      "query": "consistency proof explained"
+    },
+    {
+      "title": "Mathematical induction",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_induction",
+      "snippet": "up to the next one (the step). — Concrete Mathematics, page 3 margins. A <span class=\"searchmatch\">proof</span> by induction consists of two cases. The first, the base case, proves the",
+      "query": "consistency proof explained"
+    },
+    {
+      "title": "Peano axioms",
+      "url": "https://en.wikipedia.org/wiki/Peano_axioms",
+      "snippet": "method for proving the <span class=\"searchmatch\">consistency</span> of arithmetic using type theory. In 1936, Gerhard Gentzen gave a <span class=\"searchmatch\">proof</span> of the <span class=\"searchmatch\">consistency</span> of Peano&#039;s axioms, using",
+      "query": "consistency proof explained"
+    },
+    {
+      "title": "Mathematical proof",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_proof",
+      "snippet": "A mathematical <span class=\"searchmatch\">proof</span> is a deductive argument for a mathematical statement, showing that the stated assumptions logically guarantee the conclusion. The",
+      "query": "consistency proof explained"
+    }
+  ],
+  "ts": "2026-11-03T16:38:54.548601+00:00"
+}

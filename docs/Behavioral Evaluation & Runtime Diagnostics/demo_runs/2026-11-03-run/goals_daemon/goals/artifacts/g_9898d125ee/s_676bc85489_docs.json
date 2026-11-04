@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drug_overdose",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vanilla_Sky",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kenneth_Harrison_%28serial_killer%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_03.txt",
+      "chars": 12273
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Persepolis_%28film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Patient-controlled_analgesia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_05.txt",
+      "chars": 15891
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ezetimibe",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Anxiolytic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nitroglycerin_%28medication%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9898d125ee/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T15:10:22.857308+00:00"
+}

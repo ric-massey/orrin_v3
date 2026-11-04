@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_02.txt",
+      "chars": 4071
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/WWE",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2346e06552/doc_05.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T03:16:15.426321+00:00"
+}

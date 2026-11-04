@@ -1,0 +1,12 @@
+{
+  "last": {
+    "auto:deps-outdated": 1793759843.986079,
+    "auto:daily-snapshot:2026-11-02": 1793674277.546907,
+    "auto:daily-snapshot:2026-11-03": 1793681999.786162,
+    "auto:compact+snapshot": 1793760313.82565
+  },
+  "created_once": [
+    "auto:daily-snapshot:2026-11-02",
+    "auto:daily-snapshot:2026-11-03"
+  ]
+}

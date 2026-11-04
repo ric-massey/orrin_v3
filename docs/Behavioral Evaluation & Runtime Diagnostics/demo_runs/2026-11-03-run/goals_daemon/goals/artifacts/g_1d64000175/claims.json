@@ -1,0 +1,126 @@
+{
+  "question": "What actually is Allopurinol, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "allopurinol"
+  ],
+  "entities": [
+    "Allopurinol",
+    "medication used to decrease high blood uric acid levels",
+    "in the xanthine oxidase inhibitor family of medications",
+    "approved for medical use in the United States in 1966",
+    "available as a generic medication",
+    "Weeks to months after allopurinol",
+    "begun",
+    "About 1 in 1000 patients receiving allopurinol",
+    "affected",
+    "it was shown that an increased initial dose of allopurinol",
+    "linked to AHS",
+    "Oxypurinol",
+    "quickly transformed from allopurinol and then eliminated by the kidneys",
+    "Treatment",
+    "discontinuing allopurinol and providing supportive care",
+    "Febuxostat"
+  ],
+  "relations": [
+    {
+      "subject": "Allopurinol",
+      "predicate": "is a",
+      "object": "medication used to decrease high blood uric acid levels",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "is",
+      "object": "in the xanthine oxidase inhibitor family of medications",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "was",
+      "object": "approved for medical use in the United States in 1966",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "is",
+      "object": "available as a generic medication",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Weeks to months after allopurinol",
+      "predicate": "is",
+      "object": "begun",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "About 1 in 1000 patients receiving allopurinol",
+      "predicate": "are",
+      "object": "affected",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "it was shown that an increased initial dose of allopurinol",
+      "predicate": "was",
+      "object": "linked to AHS",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "Oxypurinol",
+      "predicate": "is",
+      "object": "quickly transformed from allopurinol and then eliminated by the kidneys",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "Treatment",
+      "predicate": "consists of",
+      "object": "discontinuing allopurinol and providing supportive care",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "Febuxostat",
+      "predicate": "is",
+      "object": "typically recommended only for people who cannot tolerate allopurinol",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "for Health and Clinical Excellence concluded that febuxostat",
+      "predicate": "is",
+      "object": "more effective than standard doses of allopurinol",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "evaluated whether the xanthine oxidase inhibitor febuxostat",
+      "predicate": "was",
+      "object": "noninferior to allopurinol on major adverse cardiovascular events",
+      "source": "https://en.wikipedia.org/wiki/William_B._White"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gout"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stevens%E2%80%93Johnson_syndrome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kidney_stone_disease"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Xanthine_oxidase"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/William_B._White"
+    }
+  ],
+  "ts": "2026-11-03T18:54:27.026855+00:00"
+}

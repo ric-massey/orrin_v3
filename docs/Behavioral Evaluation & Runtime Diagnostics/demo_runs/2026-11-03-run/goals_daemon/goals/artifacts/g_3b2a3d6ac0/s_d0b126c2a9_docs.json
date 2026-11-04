@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_lighthouses",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_geology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_atomic_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_06.txt",
+      "chars": 16118
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_07.txt",
+      "chars": 16631
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biomaterial",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Data_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_09.txt",
+      "chars": 17754
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Amphiphile",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_10.txt",
+      "chars": 12497
+    }
+  ],
+  "ts": "2026-11-03T18:53:03.330379+00:00"
+}

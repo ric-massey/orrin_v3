@@ -1,0 +1,143 @@
+{
+  "goal": {
+    "id": "g_1a598df078",
+    "title": "Answer: What actually is Overdosing on medication, beyond the mentions I keep seeing? — round 4",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is Overdosing on medication, beyond the mentions I keep seeing? recent research",
+        "What actually is Overdosing on medication, beyond the mentions I keep seeing? common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_0871f415a1",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:40.965629Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:40.965636Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:40.965638Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:40.965640Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:40.965650Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is Overdosing on medication, beyond the mentio' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:17:40.966990Z",
+      "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:17:40.968859+00:00",
+    "updated_at": "2026-11-03 16:17:41.790012+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_62dca1ae36]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Project_2025",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_General_Hospital",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Healthcare_in_the_United_States",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a598df078/doc_05.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:17:44.983692+00:00"
+}

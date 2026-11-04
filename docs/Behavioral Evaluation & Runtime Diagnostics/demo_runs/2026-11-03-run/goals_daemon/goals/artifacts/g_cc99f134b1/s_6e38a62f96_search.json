@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "attempts",
+    "attempts explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Attempt",
+    "https://en.wikipedia.org/wiki/Suicide_attempt",
+    "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+    "https://en.wikipedia.org/wiki/Attempted_murder",
+    "https://en.wikipedia.org/wiki/Assassination_attempts_on_Hirohito",
+    "https://en.wikipedia.org/wiki/Parliament_of_Whores",
+    "https://en.wikipedia.org/wiki/Explanation",
+    "https://en.wikipedia.org/wiki/Thing_Explainer",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/List_of_United_States_presidential_assassination_attempts_and_plots"
+  ],
+  "results": [
+    {
+      "title": "Attempt",
+      "url": "https://en.wikipedia.org/wiki/Attempt",
+      "snippet": "punish <span class=\"searchmatch\">attempts</span>; the law of <span class=\"searchmatch\">attempt</span> was not recognised by common law until the case of Rex v. Scofield in 1784. The essence of the crime of <span class=\"searchmatch\">attempt</span> in legal",
+      "query": "attempts"
+    },
+    {
+      "title": "Suicide attempt",
+      "url": "https://en.wikipedia.org/wiki/Suicide_attempt",
+      "snippet": "<span class=\"searchmatch\">attempts</span> come from young adults and adolescents, however exact statistics for suicide <span class=\"searchmatch\">attempts</span> haven&#039;t been sufficiently researched. Suicide <span class=\"searchmatch\">attempts</span>",
+      "query": "attempts"
+    },
+    {
+      "title": "Coup d'état",
+      "url": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+      "snippet": "By one estimate, there were 457 coup <span class=\"searchmatch\">attempts</span> from 1950 to 2010, half of which were successful. Most coup <span class=\"searchmatch\">attempts</span> occurred in the mid-1960s, but there",
+      "query": "attempts"
+    },
+    {
+      "title": "Attempted murder",
+      "url": "https://en.wikipedia.org/wiki/Attempted_murder",
+      "snippet": "needed] In England and Wales, as an &quot;<span class=\"searchmatch\">attempt</span>&quot;, <span class=\"searchmatch\">attempted</span> murder is an offence under section 1(1) of the Criminal <span class=\"searchmatch\">Attempts</span> Act 1981 and is an indictable offence",
+      "query": "attempts"
+    },
+    {
+      "title": "Assassination attempts on Hirohito",
+      "url": "https://en.wikipedia.org/wiki/Assassination_attempts_on_Hirohito",
+      "snippet": "known assassination <span class=\"searchmatch\">attempts</span> on Hirohito, the Emperor of Japan. The assailants were all either Korean or Japanese. Assassination <span class=\"searchmatch\">attempts</span> on Hirohito took",
+      "query": "attempts"
+    },
+    {
+      "title": "Parliament of Whores",
+      "url": "https://en.wikipedia.org/wiki/Parliament_of_Whores",
+      "snippet": "Parliament of Whores: A Lone Humorist <span class=\"searchmatch\">Attempts</span> to <span class=\"searchmatch\">Explain</span> the Entire U.S. Government is an international best-selling political humor book by P. J. O&#039;Rourke",
+      "query": "attempts explained"
+    },
+    {
+      "title": "Explanation",
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "snippet": "explanation. So too, there are many different things that can be used to <span class=\"searchmatch\">explain</span> something. Aristotle recognized four archetypes of explanation. These were",
+      "query": "attempts explained"
+    },
+    {
+      "title": "Thing Explainer",
+      "url": "https://en.wikipedia.org/wiki/Thing_Explainer",
+      "snippet": "Thing <span class=\"searchmatch\">Explainer</span>: Complicated Stuff in Simple Words is a 2015 illustrated non-fiction book created by Randall Munroe, in which the author <span class=\"searchmatch\">attempts</span> to explain",
+      "query": "attempts explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "attempts explained"
+    },
+    {
+      "title": "List of United States presidential assassination attempts and plots",
+      "url": "https://en.wikipedia.org/wiki/List_of_United_States_presidential_assassination_attempts_and_plots",
+      "snippet": "President: Assassinations, <span class=\"searchmatch\">Attempts</span>, and Rumored <span class=\"searchmatch\">Attempts</span> on U.S. Commanders-in-Chief: Assassinations, <span class=\"searchmatch\">Attempts</span>, and Rumored <span class=\"searchmatch\">Attempts</span> on U.S. Commanders-in-Chief",
+      "query": "attempts explained"
+    }
+  ],
+  "ts": "2026-11-03T15:09:41.179121+00:00"
+}

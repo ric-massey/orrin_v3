@@ -1,0 +1,127 @@
+{
+  "question": "What actually is consistency proof, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "consistency",
+    "proof"
+  ],
+  "entities": [
+    "Consistency of a theory",
+    "syntactic notion",
+    "consistency proof",
+    "mathematical proof that a particular theory is consistent",
+    "since there",
+    "no cut-free proof of falsity",
+    "Because consistency of ZF",
+    "not provable in ZF",
+    "result of proof theory in mathematical logic",
+    "contained in Peano arithmetic and that its consistency",
+    "therefore less controversial",
+    "proof",
+    "based on the following assumption",
+    "This increasing simplicity",
+    "formalized by attaching an ordinal ε 0 to every proof",
+    "On the other hand a direct method"
+  ],
+  "relations": [
+    {
+      "subject": "Consistency of a theory",
+      "predicate": "is a",
+      "object": "syntactic notion",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "consistency proof",
+      "predicate": "is a",
+      "object": "mathematical proof that a particular theory is consistent",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "since there",
+      "predicate": "is",
+      "object": "no cut-free proof of falsity",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "Because consistency of ZF",
+      "predicate": "is",
+      "object": "not provable in ZF",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "consistency proof",
+      "predicate": "is a",
+      "object": "result of proof theory in mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof"
+    },
+    {
+      "subject": "contained in Peano arithmetic and that its consistency",
+      "predicate": "is",
+      "object": "therefore less controversial",
+      "source": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof"
+    },
+    {
+      "subject": "proof",
+      "predicate": "is",
+      "object": "based on the following assumption",
+      "source": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof"
+    },
+    {
+      "subject": "This increasing simplicity",
+      "predicate": "is",
+      "object": "formalized by attaching an ordinal ε 0 to every proof",
+      "source": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof"
+    },
+    {
+      "subject": "On the other hand a direct method",
+      "predicate": "is",
+      "object": "needed for the proof of the compatibility of the arithmetical axioms",
+      "source": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem"
+    },
+    {
+      "subject": "The system Hilbert asked for a completeness proof of",
+      "predicate": "is",
+      "object": "more like second-order arithmetic than first-order Peano arithmetic",
+      "source": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem"
+    },
+    {
+      "subject": "would in particular provide a proof that Peano arithmetic",
+      "predicate": "is",
+      "object": "consistent",
+      "source": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem"
+    },
+    {
+      "subject": "that it is not possible for any proof that Peano Arithmetic",
+      "predicate": "is",
+      "object": "consistent to be carried out within Peano arithmetic itself",
+      "source": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Proof_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_induction"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Peano_axioms"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_proof"
+    }
+  ],
+  "ts": "2026-11-03T16:39:00.957671+00:00"
+}

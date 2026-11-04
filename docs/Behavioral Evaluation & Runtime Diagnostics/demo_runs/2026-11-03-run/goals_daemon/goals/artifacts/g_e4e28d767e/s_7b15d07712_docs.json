@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Memory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Brain_Rules",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_02.txt",
+      "chars": 4058
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Memory_erasure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Method_of_loci",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_04.txt",
+      "chars": 18237
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mind_uploading",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Working_memory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hyperthymesia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T22:17:31.317909+00:00"
+}

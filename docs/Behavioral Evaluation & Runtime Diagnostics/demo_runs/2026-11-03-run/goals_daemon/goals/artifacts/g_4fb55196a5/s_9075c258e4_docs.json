@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Febuxostat",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gout",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gout_suppressants",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_03.txt",
+      "chars": 19950
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/William_B._White",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_04.txt",
+      "chars": 15360
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tophus",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_05.txt",
+      "chars": 3489
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pharmacology_of_ethanol",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Purine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Uridine_diphosphate_galactose",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4fb55196a5/doc_08.txt",
+      "chars": 11750
+    }
+  ],
+  "ts": "2026-11-03T19:21:07.399645+00:00"
+}

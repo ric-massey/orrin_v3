@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "He repeatedly",
+    "He repeatedly explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Gerald_Friend",
+    "https://en.wikipedia.org/wiki/Robert_Garrow",
+    "https://en.wikipedia.org/wiki/Tank_Man",
+    "https://en.wikipedia.org/wiki/Naranath_Bhranthan",
+    "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings"
+  ],
+  "results": [
+    {
+      "title": "Gerald Friend",
+      "url": "https://en.wikipedia.org/wiki/Gerald_Friend",
+      "snippet": "twice, <span class=\"searchmatch\">he</span> was paroled in 1980. In June 1987, <span class=\"searchmatch\">he</span> abducted a 14-year-old girl at knife-point when she accepted a ride after a rock concert. <span class=\"searchmatch\">He</span> <span class=\"searchmatch\">repeatedly</span> raped",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Robert Garrow",
+      "url": "https://en.wikipedia.org/wiki/Robert_Garrow",
+      "snippet": "1973, Garrow murdered four people, including a young woman whom <span class=\"searchmatch\">he</span> kidnapped and <span class=\"searchmatch\">repeatedly</span> raped before killing, and a high school-aged camper in the Adirondacks",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Tank Man",
+      "url": "https://en.wikipedia.org/wiki/Tank_Man",
+      "snippet": "tank and refused to move. When the tank attempted to steer around him, <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> shifted positions to block its movement. The tanks came to a complete",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Naranath Bhranthan",
+      "url": "https://en.wikipedia.org/wiki/Naranath_Bhranthan",
+      "snippet": "included in Kottarathil Sankunni’s Aithihyamala. <span class=\"searchmatch\">He</span> is best known for a tale in which <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> rolls a boulder up a hill and watches it roll back",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "The Book of Five Rings",
+      "url": "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings",
+      "snippet": "establishes a &quot;no-nonsense&quot; theme throughout the text. For instance, <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> remarks that technical flourishes are excessive, and contrasts worrying",
+      "query": "He repeatedly"
+    }
+  ],
+  "ts": "2026-11-03T23:00:38.609903+00:00"
+}

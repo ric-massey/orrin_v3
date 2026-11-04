@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "g_cf42fa40a1",
+    "title": "Answer: What actually is you end up showing, beyond the mentions I keep seeing?",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "you end up showing",
+        "you end up showing explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:44:36.826638Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:44:36.826648Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:44:36.826650Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:44:36.826652Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:44:36.826654Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is you end up showing, beyond the mentions I k' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:44:36.826677Z",
+      "question": "What actually is you end up showing, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:44:36.827395+00:00",
+    "updated_at": "2026-11-03 21:44:38.103171+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [intrinsic-2026-11-03T21:44:25.392703+00:00]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/They",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Showing_Up_for_Racial_Justice",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/You_Can_See_Everything",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Characters_of_The_World_Ends_with_You",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_YouTube",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/10_Things_I_Hate_About_You",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chapter_Eight%3A_The_Rightside_Up",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_cf42fa40a1/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:44:42.579409+00:00"
+}

@@ -1,0 +1,124 @@
+{
+  "question": "What actually is general relativity explained, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "general",
+    "relativity"
+  ],
+  "entities": [
+    "The final form of general relativity",
+    "published in 1916",
+    "Special relativity Special relativity",
+    "theory of the structure of spacetime",
+    "Special relativity",
+    "based on two postulates which are contradictory in classical mechanics",
+    "General relativity",
+    "tensor theory",
+    "The time-dependent solutions of general relativity",
+    "us to extrapolate the history of the universe into the past and future",
+    "General relativity is a theory of gravitation that",
+    "developed by Albert Einstein between 1907 and 1915",
+    "also part of the framework of the standard Big Bang model of cosmology",
+    "the reason for the development of general relativity",
+    "the preference of inertial motion within special relativity",
+    "the lectures"
+  ],
+  "relations": [
+    {
+      "subject": "The final form of general relativity",
+      "predicate": "was",
+      "object": "published in 1916",
+      "source": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+    },
+    {
+      "subject": "Special relativity Special relativity",
+      "predicate": "is a",
+      "object": "theory of the structure of spacetime",
+      "source": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+    },
+    {
+      "subject": "Special relativity",
+      "predicate": "is",
+      "object": "based on two postulates which are contradictory in classical mechanics",
+      "source": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+    },
+    {
+      "subject": "General relativity",
+      "predicate": "is a",
+      "object": "tensor theory",
+      "source": "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity"
+    },
+    {
+      "subject": "The time-dependent solutions of general relativity",
+      "predicate": "enable",
+      "object": "us to extrapolate the history of the universe into the past and future",
+      "source": "https://en.wikipedia.org/wiki/General_relativity"
+    },
+    {
+      "subject": "General relativity is a theory of gravitation that",
+      "predicate": "was",
+      "object": "developed by Albert Einstein between 1907 and 1915",
+      "source": "https://en.wikipedia.org/wiki/History_of_general_relativity"
+    },
+    {
+      "subject": "General relativity",
+      "predicate": "is",
+      "object": "also part of the framework of the standard Big Bang model of cosmology",
+      "source": "https://en.wikipedia.org/wiki/History_of_general_relativity"
+    },
+    {
+      "subject": "the reason for the development of general relativity",
+      "predicate": "was",
+      "object": "the preference of inertial motion within special relativity",
+      "source": "https://en.wikipedia.org/wiki/History_of_general_relativity"
+    },
+    {
+      "subject": "the lectures",
+      "predicate": "were",
+      "object": "the subject of the 2017 book The Formative Years of Relativity",
+      "source": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity"
+    },
+    {
+      "subject": "of general relativity in a comprehensive manner that",
+      "predicate": "was",
+      "object": "accessible to non-specialists",
+      "source": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity"
+    },
+    {
+      "subject": "The Meaning of Relativity",
+      "predicate": "is the",
+      "object": "focus of a 2017 book",
+      "source": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity"
+    },
+    {
+      "subject": "General relativity",
+      "predicate": "is a",
+      "object": "theory of gravitation developed by Albert Einstein between 1907 and 1915",
+      "source": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Relativity%3A_The_Special_and_the_General_Theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/General_relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_general_relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"
+    }
+  ],
+  "ts": "2026-11-04T00:24:37.607596+00:00"
+}

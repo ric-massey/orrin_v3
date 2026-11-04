@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Michael_Jackson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kurt_Cobain",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Project_2025",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_The_Sopranos_characters",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Heartland_episodes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Characters_of_Casualty",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Hollyoaks_characters_introduced_in_2015",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Traders_episodes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Healthcare_in_the_United_States",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:17:36.918853+00:00"
+}

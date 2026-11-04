@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_f298652e65",
+    "title": "Answer: What actually is early productions, beyond the mentions I keep seeing? — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is early productions, beyond the mentions I keep seeing? history and development",
+        "What actually is early productions, beyond the mentions I keep seeing? applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_aed70f5f61",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.233558Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.233564Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.233566Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.233568Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.233569Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is early productions, beyond the mentions I ke' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:40:15.233585Z",
+      "question": "What actually is early productions, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:40:15.234629+00:00",
+    "updated_at": "2026-11-03 16:40:18.558755+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_df3217dcf8]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Production_of_The_Lord_of_the_Rings_film_series",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Laid-Off_Cheat-Granting_Mage_Enjoys_a_Second_Lease_on_Life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Henry_VI%2C_Part_3",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wikipedia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Superman",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f298652e65/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:40:24.881940+00:00"
+}

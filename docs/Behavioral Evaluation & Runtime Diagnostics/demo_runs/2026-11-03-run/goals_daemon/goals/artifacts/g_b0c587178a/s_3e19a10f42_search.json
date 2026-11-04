@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "function and evolution history and development",
+    "function and evolution applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions",
+    "https://en.wikipedia.org/wiki/History_of_the_function_concept",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Outline_of_biology",
+    "https://en.wikipedia.org/wiki/Differential_evolution",
+    "https://en.wikipedia.org/wiki/Applications_of_evolution",
+    "https://en.wikipedia.org/wiki/API",
+    "https://en.wikipedia.org/wiki/Busy_beaver",
+    "https://en.wikipedia.org/wiki/Fly_algorithm",
+    "https://en.wikipedia.org/wiki/Coccinelle_%28software%29"
+  ],
+  "results": [
+    {
+      "title": "Tinbergen's four questions",
+      "url": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions",
+      "snippet": "<span class=\"searchmatch\">history</span> of being adaptive. The literature conceptualizes the relationship between <span class=\"searchmatch\">function</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">evolution</span> in two ways. On the one hand, <span class=\"searchmatch\">function</span> <span class=\"searchmatch\">and</span> evolution",
+      "query": "function and evolution history and development"
+    },
+    {
+      "title": "History of the function concept",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_function_concept",
+      "snippet": "The mathematical concept of a <span class=\"searchmatch\">function</span> dates from the 17th century in connection with the <span class=\"searchmatch\">development</span> of calculus; for example, the slope d y / d x {\\displaystyle",
+      "query": "function and evolution history and development"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "control their assembly <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">function</span>; this is called deep homology. During <span class=\"searchmatch\">evolution</span>, some structures may lose their original <span class=\"searchmatch\">function</span> <span class=\"searchmatch\">and</span> become vestigial structures",
+      "query": "function and evolution history and development"
+    },
+    {
+      "title": "Outline of biology",
+      "url": "https://en.wikipedia.org/wiki/Outline_of_biology",
+      "snippet": "<span class=\"searchmatch\">and</span> topical guide to biology: Biology – The natural science that studies life. Areas of focus include structure, <span class=\"searchmatch\">function</span>, growth, origin, <span class=\"searchmatch\">evolution</span>,",
+      "query": "function and evolution history and development"
+    },
+    {
+      "title": "Differential evolution",
+      "url": "https://en.wikipedia.org/wiki/Differential_evolution",
+      "snippet": "Differential <span class=\"searchmatch\">evolution</span> (DE) is an evolutionary algorithm to optimize a problem by iteratively trying to improve a candidate solution with regard to a",
+      "query": "function and evolution history and development"
+    },
+    {
+      "title": "Applications of evolution",
+      "url": "https://en.wikipedia.org/wiki/Applications_of_evolution",
+      "snippet": "science with many practical <span class=\"searchmatch\">applications</span>. Creationists often claim that the theory of <span class=\"searchmatch\">evolution</span> lacks any practical <span class=\"searchmatch\">applications</span>; however, this claim has",
+      "query": "function and evolution applications and examples"
+    },
+    {
+      "title": "API",
+      "url": "https://en.wikipedia.org/wiki/API",
+      "snippet": "data between communities <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">applications</span>. In this way, content that is created in one place can be dynamically posted <span class=\"searchmatch\">and</span> updated to multiple locations",
+      "query": "function and evolution applications and examples"
+    },
+    {
+      "title": "Busy beaver",
+      "url": "https://en.wikipedia.org/wiki/Busy_beaver",
+      "snippet": "busy beaver; hence <span class=\"searchmatch\">examples</span> are known only for the first few state counts. The busy beaver game aims to find new busy beaver <span class=\"searchmatch\">examples</span>. Rather than traditional",
+      "query": "function and evolution applications and examples"
+    },
+    {
+      "title": "Fly algorithm",
+      "url": "https://en.wikipedia.org/wiki/Fly_algorithm",
+      "snippet": "fitness <span class=\"searchmatch\">functions</span> are constructed <span class=\"searchmatch\">and</span> the way the solution extraction is made are of course problem-dependent. <span class=\"searchmatch\">Examples</span> of Parisian <span class=\"searchmatch\">Evolution</span> <span class=\"searchmatch\">applications</span> include:",
+      "query": "function and evolution applications and examples"
+    },
+    {
+      "title": "Coccinelle (software)",
+      "url": "https://en.wikipedia.org/wiki/Coccinelle_%28software%29",
+      "snippet": "the <span class=\"searchmatch\">evolution</span> of the Linux kernel, providing support for changes to library <span class=\"searchmatch\">application</span> programming interfaces (APIs) such as renaming a <span class=\"searchmatch\">function</span>, adding",
+      "query": "function and evolution applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T21:47:02.643882+00:00"
+}

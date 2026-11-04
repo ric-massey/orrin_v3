@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "Explanations history and development",
+    "Explanations applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions",
+    "https://en.wikipedia.org/wiki/The_Beginning_of_Infinity",
+    "https://en.wikipedia.org/wiki/Abductive_reasoning",
+    "https://en.wikipedia.org/wiki/History_of_philosophy",
+    "https://en.wikipedia.org/wiki/Passages_from_Antiquity_to_Feudalism",
+    "https://en.wikipedia.org/wiki/Application_software",
+    "https://en.wikipedia.org/wiki/Dynamic_programming",
+    "https://en.wikipedia.org/wiki/Spheroid",
+    "https://en.wikipedia.org/wiki/Darwinism_%28book%29"
+  ],
+  "results": [
+    {
+      "title": "Tinbergen's four questions",
+      "url": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions",
+      "snippet": "ultimate (evolutionary) <span class=\"searchmatch\">explanations</span>, in particular: behavioural adaptive functions phylogenetic <span class=\"searchmatch\">history</span>; <span class=\"searchmatch\">and</span> the proximate <span class=\"searchmatch\">explanations</span> underlying physiological",
+      "query": "Explanations history and development"
+    },
+    {
+      "title": "The Beginning of Infinity",
+      "url": "https://en.wikipedia.org/wiki/The_Beginning_of_Infinity",
+      "snippet": "The Beginning of Infinity: <span class=\"searchmatch\">Explanations</span> that Transform the World is a popular science book by the physicist David Deutsch first published in 2011. Deutsch",
+      "query": "Explanations history and development"
+    },
+    {
+      "title": "Abductive reasoning",
+      "url": "https://en.wikipedia.org/wiki/Abductive_reasoning",
+      "snippet": "tendency: despite many possible <span class=\"searchmatch\">explanations</span> for what we observe, we tend to abduce one or a couple of <span class=\"searchmatch\">explanations</span>, disregarding the rest as too confusing",
+      "query": "Explanations history and development"
+    },
+    {
+      "title": "History of philosophy",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "snippet": "others reject them <span class=\"searchmatch\">and</span> offer alternative <span class=\"searchmatch\">explanations</span>. Purely mystical <span class=\"searchmatch\">and</span> religious traditions are often excluded from the <span class=\"searchmatch\">history</span> of philosophy if their",
+      "query": "Explanations history and development"
+    },
+    {
+      "title": "Passages from Antiquity to Feudalism",
+      "url": "https://en.wikipedia.org/wiki/Passages_from_Antiquity_to_Feudalism",
+      "snippet": "diversity of feudalism across Europe and provides a plausible <span class=\"searchmatch\">explanation</span> of its <span class=\"searchmatch\">development</span> thereafter&quot; but also notes &quot;[s]ome may feel that Anderson neglects",
+      "query": "Explanations history and development"
+    },
+    {
+      "title": "Application software",
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "snippet": "browsers, media players, <span class=\"searchmatch\">and</span> mobile <span class=\"searchmatch\">applications</span> used in daily tasks. An <span class=\"searchmatch\">application</span> (app, <span class=\"searchmatch\">application</span> program, software <span class=\"searchmatch\">application</span>) is any program that",
+      "query": "Explanations applications and examples"
+    },
+    {
+      "title": "Dynamic programming",
+      "url": "https://en.wikipedia.org/wiki/Dynamic_programming",
+      "snippet": "optimization method <span class=\"searchmatch\">and</span> an algorithmic paradigm. The method was developed by Richard Bellman in the 1950s <span class=\"searchmatch\">and</span> has found <span class=\"searchmatch\">applications</span> in numerous fields",
+      "query": "Explanations applications and examples"
+    },
+    {
+      "title": "Abductive reasoning",
+      "url": "https://en.wikipedia.org/wiki/Abductive_reasoning",
+      "snippet": "tendency: despite many possible <span class=\"searchmatch\">explanations</span> for what we observe, we tend to abduce one or a couple of <span class=\"searchmatch\">explanations</span>, disregarding the rest as too confusing",
+      "query": "Explanations applications and examples"
+    },
+    {
+      "title": "Spheroid",
+      "url": "https://en.wikipedia.org/wiki/Spheroid",
+      "snippet": "au geopositionnement par satellites, p.8 &quot;Spheroid - <span class=\"searchmatch\">Explanation</span>, <span class=\"searchmatch\">Applications</span>, Shape, <span class=\"searchmatch\">Example</span> <span class=\"searchmatch\">and</span> FAQs&quot;. VEDANTU. Retrieved 26 November 2024. Howse, Derek",
+      "query": "Explanations applications and examples"
+    },
+    {
+      "title": "Darwinism (book)",
+      "url": "https://en.wikipedia.org/wiki/Darwinism_%28book%29",
+      "snippet": "Darwin had proposed. Instead, Wallace offered non-sexual <span class=\"searchmatch\">explanations</span> for some of the <span class=\"searchmatch\">examples</span> that Darwin had given. For instance, Wallace argued that",
+      "query": "Explanations applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T21:43:08.838381+00:00"
+}

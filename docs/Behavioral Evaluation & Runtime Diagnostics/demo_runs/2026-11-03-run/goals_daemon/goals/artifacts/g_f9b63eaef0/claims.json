@@ -1,0 +1,45 @@
+{
+  "question": "What makes my memory use (RSS) climb?",
+  "subject_terms": [],
+  "entities": [
+    "memory use (RSS)",
+    "wikipedia_search"
+  ],
+  "relations": [
+    {
+      "subject": "memory use (RSS)",
+      "predicate": "rises after",
+      "object": "wikipedia_search runs",
+      "source": "resource_history"
+    }
+  ],
+  "prediction": {
+    "claim": "My memory use (RSS) rises after wikipedia_search runs",
+    "checkable_against": "resource_history:rss_mb:last_fn",
+    "confidence": 0.6,
+    "resolved": true,
+    "correct": false,
+    "driver": "wikipedia_search",
+    "made_at_ts": 1793685506.1,
+    "hypothesized_at": 1793685510.6157708,
+    "train": {
+      "driver": "wikipedia_search",
+      "n": 94,
+      "mean": 11.9777,
+      "base": 0.241
+    },
+    "test": {
+      "n": 10,
+      "mean": -55.08,
+      "base": 0.3348,
+      "correct": false
+    },
+    "outcome": "failed out of sample: mean -55.08 after wikipedia_search (n=10) vs baseline +0.3348"
+  },
+  "sources": [
+    {
+      "src": "resource_history.jsonl"
+    }
+  ],
+  "ts": "2026-11-03T05:58:30.615774+00:00"
+}

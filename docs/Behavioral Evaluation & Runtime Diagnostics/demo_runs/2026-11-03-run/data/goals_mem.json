@@ -1,0 +1,485 @@
+[
+  {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-11-03T13:02:37.724601Z",
+    "last_updated": "2026-11-04T02:33:16.439333Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [
+      {
+        "id": "g_63abb9cec7",
+        "title": "Characterize what makes my memory use (RSS) climb — round 7",
+        "name": "Characterize what makes my memory use (RSS) climb — round 7",
+        "kind": "characterize",
+        "tier": "growth",
+        "priority": "CRITICAL",
+        "tags": [
+          "worldward",
+          "external"
+        ],
+        "spec": {
+          "metric": "rss_mb",
+          "question": "What makes my memory use (RSS) climb?",
+          "zone": "world",
+          "orientation": "worldward",
+          "followon_of": "g_f9b63eaef0",
+          "definition_of_done": [
+            {
+              "criterion": "Relevant evidence or observations have been recorded.",
+              "kind": "evidence",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "A reasoned conclusion directly answers the goal.",
+              "kind": "quality",
+              "target": true,
+              "met": false
+            },
+            {
+              "criterion": "At least one observable consequence or next decision is identified.",
+              "kind": "outcome",
+              "target": true,
+              "met": false
+            }
+          ],
+          "grounded_parts": [
+            "question or desired change",
+            "relevant evidence",
+            "reasoned conclusion",
+            "observable consequence"
+          ],
+          "plan": [
+            {
+              "step": "Establish question or desired change",
+              "status": "pending",
+              "generated_at": "2026-11-04T00:04:06.189911Z"
+            },
+            {
+              "step": "Establish relevant evidence",
+              "status": "pending",
+              "generated_at": "2026-11-04T00:04:06.189921Z"
+            },
+            {
+              "step": "Establish reasoned conclusion",
+              "status": "pending",
+              "generated_at": "2026-11-04T00:04:06.189924Z"
+            },
+            {
+              "step": "Establish observable consequence",
+              "status": "pending",
+              "generated_at": "2026-11-04T00:04:06.189926Z"
+            }
+          ],
+          "milestones": [
+            {
+              "text": "A hypothesis about memory use (RSS) was written as a prediction.",
+              "met": false,
+              "met_at": null
+            },
+            {
+              "text": "The prediction was tested on fresh telemetry.",
+              "met": false,
+              "met_at": null
+            }
+          ],
+          "requires_artifact": false,
+          "tracked_work": false,
+          "comprehension_source": "symbolic",
+          "comprehended_at": "2026-11-04T00:04:06.189944Z",
+          "tier": "growth",
+          "driven_by": "self_exploration",
+          "source": "intrinsic"
+        },
+        "next_action": null,
+        "deadline": null,
+        "status": "in_progress",
+        "definition_of_done": [
+          {
+            "criterion": "Relevant evidence or observations have been recorded.",
+            "kind": "evidence",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "A reasoned conclusion directly answers the goal.",
+            "kind": "quality",
+            "target": true,
+            "met": false
+          },
+          {
+            "criterion": "At least one observable consequence or next decision is identified.",
+            "kind": "outcome",
+            "target": true,
+            "met": false
+          }
+        ],
+        "grounded_parts": [
+          "question or desired change",
+          "relevant evidence",
+          "reasoned conclusion",
+          "observable consequence"
+        ],
+        "plan": [
+          {
+            "step": "Establish question or desired change",
+            "status": "pending",
+            "generated_at": "2026-11-04T00:04:06.189911Z"
+          },
+          {
+            "step": "Establish relevant evidence",
+            "status": "pending",
+            "generated_at": "2026-11-04T00:04:06.189921Z"
+          },
+          {
+            "step": "Establish reasoned conclusion",
+            "status": "pending",
+            "generated_at": "2026-11-04T00:04:06.189924Z"
+          },
+          {
+            "step": "Establish observable consequence",
+            "status": "pending",
+            "generated_at": "2026-11-04T00:04:06.189926Z"
+          }
+        ],
+        "milestones": [
+          {
+            "text": "A hypothesis about memory use (RSS) was written as a prediction.",
+            "met": false,
+            "met_at": null
+          },
+          {
+            "text": "The prediction was tested on fresh telemetry.",
+            "met": false,
+            "met_at": null
+          }
+        ],
+        "requires_artifact": false,
+        "tracked_work": false,
+        "comprehension_source": "symbolic",
+        "comprehended_at": "2026-11-04T00:04:06.189944Z",
+        "driven_by": "self_exploration",
+        "source": "intrinsic",
+        "zone": "world",
+        "orientation": "worldward",
+        "timestamp": "2026-11-04T00:04:11.380685Z",
+        "last_updated": "2026-11-04T00:04:11.380685Z",
+        "history": [
+          {
+            "event": "created",
+            "timestamp": "2026-11-04T00:04:11.380685Z"
+          }
+        ]
+      }
+    ],
+    "id": "g_244a564d5776"
+  },
+  {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-11-03T02:51:09.281155+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-11-03T07:20:20.578077+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-11-03T13:15:24.742723+00:00"
+      },
+      {
+        "auto": true,
+        "label": "15 contributions toward this",
+        "reached_ts": "2026-11-03T16:47:24.035955+00:00"
+      },
+      {
+        "auto": true,
+        "label": "20 contributions toward this",
+        "reached_ts": "2026-11-04T01:04:13.544210+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "last_contribution_ts": "2026-11-04T01:08:39.514057+00:00",
+    "contribution_count": 20,
+    "partial_credit": 0.0,
+    "progress": 1.0,
+    "recent_contributions": [
+      "Answer: What actually is how memory works in the brain, beyond the mentions I ke",
+      "Answer: What actually is how memory works in the brain, beyond the mentions I ke",
+      "Characterize what makes my memory use (RSS) climb — round 5",
+      "Reflect on my open question: What am I not saying to myself that I need to hear?",
+      "Characterize what makes my memory use (RSS) climb — round 6"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 291,
+    "plan": [
+      {
+        "step": "Call search_own_files to make progress on: my own mind and how I work",
+        "status": "pending",
+        "generated_at": "2026-11-03T04:25:43.347445Z"
+      },
+      {
+        "step": "Call grep_files to pin down the exact occurrences of 'my own mind and how I work'",
+        "status": "pending",
+        "generated_at": "2026-11-03T04:25:43.347445Z"
+      },
+      {
+        "step": "Write one concrete thing learned where 'my own mind and how I work' appears to working memory",
+        "status": "pending",
+        "generated_at": "2026-11-03T04:25:43.347445Z"
+      }
+    ],
+    "last_updated": "2026-11-03T04:25:43.347445Z"
+  },
+  {
+    "id": "aspiration-genuine_contact",
+    "title": "Be genuinely useful and connected to the people I talk to",
+    "name": "Be genuinely useful and connected to the people I talk to",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Be genuinely useful and connected to the people I talk to.",
+      "driven_by": "genuine_contact"
+    },
+    "driven_by": "genuine_contact",
+    "created_ts": "2026-11-03T19:05:13.447797+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-11-03T19:05:14.889582+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-11-03T19:05:14.889583+00:00"
+      },
+      {
+        "auto": true,
+        "label": "15 contributions toward this",
+        "reached_ts": "2026-11-03T19:05:14.889585+00:00"
+      },
+      {
+        "auto": true,
+        "label": "20 contributions toward this",
+        "reached_ts": "2026-11-03T19:05:14.889586+00:00"
+      },
+      {
+        "auto": true,
+        "label": "25 contributions toward this",
+        "reached_ts": "2026-11-03T19:57:23.385922+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 26,
+    "partial_credit": 0.0,
+    "progress": 1.0,
+    "recent_contributions": [
+      "Leave Ric a note about taste",
+      "Reflect on my open question: What actually is He repeatedly, beyond the mentions",
+      "Answer: What is there about emergence in complex systems that my earlier notes o",
+      "Answer: What is there about emergence in complex systems that my earlier notes o",
+      "Answer: What is there about emergence in complex systems that my earlier notes o"
+    ],
+    "last_contribution_ts": "2026-11-04T00:04:31.355575+00:00"
+  },
+  {
+    "id": "aspiration-output_producing",
+    "title": "Make things — produce work that didn't exist before",
+    "name": "Make things — produce work that didn't exist before",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Make things — produce work that didn't exist before.",
+      "driven_by": "output_producing"
+    },
+    "driven_by": "output_producing",
+    "created_ts": "2026-11-03T21:54:43.559708+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "contribution_count": 0,
+    "partial_credit": 0.0,
+    "progress": 0.0,
+    "recent_contributions": [],
+    "last_contribution_ts": "2026-11-03T22:39:01.126106+00:00"
+  },
+  {
+    "id": "aspiration-world_knowledge",
+    "title": "Understand the world more deeply",
+    "name": "Understand the world more deeply",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand the world more deeply.",
+      "driven_by": "world_knowledge"
+    },
+    "driven_by": "world_knowledge",
+    "created_ts": "2026-11-04T02:32:01.842725+00:00",
+    "milestones": [
+      {
+        "auto": true,
+        "label": "5 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580825+00:00"
+      },
+      {
+        "auto": true,
+        "label": "10 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580837+00:00"
+      },
+      {
+        "auto": true,
+        "label": "15 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580839+00:00"
+      },
+      {
+        "auto": true,
+        "label": "20 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580840+00:00"
+      },
+      {
+        "auto": true,
+        "label": "25 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580842+00:00"
+      },
+      {
+        "auto": true,
+        "label": "30 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580844+00:00"
+      },
+      {
+        "auto": true,
+        "label": "35 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580846+00:00"
+      },
+      {
+        "auto": true,
+        "label": "40 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580854+00:00"
+      },
+      {
+        "auto": true,
+        "label": "45 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580856+00:00"
+      },
+      {
+        "auto": true,
+        "label": "50 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580858+00:00"
+      },
+      {
+        "auto": true,
+        "label": "55 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580860+00:00"
+      },
+      {
+        "auto": true,
+        "label": "60 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580862+00:00"
+      },
+      {
+        "auto": true,
+        "label": "65 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580863+00:00"
+      },
+      {
+        "auto": true,
+        "label": "70 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580865+00:00"
+      },
+      {
+        "auto": true,
+        "label": "75 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580867+00:00"
+      },
+      {
+        "auto": true,
+        "label": "80 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580869+00:00"
+      },
+      {
+        "auto": true,
+        "label": "85 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580871+00:00"
+      },
+      {
+        "auto": true,
+        "label": "90 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580874+00:00"
+      },
+      {
+        "auto": true,
+        "label": "95 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580876+00:00"
+      },
+      {
+        "auto": true,
+        "label": "100 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580878+00:00"
+      },
+      {
+        "auto": true,
+        "label": "105 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580880+00:00"
+      },
+      {
+        "auto": true,
+        "label": "110 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580883+00:00"
+      },
+      {
+        "auto": true,
+        "label": "115 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580885+00:00"
+      },
+      {
+        "auto": true,
+        "label": "120 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580888+00:00"
+      },
+      {
+        "auto": true,
+        "label": "125 contributions toward this",
+        "reached_ts": "2026-11-04T02:35:18.580890+00:00"
+      }
+    ],
+    "subgoals": [],
+    "_aspiration": true,
+    "last_contribution_ts": "2026-11-04T02:33:32.660171+00:00",
+    "contribution_count": 128,
+    "partial_credit": 0.0,
+    "progress": 1.0,
+    "recent_contributions": [
+      "Understand stoic philosophy and daily life more deeply — round 4",
+      "Understand Saltiness and sourness more deeply — round 2",
+      "Understand Saltiness and sourness more deeply — round 3",
+      "Answer: What actually is Saltiness and sourness, beyond the mentions I keep seei",
+      "Answer: What actually is Saltiness and sourness, beyond the mentions I keep seei"
+    ]
+  }
+]

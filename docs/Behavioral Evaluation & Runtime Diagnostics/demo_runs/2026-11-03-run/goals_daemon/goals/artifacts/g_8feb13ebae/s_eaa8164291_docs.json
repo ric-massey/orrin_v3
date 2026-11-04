@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_01.txt",
+      "chars": 12498
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Google_Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Schwarzman_Scholars",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_03.txt",
+      "chars": 19871
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Semantic_Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_04.txt",
+      "chars": 16542
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Violence_in_the_Quran",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/PnL_explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_07.txt",
+      "chars": 4885
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Daniel_McClellan_%28biblical_scholar%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_08.txt",
+      "chars": 18116
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/No_Time_to_Explain",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_09.txt",
+      "chars": 9173
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:16:58.987891+00:00"
+}

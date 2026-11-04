@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_0373f9c521",
+    "title": "Understand He repeatedly more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "He repeatedly open problems",
+        "He repeatedly criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_32a31a5da5",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T23:00:17.785700Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T23:00:17.785713Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T23:00:17.785715Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T23:00:17.785717Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T23:00:17.785719Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "He repeatedly was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about He repeatedly was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T23:00:17.785740Z",
+      "question": "What actually is He repeatedly, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 23:00:17.786291+00:00",
+    "updated_at": "2026-11-03 23:00:19.011882+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_32a31a5da5]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Two_envelopes_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/%C3%89variste_Galois",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Problem_of_induction",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bill_Nye%E2%80%93Ken_Ham_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2008_United_States_presidential_debates",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0373f9c521/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T23:00:24.681504+00:00"
+}

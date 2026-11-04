@@ -89,7 +89,7 @@
   },
   {
     "name": "annotate_reason",
-    "definition": "annotate_reason(reason: 'Dict[str, Any]', context: 'Dict[str, Any]', chosen: 'str') -> 'None'\nIf this decision's driving context carries an answered question's\n    subject, cite it in the reason payload and stamp the index row consumed."
+    "definition": "annotate_reason(reason: 'Dict[str, Any]', context: 'Dict[str, Any]', chosen: 'str') -> 'None'\nIf this decision's driving context carries an answered question's\n    subject, record the recurrence in the reason payload and count it. This is\n    topic overlap observed after the choice, not use of the answer (F4)."
   },
   {
     "name": "announce_to_dashboard",
@@ -388,10 +388,6 @@
     "definition": "choose_depth() -> 'int'\nUCB1 selection over available depths.\n    Returns 1 (shallow) or 3 (deep). Falls back to 1 if stats unavailable."
   },
   {
-    "name": "cited_rows",
-    "definition": "cited_rows() -> 'List[Dict[str, Any]]'\nRows whose answers have been consumed by at least one decision (§10 gate)."
-  },
-  {
     "name": "classify_action",
     "definition": "classify_action(fn_name: 'str', *, blocked: 'bool' = False) -> 'str'\nMap an executed cognition function to one of the seven action classes.\n\n    `blocked=True` (the executor reported the action failed/blocked) overrides to\n    failed_blocked — a reflex that can't fire is not regulation. Unknown internal\n    functions default to maintenance (housekeeping), never to a productive class,\n    so the audit never over-credits follow-through."
   },
@@ -477,7 +473,7 @@
   },
   {
     "name": "compute_goal_progress",
-    "definition": "compute_goal_progress(context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '') -> 'float'\nMeasure real goal progress from observable context state.\n\n    Called in ORRIN_loop after each cycle when a committed goal is active.\n    When no goal is active, returns 0.5 (neutral — don't penalize idle cycles).\n\n    Rules (Orrin can inspect and revise these):\n      +0.10  base credit for being active while a goal exists\n      +0.40  an action was executed (action_debt resets to 0)\n      +0.30  pursue_committed_goal ran this cycle (generated a concrete next step)\n      +0.10  each working-memory entry in the last 5 that names the goal (max 2)\n      -0.20  stalling: action_debt >= _STALL_THRESHOLD cycles without acting"
+    "definition": "compute_goal_progress(context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '') -> 'float'\nMeasure real goal progress from observable context state.\n\n    Called in ORRIN_loop after each cycle when a committed goal is active.\n    When no goal is active, returns 0.5 (neutral — don't penalize idle cycles).\n\n    Rules (Orrin can inspect and revise these):\n       0.50  base: a goal exists (neutral — the same as no goal)\n      +0.40  the cycle produced goal action (consequential, not merely non-failing)\n      +0.30  pursue_committed_goal is what produced it\n      +0.10  each working-memory entry in the last 5 that names the goal (max 2),\n             only on a cycle that produced goal action\n      -0.20  stalling: action_debt >= _STALL_THRESHOLD cycles without acting"
   },
   {
     "name": "concurrency",
@@ -977,7 +973,7 @@
   },
   {
     "name": "goal_weighted_reward",
-    "definition": "goal_weighted_reward(base_reward: 'float', context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '', goal_weight: 'float' = 0.6) -> 'float'\nBlend base reward with goal progress when a committed goal is active.\n\n    When a goal is active:\n        final = (1 - goal_weight) * base_reward + goal_weight * goal_progress\n    When no goal is active:\n        final = base_reward (unchanged)\n\n    goal_weight=0.60 means 60% of the reward is determined by whether the\n    cycle actually moved toward the goal, 40% by the function's own quality.\n    This creates a strong incentive to stay goal-directed."
+    "definition": "goal_weighted_reward(base_reward: 'float', context: 'Dict[str, Any]', action_was_taken: 'bool' = False, fn_name: 'str' = '', goal_weight: 'float' = 0.6) -> 'float'\nAdjust base reward by goal progress when a committed goal is active.\n\n    When a goal is active:\n        final = base_reward + goal_weight * (goal_progress - 0.5)\n    When no goal is active:\n        final = base_reward (unchanged)\n\n    Progress is a shift around neutral, not a blend. F1 (2026-10-17): the old\n    blend, (1 - w) * base + w * progress, pulled every reward toward the\n    progress score, so a failure's -0.1 came out at +0.26 and an unrelated\n    0.32 at 0.668. Now a cycle that neither advanced nor stalled the goal\n    keeps its own reward and sign; advancing it adds up to +0.30, stalling\n    takes 0.18 off. Clamped to [-1, 1] like the no-goal path, which already\n    passes negative rewards through to the bandit."
   },
   {
     "name": "grep_files",
@@ -1122,6 +1118,10 @@
   {
     "name": "is_mismatched_doing_action",
     "definition": "is_mismatched_doing_action(goal_type: 'str', fn_name: 'str') -> 'bool'\nTrue if fn_name is an EXCLUSIVE doing-action of some type OTHER than\n    goal_type — i.e. selecting it would be working on the wrong kind of goal.\n\n    Only enforced when the CURRENT goal type has its own exclusive family (it's a\n    strongly-typed goal — produce_code / acquire_knowledge). A 'general'/'explore'/\n    'self_understand' goal isn't pinned to one family, so nothing is suppressed for\n    it; the gate exists to keep the research↔code distinction crisp, not to straitjacket\n    vague goals."
+  },
+  {
+    "name": "is_noop_result",
+    "definition": "is_noop_result(result: 'Any') -> 'bool'\nB7 (Run 13): an explicit {\"changed\": False} result did nothing — no reward,\n    not consequential, and its streak ends the avoidance breaker's goal-service\n    exemption. A throttle ({\"throttled\": True}) is the action resting, not a no-op\n    (smoke life 2026-10-08: scoring throttles as no-ops starved research_topic)."
   },
   {
     "name": "is_placeholder_step",

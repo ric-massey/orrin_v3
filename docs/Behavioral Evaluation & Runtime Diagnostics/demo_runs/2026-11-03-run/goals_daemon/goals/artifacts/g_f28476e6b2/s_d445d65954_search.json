@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Mathematical logic",
+    "Mathematical logic explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematical_logic",
+    "https://en.wikipedia.org/wiki/Theory_%28mathematical_logic%29",
+    "https://en.wikipedia.org/wiki/List_of_logic_symbols",
+    "https://en.wikipedia.org/wiki/Consistency",
+    "https://en.wikipedia.org/wiki/Structure_%28mathematical_logic%29",
+    "https://en.wikipedia.org/wiki/Recreational_mathematics",
+    "https://en.wikipedia.org/wiki/History_of_logic",
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/Logicism",
+    "https://en.wikipedia.org/wiki/Foundations_of_mathematics"
+  ],
+  "results": [
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "<span class=\"searchmatch\">Mathematical</span> <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within <span class=\"searchmatch\">mathematics</span>. This is commonly done by means of formal systems called formal <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "Mathematical logic"
+    },
+    {
+      "title": "Theory (mathematical logic)",
+      "url": "https://en.wikipedia.org/wiki/Theory_%28mathematical_logic%29",
+      "snippet": "In <span class=\"searchmatch\">mathematical</span> <span class=\"searchmatch\">logic</span>, a theory (also called a formal theory) is a set of sentences in a formal language. In most scenarios a deductive system is first",
+      "query": "Mathematical logic"
+    },
+    {
+      "title": "List of logic symbols",
+      "url": "https://en.wikipedia.org/wiki/List_of_logic_symbols",
+      "snippet": "mean superset. Quine, W.V. (1981): <span class=\"searchmatch\">Mathematical</span> <span class=\"searchmatch\">Logic</span>, §6 Hintikka, Jaakko (1998), The Principles of <span class=\"searchmatch\">Mathematics</span> Revisited, Cambridge University Press",
+      "query": "Mathematical logic"
+    },
+    {
+      "title": "Consistency",
+      "url": "https://en.wikipedia.org/wiki/Consistency",
+      "snippet": "François (2019). A First Journey through <span class=\"searchmatch\">Logic</span>. Student <span class=\"searchmatch\">Mathematical</span> Library. Vol. 89. American <span class=\"searchmatch\">Mathematical</span> Society. p. 63. ISBN 9781470452728. This",
+      "query": "Mathematical logic"
+    },
+    {
+      "title": "Structure (mathematical logic)",
+      "url": "https://en.wikipedia.org/wiki/Structure_%28mathematical_logic%29",
+      "snippet": "model theory; see interpretation (model theory). In the context of <span class=\"searchmatch\">mathematical</span> <span class=\"searchmatch\">logic</span>, the term &quot;model&quot; was first used in 1940 by the philosopher Willard",
+      "query": "Mathematical logic"
+    },
+    {
+      "title": "Recreational mathematics",
+      "url": "https://en.wikipedia.org/wiki/Recreational_mathematics",
+      "snippet": "recreational <span class=\"searchmatch\">mathematics</span> are Rubik&#039;s Cubes, magic squares, fractals, <span class=\"searchmatch\">logic</span> puzzles and <span class=\"searchmatch\">mathematical</span> chess problems, but this area of <span class=\"searchmatch\">mathematics</span> includes",
+      "query": "Mathematical logic explained"
+    },
+    {
+      "title": "History of logic",
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "snippet": "proof used in <span class=\"searchmatch\">mathematics</span>, a hearkening back to the Greek tradition. The development of the modern &quot;symbolic&quot; or &quot;<span class=\"searchmatch\">mathematical</span>&quot; <span class=\"searchmatch\">logic</span> during this period",
+      "query": "Mathematical logic explained"
+    },
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "Entscheidungsproblem&quot; Introduction to <span class=\"searchmatch\">Mathematical</span> Philosophy &quot;New Foundations for <span class=\"searchmatch\">Mathematical</span> <span class=\"searchmatch\">Logic</span>&quot; Principia Mathematica The Simplest <span class=\"searchmatch\">Mathematics</span> History and philosophy",
+      "query": "Mathematical logic explained"
+    },
+    {
+      "title": "Logicism",
+      "url": "https://en.wikipedia.org/wiki/Logicism",
+      "snippet": "is an extension of <span class=\"searchmatch\">logic</span>, some or all of <span class=\"searchmatch\">mathematics</span> is reducible to <span class=\"searchmatch\">logic</span>, or some or all of <span class=\"searchmatch\">mathematics</span> may be modelled in <span class=\"searchmatch\">logic</span>. Bertrand Russell and",
+      "query": "Mathematical logic explained"
+    },
+    {
+      "title": "Foundations of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "snippet": "foundational crisis of <span class=\"searchmatch\">mathematics</span>. The resolution of this crisis involved the rise of a new <span class=\"searchmatch\">mathematical</span> discipline called <span class=\"searchmatch\">mathematical</span> <span class=\"searchmatch\">logic</span> that includes set",
+      "query": "Mathematical logic explained"
+    }
+  ],
+  "ts": "2026-11-03T16:17:09.031260+00:00"
+}

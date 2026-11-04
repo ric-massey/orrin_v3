@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "structures",
+    "structures explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Structure",
+    "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure",
+    "https://en.wikipedia.org/wiki/Mathematical_structure",
+    "https://en.wikipedia.org/wiki/Syntactic_Structures",
+    "https://en.wikipedia.org/wiki/Hyperboloid_structure",
+    "https://en.wikipedia.org/wiki/Explanation",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+    "https://en.wikipedia.org/wiki/India"
+  ],
+  "results": [
+    {
+      "title": "Structure",
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "snippet": "minerals and chemicals. Abstract <span class=\"searchmatch\">structures</span> include data <span class=\"searchmatch\">structures</span> in computer science and musical form. Types of <span class=\"searchmatch\">structure</span> include a hierarchy (a cascade",
+      "query": "structures"
+    },
+    {
+      "title": "Deep structure and surface structure",
+      "url": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure",
+      "snippet": "minimalist program). It is tempting to regard deep <span class=\"searchmatch\">structures</span> as representing meanings and surface <span class=\"searchmatch\">structures</span> as representing sentences that express those meanings",
+      "query": "structures"
+    },
+    {
+      "title": "Mathematical structure",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_structure",
+      "snippet": "partial list of possible <span class=\"searchmatch\">structures</span> is measures, algebraic <span class=\"searchmatch\">structures</span> (groups, fields, etc.), topologies, metric <span class=\"searchmatch\">structures</span> (geometries), orders, graphs",
+      "query": "structures"
+    },
+    {
+      "title": "Syntactic Structures",
+      "url": "https://en.wikipedia.org/wiki/Syntactic_Structures",
+      "snippet": "Syntactic <span class=\"searchmatch\">Structures</span> is a seminal work in linguistics by American linguist Noam Chomsky, originally published in 1957. A short monograph of about a hundred",
+      "query": "structures"
+    },
+    {
+      "title": "Hyperboloid structure",
+      "url": "https://en.wikipedia.org/wiki/Hyperboloid_structure",
+      "snippet": "Hyperboloid <span class=\"searchmatch\">structures</span> are architectural <span class=\"searchmatch\">structures</span> designed using a hyperboloid in one sheet. Often these are tall <span class=\"searchmatch\">structures</span>, such as towers, where the",
+      "query": "structures"
+    },
+    {
+      "title": "Explanation",
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "snippet": "explanation. So too, there are many different things that can be used to <span class=\"searchmatch\">explain</span> something. Aristotle recognized four archetypes of explanation. These were",
+      "query": "structures explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "structures explained"
+    },
+    {
+      "title": "Explainable artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "snippet": "Right to explanation – Right to have an algorithm <span class=\"searchmatch\">explained</span> Longo, Luca; et al. (2024). &quot;<span class=\"searchmatch\">Explainable</span> Artificial Intelligence (XAI) 2.0: A manifesto of",
+      "query": "structures explained"
+    },
+    {
+      "title": "India",
+      "url": "https://en.wikipedia.org/wiki/India",
+      "snippet": "problems were stated with economy in verse, and a prose commentary that <span class=\"searchmatch\">explained</span> the problem in more detail and provided justification for the solution",
+      "query": "structures explained"
+    },
+    {
+      "title": "Structure",
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "snippet": "minerals and chemicals. Abstract <span class=\"searchmatch\">structures</span> include data <span class=\"searchmatch\">structures</span> in computer science and musical form. Types of <span class=\"searchmatch\">structure</span> include a hierarchy (a cascade",
+      "query": "structures explained"
+    }
+  ],
+  "ts": "2026-11-03T16:40:00.012119+00:00"
+}

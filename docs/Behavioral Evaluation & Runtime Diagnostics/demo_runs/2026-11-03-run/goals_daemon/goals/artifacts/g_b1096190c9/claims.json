@@ -1,0 +1,128 @@
+{
+  "question": "What actually is Three-dimensional elements, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "three",
+    "dimensional",
+    "elements"
+  ],
+  "entities": [
+    "which",
+    "Euclidean space of dimension three",
+    "More general three-dimensional spaces",
+    "called 3-manifolds",
+    "three-dimensional space",
+    "described with Cartesian coordinates",
+    "mathematics and its application to n-dimensional geometry",
+    "made by Arthur Cayley",
+    "two-dimensional Euclidean space",
+    "two-dimensional space on the plane",
+    "because three coordinates",
+    "needed to locate a point within these spaces",
+    "the world is a four-dimensional space but not the one that",
+    "found necessary to describe electromagnetism",
+    "and the state-space of quantum mechanics",
+    "infinite-dimensional function space"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is the",
+      "object": "Euclidean space of dimension three",
+      "source": "https://en.wikipedia.org/wiki/Three-dimensional_space"
+    },
+    {
+      "subject": "More general three-dimensional spaces",
+      "predicate": "are",
+      "object": "called 3-manifolds",
+      "source": "https://en.wikipedia.org/wiki/Three-dimensional_space"
+    },
+    {
+      "subject": "three-dimensional space",
+      "predicate": "was",
+      "object": "described with Cartesian coordinates",
+      "source": "https://en.wikipedia.org/wiki/Three-dimensional_space"
+    },
+    {
+      "subject": "mathematics and its application to n-dimensional geometry",
+      "predicate": "was",
+      "object": "made by Arthur Cayley",
+      "source": "https://en.wikipedia.org/wiki/Three-dimensional_space"
+    },
+    {
+      "subject": "two-dimensional Euclidean space",
+      "predicate": "is a",
+      "object": "two-dimensional space on the plane",
+      "source": "https://en.wikipedia.org/wiki/Dimension"
+    },
+    {
+      "subject": "because three coordinates",
+      "predicate": "are",
+      "object": "needed to locate a point within these spaces",
+      "source": "https://en.wikipedia.org/wiki/Dimension"
+    },
+    {
+      "subject": "the world is a four-dimensional space but not the one that",
+      "predicate": "was",
+      "object": "found necessary to describe electromagnetism",
+      "source": "https://en.wikipedia.org/wiki/Dimension"
+    },
+    {
+      "subject": "and the state-space of quantum mechanics",
+      "predicate": "is an",
+      "object": "infinite-dimensional function space",
+      "source": "https://en.wikipedia.org/wiki/Dimension"
+    },
+    {
+      "subject": "form or medium usually created on a defined substrate that",
+      "predicate": "consists of",
+      "object": "three-dimensional elements projecting out of or from the substrate",
+      "source": "https://en.wikipedia.org/wiki/Assemblage_%28art%29"
+    },
+    {
+      "subject": "the first extension of chess into a three-dimensional space",
+      "predicate": "was",
+      "object": "accomplished by Alexandre-Théophile Vandermonde in 1771",
+      "source": "https://en.wikipedia.org/wiki/Three-dimensional_chess"
+    },
+    {
+      "subject": "Three-dimensional elements",
+      "predicate": "were",
+      "object": "the main option available to early structures such as Chichen Itza",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The structure elements",
+      "predicate": "are",
+      "object": "combined in structural systems",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Three-dimensional_space"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Dimension"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Assemblage_%28art%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Three-dimensional_chess"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Periodic_table"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/3D_rotation_group"
+    }
+  ],
+  "ts": "2026-11-03T19:21:38.755458+00:00"
+}

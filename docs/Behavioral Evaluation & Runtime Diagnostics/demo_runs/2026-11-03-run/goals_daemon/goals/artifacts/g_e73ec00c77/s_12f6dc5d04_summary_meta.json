@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_e73ec00c77",
+    "title": "Understand world more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "world history and development",
+        "world applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_2346e06552",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T08:48:09.247942Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T08:48:09.247951Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T08:48:09.247953Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T08:48:09.247955Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T08:48:09.247956Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on world was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about world was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T08:48:09.247976Z",
+      "question": "What is there about world that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 08:48:09.248234+00:00",
+    "updated_at": "2026-11-03 08:48:10.817952+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_8e8d012aef]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Development_%28journal%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ancient_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Development_Report",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/New_World_Development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Historians%27_History_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Weissman_score",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T08:48:15.505675+00:00"
+}

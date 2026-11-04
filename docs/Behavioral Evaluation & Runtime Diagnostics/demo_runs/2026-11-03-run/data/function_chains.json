@@ -1,0 +1,18 @@
+{
+  "run_rule_compression": {
+    "repair_contradictions": {
+      "count": 3,
+      "bonus": 0.15
+    }
+  },
+  "repair_contradictions": {
+    "run_rule_compression": {
+      "count": 3,
+      "bonus": 0.15
+    },
+    "repair_contradictions": {
+      "count": 2,
+      "bonus": 0.1
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "may specifically",
+    "may specifically explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Brian_May",
+    "https://en.wikipedia.org/wiki/Cyclopedia",
+    "https://en.wikipedia.org/wiki/Beer_tap",
+    "https://en.wikipedia.org/wiki/Typhoid_fever",
+    "https://en.wikipedia.org/wiki/Olympic_Stadium_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/Explanation",
+    "https://en.wikipedia.org/wiki/Consciousness_Explained",
+    "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/Devil_May_Cry_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/ChatGPT"
+  ],
+  "results": [
+    {
+      "title": "Brian May",
+      "url": "https://en.wikipedia.org/wiki/Brian_May",
+      "snippet": "Red Special replica for mass production and made some prototypes <span class=\"searchmatch\">specifically</span> for <span class=\"searchmatch\">May</span>. However, the solid-body construction (the original RS has hollow",
+      "query": "may specifically"
+    },
+    {
+      "title": "Cyclopedia",
+      "url": "https://en.wikipedia.org/wiki/Cyclopedia",
+      "snippet": "cyclopaedia and cyclopedien are archaic terms for an encyclopedia. The term <span class=\"searchmatch\">may</span> <span class=\"searchmatch\">specifically</span> refer to: Cyclopædia, or an Universal Dictionary of Arts and Sciences",
+      "query": "may specifically"
+    },
+    {
+      "title": "Beer tap",
+      "url": "https://en.wikipedia.org/wiki/Beer_tap",
+      "snippet": "from a cask is more commonly called cask ale, while beer from a keg <span class=\"searchmatch\">may</span> <span class=\"searchmatch\">specifically</span> be called keg beer. Beer taps can be also used to serve similar drinks",
+      "query": "may specifically"
+    },
+    {
+      "title": "Typhoid fever",
+      "url": "https://en.wikipedia.org/wiki/Typhoid_fever",
+      "snippet": "detecting changing abundances of small molecules in the blood that <span class=\"searchmatch\">may</span> <span class=\"searchmatch\">specifically</span> indicate typhoid fever. Diagnostic tools in regions where typhoid is",
+      "query": "may specifically"
+    },
+    {
+      "title": "Olympic Stadium (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/Olympic_Stadium_%28disambiguation%29",
+      "snippet": "usually given to the main stadium of an Olympic Games. Olympic Stadium <span class=\"searchmatch\">may</span> <span class=\"searchmatch\">specifically</span> refer to: Olympic Stadium (Amsterdam), Netherlands Olympisch Stadion",
+      "query": "may specifically"
+    },
+    {
+      "title": "Explanation",
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "snippet": "that clarifies the causes, context, and consequences of those facts. It <span class=\"searchmatch\">may</span> establish rules or laws, and clarifies the existing rules or laws in relation",
+      "query": "may specifically explained"
+    },
+    {
+      "title": "Consciousness Explained",
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "snippet": "a theory that <span class=\"searchmatch\">explained</span> conscious events in terms of unconscious events could <span class=\"searchmatch\">explain</span> consciousness at all: &quot;To <span class=\"searchmatch\">explain</span> is to <span class=\"searchmatch\">explain</span> away&quot;.[page needed]",
+      "query": "may specifically explained"
+    },
+    {
+      "title": "Explained (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "snippet": "The Mind, <span class=\"searchmatch\">Explained</span>, a series focused <span class=\"searchmatch\">specifically</span> on topics related to the human brain. On January 4, 2020, a follow-up titled Sex, <span class=\"searchmatch\">Explained</span> was released",
+      "query": "may specifically explained"
+    },
+    {
+      "title": "Devil May Cry (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Devil_May_Cry_%28TV_series%29",
+      "snippet": "2&#039;s James Van Der Beek Tribute <span class=\"searchmatch\">Explained</span>&quot;. SlashFilm. Retrieved <span class=\"searchmatch\">May</span> 23, 2026. Otterson, Joe (June 4, 2026). &quot;Devil <span class=\"searchmatch\">May</span> Cry Renewed for Third and Final",
+      "query": "may specifically explained"
+    },
+    {
+      "title": "ChatGPT",
+      "url": "https://en.wikipedia.org/wiki/ChatGPT",
+      "snippet": "released on November 30, 2022, the product uses large language models – <span class=\"searchmatch\">specifically</span> generative pre-trained transformers (GPTs) – to generate text, speech",
+      "query": "may specifically explained"
+    }
+  ],
+  "ts": "2026-11-03T14:43:53.686253+00:00"
+}

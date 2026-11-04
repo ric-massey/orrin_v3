@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "function and evolution open problems",
+    "function and evolution criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Busy_beaver",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/Evolutionary_algorithm",
+    "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Objections_to_evolution",
+    "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+    "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups",
+    "https://en.wikipedia.org/wiki/Darwinian_literary_studies",
+    "https://en.wikipedia.org/wiki/Karl_Popper"
+  ],
+  "results": [
+    {
+      "title": "Busy beaver",
+      "url": "https://en.wikipedia.org/wiki/Busy_beaver",
+      "snippet": " 23 <span class=\"searchmatch\">and</span> April 1985 p. 30. Chaitin, Gregory J. (1987). &quot;Computing the Busy Beaver <span class=\"searchmatch\">Function</span>&quot; (PDF). In Cover, T. M.; Gopinath, B. (eds.). <span class=\"searchmatch\">Open</span> <span class=\"searchmatch\">Problems</span> in",
+      "query": "function and evolution open problems"
+    },
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "15 <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> on quantum operators (about 5 already solved in 2000). A second list of 15 Simon <span class=\"searchmatch\">problems</span> was released in 2000 (at least 3 <span class=\"searchmatch\">problems</span> solved)",
+      "query": "function and evolution open problems"
+    },
+    {
+      "title": "Evolutionary algorithm",
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_algorithm",
+      "snippet": "reproduce essential elements of biological <span class=\"searchmatch\">evolution</span> in a computer algorithm in order to solve &quot;difficult&quot; <span class=\"searchmatch\">problems</span>, at least approximately, for which no exact",
+      "query": "function and evolution open problems"
+    },
+    {
+      "title": "Tierra (computer simulation)",
+      "url": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29",
+      "snippet": "true <span class=\"searchmatch\">open</span>-ended <span class=\"searchmatch\">evolution</span> can be implemented in an artificial system is still an <span class=\"searchmatch\">open</span> question in the field of artificial life. Mark Bedau <span class=\"searchmatch\">and</span> Norman",
+      "query": "function and evolution open problems"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "control their assembly <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">function</span>; this is called deep homology. During <span class=\"searchmatch\">evolution</span>, some structures may lose their original <span class=\"searchmatch\">function</span> <span class=\"searchmatch\">and</span> become vestigial structures",
+      "query": "function and evolution open problems"
+    },
+    {
+      "title": "Objections to evolution",
+      "url": "https://en.wikipedia.org/wiki/Objections_to_evolution",
+      "snippet": "among mainstream biologists since the 1940s. Since then, <span class=\"searchmatch\">criticisms</span> <span class=\"searchmatch\">and</span> denials of <span class=\"searchmatch\">evolution</span> have come from religious groups, rather than from the scientific",
+      "query": "function and evolution criticism and debate"
+    },
+    {
+      "title": "History of evolutionary thought",
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "snippet": "geology, morphology, <span class=\"searchmatch\">and</span> embryology. <span class=\"searchmatch\">Debate</span> over Darwin&#039;s work led to the rapid acceptance of the general concept of <span class=\"searchmatch\">evolution</span>, but the specific mechanism",
+      "query": "function and evolution criticism and debate"
+    },
+    {
+      "title": "Rejection of evolution by religious groups",
+      "url": "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups",
+      "snippet": "mid-19th century, <span class=\"searchmatch\">evolution</span> by natural selection has been established by the scientific community as a scientific fact. Any such <span class=\"searchmatch\">debate</span> is universally considered",
+      "query": "function and evolution criticism and debate"
+    },
+    {
+      "title": "Darwinian literary studies",
+      "url": "https://en.wikipedia.org/wiki/Darwinian_literary_studies",
+      "snippet": "literary Darwinism) is a branch of literary <span class=\"searchmatch\">criticism</span> that studies literature in the context of <span class=\"searchmatch\">evolution</span> by means of natural selection, including gene-culture",
+      "query": "function and evolution criticism and debate"
+    },
+    {
+      "title": "Karl Popper",
+      "url": "https://en.wikipedia.org/wiki/Karl_Popper",
+      "snippet": "as Kuhn&#039;s relativism, this <span class=\"searchmatch\">criticism</span> being at the heart of the Kuhn–Popper <span class=\"searchmatch\">debate</span>. Also, in his collection Conjectures <span class=\"searchmatch\">and</span> Refutations: The Growth of",
+      "query": "function and evolution criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T21:46:35.264237+00:00"
+}

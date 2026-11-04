@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_3b2a3d6ac0",
+    "title": "Understand structures more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "structures history and development",
+        "structures applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_1a4c745fac",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:52:57.714947Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:52:57.714957Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:52:57.714959Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:52:57.714961Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:52:57.714962Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "structures was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about structures was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T18:52:57.714977Z",
+      "question": "What actually is structures, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 18:52:57.715418+00:00",
+    "updated_at": "2026-11-03 18:52:59.168361+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_81cdfda281]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_lighthouses",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_geology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_atomic_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Biomaterial",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Data_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3b2a3d6ac0/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T18:53:03.998369+00:00"
+}

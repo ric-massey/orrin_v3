@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_e5fb30e893",
+    "title": "Answer: What is there about consciousness and subjective experience that my earlier notes on it ar — round 4",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What is there about consciousness and subjective experience that my earlier notes on it ar recent research",
+        "What is there about consciousness and subjective experience that my earlier notes on it ar common misconceptions"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_de9f353868",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:10:25.851035Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:10:25.851048Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:10:25.851050Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:10:25.851052Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T15:10:25.851054Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What is there about consciousness and subjective experience ' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T15:10:25.851077Z",
+      "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 15:10:25.852710+00:00",
+    "updated_at": "2026-11-03 15:10:29.303320+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_6b527fae66]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Consciousness",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Artificial_general_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Edmund_Husserl",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/George_Berkeley",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Technological_singularity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Panpsychism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Free_will",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Martin_Heidegger",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5fb30e893/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T15:10:34.421582+00:00"
+}

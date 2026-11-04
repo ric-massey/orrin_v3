@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "He repeatedly open problems",
+    "He repeatedly criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+    "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+    "https://en.wikipedia.org/wiki/Two_envelopes_problem",
+    "https://en.wikipedia.org/wiki/%C3%89variste_Galois",
+    "https://en.wikipedia.org/wiki/Problem_of_induction",
+    "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+    "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+    "https://en.wikipedia.org/wiki/Bill_Nye%E2%80%93Ken_Ham_debate",
+    "https://en.wikipedia.org/wiki/2008_United_States_presidential_debates",
+    "https://en.wikipedia.org/wiki/Oxford_Union"
+  ],
+  "results": [
+    {
+      "title": "Monty Hall problem",
+      "url": "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+      "snippet": "and the host, who knows what&#039;s behind the doors, <span class=\"searchmatch\">opens</span> another door, say No. 3, which has a goat. <span class=\"searchmatch\">He</span> then says to you, &quot;Do you want to pick door No. 2",
+      "query": "He repeatedly open problems"
+    },
+    {
+      "title": "Hilbert's problems",
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "snippet": "Hilbert&#039;s <span class=\"searchmatch\">problems</span> are 23 <span class=\"searchmatch\">problems</span> in mathematics published by German mathematician David Hilbert in 1900. <span class=\"searchmatch\">He</span> intended to rival the master of French mathematics",
+      "query": "He repeatedly open problems"
+    },
+    {
+      "title": "Two envelopes problem",
+      "url": "https://en.wikipedia.org/wiki/Two_envelopes_problem",
+      "snippet": "paper just presents the two <span class=\"searchmatch\">problems</span>. The second discusses many solutions to both of them. The second of his two <span class=\"searchmatch\">problems</span> is nowadays the more common",
+      "query": "He repeatedly open problems"
+    },
+    {
+      "title": "Évariste Galois",
+      "url": "https://en.wikipedia.org/wiki/%C3%89variste_Galois",
+      "snippet": "French Revolution of 1830. As a result of his political activism, <span class=\"searchmatch\">he</span> was arrested <span class=\"searchmatch\">repeatedly</span>, serving one jail sentence of several months. For reasons that",
+      "query": "He repeatedly open problems"
+    },
+    {
+      "title": "Problem of induction",
+      "url": "https://en.wikipedia.org/wiki/Problem_of_induction",
+      "snippet": " <span class=\"searchmatch\">He</span> writes that reasoning alone cannot establish the grounds of causation. Instead, the human mind imputes causation to phenomena after <span class=\"searchmatch\">repeatedly</span> observing",
+      "query": "He repeatedly open problems"
+    },
+    {
+      "title": "2024 Joe Biden–Donald Trump presidential debate",
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "snippet": ". <span class=\"searchmatch\">He</span> <span class=\"searchmatch\">repeatedly</span> mixed up &quot;billion&quot; <span class=\"searchmatch\">and</span> &quot;million,&quot; <span class=\"searchmatch\">and</span> found himself stuck for long stretches of the 90-minute <span class=\"searchmatch\">debate</span> playing defense. <span class=\"searchmatch\">And</span> when <span class=\"searchmatch\">he</span> wasn&#039;t",
+      "query": "He repeatedly criticism and debate"
+    },
+    {
+      "title": "2024 United States presidential debates",
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "snippet": "with the CPD <span class=\"searchmatch\">repeatedly</span> <span class=\"searchmatch\">and</span> challenged Biden to <span class=\"searchmatch\">debate</span> &quot;anywhere, anytime, anyplace&quot;. The CPD announced the schedule for its four <span class=\"searchmatch\">debates</span> on November 20",
+      "query": "He repeatedly criticism and debate"
+    },
+    {
+      "title": "Bill Nye–Ken Ham debate",
+      "url": "https://en.wikipedia.org/wiki/Bill_Nye%E2%80%93Ken_Ham_debate",
+      "snippet": "The <span class=\"searchmatch\">debate</span> between Bill Nye <span class=\"searchmatch\">and</span> Ken Ham on the question &quot;Is Creation A Viable Model of Origins?&quot; was held February 4, 2014, at the Creation Museum in",
+      "query": "He repeatedly criticism and debate"
+    },
+    {
+      "title": "2008 United States presidential debates",
+      "url": "https://en.wikipedia.org/wiki/2008_United_States_presidential_debates",
+      "snippet": "the <span class=\"searchmatch\">debate</span> to discuss economic issues. McCain <span class=\"searchmatch\">repeatedly</span> referred to his experience, drawing on stories from the past. Often, <span class=\"searchmatch\">he</span> joked of his age <span class=\"searchmatch\">and</span> at",
+      "query": "He repeatedly criticism and debate"
+    },
+    {
+      "title": "Oxford Union",
+      "url": "https://en.wikipedia.org/wiki/Oxford_Union",
+      "snippet": "Independent State of Kashmir&quot;. The <span class=\"searchmatch\">debate</span> drew controversy in Indian media <span class=\"searchmatch\">and</span> protests outside the Union, including <span class=\"searchmatch\">criticism</span> of the motion&#039;s implications",
+      "query": "He repeatedly criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T23:00:19.005149+00:00"
+}

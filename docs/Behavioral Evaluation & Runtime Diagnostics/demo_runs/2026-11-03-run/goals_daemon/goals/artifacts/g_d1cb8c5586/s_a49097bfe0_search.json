@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Quantization",
+    "Quantization explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29",
+    "https://en.wikipedia.org/wiki/Quantization",
+    "https://en.wikipedia.org/wiki/Trellis_quantization",
+    "https://en.wikipedia.org/wiki/Quantization_%28music%29",
+    "https://en.wikipedia.org/wiki/Vector_quantization",
+    "https://en.wikipedia.org/wiki/Quantization_%28physics%29",
+    "https://en.wikipedia.org/wiki/Quantum",
+    "https://en.wikipedia.org/wiki/Old_quantum_theory",
+    "https://en.wikipedia.org/wiki/Large_language_model",
+    "https://en.wikipedia.org/wiki/Elementary_charge"
+  ],
+  "results": [
+    {
+      "title": "Quantization (signal processing)",
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29",
+      "snippet": "referred to as <span class=\"searchmatch\">quantization</span> error, noise or distortion. A device or algorithmic function that performs <span class=\"searchmatch\">quantization</span> is called a <span class=\"searchmatch\">quantizer</span>. An analog-to-digital",
+      "query": "Quantization"
+    },
+    {
+      "title": "Quantization",
+      "url": "https://en.wikipedia.org/wiki/Quantization",
+      "snippet": "Look up <span class=\"searchmatch\">quantization</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Quantization</span> is the process of constraining an input from a continuous or otherwise large set",
+      "query": "Quantization"
+    },
+    {
+      "title": "Trellis quantization",
+      "url": "https://en.wikipedia.org/wiki/Trellis_quantization",
+      "snippet": "have the lowest rate-distortion ratio. Trellis <span class=\"searchmatch\">quantization</span> effectively finds the optimal <span class=\"searchmatch\">quantization</span> for each block to maximize the PSNR relative to",
+      "query": "Quantization"
+    },
+    {
+      "title": "Quantization (music)",
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28music%29",
+      "snippet": "of beats. The purpose of <span class=\"searchmatch\">quantization</span> in music processing is to provide a more beat-accurate timing of sounds. <span class=\"searchmatch\">Quantization</span> is frequently applied to a",
+      "query": "Quantization"
+    },
+    {
+      "title": "Vector quantization",
+      "url": "https://en.wikipedia.org/wiki/Vector_quantization",
+      "snippet": "Vector <span class=\"searchmatch\">quantization</span> (VQ) is a classical <span class=\"searchmatch\">quantization</span> technique from signal processing that allows the modeling of probability density functions by the",
+      "query": "Quantization"
+    },
+    {
+      "title": "Quantization (physics)",
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28physics%29",
+      "snippet": "generalization involving infinite degrees of freedom is field <span class=\"searchmatch\">quantization</span>, as in the &quot;<span class=\"searchmatch\">quantization</span> of the electromagnetic field&quot;, referring to photons as field",
+      "query": "Quantization explained"
+    },
+    {
+      "title": "Quantum",
+      "url": "https://en.wikipedia.org/wiki/Quantum",
+      "snippet": "levels within an atom. <span class=\"searchmatch\">Quantization</span> is one of the foundations of the much broader physics of quantum mechanics. <span class=\"searchmatch\">Quantization</span> of energy and its influence",
+      "query": "Quantization explained"
+    },
+    {
+      "title": "Old quantum theory",
+      "url": "https://en.wikipedia.org/wiki/Old_quantum_theory",
+      "snippet": "orientations, so that the process of <span class=\"searchmatch\">quantization</span> does not pick out a preferred axis. For this reason, the name &quot;space <span class=\"searchmatch\">quantization</span>&quot; fell out of favor, and the",
+      "query": "Quantization explained"
+    },
+    {
+      "title": "Large language model",
+      "url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "snippet": "calibration phase), and dynamic <span class=\"searchmatch\">quantization</span> if the <span class=\"searchmatch\">quantization</span> is applied during inference. The simplest form of <span class=\"searchmatch\">quantization</span> simply truncates all the parameters",
+      "query": "Quantization explained"
+    },
+    {
+      "title": "Elementary charge",
+      "url": "https://en.wikipedia.org/wiki/Elementary_charge",
+      "snippet": "multiples of the charge on the down quark, an observation known as charge <span class=\"searchmatch\">quantization</span>. Thus the charge on the down quark, ⁠1/3⁠ e can be considered the fundamental",
+      "query": "Quantization explained"
+    }
+  ],
+  "ts": "2026-11-03T06:40:21.448229+00:00"
+}

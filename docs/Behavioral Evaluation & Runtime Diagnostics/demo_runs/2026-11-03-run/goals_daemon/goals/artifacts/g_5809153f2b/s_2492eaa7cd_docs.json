@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Western_Philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_02.txt",
+      "chars": 12919
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Unix_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_04.txt",
+      "chars": 16731
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy_in_Finland",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Practical_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_06.txt",
+      "chars": 6736
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Time_perception",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_5809153f2b/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:07:49.449893+00:00"
+}

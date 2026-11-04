@@ -1,0 +1,129 @@
+{
+  "question": "What actually is stoic philosophy and daily life, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "stoic",
+    "philosophy",
+    "daily",
+    "life"
+  ],
+  "entities": [
+    "the Our Band Could Be Your Life audiobook",
+    "released",
+    "and Confucius The history of philosophy",
+    "systematic study of the development of philosophical thought",
+    "Persian philosophy",
+    "strongly influenced by Ancient Greek philosophers",
+    "Indian philosophy",
+    "characterized by its combined interest in the nature of reality",
+    "Subsequent Indian philosophy",
+    "often divided into orthodox schools",
+    "Central topics in Chinese philosophy",
+    "right social conduct",
+    "The modern period in Chinese philosophy",
+    "characterized by its encounter with Western philosophy",
+    "Other influential traditions in the history of philosophy",
+    "Japanese philosophy"
+  ],
+  "relations": [
+    {
+      "subject": "the Our Band Could Be Your Life audiobook",
+      "predicate": "was",
+      "object": "released",
+      "source": "my prior claims [g_a482a20221]"
+    },
+    {
+      "subject": "and Confucius The history of philosophy",
+      "predicate": "is the",
+      "object": "systematic study of the development of philosophical thought",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Persian philosophy",
+      "predicate": "was",
+      "object": "strongly influenced by Ancient Greek philosophers",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Indian philosophy",
+      "predicate": "is",
+      "object": "characterized by its combined interest in the nature of reality",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Subsequent Indian philosophy",
+      "predicate": "is",
+      "object": "often divided into orthodox schools",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Central topics in Chinese philosophy",
+      "predicate": "were",
+      "object": "right social conduct",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "The modern period in Chinese philosophy",
+      "predicate": "was",
+      "object": "characterized by its encounter with Western philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Other influential traditions in the history of philosophy",
+      "predicate": "were",
+      "object": "Japanese philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "excluded from the history of philosophy if their claims",
+      "predicate": "are",
+      "object": "not based on rational inquiry and argumentation",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Some theorists contend that the history of philosophy",
+      "predicate": "is an",
+      "object": "integral part of philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Closely related to the history of philosophy",
+      "predicate": "is the",
+      "object": "historiography of ph",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Stoic philosophy",
+      "predicate": "is",
+      "object": "traditionally divided into three interconnected disciplines",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_a482a20221]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Spiritual_practice"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Carneades"
+    }
+  ],
+  "ts": "2026-11-04T00:04:29.882269+00:00"
+}

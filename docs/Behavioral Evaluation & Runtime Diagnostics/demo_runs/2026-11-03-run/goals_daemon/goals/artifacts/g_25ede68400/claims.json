@@ -1,0 +1,116 @@
+{
+  "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "foundations",
+    "quantum",
+    "mechanics"
+  ],
+  "entities": [
+    "quantum computer",
+    "computer that represents and processes information using quantum states",
+    "The sequence begins with a quantum system whose observable",
+    "to be measured",
+    "this idea after the formalism of quantum decoherence",
+    "developed",
+    "on such fundamental questions as whether quantum mechanics",
+    "deterministic or stochastic",
+    "the mathematical structure of quantum mechanics",
+    "abstract and does not result in a single",
+    "At the heart of the description",
+    "ideas of quantum state and quantum observables",
+    "Probability theory",
+    "used in statistical mechanics",
+    "to think of quantum theory within the confines of what",
+    "now called classical physics"
+  ],
+  "relations": [
+    {
+      "subject": "quantum computer",
+      "predicate": "is a",
+      "object": "computer that represents and processes information using quantum states",
+      "source": "my prior claims [g_f92dd0acf3]"
+    },
+    {
+      "subject": "The sequence begins with a quantum system whose observable",
+      "predicate": "is",
+      "object": "to be measured",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "this idea after the formalism of quantum decoherence",
+      "predicate": "was",
+      "object": "developed",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "on such fundamental questions as whether quantum mechanics",
+      "predicate": "is",
+      "object": "deterministic or stochastic",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "the mathematical structure of quantum mechanics",
+      "predicate": "is",
+      "object": "abstract and does not result in a single",
+      "source": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "subject": "At the heart of the description",
+      "predicate": "are",
+      "object": "ideas of quantum state and quantum observables",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "Probability theory",
+      "predicate": "was",
+      "object": "used in statistical mechanics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "to think of quantum theory within the confines of what",
+      "predicate": "is",
+      "object": "now called classical physics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "subject": "Dirac was one of a handful of physicists at Cambridge who",
+      "predicate": "were",
+      "object": "at the cutting edge of the new quantum theory",
+      "source": "https://en.wikipedia.org/wiki/The_Principles_of_Quantum_Mechanics"
+    },
+    {
+      "subject": "The quantum eraser experiment",
+      "predicate": "was",
+      "object": "proposed in 1982 by Marlan Scully and Kai Drühl in the paper Quantum eraser",
+      "source": "https://en.wikipedia.org/wiki/Quantum_eraser_experiment"
+    },
+    {
+      "subject": "what",
+      "predicate": "is",
+      "object": "now known as a delayed-choice quantum eraser",
+      "source": "https://en.wikipedia.org/wiki/Quantum_eraser_experiment"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_f92dd0acf3]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Principles_of_Quantum_Mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_eraser_experiment"
+    }
+  ],
+  "ts": "2026-11-03T05:58:27.404270+00:00"
+}

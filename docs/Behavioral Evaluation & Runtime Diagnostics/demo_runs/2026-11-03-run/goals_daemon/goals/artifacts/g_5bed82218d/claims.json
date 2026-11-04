@@ -1,0 +1,123 @@
+{
+  "question": "What actually is Sisu, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "sisu"
+  ],
+  "entities": [
+    "Sisu",
+    "Finnish word variously translated as stoic determination",
+    "extraordinary determination in the face of extreme adversity",
+    "term which dates back hundreds of years",
+    "attempts",
+    "made to grasp the essence of sisu",
+    "sisu is described as a psychological key competence which",
+    "extraordinary action to overcome a mentally or physically challenging situation",
+    "The Sisu Scale",
+    "composed of harmful and beneficial sisu",
+    "It revealed that sisu",
+    "still deeply valued",
+    "was the perception of sisu as a reserve of power which",
+    "extraordinary action to overcome mentally or physically challenging situations",
+    "Sisu is a psychological potential that",
+    "the individual to tap into strength beyond their pre-conceived resources"
+  ],
+  "relations": [
+    {
+      "subject": "Sisu",
+      "predicate": "is a",
+      "object": "Finnish word variously translated as stoic determination",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "Sisu",
+      "predicate": "is",
+      "object": "extraordinary determination in the face of extreme adversity",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "Sisu",
+      "predicate": "is a",
+      "object": "term which dates back hundreds of years",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "attempts",
+      "predicate": "were",
+      "object": "made to grasp the essence of sisu",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "sisu is described as a psychological key competence which",
+      "predicate": "enables",
+      "object": "extraordinary action to overcome a mentally or physically challenging situation",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "The Sisu Scale",
+      "predicate": "is",
+      "object": "composed of harmful and beneficial sisu",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "It revealed that sisu",
+      "predicate": "is",
+      "object": "still deeply valued",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "was the perception of sisu as a reserve of power which",
+      "predicate": "enables",
+      "object": "extraordinary action to overcome mentally or physically challenging situations",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "Sisu is a psychological potential that",
+      "predicate": "enables",
+      "object": "the individual to tap into strength beyond their pre-conceived resources",
+      "source": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "subject": "Sisu",
+      "predicate": "is a",
+      "object": "Finnish concept of stoic determination and tenacity",
+      "source": "https://en.wikipedia.org/wiki/Sisu_%28disambiguation%29"
+    },
+    {
+      "subject": "The currently available Sisu Polar variants",
+      "predicate": "are",
+      "object": "with three",
+      "source": "https://en.wikipedia.org/wiki/Sisu_Auto"
+    },
+    {
+      "subject": "Sisu",
+      "predicate": "is",
+      "object": "inspired by the Nāga from Hinduism",
+      "source": "https://en.wikipedia.org/wiki/Sisu_%28Raya_and_the_Last_Dragon%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu%3A_Road_to_Revenge"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu_Auto"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sisu_%28Raya_and_the_Last_Dragon%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Noah_Centineo"
+    }
+  ],
+  "ts": "2026-11-03T15:09:22.591248+00:00"
+}

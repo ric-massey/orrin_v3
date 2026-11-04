@@ -1,0 +1,175 @@
+[
+  {
+    "timestamp": "2026-11-03T02:55:59.798217+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "1bc68d9a16",
+        "old_conf": 0.5108,
+        "new_conf": 0.5458,
+        "reason": "113164 hits but conf=0.51; grounding=0.50"
+      },
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.3209,
+        "new_conf": 0.3559,
+        "reason": "902 hits but conf=0.32; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-11-03T06:15:37.360033+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.30 in PLANNING (pred_error=0.70, quality=0.15). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:15:46.310920+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.30 in PLANNING (pred_error=0.70, quality=0.15). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:20:35.828274+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:21:26.207388+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:23:34.047860+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:26:55.803136+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:27:29.487764+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T06:31:03.693749+00:00",
+    "changes": [],
+    "proposals": [
+      {
+        "type": "tighten_symbolic_trust",
+        "domain": "PLANNING",
+        "reason": "Symbolic coverage proxy=0.29 in PLANNING (pred_error=0.71, quality=0.14). Recommend: add rules for PLANNING or lower self-assessment threshold."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T09:36:12.847887+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.21,
+        "new_conf": 0.245,
+        "reason": "921 hits but conf=0.21; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-11-03T13:38:59.121103+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.2708,
+        "new_conf": 0.3058,
+        "reason": "932 hits but conf=0.27; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-11-03T17:04:32.148482+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.21,
+        "new_conf": 0.245,
+        "reason": "945 hits but conf=0.21; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-11-03T21:04:33.419890+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.21,
+        "new_conf": 0.245,
+        "reason": "953 hits but conf=0.21; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  },
+  {
+    "timestamp": "2026-11-04T01:06:43.910088+00:00",
+    "changes": [
+      {
+        "type": "rehabilitate",
+        "rule_id": "f8f100e9bb",
+        "old_conf": 0.21,
+        "new_conf": 0.245,
+        "reason": "958 hits but conf=0.21; grounding=0.50"
+      }
+    ],
+    "proposals": []
+  }
+]

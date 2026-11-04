@@ -1,0 +1,81 @@
+{
+  "question": "What is there about formal logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "formal",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "theorems are two theorems of mathematical logic that",
+    "concerned with the limits of provability in formal axiomatic theories",
+    "formal systems",
+    "also called formal theories",
+    "The incompleteness theorems",
+    "about formal provability within these systems",
+    "There",
+    "several properties that a formal system may have",
+    "Gödel proved that first-order logic",
+    "semantically complete"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_eebd5ec0d1]"
+    },
+    {
+      "subject": "theorems are two theorems of mathematical logic that",
+      "predicate": "are",
+      "object": "concerned with the limits of provability in formal axiomatic theories",
+      "source": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "subject": "formal systems",
+      "predicate": "are",
+      "object": "also called formal theories",
+      "source": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "subject": "The incompleteness theorems",
+      "predicate": "are",
+      "object": "about formal provability within these systems",
+      "source": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "several properties that a formal system may have",
+      "source": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "subject": "Gödel proved that first-order logic",
+      "predicate": "is",
+      "object": "semantically complete",
+      "source": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_eebd5ec0d1]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    }
+  ],
+  "ts": "2026-11-03T03:36:33.578912+00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "decide_to_write_code": {
+    "reason": "no LLM body available — code writing needs the LLM tool",
+    "ts": 1793680731.630044,
+    "consecutive": 16,
+    "since": 1793674320.1938539
+  }
+}

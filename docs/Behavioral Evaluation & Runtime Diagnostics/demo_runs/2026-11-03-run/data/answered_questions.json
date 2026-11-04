@@ -1,0 +1,517 @@
+[
+  {
+    "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+    "answer": "corrupted by physical damage to areas of the brain that are associated with memory storage",
+    "goal_id": "g_04446735b4",
+    "ts": 1793674276.6,
+    "topic_recurrences": 307,
+    "last_cited_window": "c1c5e34230805e26",
+    "last_recurrence_ts": 1793759957.2,
+    "last_recurrence_fn": "look_outward"
+  },
+  {
+    "question": "What actually is Logic, beyond the mentions I keep seeing?",
+    "answer": "Logic is the study of correct reasoning",
+    "goal_id": "g_fee4ad0d01",
+    "ts": 1793674283.3,
+    "topic_recurrences": 64,
+    "last_cited_window": "9c15663f9a3c6706",
+    "last_recurrence_ts": 1793726572.6,
+    "last_recurrence_fn": "run_forgetting_cycle"
+  },
+  {
+    "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+    "answer": "Evolutionary economics is a school of economic thought that is inspired by evolutionary biology",
+    "goal_id": "g_29471e92e2",
+    "ts": 1793680344.3,
+    "topic_recurrences": 5,
+    "last_cited_window": "68a7aafcf291a053",
+    "last_recurrence_ts": 1793710761.6,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+    "answer": "hold that sentience or subjective experience is ubiquitous",
+    "goal_id": "g_35d0726824",
+    "ts": 1793718635.7,
+    "topic_recurrences": 3,
+    "last_cited_window": "feac762432f8762c",
+    "last_recurrence_ts": 1793718623.7,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+    "answer": "The philosophy of space and time was both an inspiration for and a central aspect of early analytic philosophy",
+    "goal_id": "g_063f3269da",
+    "ts": 1793675774.1,
+    "topic_recurrences": 3,
+    "last_cited_window": "99527cee7480a8a1",
+    "last_recurrence_ts": 1793704088.6,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What is there about world that my earlier notes on it are missing?",
+    "answer": "The Seven Wonders of the Ancient World is the oldest known list of this type",
+    "goal_id": "g_2346e06552",
+    "ts": 1793704076.7,
+    "topic_recurrences": 1327,
+    "last_cited_window": "029c49c843844984",
+    "last_recurrence_ts": 1793760027.0,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+    "answer": "The audiobook version of The Daily Stoic was published by Tim Ferriss",
+    "goal_id": "g_6181fa406d",
+    "ts": 1793676983.5,
+    "topic_recurrences": 8,
+    "last_cited_window": "1c60d165f4bcea61",
+    "last_recurrence_ts": 1793745383.6,
+    "last_recurrence_fn": "narrative_update"
+  },
+  {
+    "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+    "answer": "MWI is considered a mainstream interpretation of quantum mechanics",
+    "goal_id": "g_fe106a9433",
+    "ts": 1793676986.2,
+    "topic_recurrences": 17,
+    "last_cited_window": "cc1c3c640f95f190",
+    "last_recurrence_ts": 1793710750.6,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What is there about formal logic that my earlier notes on it are missing?",
+    "answer": "an approach to formal logic that began with Aristotle and was developed further in ancient history mostly by his followers",
+    "goal_id": "g_ee3f057314",
+    "ts": 1793692864.0,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about quantum mechanics foundations that my earlier notes on it are missing?",
+    "answer": "Three of the four fundamental interactions of nature are described within the framework of quantum mechanics and quantum field theory",
+    "goal_id": "g_b0ab5fe34c",
+    "ts": 1793685491.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about history of written language that my earlier notes on it are missing?",
+    "answer": "online English-language encyclopedia project whose articles were written by experts and reviewed under a formal process",
+    "goal_id": "g_1b3607caf2",
+    "ts": 1793704081.0,
+    "topic_recurrences": 1,
+    "last_cited_window": "aeac2ff846ebb934",
+    "last_recurrence_ts": 1793687701.6,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What is there about evolutionary biology and cooperation that my earlier notes on it are missing?",
+    "answer": "Evolutionary ecology is a science at the intersection of ecology and evolutionary biology",
+    "goal_id": "g_222eabfadb",
+    "ts": 1793687695.2,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about history that my earlier notes on it are missing?",
+    "answer": "the Heroic in History is a book by the Scottish essayist",
+    "goal_id": "g_5619b3ce86",
+    "ts": 1793687729.3,
+    "topic_recurrences": 34,
+    "last_cited_window": "40e8914c73d8cb4f",
+    "last_recurrence_ts": 1793754058.3,
+    "last_recurrence_fn": "narrative_update"
+  },
+  {
+    "question": "What is there about logic that my earlier notes on it are missing?",
+    "answer": "logic is a system of dialectics",
+    "goal_id": "g_3f24e730e9",
+    "ts": 1793706406.5,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "Is There Anything Left in the Dream of Cold Fusion?",
+    "answer": "at the New Hydrogen Energy Institute in Japan Cold fusion is a hypothesized type of nuclear reaction that would occur at",
+    "goal_id": "g_d64e1c1066",
+    "ts": 1793688025.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Quantization, beyond the mentions I keep seeing?",
+    "answer": "between the original signal and the reconstructed signal is the quantization error and",
+    "goal_id": "g_d1cb8c5586",
+    "ts": 1793688026.3,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What do I now know about Probability theory that I could not have said before?",
+    "answer": "# Research memo: Probability theory more deeply\n\nWikipedia/Probability theory: Probability theory or probability calculus is the branch of mathematics concerned with probability.",
+    "goal_id": "g_39608ad9cf38",
+    "ts": 1793689714.7,
+    "topic_recurrences": 71,
+    "last_cited_window": "98b022eb4f67f252",
+    "last_recurrence_ts": 1793701868.3,
+    "last_recurrence_fn": "narrative_update"
+  },
+  {
+    "question": "What actually is talk, beyond the mentions I keep seeing?",
+    "answer": "Talk That Talk is the sixth studio album by Barbadian singer Rihanna",
+    "goal_id": "g_3516fed533",
+    "ts": 1793692864.4,
+    "topic_recurrences": 82,
+    "last_cited_window": "b6bb4b747d6d8136",
+    "last_recurrence_ts": 1793750161.1,
+    "last_recurrence_fn": "narrative_update"
+  },
+  {
+    "question": "What did I find about formal logic more deeply — round 4 that makes 'A new angle on formal logic was researched' true?",
+    "answer": "an approach to formal logic that began with Aristotle and was developed further in ancient history mostly by his followers",
+    "goal_id": "g_f272218b3a",
+    "ts": 1793692864.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about the world that my earlier notes on it are missing?",
+    "answer": "about meaning affects the mind insofar as our thoughts are about things in the world",
+    "goal_id": "g_ac0c02c29a",
+    "ts": 1793706421.0,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is study found that there, beyond the mentions I keep seeing?",
+    "answer": "she was troubled to see how study participants were behaving and treated and confronted Zimbardo",
+    "goal_id": "g_25dfdc5889",
+    "ts": 1793710734.1,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about mathematics that my earlier notes on it are missing?",
+    "answer": "Contemporaneous with but independent of these traditions were the mathematics developed by the Maya civilization of Mexico and Central America",
+    "goal_id": "g_df53c68f06",
+    "ts": 1793718575.4,
+    "topic_recurrences": 1,
+    "last_cited_window": "b7475ac47f101d2c",
+    "last_recurrence_ts": 1793718577.6,
+    "last_recurrence_fn": "repair_contradictions"
+  },
+  {
+    "question": "What actually is physical system, beyond the mentions I keep seeing?",
+    "answer": "physical condition of a thermodynamic system at a given time is described by its state",
+    "goal_id": "g_3421366886",
+    "ts": 1793718565.2,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is may specifically, beyond the mentions I keep seeing?",
+    "answer": "What actually is may specifically",
+    "goal_id": "g_715bb236af",
+    "ts": 1793717062.9,
+    "topic_recurrences": 1,
+    "last_cited_window": "4351c3d3311b2ec2",
+    "last_recurrence_ts": 1793717066.0,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Sisu, beyond the mentions I keep seeing?",
+    "answer": "the system is now used in Sisu vehicles",
+    "goal_id": "g_5bed82218d",
+    "ts": 1793718600.7,
+    "topic_recurrences": 1,
+    "last_cited_window": "40ec9ca2cf2bb810",
+    "last_recurrence_ts": 1793718599.4,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is attempts, beyond the mentions I keep seeing?",
+    "answer": "Attempt to commit a particular crime is a crime",
+    "goal_id": "g_cc99f134b1",
+    "ts": 1793718588.0,
+    "topic_recurrences": 3,
+    "last_cited_window": "e4e5a4dae66e41c9",
+    "last_recurrence_ts": 1793734876.9,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Scholars, beyond the mentions I keep seeing?",
+    "answer": "Scholar and His Books by Gerbrand van den Eeckhout A scholar is a person who is a researcher or has expertise in an academic discipline",
+    "goal_id": "g_8feb13ebae",
+    "ts": 1793722621.5,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is consistency proof, beyond the mentions I keep seeing?",
+    "answer": "consistency proof is a mathematical proof that a particular theory is consistent",
+    "goal_id": "g_f30df18309",
+    "ts": 1793723943.0,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is All names, beyond the mentions I keep seeing?",
+    "answer": "Trade names are also used when a preferred name cannot be registered",
+    "goal_id": "g_764f5078e2",
+    "ts": 1793723943.6,
+    "topic_recurrences": 1,
+    "last_cited_window": "c64013b9c78e27dc",
+    "last_recurrence_ts": 1793723946.7,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is structures, beyond the mentions I keep seeing?",
+    "answer": "Below is a list of the tallest structures supported by land",
+    "goal_id": "g_1a4c745fac",
+    "ts": 1793731985.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Products, beyond the mentions I keep seeing?",
+    "answer": "is protected by multiple patent holders or when a product is covered by numerous patents",
+    "goal_id": "g_80acec228a",
+    "ts": 1793732039.9,
+    "topic_recurrences": 1,
+    "last_cited_window": "3121b6d828a8924b",
+    "last_recurrence_ts": 1793732042.7,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is theory, beyond the mentions I keep seeing?",
+    "answer": "which is opposed to theory",
+    "goal_id": "g_90299855b7",
+    "ts": 1793731959.6,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Meta Runner, beyond the mentions I keep seeing?",
+    "answer": "Among members of society are Meta Runners",
+    "goal_id": "g_8bdc6cee0b",
+    "ts": 1793731971.5,
+    "topic_recurrences": 1,
+    "last_cited_window": "551f77b530059c29",
+    "last_recurrence_ts": 1793732056.0,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is benzodiazepines, beyond the mentions I keep seeing?",
+    "answer": "benzodiazepines were the most prescribed medications globally",
+    "goal_id": "g_8c0f1fcaad",
+    "ts": 1793731999.5,
+    "topic_recurrences": 1,
+    "last_cited_window": "172d519833792984",
+    "last_recurrence_ts": 1793732002.3,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Below, beyond the mentions I keep seeing?",
+    "answer": "Yacht Below Deck Down Under Below Deck Adventure Below Deck is an American reality television series that premiered on Bravo on July 1",
+    "goal_id": "g_20af0723f0",
+    "ts": 1793732011.8,
+    "topic_recurrences": 1,
+    "last_cited_window": "4f38d93463eb0eb3",
+    "last_recurrence_ts": 1793732013.6,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What actually is hierarchy of needs, beyond the mentions I keep seeing?",
+    "answer": "The hierarchy of needs developed by Abraham Maslow is one of his most enduring contributions to psychology",
+    "goal_id": "g_b35e6dfa0e",
+    "ts": 1793732021.9,
+    "topic_recurrences": 1,
+    "last_cited_window": "4d07ef7a01e00632",
+    "last_recurrence_ts": 1793732028.0,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What actually is Allopurinol, beyond the mentions I keep seeing?",
+    "answer": "Allopurinol is a medication used to decrease high blood uric acid levels",
+    "goal_id": "g_1d64000175",
+    "ts": 1793732068.6,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Sawdust, beyond the mentions I keep seeing?",
+    "answer": "Sawdust is an IARC group 1 Carcinogen",
+    "goal_id": "g_1b7f64d97e",
+    "ts": 1793738409.6,
+    "topic_recurrences": 1,
+    "last_cited_window": "1bdb897e1556b19e",
+    "last_recurrence_ts": 1793738412.4,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Febuxostat, beyond the mentions I keep seeing?",
+    "answer": "Febuxostat was approved for medical use in the European Union in 2008",
+    "goal_id": "g_4fb55196a5",
+    "ts": 1793733671.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Often these, beyond the mentions I keep seeing?",
+    "answer": "release often philosophy is aiming to provide only polished",
+    "goal_id": "g_fd3bdb9079",
+    "ts": 1793733684.9,
+    "topic_recurrences": 1,
+    "last_cited_window": "e52ef05875837cb3",
+    "last_recurrence_ts": 1793733690.2,
+    "last_recurrence_fn": "look_outward"
+  },
+  {
+    "question": "What actually is Three-dimensional elements, beyond the mentions I keep seeing?",
+    "answer": "More general three-dimensional spaces are called 3-manifolds",
+    "goal_id": "g_b1096190c9",
+    "ts": 1793733700.3,
+    "topic_recurrences": 1,
+    "informed": 1,
+    "last_cited_window": "9725a7aba96b265c",
+    "last_recurrence_ts": 1793733704.7,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What actually is Midfielders, beyond the mentions I keep seeing?",
+    "answer": "where the midfielders are split into two defensive and one offensive player",
+    "goal_id": "g_8720db00c9",
+    "ts": 1793739977.9,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+    "answer": "function and evolution are often presented as separate and distinct explanations of behaviour",
+    "goal_id": "g_0cb373c400",
+    "ts": 1793742193.9,
+    "topic_recurrences": 1,
+    "last_cited_window": "75aa41d5f894a4af",
+    "last_recurrence_ts": 1793742231.9,
+    "last_recurrence_fn": "look_outward"
+  },
+  {
+    "question": "What actually is singular they, beyond the mentions I keep seeing?",
+    "answer": "to X is an isomorphism away from the singular points of X",
+    "goal_id": "g_e2498d65aa",
+    "ts": 1793742159.8,
+    "topic_recurrences": 2,
+    "last_cited_window": "97b19f1d39a30545",
+    "last_recurrence_ts": 1793742574.0,
+    "last_recurrence_fn": "repair_contradictions"
+  },
+  {
+    "question": "What actually is They Live, beyond the mentions I keep seeing?",
+    "answer": "They Live was released by Universal Pictures in the United States on November 4",
+    "goal_id": "g_852e08dc2f",
+    "ts": 1793742242.5,
+    "topic_recurrences": 1,
+    "last_cited_window": "87690df623db5908",
+    "last_recurrence_ts": 1793742245.6,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Our Life, beyond the mentions I keep seeing?",
+    "answer": "the Our Band Could Be Your Life audiobook was released",
+    "goal_id": "g_ff3b8c20ff",
+    "ts": 1793742258.0,
+    "topic_recurrences": 1,
+    "last_cited_window": "b1fe098dabc3f42e",
+    "last_recurrence_ts": 1793742262.3,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+    "answer": "function and evolution are often presented as separate and distinct explanations of behaviour",
+    "goal_id": "g_db140af482",
+    "ts": 1793742333.2,
+    "topic_recurrences": 5,
+    "last_cited_window": "c4ddf780da981407",
+    "last_recurrence_ts": 1793742472.6,
+    "last_recurrence_fn": "narrative_update"
+  },
+  {
+    "question": "What actually is Holly, beyond the mentions I keep seeing?",
+    "answer": "The type species is the European holly Ilex aquifolium described by Linnaeus",
+    "goal_id": "g_61124db7bc",
+    "ts": 1793742387.1,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is He repeatedly, beyond the mentions I keep seeing?",
+    "answer": "He repeatedly raped and tortured her while she was tied to a pulley suspended from the ceiling of his mobile home",
+    "goal_id": "g_32a31a5da5",
+    "ts": 1793744293.0,
+    "topic_recurrences": 1,
+    "last_cited_window": "895225c82b8e4c44",
+    "last_recurrence_ts": 1793746831.8,
+    "last_recurrence_fn": "look_outward"
+  },
+  {
+    "question": "What actually is The Prince, beyond the mentions I keep seeing?",
+    "answer": "He says one of his biggest regrets is having misplaced the book Le Petit Prince",
+    "goal_id": "g_5861455912",
+    "ts": 1793745542.3,
+    "topic_recurrences": 1,
+    "last_cited_window": "0b349f4a960a280e",
+    "last_recurrence_ts": 1793745547.4,
+    "last_recurrence_fn": "assess_goal_progress"
+  },
+  {
+    "question": "What actually is Robertson, beyond the mentions I keep seeing?",
+    "answer": "Thorburn Brailsford Robertson was born at Edinburgh",
+    "goal_id": "g_c49aa1028d",
+    "ts": 1793745578.3,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What makes my memory use (RSS) climb?",
+    "answer": "prediction confirmed: My memory use (RSS) rises after read_rss runs",
+    "goal_id": "g_919f086979",
+    "ts": 1793745557.4,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is Aesthetics, beyond the mentions I keep seeing?",
+    "answer": "evaluating software Chess aesthetics or beauty in chess is the aesthetic appreciation of chess games and problems",
+    "goal_id": "g_0be56a5979",
+    "ts": 1793759537.1,
+    "topic_recurrences": 1,
+    "last_cited_window": "c401a76efc870f66",
+    "last_recurrence_ts": 1793745562.4,
+    "last_recurrence_fn": "look_outward"
+  },
+  {
+    "question": "What actually is Taste, beyond the mentions I keep seeing?",
+    "answer": "The distortion in the sense of taste is the only symptom",
+    "goal_id": "g_a05ed22c5b",
+    "ts": 1793748071.8,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What is there about emergence in complex systems that my earlier notes on it are missing?",
+    "answer": "system performing a given basic function is irreducibly complex if it includes a set of well-matched",
+    "goal_id": "g_028296e951",
+    "ts": 1793750701.7,
+    "topic_recurrences": 1,
+    "last_cited_window": "944c5dfa28720c75",
+    "last_recurrence_ts": 1793750658.4,
+    "last_recurrence_fn": "attend_goal"
+  },
+  {
+    "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+    "answer": "Saltiness and sourness are perceived when alkali metals or hydrogen ions meet taste buds",
+    "goal_id": "g_8878f0e50a",
+    "ts": 1793746809.7,
+    "topic_recurrences": 6,
+    "last_cited_window": "134c7d9b4c497681",
+    "last_recurrence_ts": 1793760182.5,
+    "last_recurrence_fn": "run_self_improvement"
+  },
+  {
+    "question": "What actually is emergence in complex systems, beyond the mentions I keep seeing?",
+    "answer": "is a system that is complex in that it is a dynamic network of interactions",
+    "goal_id": "g_7971f27092",
+    "ts": 1793746846.6,
+    "topic_recurrences": 0
+  },
+  {
+    "question": "What actually is general relativity explained, beyond the mentions I keep seeing?",
+    "answer": "The final form of general relativity was published in 1916",
+    "goal_id": "g_b6953f5245",
+    "ts": 1793751879.7,
+    "topic_recurrences": 1,
+    "last_cited_window": "15f99a0522659e53",
+    "last_recurrence_ts": 1793753833.8,
+    "last_recurrence_fn": "repair_contradictions"
+  }
+]

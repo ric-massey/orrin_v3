@@ -1,0 +1,132 @@
+{
+  "question": "What actually is Aesthetics, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "aesthetics"
+  ],
+  "entities": [
+    "Aesthetic properties",
+    "features that influence the appeal of objects",
+    "evaluating software Chess aesthetics or beauty in chess",
+    "aesthetic appreciation of chess games and problems",
+    "Philosophy subfield Everyday Aesthetics",
+    "recent subfield of philosophical aesthetics focusing on everyday life",
+    "The role of the aesthetic",
+    "examined through symbolic interaction",
+    "need of incorporating aesthetics to education not only by",
+    "of teaching art but aesthetically",
+    "aesthetic experiences",
+    "associated with disinterested pleasure detached from practical concerns",
+    "Taste",
+    "subjective sensitivity to aesthetic qualities",
+    "Aesthetics",
+    "closely related to the philosophy of art"
+  ],
+  "relations": [
+    {
+      "subject": "Aesthetic properties",
+      "predicate": "are",
+      "object": "features that influence the appeal of objects",
+      "source": "my prior claims [g_0be56a5979]"
+    },
+    {
+      "subject": "evaluating software Chess aesthetics or beauty in chess",
+      "predicate": "is the",
+      "object": "aesthetic appreciation of chess games and problems",
+      "source": "https://en.wikipedia.org/wiki/Chess_aesthetics"
+    },
+    {
+      "subject": "Philosophy subfield Everyday Aesthetics",
+      "predicate": "is a",
+      "object": "recent subfield of philosophical aesthetics focusing on everyday life",
+      "source": "https://en.wikipedia.org/wiki/Everyday_Aesthetics"
+    },
+    {
+      "subject": "The role of the aesthetic",
+      "predicate": "is",
+      "object": "examined through symbolic interaction",
+      "source": "https://en.wikipedia.org/wiki/Everyday_Aesthetics"
+    },
+    {
+      "subject": "need of incorporating aesthetics to education not only by",
+      "predicate": "means",
+      "object": "of teaching art but aesthetically",
+      "source": "https://en.wikipedia.org/wiki/Everyday_Aesthetics"
+    },
+    {
+      "subject": "aesthetic experiences",
+      "predicate": "are",
+      "object": "associated with disinterested pleasure detached from practical concerns",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "Taste",
+      "predicate": "is a",
+      "object": "subjective sensitivity to aesthetic qualities",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "Aesthetics",
+      "predicate": "is",
+      "object": "closely related to the philosophy of art",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "one outlook argues that the philosophy of art",
+      "predicate": "is a",
+      "object": "subfield of aesthetics",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "features shared by all aesthetic phenomena or whether they",
+      "predicate": "are",
+      "object": "more loosely related through family resemblances",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "way of introducing The Aesthetics of Resistance what follows",
+      "predicate": "are",
+      "object": "the opening paragraphs of an article by Robert Cohen",
+      "source": "https://en.wikipedia.org/wiki/The_Aesthetics_of_Resistance"
+    },
+    {
+      "subject": "ethics Wasp on a bee honeycomb Aesthetics of nature",
+      "predicate": "is a",
+      "object": "sub-field of philosophical ethics",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics_of_nature"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0be56a5979]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Chess_aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Everyday_Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Practical_aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Aesthetics_of_Resistance"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objectivism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics_of_nature"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Art_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_aesthetics"
+    }
+  ],
+  "ts": "2026-11-04T02:32:15.469844+00:00"
+}

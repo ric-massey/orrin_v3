@@ -1,0 +1,105 @@
+{
+  "question": "What actually is talk, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "talk"
+  ],
+  "entities": [
+    "Talk That Talk",
+    "sixth studio album by Barbadian singer Rihanna",
+    "recorded during the Loud Tour between February and November 2011",
+    "the ninth global best-selling album of 2011",
+    "The Talk",
+    "American talk show that aired on CBS from October 18",
+    "broadcast before a live studio audience at the CBS Studio Center in Studio City",
+    "The intention of erotic talk",
+    "generally to generate excitement between one",
+    "study found that there",
+    "generally few differences between genders regarding the content of erotic talk",
+    "There",
+    "two main types of erotic talk"
+  ],
+  "relations": [
+    {
+      "subject": "Talk That Talk",
+      "predicate": "is the",
+      "object": "sixth studio album by Barbadian singer Rihanna",
+      "source": "https://en.wikipedia.org/wiki/Talk_That_Talk"
+    },
+    {
+      "subject": "Talk That Talk",
+      "predicate": "was",
+      "object": "recorded during the Loud Tour between February and November 2011",
+      "source": "https://en.wikipedia.org/wiki/Talk_That_Talk"
+    },
+    {
+      "subject": "Talk That Talk",
+      "predicate": "was",
+      "object": "the ninth global best-selling album of 2011",
+      "source": "https://en.wikipedia.org/wiki/Talk_That_Talk"
+    },
+    {
+      "subject": "The Talk",
+      "predicate": "is an",
+      "object": "American talk show that aired on CBS from October 18",
+      "source": "https://en.wikipedia.org/wiki/The_Talk_%28talk_show%29"
+    },
+    {
+      "subject": "The Talk",
+      "predicate": "was",
+      "object": "broadcast before a live studio audience at the CBS Studio Center in Studio City",
+      "source": "https://en.wikipedia.org/wiki/The_Talk_%28talk_show%29"
+    },
+    {
+      "subject": "The intention of erotic talk",
+      "predicate": "is",
+      "object": "generally to generate excitement between one",
+      "source": "https://en.wikipedia.org/wiki/Erotic_talk"
+    },
+    {
+      "subject": "study found that there",
+      "predicate": "are",
+      "object": "generally few differences between genders regarding the content of erotic talk",
+      "source": "https://en.wikipedia.org/wiki/Erotic_talk"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "two main types of erotic talk",
+      "source": "https://en.wikipedia.org/wiki/Erotic_talk"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Talk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Talk_Talk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Talk_That_Talk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Talk_%28talk_show%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Talk_Talk_Talk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Talk_to_Me_%282022_film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Erotic_talk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Haliey_Welch"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Talking_Heads"
+    }
+  ],
+  "ts": "2026-11-03T08:01:03.764347+00:00"
+}

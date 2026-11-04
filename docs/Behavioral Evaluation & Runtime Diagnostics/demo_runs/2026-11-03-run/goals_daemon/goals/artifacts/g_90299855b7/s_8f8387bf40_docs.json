@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_02.txt",
+      "chars": 11425
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/String_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Theory-theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_04.txt",
+      "chars": 7998
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Game_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Light",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Olive_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_07.txt",
+      "chars": 3462
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Spoon_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_08.txt",
+      "chars": 10713
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Miasma_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Theory_of_relativity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_90299855b7/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T18:52:37.145107+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+  "subject_terms": [
+    "consciousness",
+    "subjective",
+    "experience"
+  ],
+  "entities": [
+    "Subjective experience",
+    "commonly described as encompassing sensory experiences and mental events",
+    "Scholars",
+    "divided as to whether Aristotle had a concept of consciousness",
+    "Panpsychists posit that qualities of our own experience",
+    "present",
+    "hold that sentience or subjective experience",
+    "ubiquitous",
+    "conscious experience",
+    "present everywhere at a fundamental level"
+  ],
+  "relations": [
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "commonly described as encompassing sensory experiences and mental events",
+      "source": "my prior claims [g_6b527fae66]"
+    },
+    {
+      "subject": "Scholars",
+      "predicate": "are",
+      "object": "divided as to whether Aristotle had a concept of consciousness",
+      "source": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "subject": "Panpsychists posit that qualities of our own experience",
+      "predicate": "are",
+      "object": "present",
+      "source": "https://en.wikipedia.org/wiki/Panpsychism"
+    },
+    {
+      "subject": "hold that sentience or subjective experience",
+      "predicate": "is",
+      "object": "ubiquitous",
+      "source": "https://en.wikipedia.org/wiki/Panpsychism"
+    },
+    {
+      "subject": "conscious experience",
+      "predicate": "is",
+      "object": "present everywhere at a fundamental level",
+      "source": "https://en.wikipedia.org/wiki/Panpsychism"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_6b527fae66]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_general_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Edmund_Husserl"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/George_Berkeley"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Technological_singularity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Panpsychism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Free_will"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Martin_Heidegger"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Repressed_memory"
+    }
+  ],
+  "ts": "2026-11-03T15:10:34.421189+00:00"
+}

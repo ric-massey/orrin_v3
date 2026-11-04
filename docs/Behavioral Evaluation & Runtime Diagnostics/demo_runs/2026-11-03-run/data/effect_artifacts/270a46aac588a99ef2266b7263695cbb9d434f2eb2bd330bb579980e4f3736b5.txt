@@ -1,0 +1,9 @@
+[produce_and_check goal=g_c4a7c468a99b :logic: Reflect on my open question: What is there about formal logic that my earlier notes on it are missing?]
+# De Morgan over all boolean assignments
+for a in (False, True):
+    for b in (False, True):
+        assert (not (a and b)) == ((not a) or (not b))
+        assert (not (a or b)) == ((not a) and (not b))
+print("CHECK_PASS De Morgan's laws hold over all assignments")
+--- output ---
+CHECK_PASS De Morgan's laws hold over all assignments

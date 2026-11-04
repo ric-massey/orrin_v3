@@ -1,0 +1,75 @@
+{
+  "question": "What is there about emergence in complex systems that my earlier notes on it are missing?",
+  "subject_terms": [
+    "emergence",
+    "complex",
+    "systems"
+  ],
+  "entities": [
+    "is one that",
+    "not a property of any component of that system",
+    "wherein the removal of any one of the parts",
+    "the system to effectively cease functioning",
+    "system performing a given basic function",
+    "irreducibly complex if it includes a set of well-matched",
+    "The set of these indispensable parts",
+    "known as the irreducible core of the system"
+  ],
+  "relations": [
+    {
+      "subject": "is one that",
+      "predicate": "is",
+      "object": "not a property of any component of that system",
+      "source": "my prior claims [g_4a0b4b0077]"
+    },
+    {
+      "subject": "wherein the removal of any one of the parts",
+      "predicate": "causes",
+      "object": "the system to effectively cease functioning",
+      "source": "https://en.wikipedia.org/wiki/Irreducible_complexity"
+    },
+    {
+      "subject": "system performing a given basic function",
+      "predicate": "is",
+      "object": "irreducibly complex if it includes a set of well-matched",
+      "source": "https://en.wikipedia.org/wiki/Irreducible_complexity"
+    },
+    {
+      "subject": "The set of these indispensable parts",
+      "predicate": "is",
+      "object": "known as the irreducible core of the system",
+      "source": "https://en.wikipedia.org/wiki/Irreducible_complexity"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_4a0b4b0077]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Big_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/15.ai"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_autism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Collective_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Irreducible_complexity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence"
+    }
+  ],
+  "ts": "2026-11-04T00:05:00.159591+00:00"
+}

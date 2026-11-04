@@ -1,0 +1,59 @@
+{
+  "question": "What actually is stoic philosophy and daily life, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "stoic",
+    "philosophy",
+    "daily",
+    "life"
+  ],
+  "entities": [
+    "the Our Band Could Be Your Life audiobook",
+    "released",
+    "Our Life",
+    "compassed round with Necessity",
+    "relationship and their family life until Hank discovers Walt",
+    "Heisenberg"
+  ],
+  "relations": [
+    {
+      "subject": "the Our Band Could Be Your Life audiobook",
+      "predicate": "was",
+      "object": "released",
+      "source": "my prior claims [g_c17ea8799e]"
+    },
+    {
+      "subject": "Our Life",
+      "predicate": "is",
+      "object": "compassed round with Necessity",
+      "source": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "subject": "relationship and their family life until Hank discovers Walt",
+      "predicate": "is",
+      "object": "Heisenberg",
+      "source": "https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_c17ea8799e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Deism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fuzzy_concept"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexander_Zinoviev"
+    }
+  ],
+  "ts": "2026-11-03T23:21:38.943291+00:00"
+}

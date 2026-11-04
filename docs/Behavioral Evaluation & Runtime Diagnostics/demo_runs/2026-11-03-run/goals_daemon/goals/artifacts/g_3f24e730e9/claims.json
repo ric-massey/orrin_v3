@@ -1,0 +1,132 @@
+{
+  "question": "What is there about logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "Formal logic",
+    "study of deductively valid inferences or logical truths",
+    "Informal logic",
+    "associated with informal fallacies",
+    "Systems of logic",
+    "theoretical frameworks for assessing the correctness of arguments",
+    "the main system of logic in the Western world until it",
+    "replaced by modern formal logic",
+    "the most commonly used system",
+    "classical logic",
+    "traditionally defined as the study of the laws of thought or correct reasoning",
+    "interested in whether arguments are correct",
+    "to both formal and informal logic since they",
+    "both concerned with assessing the correctness of arguments"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_c80d753f93]"
+    },
+    {
+      "subject": "Formal logic",
+      "predicate": "is the",
+      "object": "study of deductively valid inferences or logical truths",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Informal logic",
+      "predicate": "is",
+      "object": "associated with informal fallacies",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Systems of logic",
+      "predicate": "are",
+      "object": "theoretical frameworks for assessing the correctness of arguments",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "the main system of logic in the Western world until it",
+      "predicate": "was",
+      "object": "replaced by modern formal logic",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "the most commonly used system",
+      "predicate": "is",
+      "object": "classical logic",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Logic",
+      "predicate": "is",
+      "object": "traditionally defined as the study of the laws of thought or correct reasoning",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Logic",
+      "predicate": "is",
+      "object": "interested in whether arguments are correct",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "to both formal and informal logic since they",
+      "predicate": "are",
+      "object": "both concerned with assessing the correctness of arguments",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Formal logic",
+      "predicate": "is the",
+      "object": "traditionally dominant field",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Formal logic",
+      "predicate": "is",
+      "object": "interested in deductively valid arguments",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "audio engine but with reduced features called Logic Express",
+      "predicate": "was",
+      "object": "available starting in 2004",
+      "source": "https://en.wikipedia.org/wiki/Logic_Pro"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_c80d753f93]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic_Pro"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic_gate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pretzel_Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Temporal_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic_%28rapper%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Dolby_Pro_Logic"
+    }
+  ],
+  "ts": "2026-11-03T06:35:22.614079+00:00"
+}

@@ -1,0 +1,116 @@
+{
+  "question": "What actually is bridges and salt domes, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "bridges",
+    "salt",
+    "domes"
+  ],
+  "entities": [
+    "bridges and salt domes",
+    "all examples of load-bearing structures",
+    "The canal",
+    "now crossed by two bridges and a pedestrian walkway",
+    "as the other bridges",
+    "built at a later time",
+    "the bridges derives from the color in which their structures",
+    "originally painted",
+    "At the time of their construction the bridges",
+    "revolving or opening",
+    "The movable bridges",
+    "later replaced by the current fixed masonry bridges",
+    "which",
+    "useful for bridges and other waterside construction",
+    "There",
+    "currently three more bridges"
+  ],
+  "relations": [
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "my prior memo: synthesis.md"
+    },
+    {
+      "subject": "The canal",
+      "predicate": "is",
+      "object": "now crossed by two bridges and a pedestrian walkway",
+      "source": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "subject": "as the other bridges",
+      "predicate": "were",
+      "object": "built at a later time",
+      "source": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "subject": "the bridges derives from the color in which their structures",
+      "predicate": "were",
+      "object": "originally painted",
+      "source": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "subject": "At the time of their construction the bridges",
+      "predicate": "were",
+      "object": "revolving or opening",
+      "source": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "subject": "The movable bridges",
+      "predicate": "were",
+      "object": "later replaced by the current fixed masonry bridges",
+      "source": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "subject": "which",
+      "predicate": "was",
+      "object": "useful for bridges and other waterside construction",
+      "source": "https://en.wikipedia.org/wiki/Roman_concrete"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "currently three more bridges",
+      "source": "https://en.wikipedia.org/wiki/Grand_Canal_%28Venice%29"
+    },
+    {
+      "subject": "Warehouses for flour and salt",
+      "predicate": "were",
+      "object": "more peripheral",
+      "source": "https://en.wikipedia.org/wiki/Grand_Canal_%28Venice%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Avery_Island_%28Louisiana%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Salt_Lake_City"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Lost_Tour"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Canal_Grande_%28Trieste%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Roman_concrete"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Grand_Canal_%28Venice%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Dead_Sea"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wayward_Pines"
+    }
+  ],
+  "ts": "2026-11-03T18:54:12.177490+00:00"
+}

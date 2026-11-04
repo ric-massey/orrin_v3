@@ -1,0 +1,128 @@
+{
+  "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "memory",
+    "works",
+    "brain"
+  ],
+  "entities": [
+    "Memory loss",
+    "usually described as forgetfulness or a disorder such as amnesia",
+    "the function of long-term memory",
+    "to store information through various categorical models or systems",
+    "Semantic memory",
+    "memory that is encoded with specific meaning",
+    "episodic memory",
+    "information that is encoded along a spatial and temporal plane",
+    "Declarative memory",
+    "usually the primary process thought of when referencing memory",
+    "memory",
+    "unconscious storage and recollection of information",
+    "specific responses from memory and shows that not all memory",
+    "consciously activated",
+    "Memory",
+    "not a perfect processor and is affected by many factors"
+  ],
+  "relations": [
+    {
+      "subject": "Memory loss",
+      "predicate": "is",
+      "object": "usually described as forgetfulness or a disorder such as amnesia",
+      "source": "my prior claims [g_1f74c2b8d3]"
+    },
+    {
+      "subject": "the function of long-term memory",
+      "predicate": "is",
+      "object": "to store information through various categorical models or systems",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Semantic memory",
+      "predicate": "refers to",
+      "object": "memory that is encoded with specific meaning",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "episodic memory",
+      "predicate": "refers to",
+      "object": "information that is encoded along a spatial and temporal plane",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Declarative memory",
+      "predicate": "is",
+      "object": "usually the primary process thought of when referencing memory",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "memory",
+      "predicate": "is the",
+      "object": "unconscious storage and recollection of information",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "specific responses from memory and shows that not all memory",
+      "predicate": "is",
+      "object": "consciously activated",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Memory",
+      "predicate": "is",
+      "object": "not a perfect processor and is affected by many factors",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "corrupted by physical damage to areas of the brain that",
+      "predicate": "are",
+      "object": "associated with memory storage",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "find any supporting evidence in brain science literature he",
+      "predicate": "was",
+      "object": "familiar with",
+      "source": "https://en.wikipedia.org/wiki/Brain_Rules"
+    },
+    {
+      "subject": "Every brain",
+      "predicate": "is",
+      "object": "wired differently",
+      "source": "https://en.wikipedia.org/wiki/Brain_Rules"
+    },
+    {
+      "subject": "Male and female brains",
+      "predicate": "are",
+      "object": "different",
+      "source": "https://en.wikipedia.org/wiki/Brain_Rules"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1f74c2b8d3]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Brain_Rules"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Memory_erasure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Method_of_loci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mind_uploading"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Working_memory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hyperthymesia"
+    }
+  ],
+  "ts": "2026-11-03T22:17:31.882997+00:00"
+}

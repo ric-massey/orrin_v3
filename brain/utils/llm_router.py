@@ -29,7 +29,6 @@ import os
 import re
 import threading
 import time
-from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
 from brain.utils.generate_response import (
@@ -37,6 +36,7 @@ from brain.utils.generate_response import (
     generate_reasoning_chain,
     llm_ok,
 )
+from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
 from brain.utils.json_utils import load_json, save_json
 from brain.core.config.settings import model_roles
@@ -58,7 +58,7 @@ def get_deep_model() -> str:
 
 _CACHE_TTL_S   = 300          # 5-minute TTL
 _CACHE_MAX     = 500          # max in-memory entries
-_COST_LOG_PATH = Path(__file__).resolve().parent.parent / "data" / "llm_cost_log.json"
+_COST_LOG_PATH = DATA_DIR / "llm_cost_log.json"  # DATA_DIR, so an isolated life logs to its own dir
 
 # Keywords that make a prompt time-sensitive — bypass cache.
 # Matched on word boundaries: substring matching made common words like

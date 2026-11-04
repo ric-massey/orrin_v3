@@ -1,0 +1,136 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "function and evolution",
+    "often presented as separate and distinct explanations of behaviour",
+    "the common definition of adaptation",
+    "central concept in evolution",
+    "trait can have a current function that",
+    "adaptive without being an adaptation in this sense",
+    "because adaptation",
+    "often construed as implying that it was selected for due to past function",
+    "and the history of natural selection working on function to",
+    "adaptations",
+    "of a graph at a point",
+    "regarded as a function of the x -coordinate of the point",
+    "Functions",
+    "not explicitly considered in antiquity"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "my prior claims [g_ed38a3e091]"
+    },
+    {
+      "subject": "function and evolution",
+      "predicate": "are",
+      "object": "often presented as separate and distinct explanations of behaviour",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "the common definition of adaptation",
+      "predicate": "is a",
+      "object": "central concept in evolution",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "trait can have a current function that",
+      "predicate": "is",
+      "object": "adaptive without being an adaptation in this sense",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "because adaptation",
+      "predicate": "is",
+      "object": "often construed as implying that it was selected for due to past function",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "and the history of natural selection working on function to",
+      "predicate": "produce",
+      "object": "adaptations",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "of a graph at a point",
+      "predicate": "was",
+      "object": "regarded as a function of the x -coordinate of the point",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "subject": "Functions",
+      "predicate": "were",
+      "object": "not explicitly considered in antiquity",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "subject": "Medvedev suggests that the implicit concept of a function",
+      "predicate": "is",
+      "object": "one with an ancient lineage",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "subject": "The functions considered in those times",
+      "predicate": "are",
+      "object": "called today differentiable functions",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "subject": "Such functions",
+      "predicate": "are",
+      "object": "the basis of calculus",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "subject": "Euler also allowed multi-valued functions whose values",
+      "predicate": "are",
+      "object": "determined by an implicit equation",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_ed38a3e091]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_function_concept"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Outline_of_biology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Differential_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Applications_of_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/API"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Busy_beaver"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fly_algorithm"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coccinelle_%28software%29"
+    }
+  ],
+  "ts": "2026-11-03T21:47:08.648126+00:00"
+}

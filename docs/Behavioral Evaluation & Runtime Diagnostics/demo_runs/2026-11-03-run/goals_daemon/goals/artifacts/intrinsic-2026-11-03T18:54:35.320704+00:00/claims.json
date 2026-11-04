@@ -1,0 +1,48 @@
+{
+  "question": "What actually is Oxypurinol, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "oxypurinol"
+  ],
+  "entities": [
+    "Oxypurinol",
+    "quickly transformed from allopurinol and then eliminated by the kidneys",
+    "nearly no oxypurinol",
+    "eliminated"
+  ],
+  "relations": [
+    {
+      "subject": "Oxypurinol",
+      "predicate": "is",
+      "object": "quickly transformed from allopurinol and then eliminated by the kidneys",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "subject": "nearly no oxypurinol",
+      "predicate": "is",
+      "object": "eliminated",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Oxipurinol"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Xanthine_oxidase_inhibitor"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Xanthine_oxidase"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P-i_mechanism"
+    }
+  ],
+  "ts": "2026-11-03T18:54:41.494836+00:00"
+}

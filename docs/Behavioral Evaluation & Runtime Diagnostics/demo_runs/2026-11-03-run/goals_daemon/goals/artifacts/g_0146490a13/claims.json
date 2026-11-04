@@ -1,0 +1,61 @@
+{
+  "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "saltiness",
+    "sourness"
+  ],
+  "entities": [
+    "Saltiness and sourness",
+    "perceived when alkali metals or hydrogen ions meet taste buds",
+    "The five specific tastes received by taste receptors",
+    "saltiness"
+  ],
+  "relations": [
+    {
+      "subject": "Saltiness and sourness",
+      "predicate": "are",
+      "object": "perceived when alkali metals or hydrogen ions meet taste buds",
+      "source": "my prior claims [g_9485e81f7b]"
+    },
+    {
+      "subject": "The five specific tastes received by taste receptors",
+      "predicate": "are",
+      "object": "saltiness",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_9485e81f7b]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kaeng_thepho"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pisco_sour"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pickled_cucumber"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_fermented_foods"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sichuan_cuisine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Retronasal_smell"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Youtiao"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cream"
+    }
+  ],
+  "ts": "2026-11-04T02:32:38.101603+00:00"
+}

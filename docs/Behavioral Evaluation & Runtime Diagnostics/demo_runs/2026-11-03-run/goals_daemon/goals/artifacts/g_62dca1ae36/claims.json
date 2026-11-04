@@ -1,0 +1,53 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_4694b2a2cc]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_4694b2a2cc]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Michael_Jackson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kurt_Cobain"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Project_2025"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Sopranos_characters"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Heartland_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Characters_of_Casualty"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Hollyoaks_characters_introduced_in_2015"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Traders_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Healthcare_in_the_United_States"
+    }
+  ],
+  "ts": "2026-11-03T16:17:37.462119+00:00"
+}

@@ -1,0 +1,126 @@
+{
+  "question": "What actually is Taste, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "taste"
+  ],
+  "entities": [
+    "Taste bud The gustatory system or sense of taste",
+    "sensory system that is partially responsible for the perception of taste",
+    "The gustatory cortex",
+    "responsible for the perception of taste",
+    "Within each papilla",
+    "hundreds of taste buds",
+    "taste buds that",
+    "located on the back and front of the tongue",
+    "have demonstrated that these five tastes exist and",
+    "distinct from one another",
+    "Saltiness and sourness",
+    "perceived when alkali metals or hydrogen ions meet taste buds",
+    "in saliva begin to dissolve food into base chemicals that",
+    "washed over the papillae and detected as tastes by the taste buds",
+    "The five specific tastes received by taste receptors",
+    "saltiness"
+  ],
+  "relations": [
+    {
+      "subject": "Taste bud The gustatory system or sense of taste",
+      "predicate": "is the",
+      "object": "sensory system that is partially responsible for the perception of taste",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "The gustatory cortex",
+      "predicate": "is",
+      "object": "responsible for the perception of taste",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "Within each papilla",
+      "predicate": "are",
+      "object": "hundreds of taste buds",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "taste buds that",
+      "predicate": "are",
+      "object": "located on the back and front of the tongue",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "have demonstrated that these five tastes exist and",
+      "predicate": "are",
+      "object": "distinct from one another",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "Saltiness and sourness",
+      "predicate": "are",
+      "object": "perceived when alkali metals or hydrogen ions meet taste buds",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "in saliva begin to dissolve food into base chemicals that",
+      "predicate": "are",
+      "object": "washed over the papillae and detected as tastes by the taste buds",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "The five specific tastes received by taste receptors",
+      "predicate": "are",
+      "object": "saltiness",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "Western physiologists and psychologists thought that there",
+      "predicate": "were",
+      "object": "four basic tastes",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "taste",
+      "predicate": "was",
+      "object": "not present in Western science at that time",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "this presumably",
+      "predicate": "is",
+      "object": "because the sour taste can signal something is rotten or spoiled",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "The Taste",
+      "predicate": "is an",
+      "object": "American cooking -themed reality competition series on ABC",
+      "source": "https://en.wikipedia.org/wiki/The_Taste"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Umami"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Bad_Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Max_Miller_%28YouTuber%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Acquired_taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Conditioned_taste_aversion"
+    }
+  ],
+  "ts": "2026-11-03T22:39:54.265016+00:00"
+}

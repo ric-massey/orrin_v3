@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_01.txt",
+      "chars": 19837
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Term_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_methods",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Propositional_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_fallacy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_06.txt",
+      "chars": 13276
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_fallacies",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Deductive_reasoning",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Affirming_the_consequent",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_09.txt",
+      "chars": 9668
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Syllogism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f272218b3a/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T08:01:02.468781+00:00"
+}

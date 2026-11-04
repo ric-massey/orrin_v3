@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_4524452be9",
+    "title": "Understand Products more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Products open problems",
+        "Products criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_80acec228a",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:53:50.756621Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:53:50.756627Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:53:50.756629Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:53:50.756631Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:53:50.756632Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Products was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Products was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T18:53:50.756646Z",
+      "question": "What actually is Products, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 18:53:50.757524+00:00",
+    "updated_at": "2026-11-03 18:53:51.730930+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_80acec228a]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Matrix_mortality_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fair-trade_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/ChatGPT",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Walmart",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_4524452be9/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T18:53:58.699290+00:00"
+}

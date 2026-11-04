@@ -1,0 +1,3150 @@
+[
+  {
+    "timestamp": "2026-11-03T17:34:08.142215+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.46): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.46,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.371): [Incubation] While sitting with: '[will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this.', I n",
+        "score": 0.371,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=96)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=105)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T17:48:42.840807+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=102)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=111)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T17:56:53.630992+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=105)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=114)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T18:16:11.559094+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.46): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.46,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.371): [Incubation] While sitting with: '[will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this.', I n",
+        "score": 0.371,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=28)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=112)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=121)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T18:26:38.443106+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.46): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.46,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.371): [Incubation] While sitting with: '[will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this.', I n",
+        "score": 0.371,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=32)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=116)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=125)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T18:46:37.568305+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=38)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:00:58.237236+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=42)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=126)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:18:42.481407+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=49)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:20:16.414029+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (HOW_TO, score=0.6): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=50)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:37:14.347684+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=56)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=52)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:40:19.608495+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (DEBUG, score=0.6): ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. ",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=58)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=54)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:49:43.045746+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=62)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:55:47.480151+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=64)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=142)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:58:56.471602+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=66)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=144)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:59:41.407500+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=67)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=145)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T19:59:53.761794+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=68)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=146)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:08:47.299602+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=72)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=150)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:14:28.781503+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=75)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=153)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:30:12.480250+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=80)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=158)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:43:07.602935+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=85)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=163)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=153)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:48:56.526862+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=87)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=165)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T20:57:30.826358+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_ope', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=91)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=77)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=169)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=158)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T21:01:37.333929+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=79)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=171)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=160)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T21:18:32.854678+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=176)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=165)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T21:29:09.984365+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=180)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=169)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T21:36:57.179337+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=183)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=172)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T21:53:41.132279+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=188)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'commitment' → 'chunk' (evidence=177)",
+        "edge_id": "0faa514467ec",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 3 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T22:16:57.112188+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=112)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=194)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "counterfactual",
+        "text": "Counterfactual: 'time of day is afternoon' → 'host machine is busy' may be spurious — 2 alternative rule(s) can produce the effect independently.",
+        "edge_id": "d8c87999205d",
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T22:21:39.130173+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 4. ValueError: no', I n",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=114)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=196)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T22:48:38.335112+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=203)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T22:56:31.431226+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=206)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:07:00.738998+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=210)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:17:54.471279+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=214)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:28:44.353115+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=217)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:30:27.774853+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.444): [will] I resolve to: pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing? — I stand behind this. (streng",
+        "score": 0.444,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.383): [will] I resolve to: pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing? — I stand behind this. (st",
+        "score": 0.383,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=219)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:37:19.097904+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-03T23:50:39.206688+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=223)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T00:08:00.799009+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=228)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=140)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T00:19:40.495611+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=232)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=144)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T00:39:29.123395+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=238)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=150)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T00:56:05.996251+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.546): [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.546,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.437): [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)",
+        "score": 0.437,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (WHAT_IS, score=0.476): Failed goal: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 3. Reason: ValueError: no URLs to fetch.",
+        "score": 0.476,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'commitment' (evidence=242)",
+        "edge_id": "56123b696650",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=154)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:08:14.262009+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=122)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=158)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:12:54.396977+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=124)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=160)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:22:50.952804+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (strength 0.62)",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.425): [will] I resolve to: pursue: Reflect on my open question: What would I sacrifice to achieve this? — I stand behind this. (strength 0.38)",
+        "score": 0.425,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.571): 💔 Goal failed: Strengthen SOCIAL symbolic reasoning. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.571,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=127)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=163)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:28:40.849606+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=129)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=165)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:31:33.877238+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=130)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=166)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:39:03.256191+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=133)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=169)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:45:17.214005+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=135)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=171)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:47:35.360404+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=137)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=173)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-04T01:59:46.790702+00:00",
+    "insights": [
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.483): 💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap",
+        "score": 0.483,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.6): [Incubation] While sitting with: '💔 Goal failed: Understand singular they more deeply. ValueError: no URLs to fetch', I notice a connection to something from me",
+        "score": 0.6,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "analogy_transfer",
+        "text": "Transfer from past (GENERAL, score=0.352): [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do', I n",
+        "score": 0.352,
+        "importance": 3,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'chunk' → 'incubated_insight' (evidence=140)",
+        "edge_id": "b72f6f9af814",
+        "importance": 2,
+        "priority": 2
+      },
+      {
+        "type": "causal_temporal",
+        "text": "Temporal pattern: 'incubated_insight' → 'chunk' (evidence=176)",
+        "edge_id": "c78b43bedfeb",
+        "importance": 2,
+        "priority": 2
+      }
+    ]
+  }
+]

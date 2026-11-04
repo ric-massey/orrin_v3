@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Often these",
+    "Often these explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Often",
+    "https://en.wikipedia.org/wiki/Release_early%2C_release_often",
+    "https://en.wikipedia.org/wiki/Midfielder",
+    "https://en.wikipedia.org/wiki/The_Sun_Is_Often_Out",
+    "https://en.wikipedia.org/wiki/Populism",
+    "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+    "https://en.wikipedia.org/wiki/Explained_variation",
+    "https://en.wikipedia.org/wiki/Explanation",
+    "https://en.wikipedia.org/wiki/Prequel",
+    "https://en.wikipedia.org/wiki/Thing_Explainer"
+  ],
+  "results": [
+    {
+      "title": "Often",
+      "url": "https://en.wikipedia.org/wiki/Often",
+      "snippet": "&quot;<span class=\"searchmatch\">Often</span>&quot; is a song by the Canadian singer-songwriter the Weeknd. It was released on July 31, 2014, as the lead single from his second studio album, Beauty",
+      "query": "Often these"
+    },
+    {
+      "title": "Release early, release often",
+      "url": "https://en.wikipedia.org/wiki/Release_early%2C_release_often",
+      "snippet": "Release early, release <span class=\"searchmatch\">often</span> (also known as ship early, ship <span class=\"searchmatch\">often</span>, or time-based releases, and sometimes abbreviated RERO) is a software development",
+      "query": "Often these"
+    },
+    {
+      "title": "Midfielder",
+      "url": "https://en.wikipedia.org/wiki/Midfielder",
+      "snippet": "midfielders. As central midfielders <span class=\"searchmatch\">often</span> go across boundaries, with mobility and passing ability, they are <span class=\"searchmatch\">often</span> referred to as deep-lying midfielders",
+      "query": "Often these"
+    },
+    {
+      "title": "The Sun Is Often Out",
+      "url": "https://en.wikipedia.org/wiki/The_Sun_Is_Often_Out",
+      "snippet": "The Sun Is <span class=\"searchmatch\">Often</span> Out (stylised as THE SUN iS <span class=\"searchmatch\">OfTEN</span> oUT) is the debut studio album by the English alternative rock band Longpigs, released on 29 April",
+      "query": "Often these"
+    },
+    {
+      "title": "Populism",
+      "url": "https://en.wikipedia.org/wiki/Populism",
+      "snippet": "variety of political stances that emphasise the idea of the &quot;common people&quot;, <span class=\"searchmatch\">often</span> in opposition to a perceived elite. It is frequently associated with anti-establishment",
+      "query": "Often these"
+    },
+    {
+      "title": "Sex, Explained",
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "snippet": "Sex, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. The series, along with The Mind, <span class=\"searchmatch\">Explained</span>, is a spin-off of the television",
+      "query": "Often these explained"
+    },
+    {
+      "title": "Explained variation",
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "snippet": "statistics, <span class=\"searchmatch\">explained</span> variation measures the proportion to which a mathematical model accounts for the variation (dispersion) of a given data set. <span class=\"searchmatch\">Often</span>, variation",
+      "query": "Often these explained"
+    },
+    {
+      "title": "Explanation",
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "snippet": "explanations and arguments. The terms &#039;<span class=\"searchmatch\">explain</span>&#039; or &#039;explanation,&#039; et cetera are frequently used in arguments. Explanations are <span class=\"searchmatch\">often</span> used within arguments and presented",
+      "query": "Often these explained"
+    },
+    {
+      "title": "Prequel",
+      "url": "https://en.wikipedia.org/wiki/Prequel",
+      "snippet": "concern the same plot as the work from which they are derived. More <span class=\"searchmatch\">often</span> they <span class=\"searchmatch\">explain</span> the background that led to the events in the original, but sometimes",
+      "query": "Often these explained"
+    },
+    {
+      "title": "Thing Explainer",
+      "url": "https://en.wikipedia.org/wiki/Thing_Explainer",
+      "snippet": "reverse – Thing <span class=\"searchmatch\">Explainer</span> <span class=\"searchmatch\">explained</span> (archived)&quot;. ZDNet. Archived from the original on 2016-01-01. Gleick, Peter H. (2015-11-25). &quot;&#039;Thing <span class=\"searchmatch\">Explainer</span>&#039; – A Review",
+      "query": "Often these explained"
+    }
+  ],
+  "ts": "2026-11-03T19:21:18.368040+00:00"
+}

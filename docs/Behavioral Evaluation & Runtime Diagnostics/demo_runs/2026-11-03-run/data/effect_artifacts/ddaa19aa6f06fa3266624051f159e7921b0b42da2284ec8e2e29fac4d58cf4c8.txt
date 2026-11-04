@@ -1,0 +1,8 @@
+What I learned about Leave Ric a note about talk:
+
+- [will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)
+- ⚠️ Problem hit while working on 'Be genuinely useful and connected to the people I talk to': 'wikipedia_search._wiki_opensearch' failed 2× while I was working. Pausing it. Most likely a transient / intermittent error.
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Open question: Is There Anything Left in the Dream of Cold… / [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about quantization — This doesn't clearly…]
+- [Chunk: 💔 Goal failed: Answer: What is there about philosophy of time that my earlier notes on it are missing? — round 2. / 💔 Goal failed: Answer: What is there about consciousness and subjective experience that my earlier notes on it ar —…]
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about memory use rss climb — This doesn't… / [will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about formal logic — This doesn't clearly…]
+- [will] I resolve to: pursue: Reflect on my open question: What is there about history that my earlier notes on it are missing? — I stand behind this. (strength 0.23)

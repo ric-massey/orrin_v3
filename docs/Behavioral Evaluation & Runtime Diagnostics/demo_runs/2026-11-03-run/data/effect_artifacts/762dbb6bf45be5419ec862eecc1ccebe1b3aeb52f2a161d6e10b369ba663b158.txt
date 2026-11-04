@@ -1,0 +1,8 @@
+What I learned about writing more deeply:
+
+- [Chunk: [emotion/cause] A sense of being stuck grew because: [goal_blocked] 'Understand writing more deeply': step did not take… / [goal_blocked] 'Understand writing more deeply': step did not take hold (attempt 2/3) — Establish reasoned conclusion]
+- [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand writing more deeply — This doesn't clearly connect', I notice a connection to something from memory: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand writing more deeply — This doesn't clearly connect'. These may be related in ways I haven't consciously examined.
+- [Chunk: [will] I resolve to: pursue: Understand history of written language more deeply — I stand behind this. (strength 0. / [sym_dream:analogy_transfer] Transfer from past (GENERAL, score=0.]
+- [will] I resolve (held lightly, strength 0.20) to: pursue: Understand writing more deeply — This doesn't clearly connect to my values yet — I'll hold it lightly.
+- [Chunk: 💔 Goal failed: Understand evolutionary biology and cooperation more deeply — round 3. ValueError: no URLs to fetch / 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch]
+- [Chunk: 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch / 💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch]

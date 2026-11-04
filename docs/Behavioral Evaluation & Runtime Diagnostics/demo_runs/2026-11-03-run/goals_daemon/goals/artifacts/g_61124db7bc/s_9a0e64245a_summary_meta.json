@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_61124db7bc",
+    "title": "Understand Holly more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Holly",
+        "Holly explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:46:19.801354Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:46:19.801362Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:46:19.801364Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:46:19.801366Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:46:19.801367Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Holly was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Holly was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:46:19.801381Z",
+      "question": "What actually is Holly, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:46:19.802115+00:00",
+    "updated_at": "2026-11-03 21:46:20.760025+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Holly",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Buddy_Holly",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Holly_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Hollies",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Holly_Madison",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nell_Fisher",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Body_Double",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Breakfast_at_Tiffany%27s_%28film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Breakfast_at_Tiffany%27s_%28novella%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_61124db7bc/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:46:25.825608+00:00"
+}

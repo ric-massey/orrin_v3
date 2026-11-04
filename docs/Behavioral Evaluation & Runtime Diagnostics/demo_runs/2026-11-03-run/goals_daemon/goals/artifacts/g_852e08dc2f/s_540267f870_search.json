@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "They Live",
+    "They Live explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/They_Live",
+    "https://en.wikipedia.org/wiki/Live",
+    "https://en.wikipedia.org/wiki/They_Live_%28disambiguation%29",
+    "https://en.wikipedia.org/wiki/They_Live_by_Night",
+    "https://en.wikipedia.org/wiki/Live_and_Let_Live",
+    "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+    "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/Moana_%282026_film%29",
+    "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live"
+  ],
+  "results": [
+    {
+      "title": "They Live",
+      "url": "https://en.wikipedia.org/wiki/They_Live",
+      "snippet": "<span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> is a 1988 American science fiction action horror film written, directed, and scored by John Carpenter, and starring Roddy Piper, Keith David",
+      "query": "They Live"
+    },
+    {
+      "title": "Live",
+      "url": "https://en.wikipedia.org/wiki/Live",
+      "snippet": "<span class=\"searchmatch\">Live</span> or <span class=\"searchmatch\">live</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Live</span> may refer to: <span class=\"searchmatch\">Live</span>! (2007 film), 2007 American film <span class=\"searchmatch\">Live</span> (2014 film), a 2014 Japanese film <span class=\"searchmatch\">Live</span>",
+      "query": "They Live"
+    },
+    {
+      "title": "They Live (disambiguation)",
+      "url": "https://en.wikipedia.org/wiki/They_Live_%28disambiguation%29",
+      "snippet": "<span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> is a 1988 American science-fiction action thriller film. <span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> may also refer to: <span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> (Calico System album), 2005 <span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> (Evil",
+      "query": "They Live"
+    },
+    {
+      "title": "They Live by Night",
+      "url": "https://en.wikipedia.org/wiki/They_Live_by_Night",
+      "snippet": "<span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> by Night is a 1948 American film noir notable for being the directorial debut of Nicholas Ray and starring Cathy O&#039;Donnell and Farley Granger",
+      "query": "They Live"
+    },
+    {
+      "title": "Live and Let Live",
+      "url": "https://en.wikipedia.org/wiki/Live_and_Let_Live",
+      "snippet": "Look up <span class=\"searchmatch\">live</span> and let <span class=\"searchmatch\">live</span> or <span class=\"searchmatch\">live</span>-and-let-<span class=\"searchmatch\">live</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Live</span> and Let <span class=\"searchmatch\">Live</span> may refer to: <span class=\"searchmatch\">Live</span> and Let <span class=\"searchmatch\">Live</span> (2013 film), a 2013",
+      "query": "They Live"
+    },
+    {
+      "title": "They Live",
+      "url": "https://en.wikipedia.org/wiki/They_Live",
+      "snippet": "<span class=\"searchmatch\">They</span> <span class=\"searchmatch\">Live</span> is a 1988 American science fiction action horror film written, directed, and scored by John Carpenter, and starring Roddy Piper, Keith David",
+      "query": "They Live explained"
+    },
+    {
+      "title": "The Mind, Explained",
+      "url": "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+      "snippet": "anxiety, mindfulness, and psychedelics. The Mind, <span class=\"searchmatch\">Explained</span> is a spin-off of Vox&#039;s Netflix show <span class=\"searchmatch\">Explained</span>. The series makes use of interviews, cartoons,",
+      "query": "They Live explained"
+    },
+    {
+      "title": "Explained (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "snippet": "The Mind, <span class=\"searchmatch\">Explained</span>, a series focused specifically on topics related to the human brain. On January 4, 2020, a follow-up titled Sex, <span class=\"searchmatch\">Explained</span> was released",
+      "query": "They Live explained"
+    },
+    {
+      "title": "Moana (2026 film)",
+      "url": "https://en.wikipedia.org/wiki/Moana_%282026_film%29",
+      "snippet": "adventure film and a <span class=\"searchmatch\">live</span>-action adaptation of Disney Animation&#039;s 2016 film. As the overall third installment and the first <span class=\"searchmatch\">live</span>-action film in the Moana",
+      "query": "They Live explained"
+    },
+    {
+      "title": "The Walking Dead: The Ones Who Live",
+      "url": "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live",
+      "snippet": "The Walking Dead: The Ones Who <span class=\"searchmatch\">Live</span> is an American post-apocalyptic horror drama television miniseries created by Scott M. Gimple, Danai Gurira, and Andrew",
+      "query": "They Live explained"
+    }
+  ],
+  "ts": "2026-11-03T21:43:56.368124+00:00"
+}

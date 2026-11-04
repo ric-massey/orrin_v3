@@ -1,0 +1,127 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "analogous structures that have similar form or function but",
+    "not present in the last common ancestor of those groups",
+    "The recurrent evolution of flight",
+    "classic example",
+    "features that have arisen through convergent evolution",
+    "analogous",
+    "The opposite of convergent evolution",
+    "divergent evolution",
+    "similar to parallel evolution",
+    "Many instances of convergent evolution",
+    "known in plants",
+    "function and evolution",
+    "often presented as separate and distinct explanations of behaviour",
+    "the common definition of adaptation"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "analogous structures that have similar form or function but",
+      "predicate": "were",
+      "object": "not present in the last common ancestor of those groups",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "The recurrent evolution of flight",
+      "predicate": "is a",
+      "object": "classic example",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "features that have arisen through convergent evolution",
+      "predicate": "are",
+      "object": "analogous",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "The opposite of convergent evolution",
+      "predicate": "is",
+      "object": "divergent evolution",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is",
+      "object": "similar to parallel evolution",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "Many instances of convergent evolution",
+      "predicate": "are",
+      "object": "known in plants",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "function and evolution",
+      "predicate": "are",
+      "object": "often presented as separate and distinct explanations of behaviour",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "the common definition of adaptation",
+      "predicate": "is a",
+      "object": "central concept in evolution",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "trait can have a current function that",
+      "predicate": "is",
+      "object": "adaptive without being an adaptation in this sense",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "because adaptation",
+      "predicate": "is",
+      "object": "often construed as implying that it was selected for due to past function",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "and the history of natural selection working on function to",
+      "predicate": "produce",
+      "object": "adaptations",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Differential_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wave_function_collapse"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Human_vestigiality"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Naked_Woman"
+    }
+  ],
+  "ts": "2026-11-03T21:45:31.322593+00:00"
+}

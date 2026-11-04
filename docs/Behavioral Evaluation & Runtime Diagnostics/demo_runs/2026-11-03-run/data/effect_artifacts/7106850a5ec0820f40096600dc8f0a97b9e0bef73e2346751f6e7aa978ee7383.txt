@@ -1,0 +1,130 @@
+{
+  "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "time"
+  ],
+  "entities": [
+    "The philosophy of space and time",
+    "both an inspiration for and a central aspect of early analytic philosophy",
+    "and Confucius The history of philosophy",
+    "systematic study of the development of philosophical thought",
+    "Persian philosophy",
+    "strongly influenced by Ancient Greek philosophers",
+    "Indian philosophy",
+    "characterized by its combined interest in the nature of reality",
+    "Subsequent Indian philosophy",
+    "often divided into orthodox schools",
+    "Central topics in Chinese philosophy",
+    "right social conduct",
+    "The modern period in Chinese philosophy",
+    "characterized by its encounter with Western philosophy",
+    "Other influential traditions in the history of philosophy",
+    "Japanese philosophy"
+  ],
+  "relations": [
+    {
+      "subject": "The philosophy of space and time",
+      "predicate": "was",
+      "object": "both an inspiration for and a central aspect of early analytic philosophy",
+      "source": "my prior claims [g_ca60a04e79]"
+    },
+    {
+      "subject": "and Confucius The history of philosophy",
+      "predicate": "is the",
+      "object": "systematic study of the development of philosophical thought",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Persian philosophy",
+      "predicate": "was",
+      "object": "strongly influenced by Ancient Greek philosophers",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Indian philosophy",
+      "predicate": "is",
+      "object": "characterized by its combined interest in the nature of reality",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Subsequent Indian philosophy",
+      "predicate": "is",
+      "object": "often divided into orthodox schools",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Central topics in Chinese philosophy",
+      "predicate": "were",
+      "object": "right social conduct",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "The modern period in Chinese philosophy",
+      "predicate": "was",
+      "object": "characterized by its encounter with Western philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Other influential traditions in the history of philosophy",
+      "predicate": "were",
+      "object": "Japanese philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "excluded from the history of philosophy if their claims",
+      "predicate": "are",
+      "object": "not based on rational inquiry and argumentation",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Some theorists contend that the history of philosophy",
+      "predicate": "is an",
+      "object": "integral part of philosophy",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "Closely related to the history of philosophy",
+      "predicate": "is the",
+      "object": "historiograph",
+      "source": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "subject": "History of Western Philosophy when it first appeared in 1945",
+      "predicate": "were",
+      "object": "agreed about two things",
+      "source": "https://en.wikipedia.org/wiki/A_History_of_Western_Philosophy"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_ca60a04e79]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/A_History_of_Western_Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Unix_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy_in_Finland"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Practical_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Time_perception"
+    }
+  ],
+  "ts": "2026-11-03T11:07:50.340197+00:00"
+}

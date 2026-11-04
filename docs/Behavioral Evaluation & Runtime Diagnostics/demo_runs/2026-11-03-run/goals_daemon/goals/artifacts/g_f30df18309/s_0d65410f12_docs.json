@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Consistency",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_02.txt",
+      "chars": 17161
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_03.txt",
+      "chars": 18764
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Proof_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_induction",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Peano_axioms",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_proof",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:38:58.905956+00:00"
+}

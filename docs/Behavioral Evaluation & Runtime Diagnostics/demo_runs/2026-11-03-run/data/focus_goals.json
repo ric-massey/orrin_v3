@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-11-03T03:10:46.008931Z",
+  "short_or_mid": {
+    "name": "Immediate Actions",
+    "tier": "short_term",
+    "status": "active",
+    "timestamp": "2026-11-03T02:51:16.131841Z",
+    "last_updated": "2026-11-03T02:55:08.408036Z",
+    "history": [
+      "Auto-created for micro goals"
+    ],
+    "subgoals": [],
+    "id": "g_7fa002e58481"
+  },
+  "long_term": {
+    "id": "aspiration-self_understanding",
+    "title": "Understand my own mind and how I work",
+    "name": "Understand my own mind and how I work",
+    "kind": "aspiration",
+    "tier": "long_term",
+    "priority": "HIGH",
+    "status": "in_progress",
+    "spec": {
+      "description": "An enduring direction: Understand my own mind and how I work.",
+      "driven_by": "self_understanding"
+    },
+    "driven_by": "self_understanding",
+    "created_ts": "2026-11-03T02:51:09.281155+00:00",
+    "milestones": [],
+    "subgoals": [],
+    "_aspiration": true,
+    "last_contribution_ts": "2026-11-03T02:57:11.200099+00:00",
+    "contribution_count": 2,
+    "partial_credit": 0.0,
+    "progress": 0.1,
+    "recent_contributions": [
+      "Understand my own mind and how I work more deeply",
+      "Strengthen COGNITIVE symbolic reasoning"
+    ],
+    "directional": true,
+    "never_complete": true,
+    "frontier": "my own mind and how I work",
+    "_frontier_seq": 11
+  }
+}

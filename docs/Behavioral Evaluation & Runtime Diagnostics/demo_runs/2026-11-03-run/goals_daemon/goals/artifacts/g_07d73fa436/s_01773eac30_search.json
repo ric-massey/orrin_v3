@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "formal logic open problems",
+    "formal logic criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+    "https://en.wikipedia.org/wiki/Formal_system",
+    "https://en.wikipedia.org/wiki/Description_logic",
+    "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+    "https://en.wikipedia.org/wiki/Formal_proof",
+    "https://en.wikipedia.org/wiki/Logic",
+    "https://en.wikipedia.org/wiki/Mathematical_logic",
+    "https://en.wikipedia.org/wiki/History_of_logic",
+    "https://en.wikipedia.org/wiki/Argumentation_theory",
+    "https://en.wikipedia.org/wiki/Modal_logic"
+  ],
+  "results": [
+    {
+      "title": "Entscheidungsproblem",
+      "url": "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+      "snippet": "undecidable <span class=\"searchmatch\">problems</span>. Below it are the decidable <span class=\"searchmatch\">problems</span>. Furthermore, the decidable <span class=\"searchmatch\">problems</span> can be divided into a complexity hierarchy. Aristotelian <span class=\"searchmatch\">logic</span> considers",
+      "query": "formal logic open problems"
+    },
+    {
+      "title": "Formal system",
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "snippet": "equality used in first order <span class=\"searchmatch\">logic</span>. The two main types of deductive systems are proof systems and <span class=\"searchmatch\">formal</span> semantics. <span class=\"searchmatch\">Formal</span> proofs are sequences of well-formed",
+      "query": "formal logic open problems"
+    },
+    {
+      "title": "Description logic",
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "snippet": "Description <span class=\"searchmatch\">logics</span> (DL) are a family of <span class=\"searchmatch\">formal</span> knowledge representation languages. Many DLs are more expressive than propositional <span class=\"searchmatch\">logic</span> but less expressive",
+      "query": "formal logic open problems"
+    },
+    {
+      "title": "Boolean satisfiability problem",
+      "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and computer science, the Boolean satisfiability <span class=\"searchmatch\">problem</span> (sometimes called propositional satisfiability <span class=\"searchmatch\">problem</span> and abbreviated SATISFIABILITY",
+      "query": "formal logic open problems"
+    },
+    {
+      "title": "Formal proof",
+      "url": "https://en.wikipedia.org/wiki/Formal_proof",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and mathematics, a <span class=\"searchmatch\">formal</span> proof or derivation is a finite sequence of sentences (known as well-formed formulas when relating to <span class=\"searchmatch\">formal</span> language)",
+      "query": "formal logic open problems"
+    },
+    {
+      "title": "Logic",
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "snippet": "<span class=\"searchmatch\">Logic</span> is the study of correct reasoning. It includes both <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">and</span> informal <span class=\"searchmatch\">logic</span>. <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logic</span> is the study of deductively valid inferences or logical",
+      "query": "formal logic criticism and debate"
+    },
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "Mathematical <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within mathematics. This is commonly done by means of <span class=\"searchmatch\">formal</span> systems called <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "formal logic criticism and debate"
+    },
+    {
+      "title": "History of logic",
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "snippet": "The history of <span class=\"searchmatch\">logic</span> deals with the study of the development of the science of valid inference (<span class=\"searchmatch\">logic</span>). <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logics</span> developed in ancient times in India",
+      "query": "formal logic criticism and debate"
+    },
+    {
+      "title": "Argumentation theory",
+      "url": "https://en.wikipedia.org/wiki/Argumentation_theory",
+      "snippet": "origins in <span class=\"searchmatch\">logic</span>, dialectic <span class=\"searchmatch\">and</span> rhetoric, argumentation theory includes the arts <span class=\"searchmatch\">and</span> sciences of civil <span class=\"searchmatch\">debate</span>, dialogue, conversation <span class=\"searchmatch\">and</span> persuasion.",
+      "query": "formal logic criticism and debate"
+    },
+    {
+      "title": "Modal logic",
+      "url": "https://en.wikipedia.org/wiki/Modal_logic",
+      "snippet": "<span class=\"searchmatch\">logic</span>, since what ought to be true can be false. Modal <span class=\"searchmatch\">logics</span> are <span class=\"searchmatch\">formal</span> systems that include unary operators such as ◊ {\\displaystyle \\Diamond } <span class=\"searchmatch\">and</span>",
+      "query": "formal logic criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T03:36:18.010758+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "All names",
+    "All names explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/All_the_Names",
+    "https://en.wikipedia.org/wiki/All_in_Your_Name",
+    "https://en.wikipedia.org/wiki/All_in_the_Name_of_Love",
+    "https://en.wikipedia.org/wiki/All_the_Names_of_God",
+    "https://en.wikipedia.org/wiki/Name_All_the_Animals",
+    "https://en.wikipedia.org/wiki/Clarissa_Explains_It_All",
+    "https://en.wikipedia.org/wiki/List_of_Clarissa_Explains_It_All_episodes",
+    "https://en.wikipedia.org/wiki/Sister_Mary_Explains_It_All",
+    "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Trade_name"
+  ],
+  "results": [
+    {
+      "title": "All the Names",
+      "url": "https://en.wikipedia.org/wiki/All_the_Names",
+      "snippet": "<span class=\"searchmatch\">All</span> the <span class=\"searchmatch\">Names</span> (Portuguese: Todos os nomes) is a novel by the Portuguese author José Saramago, the recipient of the 1998 Nobel Prize in Literature. The",
+      "query": "All names"
+    },
+    {
+      "title": "All in Your Name",
+      "url": "https://en.wikipedia.org/wiki/All_in_Your_Name",
+      "snippet": "and it <span class=\"searchmatch\">all</span> came to this song &#039;<span class=\"searchmatch\">All</span> in Your <span class=\"searchmatch\">Name</span>&#039;. &#039;<span class=\"searchmatch\">All</span> in Your <span class=\"searchmatch\">Name</span>&#039; is in fact the message that Michael wanted to send out to <span class=\"searchmatch\">all</span> of his fans <span class=\"searchmatch\">all</span> over the",
+      "query": "All names"
+    },
+    {
+      "title": "All in the Name of Love",
+      "url": "https://en.wikipedia.org/wiki/All_in_the_Name_of_Love",
+      "snippet": "<span class=\"searchmatch\">All</span> in the <span class=\"searchmatch\">Name</span> of Love is the seventh studio album by R&amp;B group Atlantic Starr, released in March 1987 by Warner Bros. Records. The album peaked at number",
+      "query": "All names"
+    },
+    {
+      "title": "All the Names of God",
+      "url": "https://en.wikipedia.org/wiki/All_the_Names_of_God",
+      "snippet": "<span class=\"searchmatch\">All</span> the <span class=\"searchmatch\">Names</span> of God (Spanish: Todos los nombres de Dios) is a 2023 Spanish action thriller film directed by Daniel Calparsoro and written by Gemma Ventura",
+      "query": "All names"
+    },
+    {
+      "title": "Name All the Animals",
+      "url": "https://en.wikipedia.org/wiki/Name_All_the_Animals",
+      "snippet": "<span class=\"searchmatch\">Name</span> <span class=\"searchmatch\">All</span> the Animals is a 2004 memoir by Alison Smith, detailing the aftermath of the death of her eighteen-year-old brother. While attending Our Lady",
+      "query": "All names"
+    },
+    {
+      "title": "Clarissa Explains It All",
+      "url": "https://en.wikipedia.org/wiki/Clarissa_Explains_It_All",
+      "snippet": "characters. As Kriegman later <span class=\"searchmatch\">explained</span> &quot;after a while you kinda have to take a backseat and understand that it&#039;s CLARISSA <span class=\"searchmatch\">Explains</span> It <span class=\"searchmatch\">All</span>, not The Darling Family",
+      "query": "All names explained"
+    },
+    {
+      "title": "List of Clarissa Explains It All episodes",
+      "url": "https://en.wikipedia.org/wiki/List_of_Clarissa_Explains_It_All_episodes",
+      "snippet": "a list of episodes for the Nickelodeon children&#039;s sitcom Clarissa <span class=\"searchmatch\">Explains</span> It <span class=\"searchmatch\">All</span>, which aired from 1991 to 1994. The series lasted five seasons, each",
+      "query": "All names explained"
+    },
+    {
+      "title": "Sister Mary Explains It All",
+      "url": "https://en.wikipedia.org/wiki/Sister_Mary_Explains_It_All",
+      "snippet": "Sister Mary <span class=\"searchmatch\">Explains</span> It <span class=\"searchmatch\">All</span> is a 2001 satirical dark comedy film written by Christopher Durang and directed by Marshall Brickman. The film, based upon",
+      "query": "All names explained"
+    },
+    {
+      "title": "Explainable artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "snippet": "Right to explanation – Right to have an algorithm <span class=\"searchmatch\">explained</span> Longo, Luca; et al. (2024). &quot;<span class=\"searchmatch\">Explainable</span> Artificial Intelligence (XAI) 2.0: A manifesto of",
+      "query": "All names explained"
+    },
+    {
+      "title": "Trade name",
+      "url": "https://en.wikipedia.org/wiki/Trade_name",
+      "snippet": "2026-07-15. Business <span class=\"searchmatch\">Names</span> Act, R.S.O. 1990, c. B.17, s. 2(6) India, Masters. &quot;Legal <span class=\"searchmatch\">Name</span> vs. Trade <span class=\"searchmatch\">Name</span> under GST: Differences <span class=\"searchmatch\">Explained</span>&quot;. Masters India.",
+      "query": "All names explained"
+    }
+  ],
+  "ts": "2026-11-03T16:38:55.217399+00:00"
+}

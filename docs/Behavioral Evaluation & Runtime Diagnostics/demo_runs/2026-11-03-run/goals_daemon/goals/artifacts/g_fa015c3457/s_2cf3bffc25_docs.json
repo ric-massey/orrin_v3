@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Moby-Dick",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jonestown",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fuzzy_concept",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Deism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Heraclitus",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexander_Zinoviev",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fa015c3457/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T22:18:33.735764+00:00"
+}

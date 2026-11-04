@@ -1,0 +1,2755 @@
+[
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.741,
+    "ts": 1793758810.983713,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.71,
+    "ts": 1793758815.570891,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering [Incubation insight] By analogy (DESIGN, similarity 36%): Failure",
+    "source": "binding",
+    "salience": 0.9,
+    "ts": 1793758826.3703392,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge",
+      "memory": "[Incubation insight] By analogy (DESIGN, similarity 36%): Failure pattern: 2 similar goal failures — recurring theme: ab"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal",
+      "subconscious"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.68,
+    "ts": 1793758830.913769
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.884,
+    "ts": 1793758839.873313,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.761
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793758844.989568,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.681,
+    "ts": 1793758852.130646,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.753
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.723,
+    "ts": 1793758858.9684749,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.698,
+    "ts": 1793758866.800151,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.553,
+    "ts": 1793758873.474477,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working: A strong feeling of something worth doing. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.065,
+    "ts": 1793758884.342592,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.787
+      },
+      "event": "A strong feeling of something worth doing.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793758889.371275,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.18,
+    "ts": 1793758894.615523,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "affect": {
+        "motivation": 0.775
+      },
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.786,
+    "ts": 1793758899.559915
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — remembering [Incubation insight] By analogy (DESIGN, similarity 36%): Failure",
+    "source": "binding",
+    "salience": 0.804,
+    "ts": 1793758903.4971578,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge",
+      "memory": "[Incubation insight] By analogy (DESIGN, similarity 36%): Failure pattern: 2 similar goal failures — recurring theme: ab"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal",
+      "subconscious"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.614,
+    "ts": 1793758922.578558,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.806,
+    "ts": 1793758929.933951,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.78,
+    "ts": 1793758934.702632,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.893,
+    "ts": 1793758938.888536,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.729
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.723,
+    "ts": 1793758944.319036,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "binding",
+    "salience": 0.807,
+    "ts": 1793758950.1888902,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "signal",
+    "salience": 0.697,
+    "ts": 1793758955.06636
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.966,
+    "ts": 1793758964.2120981,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.555,
+    "ts": 1793758968.889319,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.739,
+    "ts": 1793758974.469881,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.522,
+    "ts": 1793758979.7054698,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.892,
+    "ts": 1793758986.253355,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.779
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793758991.8551319,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.08,
+    "ts": 1793759004.189219,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.825
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793759013.9270148,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.022,
+    "ts": 1793759022.681082,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.879
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "affect_hijack",
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.679,
+    "ts": 1793759027.9900851,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.813,
+    "ts": 1793759037.444962,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.857
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.781,
+    "ts": 1793759043.612323
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.663,
+    "ts": 1793759056.0644832,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793759062.698637,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — drive — remembering [Incubation insight] By analogy (DESIGN, similarity 36%):",
+    "source": "binding",
+    "salience": 1.072,
+    "ts": 1793759077.438161,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "affect": {
+        "motivation": 0.818
+      },
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge",
+      "memory": "[Incubation insight] By analogy (DESIGN, similarity 36%): Failure pattern: 2 similar goal failures — recurring theme: ab"
+    },
+    "object": "understand",
+    "members": [
+      "affect",
+      "signal",
+      "goal",
+      "subconscious"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.753,
+    "ts": 1793759084.029891
+  },
+  {
+    "content": "A strong feeling of something worth doing.",
+    "source": "binding",
+    "salience": 0.817,
+    "ts": 1793759091.75783,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759097.3537421,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.74,
+    "ts": 1793759105.667565,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.733,
+    "ts": 1793759112.5499141,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.897,
+    "ts": 1793759125.382153,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.792
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.785,
+    "ts": 1793759130.622655
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.816,
+    "ts": 1793759138.138243,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.79
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1793759144.837761,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.661,
+    "ts": 1793759180.1320739,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 1.017,
+    "ts": 1793759189.1590111,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.793
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759193.6525528,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.835,
+    "ts": 1793759198.6123252,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.707,
+    "ts": 1793759204.316271
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.813,
+    "ts": 1793759210.157274,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.782
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.578,
+    "ts": 1793759215.137248,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.586,
+    "ts": 1793759222.936651,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.776
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.574,
+    "ts": 1793759227.699519,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working — remembering [memory] [goal_pursuit] Working on 'Strengthen SOCIAL symbolic reasoning' — step: Write one concrete thing learned about — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.78,
+    "ts": 1793759232.894528,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge",
+      "memory": "[memory] [goal_pursuit] Working on 'Strengthen SOCIAL symbolic reasoning' — step: Write one concrete thing learned about"
+    },
+    "object": "working",
+    "members": [
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "entity:working"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793759240.10778,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.644,
+    "ts": 1793759249.121996
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.05,
+    "ts": 1793759255.944939,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.724,
+    "ts": 1793759259.679093
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.818,
+    "ts": 1793759278.403209,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.746
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.737,
+    "ts": 1793759290.248272,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.707,
+    "ts": 1793759312.045001,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.787,
+    "ts": 1793759317.087091,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1793759323.285953,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759363.104162,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.7,
+    "ts": 1793759368.4971972
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.842,
+    "ts": 1793759373.914651,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.804
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.877,
+    "ts": 1793759379.400351,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.561,
+    "ts": 1793759390.648208
+  },
+  {
+    "content": "A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 0.767,
+    "ts": 1793759400.9722502,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.818
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759406.1393652,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.961,
+    "ts": 1793759410.178828,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.802
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759415.683697,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.792,
+    "ts": 1793759420.948211,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.849,
+    "ts": 1793759426.571438,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.777,
+    "ts": 1793759440.34758,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.622,
+    "ts": 1793759446.808528,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.721,
+    "ts": 1793759453.603847,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.792
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.5,
+    "ts": 1793759459.314534,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759467.681025,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.63,
+    "ts": 1793759476.5211039,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.756
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.7,
+    "ts": 1793759484.591767
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.704,
+    "ts": 1793759489.365591,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.886,
+    "ts": 1793759503.492616,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.766
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.649,
+    "ts": 1793759509.512695
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.709,
+    "ts": 1793759514.667617,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759520.3913689,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — drive",
+    "source": "binding",
+    "salience": 0.901,
+    "ts": 1793759527.3547719,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "motivation": 0.803
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.548,
+    "ts": 1793759533.619019,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — curiosity",
+    "source": "binding",
+    "salience": 0.916,
+    "ts": 1793759545.58175,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.839
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.644,
+    "ts": 1793759555.2865238,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of things going well",
+    "source": "affect",
+    "salience": 0.836,
+    "ts": 1793759564.133162,
+    "focus_signal": "reward_positive"
+  },
+  {
+    "content": "a persistent sense of motivation keeps pressing into awareness",
+    "source": "signal",
+    "salience": 0.666,
+    "ts": 1793759576.9621131
+  },
+  {
+    "content": "just chose to assess goal progress — remembering [Incubation insight] By analogy (DESIGN, similarity 36%): Failure pattern: 2 similar goal failures — recurring theme: ab — toward Understand Saltiness ",
+    "source": "binding",
+    "salience": 0.739,
+    "ts": 1793759590.120831,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "goal": "Understand Saltiness and sourness more deeply — round 4",
+      "goal_id": "g_24a79a0c24",
+      "event": "just chose to assess goal progress",
+      "memory": "[Incubation insight] By analogy (DESIGN, similarity 36%): Failure pattern: 2 similar goal failures — recurring theme: ab"
+    },
+    "object": "goal",
+    "members": [
+      "goal",
+      "action",
+      "subconscious"
+    ],
+    "referent_links": [
+      "entity:goal",
+      "goal_relevance"
+    ],
+    "goal_id": "g_24a79a0c24"
+  },
+  {
+    "content": "working toward: Turn what I know about Saltiness and sourness — round 4 into a written synthesis",
+    "source": "goal",
+    "salience": 0.707,
+    "ts": 1793759600.93869,
+    "goal_id": "intrinsic-2026-11-04T02:33:16.210652+00:00"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "binding",
+    "salience": 0.893,
+    "ts": 1793759605.868611,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.761,
+    "ts": 1793759611.756902,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "just chose to assess goal progress — things going well — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 1.053,
+    "ts": 1793759637.0887492,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "reward_positive": 0.906
+      },
+      "event": "just chose to assess goal progress",
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "action",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:goal"
+    ]
+  },
+  {
+    "content": "a strong sense of curiosity",
+    "source": "affect",
+    "salience": 0.881,
+    "ts": 1793759642.603712,
+    "focus_signal": "exploration_drive"
+  },
+  {
+    "content": "A strong feeling of curiosity. — curiosity",
+    "source": "binding",
+    "salience": 1.051,
+    "ts": 1793759651.3006651,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "exploration_drive": 0.878
+      },
+      "event": "A strong feeling of curiosity."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.879,
+    "ts": 1793759657.9197109,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of things going well.",
+    "source": "binding",
+    "salience": 0.998,
+    "ts": 1793759662.4855528,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of things going well."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.856,
+    "ts": 1793759668.336533
+  },
+  {
+    "content": "goal: A strong feeling of things going well. — things going well — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 1.108,
+    "ts": 1793759673.554927,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "event": "A strong feeling of things going well.",
+      "affect": {
+        "reward_positive": 0.808
+      },
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "signal",
+      "signal",
+      "affect",
+      "signal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759678.2346969,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "goal — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 0.948,
+    "ts": 1793759687.10307,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.795
+      },
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.66,
+    "ts": 1793759691.967515,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.847,
+    "ts": 1793759697.752251,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.652,
+    "ts": 1793759703.545459,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "A strong feeling of things going well.",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1793759709.525475,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of things going well."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.833,
+    "ts": 1793759715.2678049
+  },
+  {
+    "content": "A strong feeling of things going well. — something worth doing",
+    "source": "binding",
+    "salience": 1.019,
+    "ts": 1793759727.576454,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of things going well.",
+      "affect": {
+        "expected_gain": 0.764
+      }
+    },
+    "members": [
+      "signal",
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1793759732.184206,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.933,
+    "ts": 1793759737.58708,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.845,
+    "ts": 1793759742.909076,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.579,
+    "ts": 1793759752.707582
+  },
+  {
+    "content": "working — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.998,
+    "ts": 1793759762.546226,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.754
+      },
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.837,
+    "ts": 1793759767.828426,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.185,
+    "ts": 1793759772.2685928,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.788
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793759778.91189,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.006,
+    "ts": 1793759784.086993,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.84
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.658,
+    "ts": 1793759789.427376,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "goal — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.141,
+    "ts": 1793759797.345728,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.829
+      },
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge",
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "goal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.741,
+    "ts": 1793759802.359222
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.205,
+    "ts": 1793759806.530996,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "affect": {
+        "motivation": 0.838
+      },
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "signal",
+    "salience": 0.814,
+    "ts": 1793759811.218643
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.996,
+    "ts": 1793759816.0007098,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "affect": {
+        "motivation": 0.815
+      },
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.814,
+    "ts": 1793759821.7148778,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.843,
+    "ts": 1793759832.4749708,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "understand: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.189,
+    "ts": 1793759844.598849,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.772
+      },
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.65,
+    "ts": 1793759849.293556
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.959,
+    "ts": 1793759853.3080902,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "expected_gain": 0.732
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.785,
+    "ts": 1793759858.072806,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of drive.",
+    "source": "binding",
+    "salience": 0.899,
+    "ts": 1793759866.38908,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.772,
+    "ts": 1793759871.8623412,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.859,
+    "ts": 1793759877.2216692,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.585,
+    "ts": 1793759893.8289611,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand my own mind and how I work",
+    "source": "binding",
+    "salience": 0.855,
+    "ts": 1793759908.5031471,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand my own mind and how I work",
+      "goal_id": "aspiration-self_understanding"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance",
+      "lexical"
+    ],
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.537,
+    "ts": 1793759916.571604,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.96,
+    "ts": 1793759921.502052,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.799
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.564,
+    "ts": 1793759926.9589498,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.905,
+    "ts": 1793759936.347348,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.798
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1793759941.8360488,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.759,
+    "ts": 1793759946.1989272,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.797
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.753,
+    "ts": 1793759951.4870899
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.88,
+    "ts": 1793759956.773265,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.817,
+    "ts": 1793759962.2337961,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working: A strong feeling of something worth doing. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.19,
+    "ts": 1793759972.607809,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.8
+      },
+      "event": "A strong feeling of something worth doing.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.751,
+    "ts": 1793759978.108048
+  },
+  {
+    "content": "goal: A strong feeling of something worth doing. — drive",
+    "source": "binding",
+    "salience": 1.091,
+    "ts": 1793759983.212435,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.852
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "action"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Make things — produce work that didn't exist before",
+    "source": "goal",
+    "salience": 0.708,
+    "ts": 1793759988.627994,
+    "goal_id": "aspiration-output_producing"
+  },
+  {
+    "content": "goal: A strong feeling of something worth doing. — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 0.891,
+    "ts": 1793759993.536098,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.853
+      },
+      "event": "A strong feeling of something worth doing.",
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793759997.694356,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "goal: A strong feeling of drive. — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 1.091,
+    "ts": 1793760004.881993,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.852
+      },
+      "event": "A strong feeling of drive.",
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.879,
+    "ts": 1793760009.4356859,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "goal: A strong feeling of drive. — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 0.89,
+    "ts": 1793760013.9419231,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.85
+      },
+      "event": "A strong feeling of drive.",
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.781,
+    "ts": 1793760019.7911959
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 1.202,
+    "ts": 1793760025.3699698,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.831
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.779,
+    "ts": 1793760032.253164,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.996,
+    "ts": 1793760052.811643,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.811
+      },
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.679,
+    "ts": 1793760058.2286131,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working: A strong feeling of drive. — drive — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.797,
+    "ts": 1793760063.194344,
+    "kind": "situation",
+    "facets": {
+      "object": "working",
+      "affect": {
+        "motivation": 0.817
+      },
+      "event": "A strong feeling of drive.",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "working",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.666,
+    "ts": 1793760069.068018,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "goal: A strong feeling of drive. — drive — remembering 💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError",
+    "source": "binding",
+    "salience": 1.076,
+    "ts": 1793760074.8866,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "motivation": 0.79
+      },
+      "memory": "💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError"
+    },
+    "object": "goal",
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal",
+      "thought"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.808,
+    "ts": 1793760080.1439471
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.951,
+    "ts": 1793760088.300425,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793760093.478656,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 1.007,
+    "ts": 1793760097.91847,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.767
+      },
+      "event": "A strong feeling of drive."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.843,
+    "ts": 1793760103.558537,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of drive. — something worth doing",
+    "source": "binding",
+    "salience": 0.806,
+    "ts": 1793760109.0924401,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of drive.",
+      "affect": {
+        "expected_gain": 0.757
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1793760113.8310988,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.999,
+    "ts": 1793760121.810441,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.748
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.774,
+    "ts": 1793760140.66436
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.796,
+    "ts": 1793760146.493123,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.739
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.607,
+    "ts": 1793760151.089046,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.97,
+    "ts": 1793760159.325408,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.736
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "working toward: Be genuinely useful and connected to the people I talk to",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793760163.752776,
+    "goal_id": "aspiration-genuine_contact"
+  },
+  {
+    "content": "A strong feeling of self-assurance. — drive",
+    "source": "binding",
+    "salience": 0.801,
+    "ts": 1793760168.861234,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.73
+      }
+    },
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of self-assurance",
+    "source": "affect",
+    "salience": 0.638,
+    "ts": 1793760175.8001769,
+    "focus_signal": "confidence"
+  },
+  {
+    "content": "goal: A strong feeling of self-assurance. — drive — remembering [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I",
+    "source": "binding",
+    "salience": 1.051,
+    "ts": 1793760181.8875709,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "event": "A strong feeling of self-assurance.",
+      "affect": {
+        "motivation": 0.737
+      },
+      "memory": "[Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I "
+    },
+    "object": "goal",
+    "members": [
+      "signal",
+      "affect",
+      "signal",
+      "signal",
+      "subconscious"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.848,
+    "ts": 1793760186.771926,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "goal: A strong feeling of self-assurance. — drive — remembering [Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I",
+    "source": "binding",
+    "salience": 0.854,
+    "ts": 1793760196.079317,
+    "kind": "situation",
+    "facets": {
+      "object": "goal",
+      "affect": {
+        "motivation": 0.76
+      },
+      "event": "A strong feeling of self-assurance.",
+      "memory": "[Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I "
+    },
+    "object": "goal",
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal",
+      "subconscious"
+    ],
+    "referent_links": [
+      "appraisal_cause",
+      "lexical"
+    ]
+  },
+  {
+    "content": "A strong feeling of curiosity.",
+    "source": "signal",
+    "salience": 0.728,
+    "ts": 1793760200.7282429
+  },
+  {
+    "content": "A strong feeling of self-assurance.",
+    "source": "binding",
+    "salience": 0.877,
+    "ts": 1793760219.626702,
+    "kind": "situation",
+    "facets": {
+      "event": "A strong feeling of self-assurance."
+    },
+    "members": [
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressure 0.67)",
+    "source": "signal",
+    "salience": 0.82,
+    "ts": 1793760224.8713548
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.804,
+    "ts": 1793760234.015591,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.85,
+    "ts": 1793760244.7291,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "working toward: Understand the world more deeply",
+    "source": "goal",
+    "salience": 0.694,
+    "ts": 1793760250.078484,
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.933,
+    "ts": 1793760254.753258,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.733
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "[Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError', I n",
+    "source": "subconscious",
+    "salience": 0.63,
+    "ts": 1793760259.978227,
+    "subconscious_relevance": 0.333,
+    "subconscious_gate": "relevant"
+  },
+  {
+    "content": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu — toward Understand the world more deeply",
+    "source": "binding",
+    "salience": 0.815,
+    "ts": 1793760268.0435042,
+    "kind": "situation",
+    "facets": {
+      "object": "understand",
+      "event": "Mastery drive: I want to understand my own systems — how I actually work, what's in my memory, what my tools do. (pressu",
+      "goal": "Understand the world more deeply",
+      "goal_id": "aspiration-world_knowledge"
+    },
+    "object": "understand",
+    "members": [
+      "signal",
+      "goal"
+    ],
+    "referent_links": [
+      "entity:understand",
+      "goal_relevance"
+    ],
+    "goal_id": "aspiration-world_knowledge"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.552,
+    "ts": 1793760274.501846,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.701,
+    "ts": 1793760281.454037,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.758
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.768,
+    "ts": 1793760287.108217,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "working toward: Understand my own mind and how I work",
+    "source": "goal",
+    "salience": 0.7,
+    "ts": 1793760291.973539,
+    "goal_id": "aspiration-self_understanding"
+  },
+  {
+    "content": "A strong feeling of something worth doing. — something worth doing",
+    "source": "binding",
+    "salience": 0.732,
+    "ts": 1793760307.540407,
+    "kind": "situation",
+    "facets": {
+      "affect": {
+        "expected_gain": 0.777
+      },
+      "event": "A strong feeling of something worth doing."
+    },
+    "members": [
+      "affect",
+      "signal",
+      "signal",
+      "signal"
+    ],
+    "referent_links": [
+      "lexical"
+    ]
+  },
+  {
+    "content": "a strong sense of drive",
+    "source": "affect",
+    "salience": 0.559,
+    "ts": 1793760315.388868,
+    "focus_signal": "motivation"
+  },
+  {
+    "content": "a strong sense of something worth doing",
+    "source": "affect",
+    "salience": 0.721,
+    "ts": 1793760322.631613,
+    "focus_signal": "expected_gain"
+  },
+  {
+    "content": "[Incubation] While sitting with: '💔 Goal failed: Answer: What actually is Saltiness and sourness, beyond the mentions I keep seeing? — round 2. ValueError', I n",
+    "source": "subconscious",
+    "salience": 0.51,
+    "ts": 1793760332.6785789,
+    "subconscious_relevance": 1.0,
+    "subconscious_gate": "relevant"
+  }
+]

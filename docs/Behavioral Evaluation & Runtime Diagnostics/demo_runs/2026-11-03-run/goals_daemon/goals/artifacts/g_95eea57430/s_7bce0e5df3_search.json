@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "Sawdust history and development",
+    "Sawdust applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Sawdust",
+    "https://en.wikipedia.org/wiki/History_of_bread",
+    "https://en.wikipedia.org/wiki/Wood-waste_burner",
+    "https://en.wikipedia.org/wiki/Briquette",
+    "https://en.wikipedia.org/wiki/Great_Lakes",
+    "https://en.wikipedia.org/wiki/Chopper_pump",
+    "https://en.wikipedia.org/wiki/Pie_and_mash",
+    "https://en.wikipedia.org/wiki/Truss"
+  ],
+  "results": [
+    {
+      "title": "Sawdust",
+      "url": "https://en.wikipedia.org/wiki/Sawdust",
+      "snippet": "<span class=\"searchmatch\">Sawdust</span> (or wood dust) is a by-product or waste product of woodworking operations such as sawing, sanding, milling <span class=\"searchmatch\">and</span> routing. It is composed of very",
+      "query": "Sawdust history and development"
+    },
+    {
+      "title": "History of bread",
+      "url": "https://en.wikipedia.org/wiki/History_of_bread",
+      "snippet": "often adulterated with hazardous materials, including chalk, <span class=\"searchmatch\">sawdust</span>, alum, plaster, clay <span class=\"searchmatch\">and</span> ammonium carbonate. Frederick Accum was the first to raise",
+      "query": "Sawdust history and development"
+    },
+    {
+      "title": "Wood-waste burner",
+      "url": "https://en.wikipedia.org/wiki/Wood-waste_burner",
+      "snippet": "United States <span class=\"searchmatch\">and</span> a beehive burner in Canada, is a free-standing structure designed to burn waste wood from logging yards <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">sawdust</span> from sawmills.",
+      "query": "Sawdust history and development"
+    },
+    {
+      "title": "Briquette",
+      "url": "https://en.wikipedia.org/wiki/Briquette",
+      "snippet": "other combustible biomass material (e.g. charcoal, <span class=\"searchmatch\">sawdust</span>, wood chips, peat, or paper) used for fuel <span class=\"searchmatch\">and</span> kindling to start a fire. The term is a French word",
+      "query": "Sawdust history and development"
+    },
+    {
+      "title": "Great Lakes",
+      "url": "https://en.wikipedia.org/wiki/Great_Lakes",
+      "snippet": "Fish Commission determined that the dumping of sawmill waste (chips <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">sawdust</span>) had impacted fish populations. The first U.S. Clean Water Act, passed",
+      "query": "Sawdust history and development"
+    },
+    {
+      "title": "Sawdust",
+      "url": "https://en.wikipedia.org/wiki/Sawdust",
+      "snippet": "<span class=\"searchmatch\">Sawdust</span> (or wood dust) is a by-product or waste product of woodworking operations such as sawing, sanding, milling <span class=\"searchmatch\">and</span> routing. It is composed of very",
+      "query": "Sawdust applications and examples"
+    },
+    {
+      "title": "Chopper pump",
+      "url": "https://en.wikipedia.org/wiki/Chopper_pump",
+      "snippet": "need for macerating <span class=\"searchmatch\">and</span> pumping manure in agricultural <span class=\"searchmatch\">applications</span>. Manure with high solids content, containing straw <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">sawdust</span>, would clog up other",
+      "query": "Sawdust applications and examples"
+    },
+    {
+      "title": "Briquette",
+      "url": "https://en.wikipedia.org/wiki/Briquette",
+      "snippet": "other combustible biomass material (e.g. charcoal, <span class=\"searchmatch\">sawdust</span>, wood chips, peat, or paper) used for fuel <span class=\"searchmatch\">and</span> kindling to start a fire. The term is a French word",
+      "query": "Sawdust applications and examples"
+    },
+    {
+      "title": "Pie and mash",
+      "url": "https://en.wikipedia.org/wiki/Pie_and_mash",
+      "snippet": "Traditionally, pie <span class=\"searchmatch\">and</span> mash shops have large, open windows, long, marble-topped tables, <span class=\"searchmatch\">and</span> tiled walls. Originally, the floor was wood covered in <span class=\"searchmatch\">sawdust</span>; removal",
+      "query": "Sawdust applications and examples"
+    },
+    {
+      "title": "Truss",
+      "url": "https://en.wikipedia.org/wiki/Truss",
+      "snippet": "exterior envelope remains unobstructed <span class=\"searchmatch\">and</span> it can therefore be used for windows <span class=\"searchmatch\">and</span> door openings. In some <span class=\"searchmatch\">applications</span> this is preferable to a braced-frame",
+      "query": "Sawdust applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T20:40:04.664363+00:00"
+}

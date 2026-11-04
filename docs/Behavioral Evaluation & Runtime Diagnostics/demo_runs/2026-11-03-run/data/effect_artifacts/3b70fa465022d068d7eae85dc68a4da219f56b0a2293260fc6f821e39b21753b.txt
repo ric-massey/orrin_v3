@@ -1,0 +1,8 @@
+What I learned about theory more deeply:
+
+- [will] I resolve (held lightly, strength 0.20) to: pursue: Understand may specifically more deeply — This doesn't clearly connect to my values yet — I'll hold it lightly.
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Understand theory more deeply — This doesn't clearly connect… / [will] I resolve (held lightly, strength 0.20) to: pursue: Understand Sisu more deeply — This doesn't clearly connect…]
+- [Chunk: 💔 Goal failed: Understand Sisu more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap / [emotion/cause]… / 💔 Goal failed: Leave Ric a note about the world. steps_unreachable: 3 steps abandoned at the 3-attempt cap /…]
+- [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand physical system more deeply — This doesn't clearly', I notice a connection to something from memory: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand physical system more deeply — This doesn't clearly'. These may be related in ways I haven't consciously examined.
+- [Chunk: [will] I resolve to: pursue: Understand talk more deeply — I stand behind this. (strength 0. / [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.]
+- [Chunk: 💔 Goal failed: Understand evolutionary biology and cooperation more deeply — round 3. ValueError: no URLs to fetch / 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch]

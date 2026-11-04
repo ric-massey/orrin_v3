@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_02.txt",
+      "chars": 2397
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Around_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_04.txt",
+      "chars": 2548
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_World_Is_Yours",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_05.txt",
+      "chars": 2045
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_09.txt",
+      "chars": 16851
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/aspiration-world_knowledge/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:46:44.624980+00:00"
+}

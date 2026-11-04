@@ -1,0 +1,32 @@
+{
+  "COGNITIVE": {
+    "domain": "COGNITIVE",
+    "confidence": 0.7,
+    "events": [
+      {
+        "timestamp": "2026-11-04T01:29:26.695536Z",
+        "goal": "Strengthen TECHNICAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      },
+      {
+        "timestamp": "2026-11-04T01:31:22.650832Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.7
+      }
+    ]
+  },
+  "SOCIAL": {
+    "domain": "SOCIAL",
+    "confidence": 0.85,
+    "events": [
+      {
+        "timestamp": "2026-11-04T01:31:22.650832Z",
+        "goal": "Strengthen SOCIAL symbolic reasoning",
+        "delta": -0.15,
+        "new_confidence": 0.85
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "question": "What actually is Products, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "products"
+  ],
+  "entities": [
+    "Sawdust",
+    "by-product of lumber production",
+    "by-product or byproduct",
+    "secondary product derived from a production process",
+    "By-products",
+    "sometimes called co-products to indicate that although they are secondary",
+    "There",
+    "no strict distinction between by-products and co-products",
+    "of joint production processing costs when the by-product",
+    "produced",
+    "Articles with short description Short description",
+    "different from Wikidata Search Search By-product 30 languages Add topic",
+    "Their products",
+    "used in many industries including military",
+    "In Europe the products",
+    "branded Peli"
+  ],
+  "relations": [
+    {
+      "subject": "Sawdust",
+      "predicate": "is a",
+      "object": "by-product of lumber production",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "by-product or byproduct",
+      "predicate": "is a",
+      "object": "secondary product derived from a production process",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "By-products",
+      "predicate": "are",
+      "object": "sometimes called co-products to indicate that although they are secondary",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "There",
+      "predicate": "is",
+      "object": "no strict distinction between by-products and co-products",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "of joint production processing costs when the by-product",
+      "predicate": "is",
+      "object": "produced",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "Articles with short description Short description",
+      "predicate": "is",
+      "object": "different from Wikidata Search Search By-product 30 languages Add topic",
+      "source": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "subject": "Their products",
+      "predicate": "are",
+      "object": "used in many industries including military",
+      "source": "https://en.wikipedia.org/wiki/Pelican_Products"
+    },
+    {
+      "subject": "In Europe the products",
+      "predicate": "are",
+      "object": "branded Peli",
+      "source": "https://en.wikipedia.org/wiki/Pelican_Products"
+    },
+    {
+      "subject": "Pelican protector case Pelican Products flagship products",
+      "predicate": "are",
+      "object": "their Pelican cases",
+      "source": "https://en.wikipedia.org/wiki/Pelican_Products"
+    },
+    {
+      "subject": "product",
+      "predicate": "is",
+      "object": "any object",
+      "source": "https://en.wikipedia.org/wiki/Product_%28business%29"
+    },
+    {
+      "subject": "Products",
+      "predicate": "are",
+      "object": "created through processes of design",
+      "source": "https://en.wikipedia.org/wiki/Product_%28business%29"
+    },
+    {
+      "subject": "the term product",
+      "predicate": "is",
+      "object": "also used in fields such as manufacturing",
+      "source": "https://en.wikipedia.org/wiki/Product_%28business%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Product"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/By-product"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sunbeam_Products"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Avon_Products"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pelican_Products"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/PnL_explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Product_%28business%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Halal"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cross_product"
+    }
+  ],
+  "ts": "2026-11-03T16:40:37.766128+00:00"
+}

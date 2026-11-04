@@ -1,0 +1,151 @@
+{
+  "goal": {
+    "id": "g_6fd39e7401",
+    "title": "Understand stoic philosophy and daily life more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "stoic philosophy and daily life history and development",
+        "stoic philosophy and daily life applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_f14d0f5a7f",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:22.634801Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:22.634809Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:22.634811Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:22.634813Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:22.634814Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "stoic philosophy and daily life was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about stoic philosophy and daily life was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-04T00:04:22.634895Z",
+      "question": "What actually is stoic philosophy and daily life, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-04 00:04:22.636456+00:00",
+    "updated_at": "2026-11-04 00:04:23.892708+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_a482a20221]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoicism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Spiritual_practice",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Aesthetics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6fd39e7401/doc_07.txt"
+    }
+  ],
+  "ts": "2026-11-04T00:04:29.883272+00:00"
+}

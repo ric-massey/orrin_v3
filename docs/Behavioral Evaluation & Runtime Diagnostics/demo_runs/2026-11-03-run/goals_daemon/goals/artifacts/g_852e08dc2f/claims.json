@@ -1,0 +1,65 @@
+{
+  "question": "What actually is They Live, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "live"
+  ],
+  "entities": [
+    "They Live",
+    "released by Universal Pictures in the United States on November 4",
+    "Development of a live-action Moana film",
+    "announced by Johnson in April 2023",
+    "The Ones Who Live",
+    "American post-apocalyptic horror drama television miniseries created by Scott M"
+  ],
+  "relations": [
+    {
+      "subject": "They Live",
+      "predicate": "was",
+      "object": "released by Universal Pictures in the United States on November 4",
+      "source": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "subject": "Development of a live-action Moana film",
+      "predicate": "was",
+      "object": "announced by Johnson in April 2023",
+      "source": "https://en.wikipedia.org/wiki/Moana_%282026_film%29"
+    },
+    {
+      "subject": "The Ones Who Live",
+      "predicate": "is an",
+      "object": "American post-apocalyptic horror drama television miniseries created by Scott M",
+      "source": "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Live"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_Live_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_Live_by_Night"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Live_and_Let_Live"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Mind%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Moana_%282026_film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live"
+    }
+  ],
+  "ts": "2026-11-03T21:44:01.043032+00:00"
+}

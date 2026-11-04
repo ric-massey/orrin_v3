@@ -1,0 +1,102 @@
+{
+  "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "memory",
+    "works",
+    "brain"
+  ],
+  "entities": [
+    "Memory loss",
+    "usually described as forgetfulness or a disorder such as amnesia",
+    "Although The Prince",
+    "written as if it were a traditional work in the mirrors for princes style",
+    "The Prince",
+    "sometimes claimed to be one of the first works of modern philosophy",
+    "these types of works",
+    "addressed only to hereditary princes",
+    "but as a",
+    "to legitimise his own work",
+    "who",
+    "known for fantasy works such as The Lord of the Rings",
+    "his fantasy works",
+    "aimed at providing a setting for it"
+  ],
+  "relations": [
+    {
+      "subject": "Memory loss",
+      "predicate": "is",
+      "object": "usually described as forgetfulness or a disorder such as amnesia",
+      "source": "my prior claims [g_bcafbac2b6]"
+    },
+    {
+      "subject": "Although The Prince",
+      "predicate": "was",
+      "object": "written as if it were a traditional work in the mirrors for princes style",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "The Prince",
+      "predicate": "is",
+      "object": "sometimes claimed to be one of the first works of modern philosophy",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "these types of works",
+      "predicate": "were",
+      "object": "addressed only to hereditary princes",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "but as a",
+      "predicate": "means",
+      "object": "to legitimise his own work",
+      "source": "https://en.wikipedia.org/wiki/Carl_Jung"
+    },
+    {
+      "subject": "who",
+      "predicate": "is",
+      "object": "known for fantasy works such as The Lord of the Rings",
+      "source": "https://en.wikipedia.org/wiki/Linguistics_in_science_fiction"
+    },
+    {
+      "subject": "his fantasy works",
+      "predicate": "were",
+      "object": "aimed at providing a setting for it",
+      "source": "https://en.wikipedia.org/wiki/Linguistics_in_science_fiction"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_bcafbac2b6]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sleep_deprivation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Carl_Jung"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Forever_%282014_TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fuzzy_concept"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Latin_phrases_%28full%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Linguistics_in_science_fiction"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Friedrich_Hayek"
+    }
+  ],
+  "ts": "2026-11-03T22:18:36.939915+00:00"
+}

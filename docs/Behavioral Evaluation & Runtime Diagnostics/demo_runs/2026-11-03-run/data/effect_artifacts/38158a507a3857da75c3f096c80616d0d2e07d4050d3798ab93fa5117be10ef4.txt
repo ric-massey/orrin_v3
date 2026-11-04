@@ -1,0 +1,130 @@
+{
+  "question": "What actually is physical system, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "physical",
+    "system"
+  ],
+  "entities": [
+    "map as an example of a physical system A physical system",
+    "collection of physical objects under study",
+    "Everything outside the system",
+    "known as the environment",
+    "An isolated system",
+    "one that has negligible interaction with its environment",
+    "Often a system in this sense",
+    "chosen to correspond to the more usual meaning of system",
+    "Because no measurable quantum system",
+    "isolated from its surroundings",
+    "The notion of physical system",
+    "so ubiquitous it is mentioned in almost every work in physics",
+    "physical and software components",
+    "deeply intertwined",
+    "The process control",
+    "often referred to as embedded systems"
+  ],
+  "relations": [
+    {
+      "subject": "map as an example of a physical system A physical system",
+      "predicate": "is a",
+      "object": "collection of physical objects under study",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "Everything outside the system",
+      "predicate": "is",
+      "object": "known as the environment",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "An isolated system",
+      "predicate": "is",
+      "object": "one that has negligible interaction with its environment",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "Often a system in this sense",
+      "predicate": "is",
+      "object": "chosen to correspond to the more usual meaning of system",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "Because no measurable quantum system",
+      "predicate": "is",
+      "object": "isolated from its surroundings",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "The notion of physical system",
+      "predicate": "is",
+      "object": "so ubiquitous it is mentioned in almost every work in physics",
+      "source": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "subject": "physical and software components",
+      "predicate": "are",
+      "object": "deeply intertwined",
+      "source": "https://en.wikipedia.org/wiki/Cyber-physical_system"
+    },
+    {
+      "subject": "The process control",
+      "predicate": "is",
+      "object": "often referred to as embedded systems",
+      "source": "https://en.wikipedia.org/wiki/Cyber-physical_system"
+    },
+    {
+      "subject": "the link between computational and physical elements by",
+      "predicate": "means",
+      "object": "of intelligent mechanisms",
+      "source": "https://en.wikipedia.org/wiki/Cyber-physical_system"
+    },
+    {
+      "subject": "physical symbol system has the necessary and sufficient",
+      "predicate": "means",
+      "object": "for general intelligent action",
+      "source": "https://en.wikipedia.org/wiki/Physical_symbol_system"
+    },
+    {
+      "subject": "symbol system hypothesis claims that both of the following",
+      "predicate": "are",
+      "object": "also examples of physical symbol systems",
+      "source": "https://en.wikipedia.org/wiki/Physical_symbol_system"
+    },
+    {
+      "subject": "physical property",
+      "predicate": "is",
+      "object": "any property of a physical system that is measurable",
+      "source": "https://en.wikipedia.org/wiki/Physical_property"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyber-physical_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_symbol_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_property"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_object"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Model"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_constant"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Outline_of_physical_science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+    }
+  ],
+  "ts": "2026-11-03T14:44:10.144724+00:00"
+}

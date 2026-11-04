@@ -1,0 +1,130 @@
+{
+  "question": "What is there about formal logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "formal",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "and Peano",
+    "most significant in the two-thousand-year history of logic",
+    "Mathematical logic",
+    "study of logic within mathematics",
+    "sometimes the field of computational complexity theory",
+    "also included together with mathematical logic",
+    "theory",
+    "not ordinarily considered a subfield of mathematical logic",
+    "logic",
+    "studied with rhetoric",
+    "History of logic Theories of logic",
+    "developed in many cultures in history",
+    "and was a comprehensive reference to symbolic logic as it",
+    "understood at the end of the"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_ee3f057314]"
+    },
+    {
+      "subject": "and Peano",
+      "predicate": "is the",
+      "object": "most significant in the two-thousand-year history of logic",
+      "source": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "subject": "Mathematical logic",
+      "predicate": "is the",
+      "object": "study of logic within mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "sometimes the field of computational complexity theory",
+      "predicate": "is",
+      "object": "also included together with mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "theory",
+      "predicate": "is",
+      "object": "not ordinarily considered a subfield of mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "logic",
+      "predicate": "was",
+      "object": "studied with rhetoric",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "History of logic Theories of logic",
+      "predicate": "were",
+      "object": "developed in many cultures in history",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "and was a comprehensive reference to symbolic logic as it",
+      "predicate": "was",
+      "object": "understood at the end of the",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "formal methods",
+      "predicate": "are",
+      "object": "mathematically rigorous techniques for the specification",
+      "source": "https://en.wikipedia.org/wiki/Formal_methods"
+    },
+    {
+      "subject": "The use of formal methods for software and hardware design",
+      "predicate": "is",
+      "object": "motivated by the expectation that",
+      "source": "https://en.wikipedia.org/wiki/Formal_methods"
+    },
+    {
+      "subject": "specification may be the only stage in which formal methods",
+      "predicate": "are",
+      "object": "used",
+      "source": "https://en.wikipedia.org/wiki/Formal_methods"
+    },
+    {
+      "subject": "Formal verification Formal verification",
+      "predicate": "is the",
+      "object": "use of software tools to prove properties of a formal specification",
+      "source": "https://en.wikipedia.org/wiki/Formal_methods"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_ee3f057314]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_methods"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Terminism_%28logic%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_verification"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Description_logic"
+    }
+  ],
+  "ts": "2026-11-03T04:32:26.128953+00:00"
+}

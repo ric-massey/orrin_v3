@@ -1,0 +1,133 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [],
+  "entities": [
+    "What actually",
+    "bridges and salt domes",
+    "all examples of load-bearing structures",
+    "Sawdust",
+    "by-product of lumber production",
+    "they",
+    "third-person pronoun relating to a grammatical subject",
+    "The development in Middle English",
+    "shown in the following table",
+    "but the semantic reference",
+    "singular",
+    "singular they",
+    "only used for people",
+    "they when referring to individuals on the basis that it",
+    "primarily a plural pronoun instead of a singular pronoun",
+    "This"
+  ],
+  "relations": [
+    {
+      "subject": "What actually",
+      "predicate": "is",
+      "object": "bridges and salt domes",
+      "source": "my prior memo: synthesis.md"
+    },
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "my prior memo: synthesis.md"
+    },
+    {
+      "subject": "Sawdust",
+      "predicate": "is a",
+      "object": "by-product of lumber production",
+      "source": "my prior memo: synthesis.md"
+    },
+    {
+      "subject": "they",
+      "predicate": "is a",
+      "object": "third-person pronoun relating to a grammatical subject",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "The development in Middle English",
+      "predicate": "is",
+      "object": "shown in the following table",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "but the semantic reference",
+      "predicate": "is",
+      "object": "singular",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "singular they",
+      "predicate": "is",
+      "object": "only used for people",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "they when referring to individuals on the basis that it",
+      "predicate": "is",
+      "object": "primarily a plural pronoun instead of a singular pronoun",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "theirs",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "you end up showing",
+      "predicate": "is",
+      "object": "yourself",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "They",
+      "predicate": "are",
+      "object": "putting in a new restaurant across the street",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "They",
+      "predicate": "is a",
+      "object": "third-person",
+      "source": "https://en.wikipedia.org/wiki/They_%28disambiguation%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/First_They_Came"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Singular_they"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Money%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    }
+  ],
+  "ts": "2026-11-03T20:40:31.900336+00:00"
+}

@@ -1,0 +1,21 @@
+{
+  "statement": "Before this life ends: bring 3 pieces of work all the way to completion in service of \"Make things — produce work that didn't exist before\", growing out of what keeps recurring in my life so far (logic, untrusted, external).",
+  "serves": "Make things — produce work that didn't exist before",
+  "theme_terms": [
+    "logic",
+    "untrusted",
+    "external",
+    "source"
+  ],
+  "done_criteria": {
+    "kind": "aspiration_completions",
+    "serves": "Make things — produce work that didn't exist before",
+    "n": 3
+  },
+  "confidence": 0.5,
+  "alpha": 1.0,
+  "beta": 1.0,
+  "formed_at": 1793674617.7,
+  "status": "held",
+  "revisions": []
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Omaliini",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_03.txt",
+      "chars": 8470
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World%27s_fair",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Momordica",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_05.txt",
+      "chars": 7149
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_ccc4a501ff/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:07:54.013340+00:00"
+}

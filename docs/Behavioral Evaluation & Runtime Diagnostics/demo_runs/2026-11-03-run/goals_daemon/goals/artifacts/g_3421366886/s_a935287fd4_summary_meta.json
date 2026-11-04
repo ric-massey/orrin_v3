@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "g_3421366886",
+    "title": "Understand physical system more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "physical system",
+        "physical system explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T14:44:02.786659Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T14:44:02.786668Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T14:44:02.786670Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T14:44:02.786672Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T14:44:02.786673Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "physical system was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about physical system was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T14:44:02.786687Z",
+      "question": "What actually is physical system, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 14:44:02.787110+00:00",
+    "updated_at": "2026-11-03 14:44:04.331215+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cyber-physical_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_property",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_object",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Physical_constant",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Outline_of_physical_science",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_3421366886/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T14:44:10.145928+00:00"
+}

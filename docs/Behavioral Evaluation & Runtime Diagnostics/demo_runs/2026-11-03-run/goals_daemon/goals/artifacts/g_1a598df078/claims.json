@@ -1,0 +1,41 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_62dca1ae36]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_62dca1ae36]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Project_2025"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_General_Hospital"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Healthcare_in_the_United_States"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Shield_characters"
+    }
+  ],
+  "ts": "2026-11-03T16:17:44.910148+00:00"
+}

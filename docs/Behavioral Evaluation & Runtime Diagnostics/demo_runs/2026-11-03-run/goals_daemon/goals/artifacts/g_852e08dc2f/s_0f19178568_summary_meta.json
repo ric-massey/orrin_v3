@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "g_852e08dc2f",
+    "title": "Understand They Live more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "They Live",
+        "They Live explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:43:55.300317Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:43:55.300323Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:43:55.300325Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:43:55.300327Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:43:55.300328Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "They Live was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about They Live was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:43:55.300347Z",
+      "question": "What actually is They Live, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:43:55.301358+00:00",
+    "updated_at": "2026-11-03 21:43:56.371876+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/They_Live_by_Night",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Live_and_Let_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Mind%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Moana_%282026_film%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Walking_Dead%3A_The_Ones_Who_Live",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_852e08dc2f/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:44:01.070791+00:00"
+}

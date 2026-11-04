@@ -1,0 +1,60 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "there",
+    "circumstances in history that justify ethnic cleansing"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_5619b3ce86]"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "circumstances in history that justify ethnic cleansing",
+      "source": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_5619b3ce86]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_the_theory_of_relativity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Springfield_pet-eating_hoax"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Norway_Debate"
+    }
+  ],
+  "ts": "2026-11-03T06:35:09.641445+00:00"
+}

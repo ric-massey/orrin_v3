@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_df3217dcf8",
+    "title": "Answer: What actually is early productions, beyond the mentions I keep seeing? — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is early productions, beyond the mentions I keep seeing? open problems",
+        "What actually is early productions, beyond the mentions I keep seeing? criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_aed70f5f61",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:59.076923Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:59.076932Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:59.076934Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:59.076935Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:59.076937Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is early productions, beyond the mentions I ke' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:39:59.076957Z",
+      "question": "What actually is early productions, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:39:59.078919+00:00",
+    "updated_at": "2026-11-03 16:40:01.826455+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_aed70f5f61]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Production_of_The_Lord_of_the_Rings_film_series",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Too_Many_Losing_Heroines%21",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Royal_Space_Force%3A_The_Wings_of_Honn%C3%AAamise",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Being_Ian",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jello_Biafra",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Utopia_%28book%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quran",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Christ_myth_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Film",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_df3217dcf8/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:40:08.733884+00:00"
+}

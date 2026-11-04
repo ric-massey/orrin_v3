@@ -1,0 +1,132 @@
+{
+  "question": "What actually is attempts, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "attempts"
+  ],
+  "entities": [
+    "Attempt to commit a particular crime",
+    "crime",
+    "Attempt",
+    "type of inchoate crime",
+    "There",
+    "many specific crimes of attempt",
+    "depending partly on the extent to which the attempt",
+    "abandoned freely and voluntarily",
+    "the law of attempt",
+    "not recognised by common law until the case of Rex v",
+    "suicide attempt",
+    "act in which an individual tries to kill themselves but survives",
+    "The ratio of suicide attempts to suicide death",
+    "about 25",
+    "Suicide attempts",
+    "more common among adolescents in developing countries than developed ones"
+  ],
+  "relations": [
+    {
+      "subject": "Attempt to commit a particular crime",
+      "predicate": "is a",
+      "object": "crime",
+      "source": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "subject": "Attempt",
+      "predicate": "is a",
+      "object": "type of inchoate crime",
+      "source": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many specific crimes of attempt",
+      "source": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "subject": "depending partly on the extent to which the attempt",
+      "predicate": "was",
+      "object": "abandoned freely and voluntarily",
+      "source": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "subject": "the law of attempt",
+      "predicate": "was",
+      "object": "not recognised by common law until the case of Rex v",
+      "source": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "subject": "suicide attempt",
+      "predicate": "is an",
+      "object": "act in which an individual tries to kill themselves but survives",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "The ratio of suicide attempts to suicide death",
+      "predicate": "is",
+      "object": "about 25",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "Suicide attempts",
+      "predicate": "are",
+      "object": "more common among adolescents in developing countries than developed ones",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "Overdosing on medication",
+      "predicate": "is the",
+      "object": "most common method used in suicide attempts",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "many more nonfatal attempts",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "of all suicide attempts",
+      "predicate": "are",
+      "object": "by drug overdose",
+      "source": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "subject": "but there",
+      "predicate": "were",
+      "object": "also large numbers of coup attempts in the mid-1970s and the early 1990s",
+      "source": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Attempt"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Suicide_attempt"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Attempted_murder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Assassination_attempts_on_Hirohito"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Parliament_of_Whores"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thing_Explainer"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_United_States_presidential_assassination_attempts_and_plots"
+    }
+  ],
+  "ts": "2026-11-03T15:09:47.334512+00:00"
+}

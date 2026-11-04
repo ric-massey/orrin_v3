@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_03.txt",
+      "chars": 19837
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Outline_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Term_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_semantics_%28natural_language%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Informal_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eebd5ec0d1/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T03:36:28.970411+00:00"
+}

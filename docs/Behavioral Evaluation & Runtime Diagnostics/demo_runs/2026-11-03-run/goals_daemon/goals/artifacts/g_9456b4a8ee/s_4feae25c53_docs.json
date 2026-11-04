@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Busy_beaver",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolutionary_algorithm",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_04.txt",
+      "chars": 4829
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Objections_to_evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Darwinian_literary_studies",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Karl_Popper",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9456b4a8ee/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T21:46:40.379817+00:00"
+}

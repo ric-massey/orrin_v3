@@ -1,0 +1,156 @@
+{
+  "history": [
+    {
+      "ts": "2026-11-03T02:51:27.770531+00:00",
+      "cycle": 10,
+      "emotion": "impasse_signal",
+      "intensity": 0.625,
+      "strategy": "reappraisal",
+      "prob": 0.894,
+      "outcome": "failed",
+      "measured": "effective",
+      "measured_delta": 0.159
+    },
+    {
+      "ts": "2026-11-03T03:16:19.633608+00:00",
+      "cycle": 817,
+      "emotion": "impasse_signal",
+      "intensity": 0.662,
+      "strategy": "reappraisal",
+      "prob": 0.893,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.53
+    },
+    {
+      "ts": "2026-11-03T03:53:20.675968+00:00",
+      "cycle": 1911,
+      "emotion": "impasse_signal",
+      "intensity": 0.569,
+      "strategy": "reappraisal",
+      "prob": 0.849,
+      "outcome": "succeeded",
+      "measured": "ineffective",
+      "measured_delta": -0.005
+    },
+    {
+      "ts": "2026-11-03T03:53:40.458682+00:00",
+      "cycle": 1921,
+      "emotion": "impasse_signal",
+      "intensity": 0.664,
+      "strategy": "distancing",
+      "prob": 0.884,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.148
+    },
+    {
+      "ts": "2026-11-03T03:55:07.964395+00:00",
+      "cycle": 1964,
+      "emotion": "impasse_signal",
+      "intensity": 0.552,
+      "strategy": "reappraisal",
+      "prob": 0.808,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.449
+    },
+    {
+      "ts": "2026-11-03T04:32:35.206706+00:00",
+      "cycle": 2839,
+      "emotion": "impasse_signal",
+      "intensity": 0.593,
+      "strategy": "reappraisal",
+      "prob": 0.87,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.19
+    },
+    {
+      "ts": "2026-11-03T05:26:15.243478+00:00",
+      "cycle": 4037,
+      "emotion": "uncertainty",
+      "intensity": 0.559,
+      "strategy": "grounding",
+      "prob": 0.855,
+      "outcome": "failed",
+      "measured": "ineffective",
+      "measured_delta": 0.049
+    },
+    {
+      "ts": "2026-11-03T05:58:01.886638+00:00",
+      "cycle": 4644,
+      "emotion": "impasse_signal",
+      "intensity": 0.644,
+      "strategy": "reappraisal",
+      "prob": 0.848,
+      "outcome": "failed",
+      "measured": "effective",
+      "measured_delta": 0.376
+    },
+    {
+      "ts": "2026-11-03T07:09:03.771160+00:00",
+      "cycle": 5766,
+      "emotion": "impasse_signal",
+      "intensity": 0.591,
+      "strategy": "reappraisal",
+      "prob": 0.776,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.403
+    },
+    {
+      "ts": "2026-11-03T18:55:01.708351+00:00",
+      "cycle": 12364,
+      "emotion": "impasse_signal",
+      "intensity": 0.625,
+      "strategy": "reappraisal",
+      "prob": 0.78,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.487
+    },
+    {
+      "ts": "2026-11-03T20:41:09.406122+00:00",
+      "cycle": 12974,
+      "emotion": "impasse_signal",
+      "intensity": 0.576,
+      "strategy": "reappraisal",
+      "prob": 0.787,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.498
+    },
+    {
+      "ts": "2026-11-03T22:19:01.554717+00:00",
+      "cycle": 13476,
+      "emotion": "impasse_signal",
+      "intensity": 0.591,
+      "strategy": "reappraisal",
+      "prob": 0.787,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.47
+    },
+    {
+      "ts": "2026-11-03T23:01:06.260156+00:00",
+      "cycle": 13679,
+      "emotion": "impasse_signal",
+      "intensity": 0.649,
+      "strategy": "reappraisal",
+      "prob": 0.809,
+      "outcome": "succeeded",
+      "measured": "effective",
+      "measured_delta": 0.518
+    }
+  ],
+  "last_cycle": 13679,
+  "consec_ineffective": {
+    "uncertainty": 1
+  },
+  "emotion_stop_counts": {},
+  "strategy_cooldowns": {
+    "reappraisal": 1946,
+    "grounding": 4072
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "question": "What actually is Products, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "products"
+  ],
+  "entities": [
+    "Sawdust",
+    "by-product of lumber production",
+    "is protected by multiple patent holders or when a product",
+    "covered by numerous patents"
+  ],
+  "relations": [
+    {
+      "subject": "Sawdust",
+      "predicate": "is a",
+      "object": "by-product of lumber production",
+      "source": "my prior claims [g_80acec228a]"
+    },
+    {
+      "subject": "is protected by multiple patent holders or when a product",
+      "predicate": "is",
+      "object": "covered by numerous patents",
+      "source": "https://en.wikipedia.org/wiki/Software_patent_debate"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_80acec228a]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Matrix_mortality_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fair-trade_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ChatGPT"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Walmart"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Software_patent_debate"
+    }
+  ],
+  "ts": "2026-11-03T18:53:58.666515+00:00"
+}

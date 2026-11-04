@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "world recent research",
+    "world common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Holocene",
+    "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+    "https://en.wikipedia.org/wiki/Omaliini",
+    "https://en.wikipedia.org/wiki/World%27s_fair",
+    "https://en.wikipedia.org/wiki/Momordica",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages"
+  ],
+  "results": [
+    {
+      "title": "Holocene",
+      "url": "https://en.wikipedia.org/wiki/Holocene",
+      "snippet": "ocean circulations that was caused by the melting of glaciers. The most <span class=\"searchmatch\">recent</span> age of the Holocene is the present Meghalayan, which began with extreme",
+      "query": "world recent research"
+    },
+    {
+      "title": "Wonders of the World",
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "snippet": "Underwater <span class=\"searchmatch\">World</span>&quot; was drawn up by CEDAM International, an American-based non-profit group for divers that is dedicated to ocean preservation and <span class=\"searchmatch\">research</span>. In",
+      "query": "world recent research"
+    },
+    {
+      "title": "Omaliini",
+      "url": "https://en.wikipedia.org/wiki/Omaliini",
+      "snippet": "within this tribe can be found in all zoogeographic regions of the <span class=\"searchmatch\">world</span>. <span class=\"searchmatch\">Recent</span> <span class=\"searchmatch\">research</span> has discovered new species of the genera Acrolocha and Paraphloeostiba",
+      "query": "world recent research"
+    },
+    {
+      "title": "World's fair",
+      "url": "https://en.wikipedia.org/wiki/World%27s_fair",
+      "snippet": "most <span class=\"searchmatch\">recent</span> <span class=\"searchmatch\">World</span> Expo in 2025, while Astana, Kazakhstan, held the most <span class=\"searchmatch\">recent</span> Specialised Expo in 2017, and Doha, Qatar, held the most <span class=\"searchmatch\">recent</span> Horticultural",
+      "query": "world recent research"
+    },
+    {
+      "title": "Momordica",
+      "url": "https://en.wikipedia.org/wiki/Momordica",
+      "snippet": "Chinese medicine as well as natural medical traditions around the <span class=\"searchmatch\">world</span>. <span class=\"searchmatch\">Recent</span> <span class=\"searchmatch\">research</span> has shown that the immature fruit might have some antibiotic, anticancer",
+      "query": "world recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about history",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "world common misconceptions"
+    },
+    {
+      "title": "Misconceptions about HIV/AIDS",
+      "url": "https://en.wikipedia.org/wiki/Misconceptions_about_HIV/AIDS",
+      "snippet": "explanations of some <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> and their rebuttals. Each entry on this list is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied",
+      "query": "world common misconceptions"
+    },
+    {
+      "title": "List of common misconceptions about the Middle Ages",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_the_Middle_Ages",
+      "snippet": "increasingly focus on writing literature addressing some of the primary <span class=\"searchmatch\">misconceptions</span> about medieval history; and other historians take the alternative approach",
+      "query": "world common misconceptions"
+    }
+  ],
+  "ts": "2026-11-03T11:07:45.744477+00:00"
+}

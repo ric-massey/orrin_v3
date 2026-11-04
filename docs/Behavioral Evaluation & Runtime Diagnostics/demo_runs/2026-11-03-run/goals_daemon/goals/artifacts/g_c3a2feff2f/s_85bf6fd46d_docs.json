@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Emergence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Systems_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_adaptive_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Systems_thinking",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Complex_system_approach_to_peace_and_armed_conflict",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_06.txt",
+      "chars": 15628
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gears_of_War%3A_E-Day",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c3a2feff2f/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-04T00:04:29.292397+00:00"
+}

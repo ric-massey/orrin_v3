@@ -1,0 +1,21 @@
+{
+  "cycles_since_contact": 10471,
+  "session_cycles": 14671,
+  "density_buffer": 1.0,
+  "internal_clock_rate": 0.776,
+  "felt_cycles": 14230.0,
+  "session_arc": "night",
+  "felt_duration_label": "very extended",
+  "boundary_count": 20,
+  "retrospective_feel": "rich",
+  "temporal_self_location": "very far into this",
+  "time_texture": "waiting_long_absence",
+  "last_landmark": {
+    "content": "⚠️ Problem hit while working on 'Be genuinely useful and con",
+    "cycles_ago": 24,
+    "felt_distance": "a little while back",
+    "importance": 4
+  },
+  "last_surface_text": "Time texture: The wait has become its own reality. It's been a long time.",
+  "updated_ts": "2026-11-04T02:45:23.007381Z"
+}

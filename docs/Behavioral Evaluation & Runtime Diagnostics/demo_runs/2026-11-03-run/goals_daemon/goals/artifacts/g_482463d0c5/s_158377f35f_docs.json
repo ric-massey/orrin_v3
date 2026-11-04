@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Whataboutism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wikipedia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Utopia_%28book%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_482463d0c5/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:07:59.726092+00:00"
+}

@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "philosophy of time",
+    "philosophy of time explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+    "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29",
+    "https://en.wikipedia.org/wiki/Donnie_Darko",
+    "https://en.wikipedia.org/wiki/Time_travel",
+    "https://en.wikipedia.org/wiki/Philosophical_presentism"
+  ],
+  "results": [
+    {
+      "title": "Philosophy of space and time",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+      "snippet": "The <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> space and <span class=\"searchmatch\">time</span> is a branch <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> concerned with ideas about knowledge and understanding within space and <span class=\"searchmatch\">time</span>. Such ideas have",
+      "query": "philosophy of time"
+    },
+    {
+      "title": "Eternalism (philosophy of time)",
+      "url": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29",
+      "snippet": "In the <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> space and <span class=\"searchmatch\">time</span>, eternalism is an ontological view according to which all existence in <span class=\"searchmatch\">time</span> is equally real, as opposed to presentism",
+      "query": "philosophy of time"
+    },
+    {
+      "title": "Donnie Darko",
+      "url": "https://en.wikipedia.org/wiki/Donnie_Darko",
+      "snippet": "science teacher, Dr. Kenneth Monnitoff. Monnitoff gives Donnie The <span class=\"searchmatch\">Philosophy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Time</span> Travel, a book written by Roberta Sparrow, a former science teacher",
+      "query": "philosophy of time"
+    },
+    {
+      "title": "Time travel",
+      "url": "https://en.wikipedia.org/wiki/Time_travel",
+      "snippet": "<span class=\"searchmatch\">Time</span> travel is the hypothetical activity <span class=\"searchmatch\">of</span> traveling into the past or future. <span class=\"searchmatch\">Time</span> travel is a concept in <span class=\"searchmatch\">philosophy</span>, space, <span class=\"searchmatch\">time</span> and fiction, particularly",
+      "query": "philosophy of time"
+    },
+    {
+      "title": "Philosophical presentism",
+      "url": "https://en.wikipedia.org/wiki/Philosophical_presentism",
+      "snippet": "Bradley. &quot;<span class=\"searchmatch\">Time</span>&quot;. Internet Encyclopedia <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Philosophy</span>. Ingram, David; Tallant, Jonathan (2018). &quot;Presentism&quot;. Stanford Encyclopedia <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Philosophy</span>. Metaphysics",
+      "query": "philosophy of time"
+    }
+  ],
+  "ts": "2026-11-03T07:08:50.433682+00:00"
+}

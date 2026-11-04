@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "What is there about formal logic that my earlier notes on it are missing? open problems",
+    "What is there about formal logic that my earlier notes on it are missing? criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+    "https://en.wikipedia.org/wiki/Whataboutism",
+    "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+    "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+    "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+  ],
+  "results": [
+    {
+      "title": "Hilbert's problems",
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "snippet": "Hilbert&#039;s <span class=\"searchmatch\">problems</span> <span class=\"searchmatch\">are</span> 23 <span class=\"searchmatch\">problems</span> in mathematics published by German mathematician David Hilbert in 1900. He intended to rival the master of French mathematics",
+      "query": "What is there about formal logic that my earlier notes on it are missing? open problems"
+    },
+    {
+      "title": "Whataboutism",
+      "url": "https://en.wikipedia.org/wiki/Whataboutism",
+      "snippet": "the accusation of <span class=\"searchmatch\">it</span> <span class=\"searchmatch\">are</span> forms of strategic framing and have a framing effect. The term whataboutism <span class=\"searchmatch\">is</span> a compound of <span class=\"searchmatch\">what</span> and <span class=\"searchmatch\">about</span>, <span class=\"searchmatch\">is</span> synonymous with",
+      "query": "What is there about formal logic that my earlier notes on it are missing? open problems"
+    },
+    {
+      "title": "Gödel's incompleteness theorems",
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+      "snippet": "Gödel&#039;s incompleteness theorems <span class=\"searchmatch\">are</span> two theorems of mathematical <span class=\"searchmatch\">logic</span> <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">are</span> concerned with the limits of provability in <span class=\"searchmatch\">formal</span> axiomatic theories. These",
+      "query": "What is there about formal logic that my earlier notes on it are missing? open problems"
+    },
+    {
+      "title": "P versus NP problem",
+      "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+      "snippet": "More unsolved <span class=\"searchmatch\">problems</span> in computer science The P versus NP <span class=\"searchmatch\">problem</span> <span class=\"searchmatch\">is</span> a major unsolved <span class=\"searchmatch\">problem</span> in theoretical computer science. Informally, <span class=\"searchmatch\">it</span> asks whether",
+      "query": "What is there about formal logic that my earlier notes on it are missing? open problems"
+    },
+    {
+      "title": "Hard problem of consciousness",
+      "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+      "snippet": "hard <span class=\"searchmatch\">problem</span> <span class=\"searchmatch\">is</span> a genuine <span class=\"searchmatch\">problem</span>, while 29.7% said <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">it</span> does not exist. <span class=\"searchmatch\">There</span> <span class=\"searchmatch\">are</span> a number of other potential philosophical <span class=\"searchmatch\">problems</span> <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">are</span> related",
+      "query": "What is there about formal logic that my earlier notes on it are missing? open problems"
+    }
+  ],
+  "ts": "2026-11-03T03:36:31.186351+00:00"
+}

@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kaeng_thepho",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_02.txt",
+      "chars": 15537
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pisco_sour",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pickled_cucumber",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_fermented_foods",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sichuan_cuisine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Retronasal_smell",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_07.txt",
+      "chars": 18188
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Youtiao",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cream",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-04T02:32:37.258689+00:00"
+}

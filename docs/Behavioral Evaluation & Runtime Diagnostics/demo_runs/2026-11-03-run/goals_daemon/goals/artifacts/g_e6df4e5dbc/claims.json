@@ -1,0 +1,48 @@
+{
+  "question": "What actually is He repeatedly, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "repeatedly"
+  ],
+  "entities": [
+    "He repeatedly raped and tortured her while she",
+    "tied to a pulley suspended from the ceiling of his mobile home",
+    "he repeatedly remarks that technical flourishes",
+    "excessive"
+  ],
+  "relations": [
+    {
+      "subject": "He repeatedly raped and tortured her while she",
+      "predicate": "was",
+      "object": "tied to a pulley suspended from the ceiling of his mobile home",
+      "source": "my prior claims [g_0373f9c521]"
+    },
+    {
+      "subject": "he repeatedly remarks that technical flourishes",
+      "predicate": "are",
+      "object": "excessive",
+      "source": "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0373f9c521]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gerald_Friend"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Robert_Garrow"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tank_Man"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Naranath_Bhranthan"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings"
+    }
+  ],
+  "ts": "2026-11-03T23:00:42.416121+00:00"
+}

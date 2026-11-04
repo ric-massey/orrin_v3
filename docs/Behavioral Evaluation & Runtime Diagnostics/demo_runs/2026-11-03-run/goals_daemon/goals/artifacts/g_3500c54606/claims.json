@@ -1,0 +1,45 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-disorder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Too_Many_Losing_Heroines%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tetro"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open-fields_doctrine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Beavis_and_Butt-Head_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Varieties_of_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Utopia_%28book%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Eichmann_in_Jerusalem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Beloved_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Critique_of_Pure_Reason"
+    }
+  ],
+  "ts": "2026-11-03T20:40:52.606591+00:00"
+}

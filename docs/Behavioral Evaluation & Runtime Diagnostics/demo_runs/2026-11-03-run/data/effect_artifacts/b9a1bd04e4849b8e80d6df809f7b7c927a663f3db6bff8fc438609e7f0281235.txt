@@ -1,0 +1,93 @@
+{
+  "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "time"
+  ],
+  "entities": [
+    "The philosophy of space and time",
+    "both an inspiration for and a central aspect of early analytic philosophy",
+    "yet",
+    "considered centerpieces of Nietzschean philosophy",
+    "Philosophy of science",
+    "both a theoretical and empirical discipline",
+    "Ethical issues such as bioethics and scientific misconduct",
+    "often considered ethics or science studies rather than the philosophy of science",
+    "Some philosophers of science also use contemporary",
+    "science to reach conclusions about philosophy itself",
+    "where space",
+    "represented schematically at each time by circular sections"
+  ],
+  "relations": [
+    {
+      "subject": "The philosophy of space and time",
+      "predicate": "was",
+      "object": "both an inspiration for and a central aspect of early analytic philosophy",
+      "source": "my prior claims [g_0d9f848cc1]"
+    },
+    {
+      "subject": "yet",
+      "predicate": "are",
+      "object": "considered centerpieces of Nietzschean philosophy",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "subject": "Philosophy of science",
+      "predicate": "is",
+      "object": "both a theoretical and empirical discipline",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "Ethical issues such as bioethics and scientific misconduct",
+      "predicate": "are",
+      "object": "often considered ethics or science studies rather than the philosophy of science",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "Some philosophers of science also use contemporary",
+      "predicate": "results in",
+      "object": "science to reach conclusions about philosophy itself",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "where space",
+      "predicate": "is",
+      "object": "represented schematically at each time by circular sections",
+      "source": "https://en.wikipedia.org/wiki/Big_Bang"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0d9f848cc1]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Replication_crisis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Big_Bang"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Naomi_Wolf"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Friedrich_Hayek"
+    }
+  ],
+  "ts": "2026-11-03T11:08:10.526411+00:00"
+}

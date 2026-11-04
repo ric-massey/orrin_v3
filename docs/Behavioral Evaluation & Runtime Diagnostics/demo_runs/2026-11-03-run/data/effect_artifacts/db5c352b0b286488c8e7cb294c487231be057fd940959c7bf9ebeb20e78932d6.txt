@@ -1,0 +1,42 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_decompression_research_and_development"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/RuneScape"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Electronics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Human_Development_Index"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gender_and_development"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Application_software"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/REST"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Database_application"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Authorization"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Web_application"
+    }
+  ],
+  "ts": "2026-11-03T21:45:51.252502+00:00"
+}

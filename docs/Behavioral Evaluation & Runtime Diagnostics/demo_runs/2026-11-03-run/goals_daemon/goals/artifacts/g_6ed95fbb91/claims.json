@@ -1,0 +1,79 @@
+{
+  "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "explanations"
+  ],
+  "entities": [
+    "that the task of a theory or model of scientific explanation",
+    "to outline the structure of such explanations",
+    "Philosophical Explanations",
+    "first published in 1981 by Harvard University Press",
+    "explanation",
+    "right to be given an explanation for an output of the algorithm",
+    "person who applies for a loan and",
+    "denied may ask for an explanation"
+  ],
+  "relations": [
+    {
+      "subject": "that the task of a theory or model of scientific explanation",
+      "predicate": "is",
+      "object": "to outline the structure of such explanations",
+      "source": "my prior claims [g_0cb373c400]"
+    },
+    {
+      "subject": "Philosophical Explanations",
+      "predicate": "was",
+      "object": "first published in 1981 by Harvard University Press",
+      "source": "https://en.wikipedia.org/wiki/Philosophical_Explanations"
+    },
+    {
+      "subject": "explanation",
+      "predicate": "is a",
+      "object": "right to be given an explanation for an output of the algorithm",
+      "source": "https://en.wikipedia.org/wiki/Right_to_explanation"
+    },
+    {
+      "subject": "person who applies for a loan and",
+      "predicate": "is",
+      "object": "denied may ask for an explanation",
+      "source": "https://en.wikipedia.org/wiki/Right_to_explanation"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0cb373c400]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophical_Explanations"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Smale%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Right_to_explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Software_patent_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_evolutionary_psychology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    }
+  ],
+  "ts": "2026-11-03T21:42:53.240557+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "time"
+  ],
+  "entities": [
+    "The philosophy of space and time",
+    "both an inspiration for and a central aspect of early analytic philosophy",
+    "the problem of time",
+    "conceptual conflict between quantum mechanics and general relativity",
+    "This problem raises the question of what time really",
+    "in a physical sense and whether it is truly a real",
+    "special status is assigned to time in the sense that it",
+    "treated as a classical background parameter",
+    "In general relativity time",
+    "no longer a unique background parameter",
+    "The field equations of general relativity",
+    "not parameterized by time but formulated in terms of spacetime",
+    "These two very different roles of time",
+    "incompatible",
+    "The problem of time",
+    "central to these theoretical attempts"
+  ],
+  "relations": [
+    {
+      "subject": "The philosophy of space and time",
+      "predicate": "was",
+      "object": "both an inspiration for and a central aspect of early analytic philosophy",
+      "source": "my prior claims [g_063f3269da]"
+    },
+    {
+      "subject": "the problem of time",
+      "predicate": "is a",
+      "object": "conceptual conflict between quantum mechanics and general relativity",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "This problem raises the question of what time really",
+      "predicate": "is",
+      "object": "in a physical sense and whether it is truly a real",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "special status is assigned to time in the sense that it",
+      "predicate": "is",
+      "object": "treated as a classical background parameter",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "In general relativity time",
+      "predicate": "is",
+      "object": "no longer a unique background parameter",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "The field equations of general relativity",
+      "predicate": "are",
+      "object": "not parameterized by time but formulated in terms of spacetime",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "These two very different roles of time",
+      "predicate": "are",
+      "object": "incompatible",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "The problem of time",
+      "predicate": "is",
+      "object": "central to these theoretical attempts",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "It remains unclear how time",
+      "predicate": "is",
+      "object": "related to quantum probability",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "The most commonly discussed aspect of the problem of time",
+      "predicate": "is the",
+      "object": "frozen formalism problem",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "time",
+      "predicate": "is an",
+      "object": "entanglement phenomenon",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "subject": "This",
+      "predicate": "is a",
+      "object": "list of some of the major problems in philosophy",
+      "source": "https://en.wikipedia.org/wiki/List_of_philosophical_problems"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_063f3269da]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Problem_of_time"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_philosophical_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mind"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/101_Philosophy_Problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Norton_Anthology_of_Theory_and_Criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objectivism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Marxism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_democracy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Immanuel_Kant"
+    }
+  ],
+  "ts": "2026-11-03T07:08:45.699146+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing",
+    "level of paracetamol at specific times after the medication",
+    "taken",
+    "The medication",
+    "generally given for at least 24 hours",
+    "In the United Kingdom it",
+    "medication responsible for the greatest number of overdoses",
+    "The substances most widely used in self-medication",
+    "over-the-counter drugs and dietary supplements",
+    "Products",
+    "marketed by manufacturers as useful for self-medication",
+    "Self-medication",
+    "often seen as gaining personal independence from established medicine",
+    "Self-medication can",
+    "unintentional self-harm"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_41ad158256]"
+    },
+    {
+      "subject": "level of paracetamol at specific times after the medication",
+      "predicate": "was",
+      "object": "taken",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "The medication",
+      "predicate": "is",
+      "object": "generally given for at least 24 hours",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "In the United Kingdom it",
+      "predicate": "is the",
+      "object": "medication responsible for the greatest number of overdoses",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "The substances most widely used in self-medication",
+      "predicate": "are",
+      "object": "over-the-counter drugs and dietary supplements",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Products",
+      "predicate": "are",
+      "object": "marketed by manufacturers as useful for self-medication",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Self-medication",
+      "predicate": "is",
+      "object": "often seen as gaining personal independence from established medicine",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Self-medication can",
+      "predicate": "cause",
+      "object": "unintentional self-harm",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "is a",
+      "object": "medication used to decrease high blood uric acid levels",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "is",
+      "object": "in the xanthine oxidase inhibitor family of medications",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Allopurinol",
+      "predicate": "is",
+      "object": "available as a generic medication",
+      "source": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "subject": "Medication SSRIs and SNRIs",
+      "predicate": "are",
+      "object": "first line",
+      "source": "https://en.wikipedia.org/wiki/Anxiety_disorder"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_41ad158256]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lithium_%28medication%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jack_Fishman"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Urban_legends_about_drugs"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Anxiety_disorder"
+    }
+  ],
+  "ts": "2026-11-03T16:39:53.395734+00:00"
+}

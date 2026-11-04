@@ -1,0 +1,64 @@
+{
+  "question": "What actually is you end up showing, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "end",
+    "showing"
+  ],
+  "entities": [
+    "you end up showing",
+    "yourself",
+    "Holly",
+    "born in 1986 and is 16 at the start of the show and 20 at the end"
+  ],
+  "relations": [
+    {
+      "subject": "you end up showing",
+      "predicate": "is",
+      "object": "yourself",
+      "source": "my prior claims [g_cf42fa40a1]"
+    },
+    {
+      "subject": "Holly",
+      "predicate": "was",
+      "object": "born in 1986 and is 16 at the start of the show and 20 at the end",
+      "source": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_cf42fa40a1]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Suicide_of_Kurt_Cobain"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Room"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Little_Britain_characters"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Coronation_Street_characters_introduced_in_2024"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Varieties_of_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Beloved_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Donald_Trump_and_fascism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thomas_E._Dewey"
+    }
+  ],
+  "ts": "2026-11-03T21:45:32.264368+00:00"
+}

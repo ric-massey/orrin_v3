@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lists_of_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_03.txt",
+      "chars": 1906
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Open_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_04.txt",
+      "chars": 3556
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_05.txt",
+      "chars": 9077
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/GPT-4Chan",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_07.txt",
+      "chars": 10005
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Leaders%27_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_09.txt",
+      "chars": 7344
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philippine_Amusement_and_Gaming_Corporation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8e6d9ed137/doc_10.txt",
+      "chars": 13848
+    }
+  ],
+  "ts": "2026-11-03T21:42:36.247525+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_methods",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Terminism_%28logic%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_05.txt",
+      "chars": 987
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_06.txt",
+      "chars": 19837
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_verification",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_07.txt",
+      "chars": 16515
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e5c7127514/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T04:32:25.884730+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "question": "What is there about formal logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "formal",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "asking for an algorithm to decide whether a given statement",
+    "provable using the rules of logic",
+    "The term formalism",
+    "sometimes a rough synonym for formal system",
+    "both of which",
+    "part of the formal language",
+    "The two main categories of formal grammar",
+    "that of generative grammars",
+    "The two main types of deductive systems",
+    "proof systems and formal semantics",
+    "There",
+    "many varieties of description logics and there is an informal naming convention",
+    "The expressivity",
+    "encoded in the label for a logic starting with one of the following basic logics"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_fee4ad0d01]"
+    },
+    {
+      "subject": "asking for an algorithm to decide whether a given statement",
+      "predicate": "is",
+      "object": "provable using the rules of logic",
+      "source": "https://en.wikipedia.org/wiki/Entscheidungsproblem"
+    },
+    {
+      "subject": "The term formalism",
+      "predicate": "is",
+      "object": "sometimes a rough synonym for formal system",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "both of which",
+      "predicate": "are",
+      "object": "part of the formal language",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "The two main categories of formal grammar",
+      "predicate": "are",
+      "object": "that of generative grammars",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "The two main types of deductive systems",
+      "predicate": "are",
+      "object": "proof systems and formal semantics",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many varieties of description logics and there is an informal naming convention",
+      "source": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "subject": "The expressivity",
+      "predicate": "is",
+      "object": "encoded in the label for a logic starting with one of the following basic logics",
+      "source": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "subject": "Checking formal proofs",
+      "predicate": "is",
+      "object": "usually simple",
+      "source": "https://en.wikipedia.org/wiki/Formal_proof"
+    },
+    {
+      "subject": "Formal language A formal language",
+      "predicate": "is a",
+      "object": "set of finite sequences of symbols",
+      "source": "https://en.wikipedia.org/wiki/Formal_proof"
+    },
+    {
+      "subject": "Formal proofs",
+      "predicate": "are",
+      "object": "expressed in some formal languages",
+      "source": "https://en.wikipedia.org/wiki/Formal_proof"
+    },
+    {
+      "subject": "formal system",
+      "predicate": "is",
+      "object": "used to derive one expression from one or more other expressions",
+      "source": "https://en.wikipedia.org/wiki/Formal_proof"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_fee4ad0d01]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Entscheidungsproblem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_proof"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Argumentation_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Modal_logic"
+    }
+  ],
+  "ts": "2026-11-03T03:36:23.883220+00:00"
+}

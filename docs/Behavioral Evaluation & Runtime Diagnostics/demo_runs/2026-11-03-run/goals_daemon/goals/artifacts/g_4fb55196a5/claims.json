@@ -1,0 +1,76 @@
+{
+  "question": "What actually is Febuxostat, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "febuxostat"
+  ],
+  "entities": [
+    "Febuxostat",
+    "approved for medical use in the European Union in 2008",
+    "used to treat chronic gout and hyperuricemia",
+    "typically recommended only for people who cannot tolerate allopurinol",
+    "for Health and Clinical Excellence concluded that febuxostat",
+    "more effective than standard doses of allopurinol",
+    "evaluated whether the xanthine oxidase inhibitor febuxostat",
+    "noninferior to allopurinol on major adverse cardiovascular events"
+  ],
+  "relations": [
+    {
+      "subject": "Febuxostat",
+      "predicate": "was",
+      "object": "approved for medical use in the European Union in 2008",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "Febuxostat",
+      "predicate": "is",
+      "object": "used to treat chronic gout and hyperuricemia",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "Febuxostat",
+      "predicate": "is",
+      "object": "typically recommended only for people who cannot tolerate allopurinol",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "for Health and Clinical Excellence concluded that febuxostat",
+      "predicate": "is",
+      "object": "more effective than standard doses of allopurinol",
+      "source": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "subject": "evaluated whether the xanthine oxidase inhibitor febuxostat",
+      "predicate": "was",
+      "object": "noninferior to allopurinol on major adverse cardiovascular events",
+      "source": "https://en.wikipedia.org/wiki/William_B._White"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Febuxostat"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gout"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gout_suppressants"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/William_B._White"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tophus"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pharmacology_of_ethanol"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Purine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Uridine_diphosphate_galactose"
+    }
+  ],
+  "ts": "2026-11-03T19:21:09.344936+00:00"
+}

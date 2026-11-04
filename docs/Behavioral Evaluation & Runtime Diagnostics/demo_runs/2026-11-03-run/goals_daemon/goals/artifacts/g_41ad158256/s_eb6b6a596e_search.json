@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "Overdosing on medication history and development",
+    "Overdosing on medication applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+    "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+    "https://en.wikipedia.org/wiki/Psychiatric_medication",
+    "https://en.wikipedia.org/wiki/Serotonin_syndrome",
+    "https://en.wikipedia.org/wiki/Topical_medication",
+    "https://en.wikipedia.org/wiki/Drug_overdose",
+    "https://en.wikipedia.org/wiki/Opioid_overdose",
+    "https://en.wikipedia.org/wiki/Self-medication"
+  ],
+  "results": [
+    {
+      "title": "Paracetamol poisoning",
+      "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+      "snippet": "use of the <span class=\"searchmatch\">medication</span> paracetamol (acetaminophen). Most people have few or non-specific symptoms in the first 24 hours following <span class=\"searchmatch\">overdose</span>. These symptoms",
+      "query": "Overdosing on medication history and development"
+    },
+    {
+      "title": "Lithium (medication)",
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "snippet": "also known as lithium salts, are used as psychiatric <span class=\"searchmatch\">medication</span>, primarily for bipolar disorder <span class=\"searchmatch\">and</span> for major depressive disorder. Lithium is taken orally",
+      "query": "Overdosing on medication history and development"
+    },
+    {
+      "title": "Psychiatric medication",
+      "url": "https://en.wikipedia.org/wiki/Psychiatric_medication",
+      "snippet": "psychotropic <span class=\"searchmatch\">medication</span> is a psychoactive drug taken to exert an effect <span class=\"searchmatch\">on</span> the chemical makeup of the brain <span class=\"searchmatch\">and</span> nervous system. Thus, these <span class=\"searchmatch\">medications</span> are used",
+      "query": "Overdosing on medication history and development"
+    },
+    {
+      "title": "Serotonin syndrome",
+      "url": "https://en.wikipedia.org/wiki/Serotonin_syndrome",
+      "snippet": "within a day of the extra serotonin. Diagnosis is based <span class=\"searchmatch\">on</span> a person&#039;s symptoms <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">medication</span> use. Other conditions that can produce similar symptoms",
+      "query": "Overdosing on medication history and development"
+    },
+    {
+      "title": "Topical medication",
+      "url": "https://en.wikipedia.org/wiki/Topical_medication",
+      "snippet": "A topical <span class=\"searchmatch\">medication</span> is a <span class=\"searchmatch\">medication</span> applied to a particular place <span class=\"searchmatch\">on</span> or in the body. Most often, topical <span class=\"searchmatch\">medications</span> are applied to the skin or mucous",
+      "query": "Overdosing on medication history and development"
+    },
+    {
+      "title": "Drug overdose",
+      "url": "https://en.wikipedia.org/wiki/Drug_overdose",
+      "snippet": "dosage. Drug <span class=\"searchmatch\">overdose</span> is sometimes used as a means to commit suicide, as the result of intentional or unintentional misuse of <span class=\"searchmatch\">medication</span>. Intentional",
+      "query": "Overdosing on medication applications and examples"
+    },
+    {
+      "title": "Topical medication",
+      "url": "https://en.wikipedia.org/wiki/Topical_medication",
+      "snippet": "A topical <span class=\"searchmatch\">medication</span> is a <span class=\"searchmatch\">medication</span> applied to a particular place <span class=\"searchmatch\">on</span> or in the body. Most often, topical <span class=\"searchmatch\">medications</span> are applied to the skin or mucous",
+      "query": "Overdosing on medication applications and examples"
+    },
+    {
+      "title": "Lithium (medication)",
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "snippet": "also known as lithium salts, are used as psychiatric <span class=\"searchmatch\">medication</span>, primarily for bipolar disorder <span class=\"searchmatch\">and</span> for major depressive disorder. Lithium is taken orally",
+      "query": "Overdosing on medication applications and examples"
+    },
+    {
+      "title": "Opioid overdose",
+      "url": "https://en.wikipedia.org/wiki/Opioid_overdose",
+      "snippet": "opioid <span class=\"searchmatch\">overdose</span>. The selection of treatment depends <span class=\"searchmatch\">on</span> various factors, such as a person&#039;s preference, accessibility, <span class=\"searchmatch\">and</span> history of treatment. <span class=\"searchmatch\">Examples</span> of",
+      "query": "Overdosing on medication applications and examples"
+    },
+    {
+      "title": "Self-medication",
+      "url": "https://en.wikipedia.org/wiki/Self-medication",
+      "snippet": "psychological conditions, for <span class=\"searchmatch\">example</span> headaches or fatigue. The substances most widely used in self-<span class=\"searchmatch\">medication</span> are over-the-counter drugs <span class=\"searchmatch\">and</span> dietary supplements",
+      "query": "Overdosing on medication applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T16:39:11.707030+00:00"
+}

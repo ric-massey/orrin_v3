@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Whataboutism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Replication_crisis",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_science",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Objections_to_evolution",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Big_Bang",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Naomi_Wolf",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Friedrich_Hayek",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c20e89544a/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:08:09.911308+00:00"
+}

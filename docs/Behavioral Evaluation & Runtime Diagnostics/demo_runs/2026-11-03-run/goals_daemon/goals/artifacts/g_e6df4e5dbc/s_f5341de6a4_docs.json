@@ -1,0 +1,30 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gerald_Friend",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e6df4e5dbc/doc_01.txt",
+      "chars": 4586
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Robert_Garrow",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e6df4e5dbc/doc_02.txt",
+      "chars": 12065
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tank_Man",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e6df4e5dbc/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Naranath_Bhranthan",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e6df4e5dbc/doc_04.txt",
+      "chars": 3847
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e6df4e5dbc/doc_05.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T23:00:41.167944+00:00"
+}

@@ -1,0 +1,121 @@
+{
+  "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "time"
+  ],
+  "entities": [
+    "The philosophy of space and time",
+    "both an inspiration for and a central aspect of early analytic philosophy",
+    "traditional realist position in ontology",
+    "that time and space have existence apart from the human mind",
+    "Kant holds that neither space nor time",
+    "substance",
+    "Critique never implied that time and space",
+    "empirical facts",
+    "an ontological view according to which all existence in time",
+    "equally real",
+    "time",
+    "divided into three distinct regions",
+    "In this way time",
+    "said to pass",
+    "and Platonism argues that time",
+    "absolute"
+  ],
+  "relations": [
+    {
+      "subject": "The philosophy of space and time",
+      "predicate": "was",
+      "object": "both an inspiration for and a central aspect of early analytic philosophy",
+      "source": "my prior claims [g_4783e2d7f9]"
+    },
+    {
+      "subject": "traditional realist position in ontology",
+      "predicate": "is",
+      "object": "that time and space have existence apart from the human mind",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time"
+    },
+    {
+      "subject": "Kant holds that neither space nor time",
+      "predicate": "are",
+      "object": "substance",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time"
+    },
+    {
+      "subject": "Critique never implied that time and space",
+      "predicate": "are",
+      "object": "empirical facts",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time"
+    },
+    {
+      "subject": "an ontological view according to which all existence in time",
+      "predicate": "is",
+      "object": "equally real",
+      "source": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29"
+    },
+    {
+      "subject": "time",
+      "predicate": "is",
+      "object": "divided into three distinct regions",
+      "source": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29"
+    },
+    {
+      "subject": "In this way time",
+      "predicate": "is",
+      "object": "said to pass",
+      "source": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29"
+    },
+    {
+      "subject": "and Platonism argues that time",
+      "predicate": "is",
+      "object": "absolute",
+      "source": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29"
+    },
+    {
+      "subject": "page of The Time Machine published by Heinemann Time travel",
+      "predicate": "is the",
+      "object": "hypothetical activity of traveling into the past or future",
+      "source": "https://en.wikipedia.org/wiki/Time_travel"
+    },
+    {
+      "subject": "Time travel",
+      "predicate": "is a",
+      "object": "concept in philosophy",
+      "source": "https://en.wikipedia.org/wiki/Time_travel"
+    },
+    {
+      "subject": "time travel",
+      "predicate": "is",
+      "object": "typically achieved through the use of a device known as a time machine",
+      "source": "https://en.wikipedia.org/wiki/Time_travel"
+    },
+    {
+      "subject": "The idea of a time machine",
+      "predicate": "was",
+      "object": "popularized by H",
+      "source": "https://en.wikipedia.org/wiki/Time_travel"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_4783e2d7f9]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Donnie_Darko"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Time_travel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophical_presentism"
+    }
+  ],
+  "ts": "2026-11-03T07:08:53.497167+00:00"
+}

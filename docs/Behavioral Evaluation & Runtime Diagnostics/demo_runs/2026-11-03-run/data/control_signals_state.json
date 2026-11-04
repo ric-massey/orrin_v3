@@ -1,0 +1,906 @@
+{
+  "stagnation_signal": 0.07513408362913346,
+  "core_signals": {
+    "exploration_drive": 0.6882713070369976,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.10000000001095923,
+    "reward_positive": 0.5452001838720109,
+    "expected_gain": 0.7989103006913355,
+    "low_affect_signal": 0.001202653702901088,
+    "social_comparison_signal": 5.1015439088992625e-06,
+    "conflict_signal": 2.8732357169298646e-06,
+    "threat_level": 0.009555,
+    "reward_negative": 0.013149831422819117,
+    "social_penalty": 3.2787978440648736e-07,
+    "loss_signal": 0.25313706891751286,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 0.37879498848895427,
+    "stagnation_signal": 0.07513408362913346,
+    "novelty_signal": 0.4704242411328527,
+    "motivation": 0.8035489256251545,
+    "confidence": 0.7353146765398013,
+    "impasse_signal": 0.07127761150679836,
+    "uncertainty": 0.31565819044732013,
+    "social_deficit": 0.013323587420125219,
+    "satisfaction_signal": 0.028047949715773204,
+    "risk_estimate": 0.0
+  },
+  "_schema_version": 2,
+  "resource_deficit": 0.0331,
+  "signal_stability": 0.894,
+  "_emotion_queue": [
+    {
+      "emotion": "uncertainty",
+      "per_s": 0.0036837500000000004,
+      "s_left": 3.0340112919948297,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "stagnation_signal",
+      "per_s": -0.001,
+      "s_left": 7.03401129199483,
+      "source": "arbiter"
+    },
+    {
+      "emotion": "exploration_drive",
+      "per_s": 0.0009273448931089531,
+      "s_left": 8.0,
+      "source": "novelty"
+    }
+  ],
+  "_prev_core": {
+    "exploration_drive": 0.7344247863111988,
+    "reflective": 0.35,
+    "analytical": 0.2,
+    "affiliation_signal": 0.10000000001118325,
+    "reward_positive": 0.5558319006254643,
+    "expected_gain": 0.8150877645401944,
+    "low_affect_signal": 0.0012321872663517805,
+    "social_comparison_signal": 4.896230422554164e-06,
+    "conflict_signal": 2.6708522748523045e-06,
+    "threat_level": 0.009555,
+    "reward_negative": 0.014077711460647836,
+    "social_penalty": 2.2749372254327047e-09,
+    "loss_signal": 0.2618183135082488,
+    "prediction_error_signal": 0.02,
+    "rejection_signal": 0.3758956251359682,
+    "stagnation_signal": 0.08108559859398304,
+    "novelty_signal": 0.49321605321571527,
+    "motivation": 0.8933406122155154,
+    "confidence": 0.7124706916261532,
+    "impasse_signal": 0.08060099802288462,
+    "uncertainty": 0.285794582404919,
+    "social_deficit": 0.013665677425704646,
+    "satisfaction_signal": 0.028621319350472678,
+    "risk_estimate": 0.0
+  },
+  "habituation": {
+    "rejection_signal:[chunk: 💔 goal failed: understan": {
+      "count": 10,
+      "last_ts": "2026-11-04T02:45:34.965407+00:00"
+    },
+    "rejection_signal:dream: in a labyrinth at": {
+      "count": 10,
+      "last_ts": "2026-11-04T02:42:02.041906+00:00"
+    }
+  },
+  "social_deficit": 0.0,
+  "_stability_signal_proxy": 0.333,
+  "_ne_proxy": 0.357,
+  "emotion_history": [
+    {
+      "exploration_drive": 0.5542535829596347,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001396793,
+      "reward_positive": 0.5346329547226644,
+      "expected_gain": 0.7584089570826513,
+      "low_affect_signal": 0.0016227344728909612,
+      "social_comparison_signal": 5.132659374200162e-06,
+      "conflict_signal": 2.900838858064396e-06,
+      "threat_level": 0.005533841205888103,
+      "reward_negative": 0.013840014062216603,
+      "social_penalty": 1.575403140441356e-07,
+      "loss_signal": 0.2179007194741674,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.4258498090575545,
+      "stagnation_signal": 0.03919890982102682,
+      "novelty_signal": 0.3900905978108921,
+      "motivation": 0.6948713478391672,
+      "confidence": 0.6631385553335062,
+      "impasse_signal": 0.10467698338608056,
+      "uncertainty": 0.33826676933067945,
+      "social_deficit": 0.013323550068287475,
+      "satisfaction_signal": 0.03574809907574713,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5332551304619038,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001368857,
+      "reward_positive": 0.5348176689295168,
+      "expected_gain": 0.7518193810443198,
+      "low_affect_signal": 0.0015821745534095554,
+      "social_comparison_signal": 5.006539295830928e-06,
+      "conflict_signal": 2.7739484254795236e-06,
+      "threat_level": 0.005287586307781901,
+      "reward_negative": 0.013224132727942806,
+      "social_penalty": 2.1975056929690596e-09,
+      "loss_signal": 0.2121807789611133,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.4282647461266405,
+      "stagnation_signal": 0.037699985122886456,
+      "novelty_signal": 0.3859667414796313,
+      "motivation": 0.6851306563194473,
+      "confidence": 0.6583461743471968,
+      "impasse_signal": 0.09424281604661937,
+      "uncertainty": 0.32962953273778084,
+      "social_deficit": 0.012990458461919019,
+      "satisfaction_signal": 0.03503312939568036,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5253796644891371,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001341454,
+      "reward_positive": 0.5368980066479258,
+      "expected_gain": 0.7756586569936655,
+      "low_affect_signal": 0.0015433660028292707,
+      "social_comparison_signal": 5.075213562951748e-06,
+      "conflict_signal": 2.8443887338260074e-06,
+      "threat_level": 0.005052384669245496,
+      "reward_negative": 0.014484667705560226,
+      "social_penalty": 1.9393241521670212e-07,
+      "loss_signal": 0.23647383444340944,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.4223287476807006,
+      "stagnation_signal": 0.037729142292761156,
+      "novelty_signal": 0.3896576086691041,
+      "motivation": 0.7813822521606663,
+      "confidence": 0.6973955342051592,
+      "impasse_signal": 0.10352142994627384,
+      "uncertainty": 0.3091679791991706,
+      "social_deficit": 0.013665431978208555,
+      "satisfaction_signal": 0.03433180098994592,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5284709645293194,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001314613,
+      "reward_positive": 0.5281285065117893,
+      "expected_gain": 0.7683468310045779,
+      "low_affect_signal": 0.0015051661361904613,
+      "social_comparison_signal": 5.048110103750669e-06,
+      "conflict_signal": 2.817612581492147e-06,
+      "threat_level": 0.0048276051860713905,
+      "reward_negative": 0.013824648703020342,
+      "social_penalty": 9.982627724114402e-08,
+      "loss_signal": 0.229968508283292,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.425092178383309,
+      "stagnation_signal": 0.034659678056991605,
+      "novelty_signal": 0.3855390018715399,
+      "motivation": 0.7100343150221252,
+      "confidence": 0.691579327530771,
+      "impasse_signal": 0.09321046092707225,
+      "uncertainty": 0.3472353113997672,
+      "social_deficit": 0.013323663172256216,
+      "satisfaction_signal": 0.03364482910299039,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5107732511987999,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1000000000128832,
+      "reward_positive": 0.5335095078975484,
+      "expected_gain": 0.7611014556415974,
+      "low_affect_signal": 0.0014675376009023792,
+      "social_comparison_signal": 4.922067686728466e-06,
+      "conflict_signal": 2.692389192954592e-06,
+      "threat_level": 0.004612776841710101,
+      "reward_negative": 0.013209451784251668,
+      "social_penalty": 1.6041452610693342e-10,
+      "loss_signal": 0.2235006404025494,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42758295456820616,
+      "stagnation_signal": 0.0333999989829719,
+      "novelty_signal": 0.38150997389539865,
+      "motivation": 0.6990094969288155,
+      "confidence": 0.6857837736293916,
+      "impasse_signal": 0.083300692121228,
+      "uncertainty": 0.3308041388810817,
+      "social_deficit": 0.012990571384562171,
+      "satisfaction_signal": 0.032971931992012884,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5053697066195683,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1000000000126253,
+      "reward_positive": 0.5352615774730581,
+      "expected_gain": 0.7844928820778492,
+      "low_affect_signal": 0.0014315486949920647,
+      "social_comparison_signal": 4.9803003603017e-06,
+      "conflict_signal": 2.753902620830828e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.01440849654574699,
+      "social_penalty": 1.8137140616936165e-07,
+      "loss_signal": 0.24707051575701278,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42171080790526294,
+      "stagnation_signal": 0.037582480811204945,
+      "novelty_signal": 0.3852103206078813,
+      "motivation": 0.8152486356236518,
+      "confidence": 0.7345950164250327,
+      "impasse_signal": 0.09286951377955154,
+      "uncertainty": 0.30556233599180704,
+      "social_deficit": 0.013665559241283102,
+      "satisfaction_signal": 0.03231190729593702,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5109627951611464,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001237243,
+      "reward_positive": 0.5261917816220221,
+      "expected_gain": 0.7765071023887388,
+      "low_affect_signal": 0.0013968672910037903,
+      "social_comparison_signal": 5.142490814378722e-06,
+      "conflict_signal": 2.918115722480981e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013692414555267367,
+      "social_penalty": 2.868372453090906e-07,
+      "loss_signal": 0.2398059406318011,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42452912733900083,
+      "stagnation_signal": 0.04792689992033853,
+      "novelty_signal": 0.3811772069479511,
+      "motivation": 0.749636087284165,
+      "confidence": 0.7274721818504791,
+      "impasse_signal": 0.08305286903698013,
+      "uncertainty": 0.32245161891484214,
+      "social_deficit": 0.013323538080592608,
+      "satisfaction_signal": 0.03166476086068729,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.4997877101134334,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001212497,
+      "reward_positive": 0.5237704798188593,
+      "expected_gain": 0.7686265641915161,
+      "low_affect_signal": 0.0013619504216984147,
+      "social_comparison_signal": 5.015173574755498e-06,
+      "conflict_signal": 2.7895048808084557e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.0130158340008388,
+      "social_penalty": 1.2456552989092984e-09,
+      "loss_signal": 0.23261173343743963,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42707616825722994,
+      "stagnation_signal": 0.04617017166592326,
+      "novelty_signal": 0.3772389367098431,
+      "motivation": 0.754545494037693,
+      "confidence": 0.7204043637354725,
+      "impasse_signal": 0.07370029166044931,
+      "uncertainty": 0.32308219109091474,
+      "social_deficit": 0.012990448010415552,
+      "satisfaction_signal": 0.031031461778022584,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5197311355695392,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.1000000000118822,
+      "reward_positive": 0.5645713713018596,
+      "expected_gain": 0.8166285730723748,
+      "low_affect_signal": 0.0013287872029911188,
+      "social_comparison_signal": 5.118669538628048e-06,
+      "conflict_signal": 2.894298153294131e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.01408542480112322,
+      "social_penalty": 2.2898727330633584e-07,
+      "loss_signal": 0.25548214875089037,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42124336473251656,
+      "stagnation_signal": 0.04060840142063088,
+      "novelty_signal": 0.3809506538185034,
+      "motivation": 0.8858858871864673,
+      "confidence": 0.7686540489819605,
+      "impasse_signal": 0.08334642731329812,
+      "uncertainty": 0.294678167322034,
+      "social_deficit": 0.013665373883319114,
+      "satisfaction_signal": 0.030410136173099844,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5484652133087963,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001164437,
+      "reward_positive": 0.5539813651242544,
+      "expected_gain": 0.8024315973340798,
+      "low_affect_signal": 0.0012961772035274177,
+      "social_comparison_signal": 5.148146353420576e-06,
+      "conflict_signal": 2.922980490577979e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013322274834603394,
+      "social_penalty": 1.5752216789066687e-07,
+      "loss_signal": 0.24749443295505072,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.4241132138163108,
+      "stagnation_signal": 0.038038403812879505,
+      "novelty_signal": 0.3770112078265432,
+      "motivation": 0.798519131160401,
+      "confidence": 0.7602048301932313,
+      "impasse_signal": 0.07365406271040549,
+      "uncertainty": 0.32823074352441334,
+      "social_deficit": 0.013323529657802521,
+      "satisfaction_signal": 0.029801464003121416,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.5662699379306377,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001141149,
+      "reward_positive": 0.5552154869898959,
+      "expected_gain": 0.7927688207523685,
+      "low_affect_signal": 0.0012637818116428517,
+      "social_comparison_signal": 5.021774792363245e-06,
+      "conflict_signal": 2.795240476035902e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.012640200377444098,
+      "social_penalty": 2.3332689491617486e-09,
+      "loss_signal": 0.23960549199818998,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.4267018057066313,
+      "stagnation_signal": 0.036854391964406825,
+      "novelty_signal": 0.37315962027834987,
+      "motivation": 0.7817318021984665,
+      "confidence": 0.7518339839074695,
+      "impasse_signal": 0.06438012515791922,
+      "uncertainty": 0.3065992216739108,
+      "social_deficit": 0.0129904383853381,
+      "satisfaction_signal": 0.02920542790864559,
+      "risk_estimate": 0.0
+    },
+    {
+      "exploration_drive": 0.7344084957374042,
+      "reflective": 0.35,
+      "analytical": 0.2,
+      "affiliation_signal": 0.10000000001118288,
+      "reward_positive": 0.5558165715931256,
+      "expected_gain": 0.8112972833730105,
+      "low_affect_signal": 0.0012334909773344491,
+      "social_comparison_signal": 5.232352727076166e-06,
+      "conflict_signal": 3.007049415939157e-06,
+      "threat_level": 0.01,
+      "reward_negative": 0.013762251619904886,
+      "social_penalty": 3.3628695836562805e-07,
+      "loss_signal": 0.2618095088998194,
+      "prediction_error_signal": 0.02,
+      "rejection_signal": 0.42088332054328254,
+      "stagnation_signal": 0.03603268155136309,
+      "novelty_signal": 0.49278840075285674,
+      "motivation": 0.8824955385127803,
+      "confidence": 0.7124618650790985,
+      "impasse_signal": 0.07459718629701556,
+      "uncertainty": 0.2846113163580681,
+      "social_deficit": 0.013665217866795096,
+      "satisfaction_signal": 0.0286203568528298,
+      "risk_estimate": 0.0
+    }
+  ],
+  "emotion_velocity": {
+    "exploration_drive": 0.1681,
+    "reflective": 0.0,
+    "analytical": 0.0,
+    "affiliation_signal": -0.0,
+    "reward_positive": 0.0006,
+    "expected_gain": 0.0185,
+    "low_affect_signal": -0.0,
+    "social_comparison_signal": 0.0,
+    "conflict_signal": 0.0,
+    "threat_level": 0.0004,
+    "reward_negative": 0.001,
+    "social_penalty": 0.0,
+    "loss_signal": 0.0222,
+    "prediction_error_signal": 0.0,
+    "rejection_signal": 0.0392,
+    "stagnation_signal": -0.056,
+    "novelty_signal": 0.1193,
+    "motivation": 0.0408,
+    "confidence": -0.0394,
+    "impasse_signal": 0.0042,
+    "uncertainty": 0.0203,
+    "social_deficit": 0.0007,
+    "satisfaction_signal": -0.0006,
+    "risk_estimate": 0.0
+  },
+  "_pin_streaks": {
+    "rejection_signal": 12783,
+    "reward_positive": 43,
+    "uncertainty": 40,
+    "expected_gain": 22,
+    "confidence": 16,
+    "loss_signal": 13,
+    "motivation": 7,
+    "exploration_drive": 4,
+    "novelty_signal": 1
+  },
+  "_saturation_streaks": {},
+  "_saturation_windows": {
+    "exploration_drive": {
+      "n": 27,
+      "hits": 0,
+      "last_bound_v": 0.475456508337459
+    },
+    "reflective": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.35
+    },
+    "analytical": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.2
+    },
+    "affiliation_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.10000000001454441
+    },
+    "reward_positive": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.5383609392646023
+    },
+    "expected_gain": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.7407879637429025
+    },
+    "low_affect_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.0017055434648983224
+    },
+    "social_comparison_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 5.014853552277265e-06
+    },
+    "conflict_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 2.8383622360429116e-06
+    },
+    "threat_level": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.006184818839330125
+    },
+    "reward_negative": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.013420465977385292
+    },
+    "social_penalty": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 1.8988192477331633e-07
+    },
+    "loss_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.19860467809226642
+    },
+    "prediction_error_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.02
+    },
+    "rejection_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.3841928868293777
+    },
+    "stagnation_signal": {
+      "n": 28,
+      "hits": 0,
+      "last_bound_v": 0.08692673841000367
+    },
+    "novelty_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.350917729108236
+    },
+    "motivation": {
+      "n": 27,
+      "hits": 0,
+      "last_bound_v": 0.6601514157475398
+    },
+    "confidence": {
+      "n": 27,
+      "hits": 0,
+      "last_bound_v": 0.6641004041309219
+    },
+    "impasse_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.11511211816572313
+    },
+    "uncertainty": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.3327190847607573
+    },
+    "social_deficit": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.0129904475050302
+    },
+    "satisfaction_signal": {
+      "n": 14,
+      "hits": 0,
+      "last_bound_v": 0.037223474903606835
+    },
+    "risk_estimate": {
+      "n": 124,
+      "hits": 0,
+      "last_bound_v": 0.028003012597852227
+    }
+  },
+  "exploration_drive": 0.6882713070369976,
+  "motivation": 0.8035489256251545,
+  "confidence": 0.7353146765398013,
+  "_allostatic_load": 0.0,
+  "_resource_setpoint": 0.1501,
+  "hedonic_baselines": {
+    "exploration_drive": 0.6016,
+    "reflective": 0.345,
+    "analytical": 0.1951,
+    "affiliation_signal": 0.1033,
+    "reward_positive": 0.5515,
+    "expected_gain": 0.7492,
+    "low_affect_signal": 0.04,
+    "social_comparison_signal": 0.005,
+    "conflict_signal": 0.01,
+    "threat_level": 0.01,
+    "reward_negative": 0.0133,
+    "social_penalty": 0.0,
+    "loss_signal": 0.2298,
+    "prediction_error_signal": 0.0249,
+    "rejection_signal": 0.4069,
+    "stagnation_signal": 0.0815,
+    "novelty_signal": 0.3861,
+    "motivation": 0.7387,
+    "confidence": 0.7309,
+    "impasse_signal": 0.0742,
+    "uncertainty": 0.3017,
+    "social_deficit": 0.0,
+    "satisfaction_signal": 0.0967,
+    "risk_estimate": 0.0033
+  },
+  "smoothed_state": 0.2948,
+  "reward_signal": 0.313,
+  "activation_level": 0.344,
+  "affect_quadrant": "active_positive",
+  "_affect_velocity_l1": 0.3076,
+  "recent_triggers": [
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    },
+    {
+      "event": "[Chunk: 💔 Goal failed: Understand Cosmogony more deeply. steps_unreachable: 3 st",
+      "emotion": "rejection_signal",
+      "intensity": 0.045,
+      "timestamp": "2026-11-04T02:08:33.359150+00:00"
+    }
+  ],
+  "recent_emotion_causes": [
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_4c9c17ee43",
+      "ts": "2026-11-04T02:32:58.513355+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Turn what I know about Answer: What actually is Saltiness and sourne",
+      "ts": "2026-11-04T02:32:58.513355+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.169,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "confidence",
+      "delta": 0.092,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "motivation",
+      "delta": 0.086,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_24a79a0c24",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_24a79a0c24",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.169,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "confidence",
+      "delta": 0.092,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "motivation",
+      "delta": 0.086,
+      "cause": "[appraisal] [goal_done] Understand Saltiness and sourness more deeply — round 4",
+      "ts": "2026-11-04T02:33:10.885223+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Turn what I know about Saltiness and sourness — round 4 into a writt",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Turn what I know about Saltiness and sourness — round 4 into a writt",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_aed99d7af8",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Answer: What actually is Saltiness and sourness, beyond the mentions",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_aed99d7af8",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Answer: What actually is Saltiness and sourness, beyond the mentions",
+      "ts": "2026-11-04T02:33:22.478810+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Answer: What actually is Saltiness and sourness, beyond the mentions",
+      "ts": "2026-11-04T02:33:33.170539+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_788d594281",
+      "ts": "2026-11-04T02:33:33.170539+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [ledger_credit] g_788d594281",
+      "ts": "2026-11-04T02:33:33.170539+00:00"
+    },
+    {
+      "emotion": "reward_positive",
+      "delta": 0.085,
+      "cause": "[appraisal] [goal_done] Answer: What actually is Saltiness and sourness, beyond the mentions",
+      "ts": "2026-11-04T02:33:33.170539+00:00"
+    }
+  ],
+  "setpoint_proximity": 0.8223,
+  "last_updated": "2026-11-04T02:45:34.965407+00:00",
+  "confidence_by_domain": {},
+  "_appraisal_habituation": {},
+  "_flatline_streak": 0,
+  "emotion_osc_counts": {
+    "exploration_drive": 0,
+    "reflective": 0,
+    "analytical": 0,
+    "affiliation_signal": 0,
+    "reward_positive": 0,
+    "expected_gain": 0,
+    "low_affect_signal": 0,
+    "social_comparison_signal": 0,
+    "conflict_signal": 0,
+    "threat_level": 0,
+    "reward_negative": 0,
+    "social_penalty": 0,
+    "loss_signal": 0,
+    "prediction_error_signal": 0,
+    "rejection_signal": 0,
+    "stagnation_signal": 0,
+    "novelty_signal": 0,
+    "motivation": 0,
+    "confidence": 0,
+    "impasse_signal": 0,
+    "uncertainty": 0,
+    "social_deficit": 0,
+    "satisfaction_signal": 0,
+    "risk_estimate": 0
+  }
+}

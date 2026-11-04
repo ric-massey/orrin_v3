@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Psychiatric_medication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Serotonin_syndrome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Topical_medication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Drug_overdose",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Opioid_overdose",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Self-medication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_41ad158256/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:39:15.684275+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "question": "What is there about the world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "about meaning affects the mind insofar as our thoughts",
+    "about things in the world",
+    "Lenin said that human minds",
+    "capable of forming representations of the world that portray the world as it is"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [aspiration-world_knowledge]"
+    },
+    {
+      "subject": "about meaning affects the mind insofar as our thoughts",
+      "predicate": "are",
+      "object": "about things in the world",
+      "source": "https://en.wikipedia.org/wiki/Problem_of_mental_causation"
+    },
+    {
+      "subject": "Lenin said that human minds",
+      "predicate": "are",
+      "object": "capable of forming representations of the world that portray the world as it is",
+      "source": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [aspiration-world_knowledge]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Problem_of_mental_causation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structuration_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Justification_%28epistemology%29"
+    }
+  ],
+  "ts": "2026-11-03T11:47:00.337390+00:00"
+}

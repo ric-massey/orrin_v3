@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Health_impacts_of_sawdust",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_01.txt",
+      "chars": 19441
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pykrete",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_02.txt",
+      "chars": 18921
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Killers",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Silo",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Oryctes_rhinoceros",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sierra_Pacific_Industries",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ingmar_Bergman",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sustainable_fashion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexei_Navalny",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Phineas_Gage",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T19:21:07.866378+00:00"
+}

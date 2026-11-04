@@ -1,0 +1,61 @@
+{
+  "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "saltiness",
+    "sourness"
+  ],
+  "entities": [
+    "Saltiness and sourness",
+    "perceived when alkali metals or hydrogen ions meet taste buds",
+    "The five specific tastes received by taste receptors",
+    "saltiness"
+  ],
+  "relations": [
+    {
+      "subject": "Saltiness and sourness",
+      "predicate": "are",
+      "object": "perceived when alkali metals or hydrogen ions meet taste buds",
+      "source": "my prior claims [g_49e889528d]"
+    },
+    {
+      "subject": "The five specific tastes received by taste receptors",
+      "predicate": "are",
+      "object": "saltiness",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_49e889528d]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Umami"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sweetness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ageusia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lactisole"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tongue_map"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Monosodium_glutamate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wrigley_Field"
+    }
+  ],
+  "ts": "2026-11-04T02:32:59.282782+00:00"
+}

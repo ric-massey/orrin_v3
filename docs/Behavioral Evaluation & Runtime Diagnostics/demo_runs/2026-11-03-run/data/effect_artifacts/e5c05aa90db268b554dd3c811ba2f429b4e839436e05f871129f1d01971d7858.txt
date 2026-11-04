@@ -1,0 +1,28 @@
+{
+  "question": "What actually is Oxypurinol, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "oxypurinol"
+  ],
+  "entities": [
+    "Oxypurinol",
+    "quickly transformed from allopurinol and then eliminated by the kidneys"
+  ],
+  "relations": [
+    {
+      "subject": "Oxypurinol",
+      "predicate": "is",
+      "object": "quickly transformed from allopurinol and then eliminated by the kidneys",
+      "source": "my prior claims [intrinsic-2026-11-03T18:54:35.320704+00:00]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [intrinsic-2026-11-03T18:54:35.320704+00:00]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Allopurinol"
+    }
+  ],
+  "ts": "2026-11-03T21:06:13.315903+00:00"
+}

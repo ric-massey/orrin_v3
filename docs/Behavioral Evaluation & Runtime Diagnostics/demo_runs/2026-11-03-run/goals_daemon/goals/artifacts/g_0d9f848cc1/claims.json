@@ -1,0 +1,133 @@
+{
+  "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+  "subject_terms": [
+    "philosophy",
+    "time"
+  ],
+  "entities": [
+    "The philosophy of space and time",
+    "both an inspiration for and a central aspect of early analytic philosophy",
+    "yet",
+    "considered centerpieces of Nietzschean philosophy",
+    "African philosophy",
+    "philosophical discourse produced using indigenous African thought systems",
+    "African philosophers",
+    "found in the various academic fields of present philosophy",
+    "is that a specific culture can have a philosophy that",
+    "not applicable and accessible to all peoples and cultures in the world",
+    "approach to African philosophy as a static group property",
+    "highly problematic",
+    "Hegel strove to correct what he argued",
+    "untenable dualisms common in modern philosophy",
+    "Philosophy of science",
+    "both a theoretical and empirical discipline"
+  ],
+  "relations": [
+    {
+      "subject": "The philosophy of space and time",
+      "predicate": "was",
+      "object": "both an inspiration for and a central aspect of early analytic philosophy",
+      "source": "my prior claims [g_5809153f2b]"
+    },
+    {
+      "subject": "yet",
+      "predicate": "are",
+      "object": "considered centerpieces of Nietzschean philosophy",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "subject": "African philosophy",
+      "predicate": "is the",
+      "object": "philosophical discourse produced using indigenous African thought systems",
+      "source": "https://en.wikipedia.org/wiki/African_philosophy"
+    },
+    {
+      "subject": "African philosophers",
+      "predicate": "are",
+      "object": "found in the various academic fields of present philosophy",
+      "source": "https://en.wikipedia.org/wiki/African_philosophy"
+    },
+    {
+      "subject": "is that a specific culture can have a philosophy that",
+      "predicate": "is",
+      "object": "not applicable and accessible to all peoples and cultures in the world",
+      "source": "https://en.wikipedia.org/wiki/African_philosophy"
+    },
+    {
+      "subject": "approach to African philosophy as a static group property",
+      "predicate": "is",
+      "object": "highly problematic",
+      "source": "https://en.wikipedia.org/wiki/African_philosophy"
+    },
+    {
+      "subject": "Hegel strove to correct what he argued",
+      "predicate": "were",
+      "object": "untenable dualisms common in modern philosophy",
+      "source": "https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel"
+    },
+    {
+      "subject": "Philosophy of science",
+      "predicate": "is",
+      "object": "both a theoretical and empirical discipline",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "Ethical issues such as bioethics and scientific misconduct",
+      "predicate": "are",
+      "object": "often considered ethics or science studies rather than the philosophy of science",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "Some philosophers of science also use contemporary",
+      "predicate": "results in",
+      "object": "science to reach conclusions about philosophy itself",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "subject": "because it",
+      "predicate": "is",
+      "object": "usually only taught in continental philosophy departments",
+      "source": "https://en.wikipedia.org/wiki/Process_philosophy"
+    },
+    {
+      "subject": "the philosophy of mathematics",
+      "predicate": "was",
+      "object": "undertaken to develop mathematics as an airtight",
+      "source": "https://en.wikipedia.org/wiki/Process_philosophy"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_5809153f2b]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/School_of_Philosophy_and_Economic_Science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/African_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Process_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/AI_art"
+    }
+  ],
+  "ts": "2026-11-03T11:08:01.821977+00:00"
+}

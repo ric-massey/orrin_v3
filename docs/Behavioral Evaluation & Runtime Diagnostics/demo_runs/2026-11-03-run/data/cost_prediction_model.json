@@ -1,0 +1,657 @@
+{
+  "assess_goal_progress": {
+    "ema": 88.05,
+    "n": 936,
+    "last": 5.02
+  },
+  "look_outward": {
+    "ema": 690.67,
+    "n": 1019,
+    "last": 594.65
+  },
+  "generate_intrinsic_goals": {
+    "ema": 7.59,
+    "n": 57,
+    "last": 5.45
+  },
+  "research_topic": {
+    "ema": 1420.72,
+    "n": 275,
+    "last": 6256.24
+  },
+  "attend_goal": {
+    "ema": 50.87,
+    "n": 346,
+    "last": 47.05
+  },
+  "read_book": {
+    "ema": 42.53,
+    "n": 8,
+    "last": 0.63
+  },
+  "search_own_files": {
+    "ema": 1226.16,
+    "n": 91,
+    "last": 1543.72
+  },
+  "detect_tensions": {
+    "ema": 16.04,
+    "n": 21,
+    "last": 1.36
+  },
+  "reflect_on_missed_goals": {
+    "ema": 82.17,
+    "n": 15,
+    "last": 105.06
+  },
+  "decide_to_write_code": {
+    "ema": 58.58,
+    "n": 8,
+    "last": 20.72
+  },
+  "look_around": {
+    "ema": 1200.42,
+    "n": 166,
+    "last": 1888.68
+  },
+  "maybe_surface_association": {
+    "ema": 42.0,
+    "n": 8,
+    "last": 0.1
+  },
+  "periodic_self_review": {
+    "ema": 119.86,
+    "n": 9,
+    "last": 283.55
+  },
+  "leave_note": {
+    "ema": 1468.53,
+    "n": 29,
+    "last": 59.24
+  },
+  "synthesize_from_gap": {
+    "ema": 42.09,
+    "n": 8,
+    "last": 0.34
+  },
+  "evaluate_recent_cognition": {
+    "ema": 48.09,
+    "n": 8,
+    "last": 8.19
+  },
+  "fetch_and_read": {
+    "ema": 679.02,
+    "n": 52,
+    "last": 594.14
+  },
+  "simulate_conflicting_beliefs": {
+    "ema": 56.54,
+    "n": 8,
+    "last": 42.36
+  },
+  "read_a_book": {
+    "ema": 25772.62,
+    "n": 40,
+    "last": 83.39
+  },
+  "wikipedia_search": {
+    "ema": 590.89,
+    "n": 176,
+    "last": 556.16
+  },
+  "read_text": {
+    "ema": 42.38,
+    "n": 8,
+    "last": 0.57
+  },
+  "audit_reflective_claims": {
+    "ema": 24.67,
+    "n": 61,
+    "last": 73.55
+  },
+  "thread_continue": {
+    "ema": 2.34,
+    "n": 22,
+    "last": 0.14
+  },
+  "summarize_relationships": {
+    "ema": 41.99,
+    "n": 8,
+    "last": 0.06
+  },
+  "reflect_on_self_beliefs": {
+    "ema": 992.55,
+    "n": 203,
+    "last": 35.9
+  },
+  "read_vitals": {
+    "ema": 131.2,
+    "n": 8,
+    "last": 106.61
+  },
+  "reflect_on_internal_agents": {
+    "ema": 63.12,
+    "n": 39,
+    "last": 39.78
+  },
+  "maybe_surface_regret": {
+    "ema": 17.23,
+    "n": 12,
+    "last": 0.05
+  },
+  "consolidate_from_long_memory": {
+    "ema": 78.23,
+    "n": 12,
+    "last": 19.3
+  },
+  "run_embodied_observation": {
+    "ema": 134.1,
+    "n": 22,
+    "last": 160.87
+  },
+  "narrative_update": {
+    "ema": 12.68,
+    "n": 2994,
+    "last": 0.51
+  },
+  "compose_consolidation": {
+    "ema": 100.79,
+    "n": 8,
+    "last": 0.17
+  },
+  "seek_novelty": {
+    "ema": 764.09,
+    "n": 47,
+    "last": 1253.76
+  },
+  "detect_memory_contradictions": {
+    "ema": 55.03,
+    "n": 9,
+    "last": 19.85
+  },
+  "idle_consolidation_cycle": {
+    "ema": 20606.84,
+    "n": 8,
+    "last": 25119.42
+  },
+  "read_rss": {
+    "ema": 134.15,
+    "n": 70,
+    "last": 329.48
+  },
+  "list_books": {
+    "ema": 49.65,
+    "n": 8,
+    "last": 8.56
+  },
+  "associative_recall": {
+    "ema": 49.47,
+    "n": 8,
+    "last": 8.64
+  },
+  "fetch_wikipedia": {
+    "ema": 4565.86,
+    "n": 8,
+    "last": 153.0
+  },
+  "process_regret": {
+    "ema": 78.21,
+    "n": 41,
+    "last": 63.55
+  },
+  "generate_concepts_from_memories": {
+    "ema": 43.74,
+    "n": 8,
+    "last": 2.28
+  },
+  "pick_book": {
+    "ema": 42.73,
+    "n": 8,
+    "last": 0.63
+  },
+  "reflect_on_outcomes": {
+    "ema": 140.21,
+    "n": 10,
+    "last": 332.57
+  },
+  "adapt_subgoals": {
+    "ema": 42.43,
+    "n": 8,
+    "last": 0.05
+  },
+  "notify_user": {
+    "ema": 159.22,
+    "n": 8,
+    "last": 114.67
+  },
+  "reflect_on_growth_history": {
+    "ema": 402.82,
+    "n": 52,
+    "last": 452.2
+  },
+  "write_desktop_note": {
+    "ema": 740.91,
+    "n": 18,
+    "last": 0.85
+  },
+  "narrate_experience": {
+    "ema": 100.71,
+    "n": 8,
+    "last": 0.05
+  },
+  "reflect_on_opinions": {
+    "ema": 45.49,
+    "n": 12,
+    "last": 7.03
+  },
+  "produce_and_check": {
+    "ema": 20.22,
+    "n": 8,
+    "last": 0.09
+  },
+  "reflect_on_conversation_patterns": {
+    "ema": 46.97,
+    "n": 21,
+    "last": 125.3
+  },
+  "survey_environment": {
+    "ema": 107.98,
+    "n": 8,
+    "last": 108.82
+  },
+  "reflect_as_agents": {
+    "ema": 49.6,
+    "n": 12,
+    "last": 5.41
+  },
+  "learn_from_reading": {
+    "ema": 18.31,
+    "n": 15,
+    "last": 38.05
+  },
+  "reflect_on_effectiveness": {
+    "ema": 146.4,
+    "n": 9,
+    "last": 323.9
+  },
+  "reflect_on_emotion_sensitivity": {
+    "ema": 135.98,
+    "n": 8,
+    "last": 41.33
+  },
+  "reflect_on_think": {
+    "ema": 101.78,
+    "n": 36,
+    "last": 0.3
+  },
+  "reflect_on_cognition_patterns": {
+    "ema": 108.29,
+    "n": 8,
+    "last": 15.83
+  },
+  "announce_to_dashboard": {
+    "ema": 1903.25,
+    "n": 8,
+    "last": 2161.96
+  },
+  "grep_files": {
+    "ema": 20.18,
+    "n": 8,
+    "last": 0.05
+  },
+  "exploration_drive_loop": {
+    "ema": 42.06,
+    "n": 8,
+    "last": 0.16
+  },
+  "reflect_on_internal_voices": {
+    "ema": 960.45,
+    "n": 19,
+    "last": 1101.57
+  },
+  "extract_semantic_facts": {
+    "ema": 46.03,
+    "n": 9,
+    "last": 14.13
+  },
+  "evolve_core_value": {
+    "ema": 48.32,
+    "n": 8,
+    "last": 9.89
+  },
+  "review_failures_internal": {
+    "ema": 41.99,
+    "n": 8,
+    "last": 0.05
+  },
+  "reconcile_identity": {
+    "ema": 80.59,
+    "n": 9,
+    "last": 0.07
+  },
+  "imagine_opposite_self": {
+    "ema": 62.33,
+    "n": 8,
+    "last": 8.05
+  },
+  "simulate_new_cognitive_abilities": {
+    "ema": 42.05,
+    "n": 8,
+    "last": 0.14
+  },
+  "resolve_conflicts": {
+    "ema": 42.09,
+    "n": 8,
+    "last": 0.19
+  },
+  "compose_section": {
+    "ema": 35.72,
+    "n": 11,
+    "last": 26.61
+  },
+  "mark_private": {
+    "ema": 105.01,
+    "n": 8,
+    "last": 4.07
+  },
+  "update_world_model": {
+    "ema": 45.94,
+    "n": 8,
+    "last": 0.16
+  },
+  "run_embodied_cycle": {
+    "ema": 74.53,
+    "n": 9,
+    "last": 109.11
+  },
+  "search_files": {
+    "ema": 18.15,
+    "n": 9,
+    "last": 1.03
+  },
+  "reflect_on_desire": {
+    "ema": 28.95,
+    "n": 20,
+    "last": 32.32
+  },
+  "experience_corpus": {
+    "ema": 47.26,
+    "n": 9,
+    "last": 16.39
+  },
+  "run_intrinsic_motivation": {
+    "ema": 94.46,
+    "n": 8,
+    "last": 59.64
+  },
+  "consolidate_language": {
+    "ema": 10485.64,
+    "n": 8,
+    "last": 12759.45
+  },
+  "repair_contradictions": {
+    "ema": 432.44,
+    "n": 3609,
+    "last": 378.9
+  },
+  "tick_commitment": {
+    "ema": 41.98,
+    "n": 8,
+    "last": 0.04
+  },
+  "select_focus_goals": {
+    "ema": 42.27,
+    "n": 8,
+    "last": 0.44
+  },
+  "check_user_presence": {
+    "ema": 70.24,
+    "n": 8,
+    "last": 33.16
+  },
+  "adjust_goal_weights": {
+    "ema": 42.01,
+    "n": 8,
+    "last": 0.07
+  },
+  "current_awareness": {
+    "ema": 41.99,
+    "n": 8,
+    "last": 0.05
+  },
+  "introspective_planning": {
+    "ema": 102.26,
+    "n": 8,
+    "last": 0.15
+  },
+  "redirect_goal_plan": {
+    "ema": 50.94,
+    "n": 8,
+    "last": 6.36
+  },
+  "attempt_regulation": {
+    "ema": 42.4,
+    "n": 8,
+    "last": 0.55
+  },
+  "check_orphaned_commitments": {
+    "ema": 42.37,
+    "n": 8,
+    "last": 0.53
+  },
+  "metacog_analyze": {
+    "ema": 101.53,
+    "n": 8,
+    "last": 0.1
+  },
+  "detect_self_model_conflicts": {
+    "ema": 168.57,
+    "n": 9,
+    "last": 377.71
+  },
+  "active_commitment": {
+    "ema": 41.98,
+    "n": 8,
+    "last": 0.04
+  },
+  "self_supervised_repair": {
+    "ema": 40.86,
+    "n": 11,
+    "last": 42.9
+  },
+  "list_directory": {
+    "ema": 23.83,
+    "n": 8,
+    "last": 15.82
+  },
+  "run_symbolic_experiments": {
+    "ema": 42.04,
+    "n": 8,
+    "last": 0.13
+  },
+  "run_rule_compression": {
+    "ema": 11.49,
+    "n": 1791,
+    "last": 0.69
+  },
+  "check_for_answer": {
+    "ema": 17.23,
+    "n": 12,
+    "last": 0.07
+  },
+  "weave_threads": {
+    "ema": 42.02,
+    "n": 8,
+    "last": 0.08
+  },
+  "run_forgetting_cycle": {
+    "ema": 61.69,
+    "n": 511,
+    "last": 53.78
+  },
+  "abandon_goal": {
+    "ema": 41.98,
+    "n": 8,
+    "last": 0.04
+  },
+  "executive_tick": {
+    "ema": 56.27,
+    "n": 8,
+    "last": 0.07
+  },
+  "run_episode_replay": {
+    "ema": 53.46,
+    "n": 8,
+    "last": 6.04
+  },
+  "read_clipboard": {
+    "ema": 77.05,
+    "n": 8,
+    "last": 74.04
+  },
+  "run_benchmark": {
+    "ema": 1766.96,
+    "n": 9,
+    "last": 3142.08
+  },
+  "run_inference_cycle": {
+    "ema": 42.36,
+    "n": 8,
+    "last": 0.51
+  },
+  "symbolic_route": {
+    "ema": 41.99,
+    "n": 8,
+    "last": 0.06
+  },
+  "emergency_self_modification": {
+    "ema": 42.02,
+    "n": 8,
+    "last": 0.07
+  },
+  "list_own_code": {
+    "ema": 42.0,
+    "n": 8,
+    "last": 0.06
+  },
+  "decide_to_use_tools": {
+    "ema": 79.09,
+    "n": 8,
+    "last": 38.25
+  },
+  "decide_to_search": {
+    "ema": 69.62,
+    "n": 9,
+    "last": 55.9
+  },
+  "maybe_complete_goals": {
+    "ema": 56.69,
+    "n": 8,
+    "last": 23.51
+  },
+  "commit_extension": {
+    "ema": 42.02,
+    "n": 8,
+    "last": 0.08
+  },
+  "check_affect_drift": {
+    "ema": 42.91,
+    "n": 8,
+    "last": 0.87
+  },
+  "run_pipeline": {
+    "ema": 42.54,
+    "n": 8,
+    "last": 0.4
+  },
+  "review_failures": {
+    "ema": 44.04,
+    "n": 8,
+    "last": 2.22
+  },
+  "run_self_improvement": {
+    "ema": 0.1,
+    "n": 622,
+    "last": 0.08
+  },
+  "take_snapshot": {
+    "ema": 43.15,
+    "n": 8,
+    "last": 2.15
+  },
+  "audit_map_territory": {
+    "ema": 1732.61,
+    "n": 9,
+    "last": 1557.66
+  },
+  "decide_to_run_code": {
+    "ema": 158.52,
+    "n": 8,
+    "last": 124.72
+  },
+  "maybe_form_opinion": {
+    "ema": 41.99,
+    "n": 8,
+    "last": 0.05
+  },
+  "metacog_monitor": {
+    "ema": 116.01,
+    "n": 8,
+    "last": 75.85
+  },
+  "check_predictions": {
+    "ema": 55.09,
+    "n": 8,
+    "last": 21.76
+  },
+  "archive_dead_threads": {
+    "ema": 42.07,
+    "n": 8,
+    "last": 0.32
+  },
+  "metacog_flush": {
+    "ema": 100.72,
+    "n": 8,
+    "last": 0.06
+  },
+  "propose_value_revision": {
+    "ema": 40.66,
+    "n": 108,
+    "last": 0.11
+  },
+  "run_symbolic_consolidation": {
+    "ema": 875.23,
+    "n": 132,
+    "last": 851.13
+  },
+  "submit_finetune_job": {
+    "ema": 42.49,
+    "n": 8,
+    "last": 0.71
+  },
+  "final_reflection": {
+    "ema": 108.31,
+    "n": 8,
+    "last": 4.91
+  },
+  "meta_reflect": {
+    "ema": 2365.14,
+    "n": 10,
+    "last": 3989.52
+  },
+  "check_pending_jobs": {
+    "ema": 52.49,
+    "n": 7,
+    "last": 0.06
+  },
+  "run_symbolic_prediction_cycle": {
+    "ema": 33.99,
+    "n": 197,
+    "last": 1.09
+  },
+  "prune_old_threads": {
+    "ema": 91.28,
+    "n": 5,
+    "last": 33.26
+  }
+}

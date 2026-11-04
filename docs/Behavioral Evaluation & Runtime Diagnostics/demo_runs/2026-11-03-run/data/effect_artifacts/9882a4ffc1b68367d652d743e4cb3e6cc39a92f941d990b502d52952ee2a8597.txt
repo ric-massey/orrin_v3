@@ -1,0 +1,55 @@
+{
+  "question": "What actually is structures, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "structures"
+  ],
+  "entities": [
+    "bridges and salt domes",
+    "all examples of load-bearing structures"
+  ],
+  "relations": [
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "my prior claims [g_1a4c745fac]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1a4c745fac]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Problem_structuring_methods"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structuration_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ernst_Mach"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stephen_Hawking"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Verstehen"
+    }
+  ],
+  "ts": "2026-11-03T16:40:22.334744+00:00"
+}

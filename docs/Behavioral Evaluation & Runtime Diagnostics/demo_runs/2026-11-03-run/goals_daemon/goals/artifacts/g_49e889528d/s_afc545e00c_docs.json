@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Chamoy_%28sauce%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_02.txt",
+      "chars": 11429
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Li_hing_mui",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_03.txt",
+      "chars": 8615
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Onigiri",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hypergeusia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_05.txt",
+      "chars": 2424
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pickled_cucumber",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kaeng_thepho",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_07.txt",
+      "chars": 15537
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Umami",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_49e889528d/doc_08.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-04T02:32:37.587806+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Central_Research_Institute_of_Culture_and_History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_03.txt",
+      "chars": 5375
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/English_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Chinese_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sign_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_16c1c9e146/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T11:07:49.257480+00:00"
+}

@@ -1,0 +1,154 @@
+{
+  "goal": {
+    "id": "g_0cb373c400",
+    "title": "Understand Explanations more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Explanations",
+        "Explanations explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:23.948357Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:23.948366Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:23.948368Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:23.948369Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:23.948371Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Explanations was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Explanations was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:06:23.948408Z",
+      "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:06:23.949395+00:00",
+    "updated_at": "2026-11-03 21:06:25.098476+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Explanations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explorable_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation_of_benefits",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Right_to_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hanlon%27s_razor",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0cb373c400/doc_08.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:06:30.850660+00:00"
+}

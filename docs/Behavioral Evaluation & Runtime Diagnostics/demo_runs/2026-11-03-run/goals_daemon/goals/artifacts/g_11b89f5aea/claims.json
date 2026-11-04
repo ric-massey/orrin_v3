@@ -1,0 +1,135 @@
+{
+  "question": "What is there about logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "There",
+    "many varieties of description logics and there is an informal naming convention",
+    "The expressivity",
+    "encoded in the label for a logic starting with one of the following basic logics",
+    "timers and monostable multivibrators Ladder logic",
+    "widely used to program PLCs",
+    "formulae above are a direct expression in logic of what",
+    "known",
+    "asking for an algorithm to decide whether a given statement",
+    "provable using the rules of logic",
+    "the statements of logic and mathematics",
+    "tautologies",
+    "and Peano",
+    "most significant in the two-thousand-year history of logic"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_f272218b3a]"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "many varieties of description logics and there is an informal naming convention",
+      "source": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "subject": "The expressivity",
+      "predicate": "is",
+      "object": "encoded in the label for a logic starting with one of the following basic logics",
+      "source": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "subject": "timers and monostable multivibrators Ladder logic",
+      "predicate": "is",
+      "object": "widely used to program PLCs",
+      "source": "https://en.wikipedia.org/wiki/Ladder_logic"
+    },
+    {
+      "subject": "formulae above are a direct expression in logic of what",
+      "predicate": "is",
+      "object": "known",
+      "source": "https://en.wikipedia.org/wiki/Frame_problem"
+    },
+    {
+      "subject": "asking for an algorithm to decide whether a given statement",
+      "predicate": "is",
+      "object": "provable using the rules of logic",
+      "source": "https://en.wikipedia.org/wiki/Entscheidungsproblem"
+    },
+    {
+      "subject": "the statements of logic and mathematics",
+      "predicate": "are",
+      "object": "tautologies",
+      "source": "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic"
+    },
+    {
+      "subject": "and Peano",
+      "predicate": "is the",
+      "object": "most significant in the two-thousand-year history of logic",
+      "source": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "subject": "Formal logic",
+      "predicate": "is the",
+      "object": "study of deductively valid inferences or logical truths",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Informal logic",
+      "predicate": "is",
+      "object": "associated with informal fallacies",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Systems of logic",
+      "predicate": "are",
+      "object": "theoretical frameworks for assessing the correctness of arguments",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "the main system of logic in the Western world until it",
+      "predicate": "was",
+      "object": "replaced by modern formal logic",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_f272218b3a]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Description_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ladder_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Frame_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Entscheidungsproblem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Modal_logic"
+    }
+  ],
+  "ts": "2026-11-03T08:25:29.069349+00:00"
+}

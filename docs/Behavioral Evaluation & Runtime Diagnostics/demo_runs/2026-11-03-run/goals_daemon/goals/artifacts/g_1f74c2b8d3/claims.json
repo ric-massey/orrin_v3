@@ -1,0 +1,137 @@
+{
+  "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "memory",
+    "works",
+    "brain"
+  ],
+  "entities": [
+    "Memory loss",
+    "usually described as forgetfulness or a disorder such as amnesia",
+    "the function of long-term memory",
+    "to store information through various categorical models or systems",
+    "Semantic memory",
+    "memory that is encoded with specific meaning",
+    "episodic memory",
+    "information that is encoded along a spatial and temporal plane",
+    "Declarative memory",
+    "usually the primary process thought of when referencing memory",
+    "memory",
+    "unconscious storage and recollection of information",
+    "specific responses from memory and shows that not all memory",
+    "consciously activated",
+    "Memory",
+    "not a perfect processor and is affected by many factors"
+  ],
+  "relations": [
+    {
+      "subject": "Memory loss",
+      "predicate": "is",
+      "object": "usually described as forgetfulness or a disorder such as amnesia",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "the function of long-term memory",
+      "predicate": "is",
+      "object": "to store information through various categorical models or systems",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Semantic memory",
+      "predicate": "refers to",
+      "object": "memory that is encoded with specific meaning",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "episodic memory",
+      "predicate": "refers to",
+      "object": "information that is encoded along a spatial and temporal plane",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Declarative memory",
+      "predicate": "is",
+      "object": "usually the primary process thought of when referencing memory",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "memory",
+      "predicate": "is the",
+      "object": "unconscious storage and recollection of information",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "specific responses from memory and shows that not all memory",
+      "predicate": "is",
+      "object": "consciously activated",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "Memory",
+      "predicate": "is",
+      "object": "not a perfect processor and is affected by many factors",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "corrupted by physical damage to areas of the brain that",
+      "predicate": "are",
+      "object": "associated with memory storage",
+      "source": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "subject": "system for temporarily holding information Working memory",
+      "predicate": "is a",
+      "object": "cognitive system with a limited capacity that can hold information temporarily",
+      "source": "https://en.wikipedia.org/wiki/Working_memory"
+    },
+    {
+      "subject": "Working memory",
+      "predicate": "is",
+      "object": "often used synonymously with short-term memory",
+      "source": "https://en.wikipedia.org/wiki/Working_memory"
+    },
+    {
+      "subject": "Working memory",
+      "predicate": "is a",
+      "object": "theoretical concept central to cognitive psychology",
+      "source": "https://en.wikipedia.org/wiki/Working_memory"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_919f086979]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Memory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Working_memory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mind_uploading"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Method_of_loci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/External_memory_%28psychology%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Oneirology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Episodic_memory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Steven_Rose"
+    }
+  ],
+  "ts": "2026-11-03T22:17:15.396315+00:00"
+}

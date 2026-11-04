@@ -1,0 +1,78 @@
+{
+  "queries": [
+    "general relativity explained",
+    "general relativity explained explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Theory_of_relativity",
+    "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity",
+    "https://en.wikipedia.org/wiki/Relativity%3A_The_Special_and_the_General_Theory",
+    "https://en.wikipedia.org/wiki/General_relativity",
+    "https://en.wikipedia.org/wiki/History_of_general_relativity",
+    "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity",
+    "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"
+  ],
+  "results": [
+    {
+      "title": "Theory of relativity",
+      "url": "https://en.wikipedia.org/wiki/Theory_of_relativity",
+      "snippet": "The theory of <span class=\"searchmatch\">relativity</span> comprises two physics theories by Albert Einstein: special <span class=\"searchmatch\">relativity</span> and <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span>, proposed and published in 1905",
+      "query": "general relativity explained"
+    },
+    {
+      "title": "Alternatives to general relativity",
+      "url": "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity",
+      "snippet": "to <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span> are physical theories that attempt to describe the phenomenon of gravitation in competition with Einstein&#039;s theory of <span class=\"searchmatch\">general</span> relativity",
+      "query": "general relativity explained"
+    },
+    {
+      "title": "Relativity: The Special and the General Theory",
+      "url": "https://en.wikipedia.org/wiki/Relativity%3A_The_Special_and_the_General_Theory",
+      "snippet": "expanded into a book written with the aim of <span class=\"searchmatch\">explaining</span> the special and <span class=\"searchmatch\">general</span> theories of <span class=\"searchmatch\">relativity</span>. It was published in German in 1916 and translated",
+      "query": "general relativity explained"
+    },
+    {
+      "title": "General relativity",
+      "url": "https://en.wikipedia.org/wiki/General_relativity",
+      "snippet": "<span class=\"searchmatch\">General</span> <span class=\"searchmatch\">relativity</span>, also known as the <span class=\"searchmatch\">general</span> theory of <span class=\"searchmatch\">relativity</span>, and as Einstein&#039;s theory of gravity, is the geometric theory of gravitation published",
+      "query": "general relativity explained"
+    },
+    {
+      "title": "History of general relativity",
+      "url": "https://en.wikipedia.org/wiki/History_of_general_relativity",
+      "snippet": "<span class=\"searchmatch\">General</span> <span class=\"searchmatch\">relativity</span> is a theory of gravitation that was developed by Albert Einstein between 1907 and 1915, with contributions by many others after 1915",
+      "query": "general relativity explained"
+    },
+    {
+      "title": "Theory of relativity",
+      "url": "https://en.wikipedia.org/wiki/Theory_of_relativity",
+      "snippet": "The theory of <span class=\"searchmatch\">relativity</span> comprises two physics theories by Albert Einstein: special <span class=\"searchmatch\">relativity</span> and <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span>, proposed and published in 1905",
+      "query": "general relativity explained explained"
+    },
+    {
+      "title": "Alternatives to general relativity",
+      "url": "https://en.wikipedia.org/wiki/Alternatives_to_general_relativity",
+      "snippet": "to <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span> are physical theories that attempt to describe the phenomenon of gravitation in competition with Einstein&#039;s theory of <span class=\"searchmatch\">general</span> relativity",
+      "query": "general relativity explained explained"
+    },
+    {
+      "title": "Relativity: The Special and the General Theory",
+      "url": "https://en.wikipedia.org/wiki/Relativity%3A_The_Special_and_the_General_Theory",
+      "snippet": "expanded into a book written with the aim of <span class=\"searchmatch\">explaining</span> the special and <span class=\"searchmatch\">general</span> theories of <span class=\"searchmatch\">relativity</span>. It was published in German in 1916 and translated",
+      "query": "general relativity explained explained"
+    },
+    {
+      "title": "The Meaning of Relativity",
+      "url": "https://en.wikipedia.org/wiki/The_Meaning_of_Relativity",
+      "snippet": "of <span class=\"searchmatch\">relativity</span> and is his only book that provides an accessible overview of the physics and mathematics of <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span>. Einstein <span class=\"searchmatch\">explained</span> his",
+      "query": "general relativity explained explained"
+    },
+    {
+      "title": "Introduction to general relativity",
+      "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity",
+      "snippet": "<span class=\"searchmatch\">General</span> <span class=\"searchmatch\">relativity</span> is a theory of gravitation developed by Albert Einstein between 1907 and 1915. The theory of <span class=\"searchmatch\">general</span> <span class=\"searchmatch\">relativity</span> says that the observed",
+      "query": "general relativity explained explained"
+    }
+  ],
+  "ts": "2026-11-04T00:24:32.684027+00:00"
+}

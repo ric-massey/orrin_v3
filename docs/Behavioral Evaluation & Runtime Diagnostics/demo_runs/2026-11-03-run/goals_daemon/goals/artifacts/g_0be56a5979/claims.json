@@ -1,0 +1,129 @@
+{
+  "question": "What actually is Aesthetics, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "aesthetics"
+  ],
+  "entities": [
+    "Aesthetic properties",
+    "features that influence the appeal of objects",
+    "aesthetic experiences",
+    "associated with disinterested pleasure detached from practical concerns",
+    "Taste",
+    "subjective sensitivity to aesthetic qualities",
+    "Aesthetics",
+    "closely related to the philosophy of art",
+    "one outlook argues that the philosophy of art",
+    "subfield of aesthetics",
+    "features shared by all aesthetic phenomena or whether they",
+    "more loosely related through family resemblances",
+    "branch of philosophy concerned with the nature of beauty and the nature of taste",
+    "Index of aesthetics articles The following outline",
+    "provided as an overview of and topical guide to aesthetics",
+    "This"
+  ],
+  "relations": [
+    {
+      "subject": "Aesthetic properties",
+      "predicate": "are",
+      "object": "features that influence the appeal of objects",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "aesthetic experiences",
+      "predicate": "are",
+      "object": "associated with disinterested pleasure detached from practical concerns",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "Taste",
+      "predicate": "is a",
+      "object": "subjective sensitivity to aesthetic qualities",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "Aesthetics",
+      "predicate": "is",
+      "object": "closely related to the philosophy of art",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "one outlook argues that the philosophy of art",
+      "predicate": "is a",
+      "object": "subfield of aesthetics",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "features shared by all aesthetic phenomena or whether they",
+      "predicate": "are",
+      "object": "more loosely related through family resemblances",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "subject": "Aesthetics",
+      "predicate": "is the",
+      "object": "branch of philosophy concerned with the nature of beauty and the nature of taste",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics_%28disambiguation%29"
+    },
+    {
+      "subject": "Index of aesthetics articles The following outline",
+      "predicate": "is",
+      "object": "provided as an overview of and topical guide to aesthetics",
+      "source": "https://en.wikipedia.org/wiki/Outline_of_aesthetics"
+    },
+    {
+      "subject": "This",
+      "predicate": "is a",
+      "object": "history of aesthetics",
+      "source": "https://en.wikipedia.org/wiki/History_of_aesthetics"
+    },
+    {
+      "subject": "The first important contributions to aesthetic theory",
+      "predicate": "are",
+      "object": "usually considered to stem from philosophers in Ancient Greece",
+      "source": "https://en.wikipedia.org/wiki/History_of_aesthetics"
+    },
+    {
+      "subject": "ethics Wasp on a bee honeycomb Aesthetics of nature",
+      "predicate": "is a",
+      "object": "sub-field of philosophical ethics",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics_of_nature"
+    },
+    {
+      "subject": "The aesthetics appreciation of art",
+      "predicate": "is",
+      "object": "governed by some normative standards",
+      "source": "https://en.wikipedia.org/wiki/Aesthetics_of_nature"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Rasa_%28aesthetics%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Outline_of_aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Practical_aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_aesthetics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Aesthetics_of_nature"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/MDA_framework"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyberpunk_derivatives"
+    }
+  ],
+  "ts": "2026-11-03T22:39:17.776354+00:00"
+}

@@ -1,0 +1,132 @@
+{
+  "question": "What actually is The Prince, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "prince"
+  ],
+  "entities": [
+    "He says one of his biggest regrets",
+    "having misplaced the book Le Petit Prince",
+    "have viewed that one of the main themes of The Prince",
+    "that immoral acts are sometimes necessary to achieve political glory",
+    "Although The Prince",
+    "written as if it were a traditional work in the mirrors for princes style",
+    "The Prince",
+    "sometimes claimed to be one of the first works of modern philosophy",
+    "Machiavelli explained here that The Prince",
+    "about princedoms",
+    "these types of works",
+    "addressed only to hereditary princes",
+    "roguelike Mode Single-player Blue Prince",
+    "puzzle adventure game developed by Dogubomb and published by Raw Fury",
+    "Blue Prince",
+    "developed over eight years by solo developer Tonda Ros"
+  ],
+  "relations": [
+    {
+      "subject": "He says one of his biggest regrets",
+      "predicate": "is",
+      "object": "having misplaced the book Le Petit Prince",
+      "source": "https://en.wikipedia.org/wiki/Champagne_Problems_%28film%29"
+    },
+    {
+      "subject": "have viewed that one of the main themes of The Prince",
+      "predicate": "is",
+      "object": "that immoral acts are sometimes necessary to achieve political glory",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "Although The Prince",
+      "predicate": "was",
+      "object": "written as if it were a traditional work in the mirrors for princes style",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "The Prince",
+      "predicate": "is",
+      "object": "sometimes claimed to be one of the first works of modern philosophy",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "Machiavelli explained here that The Prince",
+      "predicate": "is",
+      "object": "about princedoms",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "these types of works",
+      "predicate": "were",
+      "object": "addressed only to hereditary princes",
+      "source": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "subject": "roguelike Mode Single-player Blue Prince",
+      "predicate": "is a",
+      "object": "puzzle adventure game developed by Dogubomb and published by Raw Fury",
+      "source": "https://en.wikipedia.org/wiki/Blue_Prince"
+    },
+    {
+      "subject": "Blue Prince",
+      "predicate": "was",
+      "object": "developed over eight years by solo developer Tonda Ros",
+      "source": "https://en.wikipedia.org/wiki/Blue_Prince"
+    },
+    {
+      "subject": "There",
+      "predicate": "is an",
+      "object": "extensive post-game to Blue Prince",
+      "source": "https://en.wikipedia.org/wiki/Blue_Prince"
+    },
+    {
+      "subject": "Prince",
+      "predicate": "was",
+      "object": "born in Singapore",
+      "source": "https://en.wikipedia.org/wiki/Joseph_Prince"
+    },
+    {
+      "subject": "Joseph Prince",
+      "predicate": "is",
+      "object": "married to Wendy Prince",
+      "source": "https://en.wikipedia.org/wiki/Joseph_Prince"
+    },
+    {
+      "subject": "who",
+      "predicate": "is",
+      "object": "set up as the dramatic foil of the prince",
+      "source": "https://en.wikipedia.org/wiki/Prince_Hal"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Champagne_Problems_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Prince"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/William%2C_Prince_of_Wales"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Little_Prince"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Blue_Prince"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Joseph_Prince"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ChatGPT"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Charles_III"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Prince_Hal"
+    }
+  ],
+  "ts": "2026-11-03T22:38:59.620345+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "question": "What actually is Midfielders, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "midfielders"
+  ],
+  "entities": [
+    "and",
+    "in that case known as defensive midfielders",
+    "where the midfielders",
+    "split into two defensive and one offensive player",
+    "it is usually imaginative attacking flair players who",
+    "replaced by tough-tackling defensive midfielders or defenders"
+  ],
+  "relations": [
+    {
+      "subject": "and",
+      "predicate": "are",
+      "object": "in that case known as defensive midfielders",
+      "source": "my prior claims [g_8720db00c9]"
+    },
+    {
+      "subject": "where the midfielders",
+      "predicate": "are",
+      "object": "split into two defensive and one offensive player",
+      "source": "https://en.wikipedia.org/wiki/Formation_%28association_football%29"
+    },
+    {
+      "subject": "it is usually imaginative attacking flair players who",
+      "predicate": "are",
+      "object": "replaced by tough-tackling defensive midfielders or defenders",
+      "source": "https://en.wikipedia.org/wiki/Association_football_tactics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8720db00c9]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formation_%28association_football%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Marco_Verratti"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Association_football_tactics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jorge_Messi"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gennaro_Gattuso"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fabio_Celestini"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Barron_Trump"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Joan_Laporta"
+    }
+  ],
+  "ts": "2026-11-03T21:06:16.925458+00:00"
+}

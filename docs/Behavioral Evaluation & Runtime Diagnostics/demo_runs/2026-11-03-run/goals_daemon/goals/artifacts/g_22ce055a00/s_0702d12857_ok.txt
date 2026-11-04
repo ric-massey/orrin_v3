@@ -1,0 +1,1 @@
+pruned goals WAL: 5011 → 5000 lines; rotated=goals_wal_20261103-230513.log.gz

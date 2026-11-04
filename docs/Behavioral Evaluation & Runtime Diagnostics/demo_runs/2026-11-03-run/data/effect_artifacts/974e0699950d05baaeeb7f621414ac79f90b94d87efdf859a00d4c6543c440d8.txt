@@ -1,0 +1,63 @@
+{
+  "question": "What is there about evolutionary biology that my earlier notes on it are missing?",
+  "subject_terms": [
+    "evolutionary",
+    "biology"
+  ],
+  "entities": [
+    "Evolutionary biology",
+    "subfield of biology that analyzes the four mechanisms of evolution",
+    "The theory proposes that most evolution",
+    "characterized by long periods of evolutionary stability",
+    "of life being directly designed by a god or intelligence",
+    "at least as scientific as evolutionary theory"
+  ],
+  "relations": [
+    {
+      "subject": "Evolutionary biology",
+      "predicate": "is a",
+      "object": "subfield of biology that analyzes the four mechanisms of evolution",
+      "source": "my prior claims [g_45ad6d79e2]"
+    },
+    {
+      "subject": "The theory proposes that most evolution",
+      "predicate": "is",
+      "object": "characterized by long periods of evolutionary stability",
+      "source": "https://en.wikipedia.org/wiki/Stephen_Jay_Gould"
+    },
+    {
+      "subject": "of life being directly designed by a god or intelligence",
+      "predicate": "is",
+      "object": "at least as scientific as evolutionary theory",
+      "source": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_45ad6d79e2]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_anachronism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_eugenics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stephen_Jay_Gould"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lamprey"
+    }
+  ],
+  "ts": "2026-11-03T12:59:19.903845+00:00"
+}

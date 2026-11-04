@@ -1,0 +1,117 @@
+{
+  "queries": [
+    "the world",
+    "the world explained",
+    "what is not obvious about the world"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/The_World",
+    "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+    "https://en.wikipedia.org/wiki/Around_the_World",
+    "https://en.wikipedia.org/wiki/The_World_Is_Yours",
+    "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+    "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+    "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/World_War_I",
+    "https://en.wikipedia.org/wiki/Obvious_Child",
+    "https://en.wikipedia.org/wiki/Fear_Not_the_Obvious",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Evan_Williams_%28Internet_entrepreneur%29",
+    "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem"
+  ],
+  "results": [
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "<span class=\"searchmatch\">world</span> is a totality of entities. In philosophy, <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world</span> is customarily viewed as all of existence or <span class=\"searchmatch\">the</span> whole of reality. Some conceptions see <span class=\"searchmatch\">the</span>",
+      "query": "the world"
+    },
+    {
+      "title": "The World",
+      "url": "https://en.wikipedia.org/wiki/The_World",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> may refer to: <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> (Coos Bay), a Coos Bay, Oregon newspaper <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> (South African newspaper), a former Johannesburg newspaper <span class=\"searchmatch\">The</span> World",
+      "query": "the world"
+    },
+    {
+      "title": "Wonders of the World",
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "snippet": "Various lists of <span class=\"searchmatch\">the</span> Wonders of <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">World</span> have been compiled from antiquity to <span class=\"searchmatch\">the</span> present day, in order to catalogue <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world&#039;s</span> most spectacular natural",
+      "query": "the world"
+    },
+    {
+      "title": "Around the World",
+      "url": "https://en.wikipedia.org/wiki/Around_the_World",
+      "snippet": "around <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world</span> in Wiktionary, <span class=\"searchmatch\">the</span> free dictionary. Around <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">World</span> may refer to: Circumnavigation, to navigate a circumference, as around <span class=\"searchmatch\">the</span> Earth",
+      "query": "the world"
+    },
+    {
+      "title": "The World Is Yours",
+      "url": "https://en.wikipedia.org/wiki/The_World_Is_Yours",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours may refer to: <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (film), a 2018 French film <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (TV series), 1951 <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (radio show), 1936–1942",
+      "query": "the world"
+    },
+    {
+      "title": "Sex, Explained",
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "snippet": "Sex, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. <span class=\"searchmatch\">The</span> series, along with <span class=\"searchmatch\">The</span> Mind, <span class=\"searchmatch\">Explained</span>, is a spin-off of <span class=\"searchmatch\">the</span> television",
+      "query": "the world explained"
+    },
+    {
+      "title": "Coronavirus, Explained",
+      "url": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained",
+      "snippet": "Coronavirus, <span class=\"searchmatch\">Explained</span> is an American documentary limited series produced by Vox. <span class=\"searchmatch\">The</span> series, along with <span class=\"searchmatch\">The</span> Mind, <span class=\"searchmatch\">Explained</span> and Sex, <span class=\"searchmatch\">Explained</span>, is a spin-off",
+      "query": "the world explained"
+    },
+    {
+      "title": "Explained (TV series)",
+      "url": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29",
+      "snippet": "series, <span class=\"searchmatch\">explained</span>&quot;. Vox. Retrieved October 4, 2020. Keller, Joel (May 11, 2021). &quot;Stream It Or Skip It: &#039;Money, <span class=\"searchmatch\">Explained</span>&#039; On Netflix, Where <span class=\"searchmatch\">The</span> Folks At",
+      "query": "the world explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "<span class=\"searchmatch\">Explained</span>: <span class=\"searchmatch\">The</span> Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which <span class=\"searchmatch\">the</span> author discusses <span class=\"searchmatch\">the</span> evolutionary",
+      "query": "the world explained"
+    },
+    {
+      "title": "World War I",
+      "url": "https://en.wikipedia.org/wiki/World_War_I",
+      "snippet": "<span class=\"searchmatch\">World</span> War I, or <span class=\"searchmatch\">the</span> First <span class=\"searchmatch\">World</span> War (28 July 1914 – 11 November 1918), also known as <span class=\"searchmatch\">the</span> Great War, was a global conflict between two coalitions: <span class=\"searchmatch\">the</span>",
+      "query": "the world explained"
+    },
+    {
+      "title": "Obvious Child",
+      "url": "https://en.wikipedia.org/wiki/Obvious_Child",
+      "snippet": "<span class=\"searchmatch\">Obvious</span> Child <span class=\"searchmatch\">is</span> a 2014 American romantic comedy-drama film written and directed by Gillian Robespierre (in her directorial debut) and stars Jenny Slate",
+      "query": "what is not obvious about the world"
+    },
+    {
+      "title": "Fear Not the Obvious",
+      "url": "https://en.wikipedia.org/wiki/Fear_Not_the_Obvious",
+      "snippet": "Fear <span class=\"searchmatch\">Not</span> <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">Obvious</span> <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">the</span> first album by <span class=\"searchmatch\">the</span> Yayhoos, released in 2001. &quot;Bottle and a Bible&quot; was included on <span class=\"searchmatch\">the</span> Ace Records compilation of songs played",
+      "query": "what is not obvious about the world"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "<span class=\"searchmatch\">what</span> causes it. c. &quot;Dandruff&quot;. NHS. October 18, 2017. Retrieved July 2, 2022. Dandruff <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> caused by poor hygiene, although it may be more <span class=\"searchmatch\">obvious</span>",
+      "query": "what is not obvious about the world"
+    },
+    {
+      "title": "Evan Williams (Internet entrepreneur)",
+      "url": "https://en.wikipedia.org/wiki/Evan_Williams_%28Internet_entrepreneur%29",
+      "snippet": "Blogger and Medium. In 2014, he co-founded <span class=\"searchmatch\">the</span> venture capital firm <span class=\"searchmatch\">Obvious</span> Ventures. As of May 2025, his net worth <span class=\"searchmatch\">is</span> estimated at US$2 billion, according",
+      "query": "what is not obvious about the world"
+    },
+    {
+      "title": "Is–ought problem",
+      "url": "https://en.wikipedia.org/wiki/Is%E2%80%93ought_problem",
+      "snippet": "(about what is) and prescriptive statements (<span class=\"searchmatch\">about</span> <span class=\"searchmatch\">what</span> ought to be). He argued that it <span class=\"searchmatch\">is</span> <span class=\"searchmatch\">not</span> <span class=\"searchmatch\">obvious</span> how one can coherently transition from descriptive",
+      "query": "what is not obvious about the world"
+    }
+  ],
+  "ts": "2026-11-03T11:46:40.544752+00:00"
+}

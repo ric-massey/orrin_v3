@@ -1,0 +1,55 @@
+{
+  "question": "What is there about history that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_48bf7f0393]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_48bf7f0393]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/My_Secret_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_film"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_autism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/She%3A_A_History_of_Adventure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_English"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Google_Maps"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lazarus_%28software%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Bewitched_episodes"
+    }
+  ],
+  "ts": "2026-11-03T06:35:23.154424+00:00"
+}

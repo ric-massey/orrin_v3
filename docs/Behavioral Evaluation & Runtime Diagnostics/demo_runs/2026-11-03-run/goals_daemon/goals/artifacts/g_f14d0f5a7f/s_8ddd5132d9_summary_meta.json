@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_f14d0f5a7f",
+    "title": "Understand stoic philosophy and daily life more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "stoic philosophy and daily life",
+        "stoic philosophy and daily life explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.388937Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.388946Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.388948Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.388950Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.388951Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "stoic philosophy and daily life was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about stoic philosophy and daily life was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T22:17:41.388966Z",
+      "question": "What actually is stoic philosophy and daily life, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 22:17:41.389423+00:00",
+    "updated_at": "2026-11-03 22:17:42.492547+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_ff3b8c20ff]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Daily_Stoic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoicism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Epistulae_Morales_ad_Lucilium",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Euthymia_%28philosophy%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Donald_J._Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Aesthetics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Go_Gentle_%28novel%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Heraclitus",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f14d0f5a7f/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T22:17:50.657568+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "question": "What actually is bridges and salt domes, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "bridges",
+    "salt",
+    "domes"
+  ],
+  "entities": [
+    "bridges and salt domes",
+    "all examples of load-bearing structures"
+  ],
+  "relations": [
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "my prior claims [g_d0712958cf]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_d0712958cf]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Close_Encounters_of_the_Third_Kind"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Glossary_of_ancient_Roman_religion"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Slavery_in_ancient_Rome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Charles_III%2C_Duke_of_Bourbon"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_Hungary"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2017_in_American_television"
+    }
+  ],
+  "ts": "2026-11-03T18:54:42.821693+00:00"
+}

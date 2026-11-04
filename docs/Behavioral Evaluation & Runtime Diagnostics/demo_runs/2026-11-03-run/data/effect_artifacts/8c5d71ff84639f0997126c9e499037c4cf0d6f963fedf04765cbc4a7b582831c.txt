@@ -1,0 +1,8 @@
+What I learned about Sisu more deeply:
+
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Understand Sisu more deeply — This doesn't clearly connect… / [will] I resolve (held lightly, strength 0.20) to: pursue: Understand mathematics more deeply — This doesn't clearly…]
+- [Incubation] While sitting with: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand physical system more deeply — This doesn't clearly', I notice a connection to something from memory: '[will] I resolve (held lightly, strength 0.20) to: pursue: Understand physical system more deeply — This doesn't clearly'. These may be related in ways I haven't consciously examined.
+- [Chunk: [will] I resolve to: pursue: Understand talk more deeply — I stand behind this. (strength 0. / [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.]
+- [Chunk: 💔 Goal failed: Understand evolutionary biology and cooperation more deeply — round 3. ValueError: no URLs to fetch / 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch]
+- [Chunk: 💔 Goal failed: Understand mathematics more deeply. ValueError: no URLs to fetch / 💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch]
+- [Chunk: [Incubation] While sitting with: '[will] I resolve to: pursue: Understand history of written language more deeply — I… / [Incubation] While sitting with: '[will] I resolve to: pursue: Understand formal logic more deeply — I stand behind…]

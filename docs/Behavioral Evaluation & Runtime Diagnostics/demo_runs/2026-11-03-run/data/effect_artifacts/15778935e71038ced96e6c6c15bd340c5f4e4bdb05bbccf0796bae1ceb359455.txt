@@ -1,0 +1,10 @@
+[produce_and_check goal=g_39608ad9cf38 :statistics: Understand Probability theory more deeply]
+data = [((i * 7 + 23) % 50) for i in range(9)]
+mean = sum(data) / len(data)
+# variance two ways: mean of squares minus square of mean == mean of squared deviations
+v1 = sum((x - mean) ** 2 for x in data) / len(data)
+v2 = sum(x * x for x in data) / len(data) - mean * mean
+assert abs(v1 - v2) < 1e-9, (v1, v2)
+print("CHECK_PASS variance identity holds for", len(data), "samples")
+--- output ---
+CHECK_PASS variance identity holds for 9 samples

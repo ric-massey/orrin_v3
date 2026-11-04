@@ -1,0 +1,49 @@
+{
+  "question": "What actually is Mathematical logic, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "mathematical",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "Sometimes it",
+    "defined in encyclopedia articles on fuzzy logic"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_e05815230c]"
+    },
+    {
+      "subject": "Sometimes it",
+      "predicate": "was",
+      "object": "defined in encyclopedia articles on fuzzy logic",
+      "source": "https://en.wikipedia.org/wiki/Fuzzy_concept"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_e05815230c]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Critique_of_Pure_Reason"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fuzzy_concept"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Richard_Feynman"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Scientific_method"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ludwig_Wittgenstein"
+    }
+  ],
+  "ts": "2026-11-03T16:17:47.477632+00:00"
+}

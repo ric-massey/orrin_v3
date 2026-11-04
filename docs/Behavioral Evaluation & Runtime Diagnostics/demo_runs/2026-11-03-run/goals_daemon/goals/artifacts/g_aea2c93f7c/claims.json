@@ -1,0 +1,52 @@
+{
+  "question": "What is there about the world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [g_a0ef50442e]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_a0ef50442e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Titan_submersible_implosion"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Academic_studies_about_Wikipedia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WhatsApp"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Christian_views_on_masturbation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Adam_Conover"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Big_Bang"
+    }
+  ],
+  "ts": "2026-11-03T11:47:34.893979+00:00"
+}

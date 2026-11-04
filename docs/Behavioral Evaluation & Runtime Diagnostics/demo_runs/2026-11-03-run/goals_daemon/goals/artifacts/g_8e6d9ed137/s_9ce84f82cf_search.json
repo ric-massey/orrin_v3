@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "they open problems",
+    "they criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/Lists_of_problems",
+    "https://en.wikipedia.org/wiki/Open_problem",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science",
+    "https://en.wikipedia.org/wiki/Debate",
+    "https://en.wikipedia.org/wiki/GPT-4Chan",
+    "https://en.wikipedia.org/wiki/History",
+    "https://en.wikipedia.org/wiki/Leaders%27_debate",
+    "https://en.wikipedia.org/wiki/Philippine_Amusement_and_Gaming_Corporation"
+  ],
+  "results": [
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "Many mathematical <span class=\"searchmatch\">problems</span> have been stated but not yet solved. These <span class=\"searchmatch\">problems</span> come from many areas of mathematics, such as theoretical physics, computer",
+      "query": "they open problems"
+    },
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "15 <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> on quantum operators (about 5 already solved in 2000). A second list of 15 Simon <span class=\"searchmatch\">problems</span> was released in 2000 (at least 3 <span class=\"searchmatch\">problems</span> solved)",
+      "query": "they open problems"
+    },
+    {
+      "title": "Lists of problems",
+      "url": "https://en.wikipedia.org/wiki/Lists_of_problems",
+      "snippet": "contain lists of notable <span class=\"searchmatch\">problems</span>. This includes unsolved <span class=\"searchmatch\">problems</span>, which may refer to several notable conjectures or <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> in various academic fields:",
+      "query": "they open problems"
+    },
+    {
+      "title": "Open problem",
+      "url": "https://en.wikipedia.org/wiki/Open_problem",
+      "snippet": "of these supposed <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> were &quot;solved&quot; by means of showing that <span class=\"searchmatch\">they</span> were not well-defined. In mathematics, many <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> are concerned with",
+      "query": "they open problems"
+    },
+    {
+      "title": "List of unsolved problems in computer science",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science",
+      "snippet": "This article is a list of notable unsolved <span class=\"searchmatch\">problems</span> in computer science. A <span class=\"searchmatch\">problem</span> in computer science is considered unsolved when no solution is known",
+      "query": "they open problems"
+    },
+    {
+      "title": "Debate",
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "snippet": "<span class=\"searchmatch\">Debate</span> is a process that involves formal discourse, discussion, <span class=\"searchmatch\">and</span> oral addresses on a particular collection of topics, often with a moderator <span class=\"searchmatch\">and</span> an",
+      "query": "they criticism and debate"
+    },
+    {
+      "title": "GPT-4Chan",
+      "url": "https://en.wikipedia.org/wiki/GPT-4Chan",
+      "snippet": "a platform for sharing <span class=\"searchmatch\">and</span> using AI models, until it was removed from the platform. The project sparked <span class=\"searchmatch\">criticism</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">debate</span> in the AI community. Some",
+      "query": "they criticism and debate"
+    },
+    {
+      "title": "History",
+      "url": "https://en.wikipedia.org/wiki/History",
+      "snippet": "research relies on primary <span class=\"searchmatch\">and</span> secondary sources to reconstruct past events <span class=\"searchmatch\">and</span> validate interpretations. Source <span class=\"searchmatch\">criticism</span> is used to evaluate these sources",
+      "query": "they criticism and debate"
+    },
+    {
+      "title": "Leaders' debate",
+      "url": "https://en.wikipedia.org/wiki/Leaders%27_debate",
+      "snippet": "opinions <span class=\"searchmatch\">and</span> public policy proposals, <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">criticism</span> of them, to potential voters. <span class=\"searchmatch\">They</span> are normally broadcast live on radio, television <span class=\"searchmatch\">and</span> the Internet",
+      "query": "they criticism and debate"
+    },
+    {
+      "title": "Philippine Amusement and Gaming Corporation",
+      "url": "https://en.wikipedia.org/wiki/Philippine_Amusement_and_Gaming_Corporation",
+      "snippet": "transformation <span class=\"searchmatch\">and</span> development, <span class=\"searchmatch\">and</span> brings inspiration <span class=\"searchmatch\">and</span> motivation to the lives it touches. The logo generated <span class=\"searchmatch\">criticism</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">debate</span> on social media",
+      "query": "they criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T21:42:23.193138+00:00"
+}

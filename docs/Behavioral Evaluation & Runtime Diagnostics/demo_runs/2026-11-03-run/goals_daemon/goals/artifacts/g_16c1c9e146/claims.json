@@ -1,0 +1,137 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "although these instances of written Egyptian",
+    "rebus -like and confined to semi-grammatical captions",
+    "of the Central Research Institute of Culture and History",
+    "supported by Mao Zedong",
+    "The language",
+    "named after the Angles",
+    "English",
+    "most spoken language in the world",
+    "either the official language",
+    "Written Chinese",
+    "dominated by Classical",
+    "Sign languages",
+    "not universal and are usually not mutually intelligible",
+    "sign languages have developed as a"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_7d00b49484]"
+    },
+    {
+      "subject": "although these instances of written Egyptian",
+      "predicate": "are",
+      "object": "rebus -like and confined to semi-grammatical captions",
+      "source": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account"
+    },
+    {
+      "subject": "of the Central Research Institute of Culture and History",
+      "predicate": "was",
+      "object": "supported by Mao Zedong",
+      "source": "https://en.wikipedia.org/wiki/Central_Research_Institute_of_Culture_and_History"
+    },
+    {
+      "subject": "The language",
+      "predicate": "is",
+      "object": "named after the Angles",
+      "source": "https://en.wikipedia.org/wiki/English_language"
+    },
+    {
+      "subject": "English",
+      "predicate": "is the",
+      "object": "most spoken language in the world",
+      "source": "https://en.wikipedia.org/wiki/English_language"
+    },
+    {
+      "subject": "English",
+      "predicate": "is",
+      "object": "either the official language",
+      "source": "https://en.wikipedia.org/wiki/English_language"
+    },
+    {
+      "subject": "Written Chinese",
+      "predicate": "was",
+      "object": "dominated by Classical",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_Chinese_language"
+    },
+    {
+      "subject": "Sign languages",
+      "predicate": "are",
+      "object": "not universal and are usually not mutually intelligible",
+      "source": "https://en.wikipedia.org/wiki/Sign_language"
+    },
+    {
+      "subject": "sign languages have developed as a",
+      "predicate": "means",
+      "object": "of communication and form the core of local Deaf cultures",
+      "source": "https://en.wikipedia.org/wiki/Sign_language"
+    },
+    {
+      "subject": "Sign languages",
+      "predicate": "are",
+      "object": "distinct from body language",
+      "source": "https://en.wikipedia.org/wiki/Sign_language"
+    },
+    {
+      "subject": "distinguish natural sign languages from other systems that",
+      "predicate": "are",
+      "object": "precursors to them or derived from them",
+      "source": "https://en.wikipedia.org/wiki/Sign_language"
+    },
+    {
+      "subject": "The number of sign languages worldwide",
+      "predicate": "is",
+      "object": "not precisely known",
+      "source": "https://en.wikipedia.org/wiki/Sign_language"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_7d00b49484]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hebrew_language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Central_Research_Institute_of_Culture_and_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/English_language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_Chinese_language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vikings"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sign_language"
+    }
+  ],
+  "ts": "2026-11-03T11:07:51.948762+00:00"
+}

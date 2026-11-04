@@ -1,0 +1,32 @@
+{
+  "share_finding__inquisitive": {
+    "sum": 1.5984,
+    "count": 3,
+    "avg": 0.5328
+  },
+  "answer__inquisitive": {
+    "sum": 0.586,
+    "count": 1,
+    "avg": 0.586
+  },
+  "greet_return__inquisitive": {
+    "sum": 0.2534,
+    "count": 1,
+    "avg": 0.2534
+  },
+  "uncertainty__curious": {
+    "sum": 0.772,
+    "count": 1,
+    "avg": 0.772
+  },
+  "share_finding__curious": {
+    "sum": 0.634,
+    "count": 1,
+    "avg": 0.634
+  },
+  "share_finding__neutral": {
+    "sum": 0.2142,
+    "count": 1,
+    "avg": 0.2142
+  }
+}

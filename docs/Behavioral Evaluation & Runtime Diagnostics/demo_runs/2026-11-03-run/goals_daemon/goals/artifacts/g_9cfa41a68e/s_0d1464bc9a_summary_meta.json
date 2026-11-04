@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_9cfa41a68e",
+    "title": "Answer: What actually is how memory works in the brain, beyond the mentions I keep seeing? — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is how memory works in the brain, beyond the mentions I keep seeing? open problems",
+        "What actually is how memory works in the brain, beyond the mentions I keep seeing? criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_e4e28d767e",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.447175Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.447182Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.447183Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.447185Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:41.447186Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is how memory works in the brain, beyond the m' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T22:17:41.447201Z",
+      "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 22:17:41.450171+00:00",
+    "updated_at": "2026-11-03 22:17:43.895606+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_e4e28d767e]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Prince",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sleep_deprivation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Roseanne_and_The_Conners_characters",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Three_Laws_of_Robotics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Carl_Jung",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jack_Abbott_%28The_Young_and_the_Restless%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9cfa41a68e/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T22:17:49.062351+00:00"
+}

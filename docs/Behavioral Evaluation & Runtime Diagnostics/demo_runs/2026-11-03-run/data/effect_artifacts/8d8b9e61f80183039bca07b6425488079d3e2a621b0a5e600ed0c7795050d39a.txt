@@ -1,0 +1,129 @@
+{
+  "question": "What actually is Robertson, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "robertson"
+  ],
+  "entities": [
+    "Robertson",
+    "born on 30 October 1912 in Edinburgh",
+    "His brother",
+    "James Wilson Robertson",
+    "as his mother",
+    "in the process of obtaining a divorce from James Robertson",
+    "accident on the Queen Elizabeth Way before Robbie Robertson",
+    "born",
+    "The first band Robertson joined",
+    "Little Caesar and the Consuls",
+    "Brittany Leanna Robertson",
+    "born at Novant Health Presbyterian Medical Center in Charlotte",
+    "selected to play Michelle Seaver in the Growing Pains",
+    "born in Clarkston",
+    "taken on",
+    "fully reinstated for the remainder of 1977 and into 1978"
+  ],
+  "relations": [
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "born on 30 October 1912 in Edinburgh",
+      "source": "https://en.wikipedia.org/wiki/Ian_Robertson%2C_Lord_Robertson"
+    },
+    {
+      "subject": "His brother",
+      "predicate": "was",
+      "object": "James Wilson Robertson",
+      "source": "https://en.wikipedia.org/wiki/Ian_Robertson%2C_Lord_Robertson"
+    },
+    {
+      "subject": "as his mother",
+      "predicate": "was",
+      "object": "in the process of obtaining a divorce from James Robertson",
+      "source": "https://en.wikipedia.org/wiki/Robbie_Robertson"
+    },
+    {
+      "subject": "accident on the Queen Elizabeth Way before Robbie Robertson",
+      "predicate": "was",
+      "object": "born",
+      "source": "https://en.wikipedia.org/wiki/Robbie_Robertson"
+    },
+    {
+      "subject": "The first band Robertson joined",
+      "predicate": "was",
+      "object": "Little Caesar and the Consuls",
+      "source": "https://en.wikipedia.org/wiki/Robbie_Robertson"
+    },
+    {
+      "subject": "Brittany Leanna Robertson",
+      "predicate": "was",
+      "object": "born at Novant Health Presbyterian Medical Center in Charlotte",
+      "source": "https://en.wikipedia.org/wiki/Britt_Robertson"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "selected to play Michelle Seaver in the Growing Pains",
+      "source": "https://en.wikipedia.org/wiki/Britt_Robertson"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "born in Clarkston",
+      "source": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "taken on",
+      "source": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "fully reinstated for the remainder of 1977 and into 1978",
+      "source": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29"
+    },
+    {
+      "subject": "In 1980 Robertson",
+      "predicate": "was",
+      "object": "also featured on the Eric Burdon album Darkness Darkness",
+      "source": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29"
+    },
+    {
+      "subject": "At Home with the Robertsons Going Si-ral Duck Dynasty",
+      "predicate": "is an",
+      "object": "American reality television series that aired on A E from 2012 to 2017",
+      "source": "https://en.wikipedia.org/wiki/Duck_Dynasty"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ian_Robertson%2C_Lord_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Robbie_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Britt_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Channing_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Duck_Dynasty"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Andy_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Caolan_Robertson"
+    }
+  ],
+  "ts": "2026-11-03T22:39:01.256515+00:00"
+}

@@ -1,0 +1,110 @@
+{
+  "question": "What is there about world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "Links Journal homepage Online access World Development",
+    "monthly peer-reviewed academic journal covering development studies",
+    "the world population",
+    "exponentially increasing due to the Neolithic Revolution",
+    "thought to have stood at 209 million",
+    "The World Development Report",
+    "published by the World Bank",
+    "New World Development",
+    "founded on May 29",
+    "Reorganization of New World Group",
+    "finalized in January 2003",
+    "History of the World Wide Web The Web",
+    "invented by English computer scientist Tim Berners-Lee while working at CERN"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [g_8e8d012aef]"
+    },
+    {
+      "subject": "Links Journal homepage Online access World Development",
+      "predicate": "is a",
+      "object": "monthly peer-reviewed academic journal covering development studies",
+      "source": "https://en.wikipedia.org/wiki/World_Development_%28journal%29"
+    },
+    {
+      "subject": "the world population",
+      "predicate": "was",
+      "object": "exponentially increasing due to the Neolithic Revolution",
+      "source": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "subject": "the world population",
+      "predicate": "is",
+      "object": "thought to have stood at 209 million",
+      "source": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "subject": "The World Development Report",
+      "predicate": "is",
+      "object": "published by the World Bank",
+      "source": "https://en.wikipedia.org/wiki/World_Development_Report"
+    },
+    {
+      "subject": "New World Development",
+      "predicate": "was",
+      "object": "founded on May 29",
+      "source": "https://en.wikipedia.org/wiki/New_World_Development"
+    },
+    {
+      "subject": "Reorganization of New World Group",
+      "predicate": "was",
+      "object": "finalized in January 2003",
+      "source": "https://en.wikipedia.org/wiki/New_World_Development"
+    },
+    {
+      "subject": "History of the World Wide Web The Web",
+      "predicate": "was",
+      "object": "invented by English computer scientist Tim Berners-Lee while working at CERN",
+      "source": "https://en.wikipedia.org/wiki/World_Wide_Web"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8e8d012aef]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Development_%28journal%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ancient_history"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Development_Report"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/New_World_Development"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Historians%27_History_of_the_World"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/REST"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hello%2C_world"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Web_application"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Weissman_score"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Wide_Web"
+    }
+  ],
+  "ts": "2026-11-03T08:48:15.482509+00:00"
+}

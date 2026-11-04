@@ -1,0 +1,130 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [],
+  "entities": [
+    "they",
+    "third-person pronoun relating to a grammatical subject",
+    "The development in Middle English",
+    "shown in the following table",
+    "but the semantic reference",
+    "singular",
+    "singular they",
+    "only used for people",
+    "they when referring to individuals on the basis that it",
+    "primarily a plural pronoun instead of a singular pronoun",
+    "This",
+    "theirs",
+    "you end up showing",
+    "yourself",
+    "They",
+    "putting in a new restaurant across the street"
+  ],
+  "relations": [
+    {
+      "subject": "they",
+      "predicate": "is a",
+      "object": "third-person pronoun relating to a grammatical subject",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "The development in Middle English",
+      "predicate": "is",
+      "object": "shown in the following table",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "but the semantic reference",
+      "predicate": "is",
+      "object": "singular",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "singular they",
+      "predicate": "is",
+      "object": "only used for people",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "they when referring to individuals on the basis that it",
+      "predicate": "is",
+      "object": "primarily a plural pronoun instead of a singular pronoun",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "theirs",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "you end up showing",
+      "predicate": "is",
+      "object": "yourself",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "They",
+      "predicate": "are",
+      "object": "putting in a new restaurant across the street",
+      "source": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "subject": "They",
+      "predicate": "is a",
+      "object": "third-person",
+      "source": "https://en.wikipedia.org/wiki/They_%28disambiguation%29"
+    },
+    {
+      "subject": "who discovers that the ruling class",
+      "predicate": "are",
+      "object": "camouflaged aliens",
+      "source": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "subject": "They Live",
+      "predicate": "was",
+      "object": "released by Universal Pictures in the United States on November 4",
+      "source": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "subject": "and the only way to unfold the truth",
+      "predicate": "is",
+      "object": "to shut off the signal at its source",
+      "source": "https://en.wikipedia.org/wiki/They_Live"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/They"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/They_Live"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/First_They_Came"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Singular_they"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Money%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coronavirus%2C_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sex%2C_Explained"
+    }
+  ],
+  "ts": "2026-11-03T20:40:21.757609+00:00"
+}

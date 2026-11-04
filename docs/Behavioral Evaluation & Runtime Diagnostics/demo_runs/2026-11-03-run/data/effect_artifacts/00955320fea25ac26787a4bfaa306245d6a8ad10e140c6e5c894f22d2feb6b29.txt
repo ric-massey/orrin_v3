@@ -1,0 +1,15 @@
+What I learned about Reflect on my open question: What is there about history that my earlier notes on it are missing:
+
+- emotional reflection: [symbolic] steepest warming trends (unknown) [unknown, trends, steepest, warming]
+[symbolic] history (concept): is_a=systematic study of the past [history, concept]
+[symbolic] The Daily Stoic (concept): description= [daily, stoic, work_of_art, concept, retired]
+[symbolic] emergence in complex systems (concept): description= [complex, systems, emergence, concept, retired]
+[rul
+- [emotion/cause] A sense of rejection grew because: [Emotional residue] I notice unprocessed rejection_signal connected to: '💔 Goal failed: Reflect on m
+- [symbolic] consciousness and subjective experience (concept): description= [subjective, experience, consciousness, concept, retired]
+[symbolic] The Daily Stoic (concept): description= [daily, stoic, work_of_art, concept, retired]
+[symbolic] stoic philosophy and daily life (concept): description= [stoic, life, daily, philosophy, concept]
+[symbolic] philosophy of time (concept): description= [time, 
+- [memory] [opinion formed] On 'valueerror': Valueerror keeps surfacing — most sharply in "💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch" — but it hasn't settled into a stance yet.
+- [will] I resolve to: pursue: Reflect on my open question: What is there about history that my earlier notes on it are missing? — I stand behind this. (strength 0.23)
+- [Chunk: 💔 Goal failed: Answer: What is there about history that my earlier notes on it are missing?. / 💔 Goal failed: Answer: What is there about The Daily Stoic that my earlier notes on it are missing? — round 2.]

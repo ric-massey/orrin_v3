@@ -1,0 +1,108 @@
+{
+  "question": "What actually is Robertson, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "robertson"
+  ],
+  "entities": [
+    "Robertson",
+    "born on 30 October 1912 in Edinburgh",
+    "Thorburn Brailsford Robertson",
+    "born at Edinburgh",
+    "educated there and continued to board with Phoeb",
+    "William Robertson",
+    "born in Welbourn",
+    "promoted to lance-sergeant in May 1881 and sergeant in January 1882",
+    "Joseph Robertson",
+    "Minister of Leith Wynd Chapel",
+    "From 1834 Robertson",
+    "working with Braithwaite promoting the Eastern Counties Railway",
+    "undermined as Secretary in 1839"
+  ],
+  "relations": [
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "born on 30 October 1912 in Edinburgh",
+      "source": "my prior claims [g_c49aa1028d]"
+    },
+    {
+      "subject": "Thorburn Brailsford Robertson",
+      "predicate": "was",
+      "object": "born at Edinburgh",
+      "source": "https://en.wikipedia.org/wiki/Thorburn_Brailsford_Robertson"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "educated there and continued to board with Phoeb",
+      "source": "https://en.wikipedia.org/wiki/Thorburn_Brailsford_Robertson"
+    },
+    {
+      "subject": "William Robertson",
+      "predicate": "was",
+      "object": "born in Welbourn",
+      "source": "https://en.wikipedia.org/wiki/Sir_William_Robertson%2C_1st_Baronet"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "promoted to lance-sergeant in May 1881 and sergeant in January 1882",
+      "source": "https://en.wikipedia.org/wiki/Sir_William_Robertson%2C_1st_Baronet"
+    },
+    {
+      "subject": "Joseph Robertson",
+      "predicate": "was",
+      "object": "Minister of Leith Wynd Chapel",
+      "source": "https://en.wikipedia.org/wiki/Joseph_Clinton_Robertson"
+    },
+    {
+      "subject": "From 1834 Robertson",
+      "predicate": "was",
+      "object": "working with Braithwaite promoting the Eastern Counties Railway",
+      "source": "https://en.wikipedia.org/wiki/Joseph_Clinton_Robertson"
+    },
+    {
+      "subject": "Robertson",
+      "predicate": "was",
+      "object": "undermined as Secretary in 1839",
+      "source": "https://en.wikipedia.org/wiki/Joseph_Clinton_Robertson"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_c49aa1028d]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_conjectures_by_Paul_Erd%C5%91s"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thorburn_Brailsford_Robertson"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sir_William_Robertson%2C_1st_Baronet"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/D._W._Robertson_Jr."
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Republican_Party_presidential_debates_and_forums"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biblical_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cranfield_experiments"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Joseph_Clinton_Robertson"
+    }
+  ],
+  "ts": "2026-11-03T22:39:36.764640+00:00"
+}

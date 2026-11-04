@@ -1,0 +1,45 @@
+{
+  "question": "What makes my memory use (RSS) climb?",
+  "subject_terms": [],
+  "entities": [
+    "memory use (RSS)",
+    "reflect_on_self_beliefs"
+  ],
+  "relations": [
+    {
+      "subject": "memory use (RSS)",
+      "predicate": "rises after",
+      "object": "reflect_on_self_beliefs runs",
+      "source": "resource_history"
+    }
+  ],
+  "prediction": {
+    "claim": "My memory use (RSS) rises after reflect_on_self_beliefs runs",
+    "checkable_against": "resource_history:rss_mb:last_fn",
+    "confidence": 0.6,
+    "resolved": true,
+    "correct": false,
+    "driver": "reflect_on_self_beliefs",
+    "made_at_ts": 1793692853.9,
+    "hypothesized_at": 1793692855.625603,
+    "train": {
+      "driver": "reflect_on_self_beliefs",
+      "n": 63,
+      "mean": 24.1127,
+      "base": 0.0894
+    },
+    "test": {
+      "n": 11,
+      "mean": -15.0364,
+      "base": -1.983,
+      "correct": false
+    },
+    "outcome": "failed out of sample: mean -15.0364 after reflect_on_self_beliefs (n=11) vs baseline -1.983"
+  },
+  "sources": [
+    {
+      "src": "resource_history.jsonl"
+    }
+  ],
+  "ts": "2026-11-03T08:00:55.625605+00:00"
+}

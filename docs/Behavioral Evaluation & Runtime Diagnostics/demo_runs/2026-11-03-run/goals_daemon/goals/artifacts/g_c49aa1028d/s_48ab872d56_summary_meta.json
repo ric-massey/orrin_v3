@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "g_c49aa1028d",
+    "title": "Understand Robertson more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Robertson",
+        "Robertson explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:38:51.784936Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:38:51.784944Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:38:51.784947Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:38:51.784949Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:38:51.784951Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Robertson was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Robertson was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T22:38:51.792288Z",
+      "question": "What actually is Robertson, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 22:38:51.821750+00:00",
+    "updated_at": "2026-11-03 22:38:52.823487+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ian_Robertson%2C_Lord_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Robbie_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Britt_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Channing_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Brian_Robertson_%28guitarist%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Duck_Dynasty",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Andy_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Caolan_Robertson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_c49aa1028d/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T22:39:01.293084+00:00"
+}

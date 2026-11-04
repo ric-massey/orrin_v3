@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "He repeatedly",
+    "He repeatedly explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Gerald_Friend",
+    "https://en.wikipedia.org/wiki/Robert_Garrow",
+    "https://en.wikipedia.org/wiki/Tank_Man",
+    "https://en.wikipedia.org/wiki/Naranath_Bhranthan",
+    "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings",
+    "https://en.wikipedia.org/wiki/Philo",
+    "https://en.wikipedia.org/wiki/Halloween_%281978_film%29",
+    "https://en.wikipedia.org/wiki/Last_Words_%281968_film%29",
+    "https://en.wikipedia.org/wiki/Pauline_Hanson%27s_Please_Explain",
+    "https://en.wikipedia.org/wiki/Sean_Hannity"
+  ],
+  "results": [
+    {
+      "title": "Gerald Friend",
+      "url": "https://en.wikipedia.org/wiki/Gerald_Friend",
+      "snippet": "twice, <span class=\"searchmatch\">he</span> was paroled in 1980. In June 1987, <span class=\"searchmatch\">he</span> abducted a 14-year-old girl at knife-point when she accepted a ride after a rock concert. <span class=\"searchmatch\">He</span> <span class=\"searchmatch\">repeatedly</span> raped",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Robert Garrow",
+      "url": "https://en.wikipedia.org/wiki/Robert_Garrow",
+      "snippet": "1973, Garrow murdered four people, including a young woman whom <span class=\"searchmatch\">he</span> kidnapped and <span class=\"searchmatch\">repeatedly</span> raped before killing, and a high school-aged camper in the Adirondacks",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Tank Man",
+      "url": "https://en.wikipedia.org/wiki/Tank_Man",
+      "snippet": "tank and refused to move. When the tank attempted to steer around him, <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> shifted positions to block its movement. The tanks came to a complete",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Naranath Bhranthan",
+      "url": "https://en.wikipedia.org/wiki/Naranath_Bhranthan",
+      "snippet": "included in Kottarathil Sankunni’s Aithihyamala. <span class=\"searchmatch\">He</span> is best known for a tale in which <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> rolls a boulder up a hill and watches it roll back",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "The Book of Five Rings",
+      "url": "https://en.wikipedia.org/wiki/The_Book_of_Five_Rings",
+      "snippet": "establishes a &quot;no-nonsense&quot; theme throughout the text. For instance, <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> remarks that technical flourishes are excessive, and contrasts worrying",
+      "query": "He repeatedly"
+    },
+    {
+      "title": "Philo",
+      "url": "https://en.wikipedia.org/wiki/Philo",
+      "snippet": "not reject the subjective experience of ancient Judaism; yet, <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> <span class=\"searchmatch\">explained</span> that the Septuagint cannot be understood as a concrete, objective",
+      "query": "He repeatedly explained"
+    },
+    {
+      "title": "Halloween (1978 film)",
+      "url": "https://en.wikipedia.org/wiki/Halloween_%281978_film%29",
+      "snippet": "recognizes him and shoots him <span class=\"searchmatch\">repeatedly</span>, causing him to fall off the bedroom balcony. When Loomis goes to check on the body, <span class=\"searchmatch\">he</span> is unsurprised to see that",
+      "query": "He repeatedly explained"
+    },
+    {
+      "title": "Last Words (1968 film)",
+      "url": "https://en.wikipedia.org/wiki/Last_Words_%281968_film%29",
+      "snippet": "several times <span class=\"searchmatch\">repeatedly</span> in long takes. The man from the island has the most spoken lines of any character, as <span class=\"searchmatch\">he</span> <span class=\"searchmatch\">repeatedly</span> <span class=\"searchmatch\">explains</span> that <span class=\"searchmatch\">he</span> refuses to",
+      "query": "He repeatedly explained"
+    },
+    {
+      "title": "Pauline Hanson's Please Explain",
+      "url": "https://en.wikipedia.org/wiki/Pauline_Hanson%27s_Please_Explain",
+      "snippet": "Minister Bill Shorten who mention perceivably bad things about the NDIS and <span class=\"searchmatch\">repeatedly</span> erroneously call the scheme the &quot;National Disability Insurance Scam&quot; before",
+      "query": "He repeatedly explained"
+    },
+    {
+      "title": "Sean Hannity",
+      "url": "https://en.wikipedia.org/wiki/Sean_Hannity",
+      "snippet": "Democratic Party. Hannity <span class=\"searchmatch\">repeatedly</span> claimed that Clinton had very serious medical problems and that the media was covering them up. <span class=\"searchmatch\">He</span> misrepresented photos",
+      "query": "He repeatedly explained"
+    }
+  ],
+  "ts": "2026-11-03T22:18:01.502726+00:00"
+}

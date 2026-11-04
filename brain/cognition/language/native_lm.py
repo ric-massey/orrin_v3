@@ -17,9 +17,9 @@ from __future__ import annotations
 import functools
 import threading
 import time
-from pathlib import Path
 from typing import Dict, Optional
 
+from brain.paths import DATA_DIR
 from brain.utils.log import log_private
 from brain.cognition.language import tokenizer as tok
 
@@ -31,7 +31,11 @@ try:
 except Exception:
     _TORCH = False
 
-_DIR = Path(__file__).resolve().parents[2] / "data" / "language"
+# Through DATA_DIR, like the tokenizer beside it. This was parents[2]/data, which
+# ignores ORRIN_DATA_DIR: on 2026-11-02 an isolated smoke life trained its own
+# tokenizer, saw a vocab change and saved a fresh model over the live checkpoint,
+# so Run 14 was born with a transformer at step 0 (Run 13 had left 23,931 steps).
+_DIR = DATA_DIR / "language"
 _CKPT = _DIR / "native_lm.pt"
 
 # Architecture (small for 8 GB M1; ~8-9M params).

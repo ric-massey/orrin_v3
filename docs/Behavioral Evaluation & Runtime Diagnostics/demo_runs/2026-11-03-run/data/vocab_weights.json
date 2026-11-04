@@ -1,0 +1,52 @@
+{
+  "1081121b31dc": {
+    "uses": 2,
+    "successes": 2,
+    "weight": 2.0
+  },
+  "841b2b172345": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "4df67ddf883d": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "2067e0ccc1ba": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "b4cc73721963": {
+    "uses": 6,
+    "successes": 6,
+    "weight": 2.0
+  },
+  "21bf09298464": {
+    "uses": 3,
+    "successes": 3,
+    "weight": 2.0
+  },
+  "cceba1d59802": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "e53d6e5cff3f": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "a5537290169f": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  },
+  "7780ef57b03c": {
+    "uses": 1,
+    "successes": 1,
+    "weight": 2.0
+  }
+}

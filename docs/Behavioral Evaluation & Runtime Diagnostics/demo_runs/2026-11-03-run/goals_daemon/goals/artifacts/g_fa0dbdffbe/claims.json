@@ -1,0 +1,136 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "Recent human evolution",
+    "evolutionary adaptation",
+    "analogous structures that have similar form or function but",
+    "not present in the last common ancestor of those groups",
+    "The recurrent evolution of flight",
+    "classic example",
+    "features that have arisen through convergent evolution",
+    "analogous",
+    "The opposite of convergent evolution",
+    "divergent evolution",
+    "similar to parallel evolution",
+    "Many instances of convergent evolution",
+    "known in plants",
+    "the modern synthesis with its emphasis on natural selection"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "my prior claims [g_54db417919]"
+    },
+    {
+      "subject": "Recent human evolution",
+      "predicate": "refers to",
+      "object": "evolutionary adaptation",
+      "source": "https://en.wikipedia.org/wiki/Recent_human_evolution"
+    },
+    {
+      "subject": "analogous structures that have similar form or function but",
+      "predicate": "were",
+      "object": "not present in the last common ancestor of those groups",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "The recurrent evolution of flight",
+      "predicate": "is a",
+      "object": "classic example",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "features that have arisen through convergent evolution",
+      "predicate": "are",
+      "object": "analogous",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "The opposite of convergent evolution",
+      "predicate": "is",
+      "object": "divergent evolution",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is",
+      "object": "similar to parallel evolution",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "Many instances of convergent evolution",
+      "predicate": "are",
+      "object": "known in plants",
+      "source": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "subject": "the modern synthesis with its emphasis on natural selection",
+      "predicate": "is an",
+      "object": "incomplete picture of evolution",
+      "source": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "subject": "view of it as the primary mechanism of evolution",
+      "predicate": "was",
+      "object": "rejected by some",
+      "source": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "subject": "biological sense evolution can occur even when the phenotype",
+      "predicate": "is",
+      "object": "unchanged",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "The scientific theory of evolution by natural selection",
+      "predicate": "was",
+      "object": "conceived independently by two British naturalists",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_54db417919]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Recent_human_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Gain-of-function_research"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Convergent_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Differential_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vikings"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups"
+    }
+  ],
+  "ts": "2026-11-03T21:47:27.408607+00:00"
+}

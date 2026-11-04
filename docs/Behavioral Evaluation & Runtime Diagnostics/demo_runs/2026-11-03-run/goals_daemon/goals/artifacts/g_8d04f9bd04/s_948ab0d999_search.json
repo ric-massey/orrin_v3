@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "the world",
+    "the world explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/World",
+    "https://en.wikipedia.org/wiki/The_World",
+    "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+    "https://en.wikipedia.org/wiki/Around_the_World",
+    "https://en.wikipedia.org/wiki/The_World_Is_Yours"
+  ],
+  "results": [
+    {
+      "title": "World",
+      "url": "https://en.wikipedia.org/wiki/World",
+      "snippet": "<span class=\"searchmatch\">world</span> is a totality of entities. In philosophy, <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world</span> is customarily viewed as all of existence or <span class=\"searchmatch\">the</span> whole of reality. Some conceptions see <span class=\"searchmatch\">the</span>",
+      "query": "the world"
+    },
+    {
+      "title": "The World",
+      "url": "https://en.wikipedia.org/wiki/The_World",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> may refer to: <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> (Coos Bay), a Coos Bay, Oregon newspaper <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> (South African newspaper), a former Johannesburg newspaper <span class=\"searchmatch\">The</span> World",
+      "query": "the world"
+    },
+    {
+      "title": "Wonders of the World",
+      "url": "https://en.wikipedia.org/wiki/Wonders_of_the_World",
+      "snippet": "Various lists of <span class=\"searchmatch\">the</span> Wonders of <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">World</span> have been compiled from antiquity to <span class=\"searchmatch\">the</span> present day, in order to catalogue <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world&#039;s</span> most spectacular natural",
+      "query": "the world"
+    },
+    {
+      "title": "Around the World",
+      "url": "https://en.wikipedia.org/wiki/Around_the_World",
+      "snippet": "around <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world</span> in Wiktionary, <span class=\"searchmatch\">the</span> free dictionary. Around <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">World</span> may refer to: Circumnavigation, to navigate a circumference, as around <span class=\"searchmatch\">the</span> Earth",
+      "query": "the world"
+    },
+    {
+      "title": "The World Is Yours",
+      "url": "https://en.wikipedia.org/wiki/The_World_Is_Yours",
+      "snippet": "<span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours may refer to: <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (film), a 2018 French film <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (TV series), 1951 <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">World</span> Is Yours (radio show), 1936–1942",
+      "query": "the world"
+    }
+  ],
+  "ts": "2026-11-03T11:46:53.361375+00:00"
+}

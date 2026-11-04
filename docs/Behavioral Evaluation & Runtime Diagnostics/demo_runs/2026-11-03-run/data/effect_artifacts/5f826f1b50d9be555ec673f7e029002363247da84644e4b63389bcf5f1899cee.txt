@@ -1,0 +1,55 @@
+{
+  "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "saltiness",
+    "sourness"
+  ],
+  "entities": [
+    "Saltiness and sourness",
+    "perceived when alkali metals or hydrogen ions meet taste buds",
+    "The five specific tastes received by taste receptors",
+    "saltiness"
+  ],
+  "relations": [
+    {
+      "subject": "Saltiness and sourness",
+      "predicate": "are",
+      "object": "perceived when alkali metals or hydrogen ions meet taste buds",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "subject": "The five specific tastes received by taste receptors",
+      "predicate": "are",
+      "object": "saltiness",
+      "source": "https://en.wikipedia.org/wiki/Taste"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Taste"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Chamoy_%28sauce%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Li_hing_mui"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Onigiri"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hypergeusia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pickled_cucumber"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kaeng_thepho"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Umami"
+    }
+  ],
+  "ts": "2026-11-03T23:00:07.315142+00:00"
+}

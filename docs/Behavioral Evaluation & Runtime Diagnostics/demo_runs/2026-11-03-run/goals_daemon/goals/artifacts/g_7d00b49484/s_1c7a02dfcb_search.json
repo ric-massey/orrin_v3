@@ -1,0 +1,46 @@
+{
+  "queries": [
+    "What is there about history that my earlier notes on it are missing? recent research",
+    "What is there about history that my earlier notes on it are missing? common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Whataboutism",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+    "https://en.wikipedia.org/wiki/On_Heroes%2C_Hero-Worship%2C_%26_the_Heroic_in_History",
+    "https://en.wikipedia.org/wiki/WhatsApp",
+    "https://en.wikipedia.org/wiki/Meaning_of_life"
+  ],
+  "results": [
+    {
+      "title": "Whataboutism",
+      "url": "https://en.wikipedia.org/wiki/Whataboutism",
+      "snippet": "the accusation of <span class=\"searchmatch\">it</span> <span class=\"searchmatch\">are</span> forms of strategic framing and have a framing effect. The term whataboutism <span class=\"searchmatch\">is</span> a compound of <span class=\"searchmatch\">what</span> and <span class=\"searchmatch\">about</span>, <span class=\"searchmatch\">is</span> synonymous with",
+      "query": "What is there about history that my earlier notes on it are missing? recent research"
+    },
+    {
+      "title": "List of common misconceptions about arts and culture",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "snippet": "entry <span class=\"searchmatch\">on</span> this list of common misconceptions <span class=\"searchmatch\">is</span> worded as a correction; the misconceptions themselves <span class=\"searchmatch\">are</span> implied rather than stated. These entries <span class=\"searchmatch\">are</span> concise",
+      "query": "What is there about history that my earlier notes on it are missing? recent research"
+    },
+    {
+      "title": "On Heroes, Hero-Worship, & the Heroic in History",
+      "url": "https://en.wikipedia.org/wiki/On_Heroes%2C_Hero-Worship%2C_%26_the_Heroic_in_History",
+      "snippet": "<span class=\"searchmatch\">On</span> Heroes, Hero-Worship, &amp; the Heroic in <span class=\"searchmatch\">History</span> <span class=\"searchmatch\">is</span> a book by the Scottish essayist, historian and philosopher Thomas Carlyle, published by James Fraser",
+      "query": "What is there about history that my earlier notes on it are missing? recent research"
+    },
+    {
+      "title": "WhatsApp",
+      "url": "https://en.wikipedia.org/wiki/WhatsApp",
+      "snippet": "statuses like, &#039;I woke up late&#039; or &#039;I&#039;m <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">my</span> way.&#039; Fishman said, &quot;At some point <span class=\"searchmatch\">it</span> sort of became instant messaging&quot;. <span class=\"searchmatch\">Whats</span>App 2.0, released for iPhone in August",
+      "query": "What is there about history that my earlier notes on it are missing? recent research"
+    },
+    {
+      "title": "Meaning of life",
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "snippet": "such as—but not limited to—&quot;<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> the meaning of life?&quot;, &quot;<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> the purpose of existence?&quot;, and &quot;Why <span class=\"searchmatch\">are</span> we here?&quot;. <span class=\"searchmatch\">There</span> have been many proposed answers",
+      "query": "What is there about history that my earlier notes on it are missing? recent research"
+    }
+  ],
+  "ts": "2026-11-03T06:35:26.117739+00:00"
+}

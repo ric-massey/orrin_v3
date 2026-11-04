@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "physical system",
+    "physical system explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Physical_system",
+    "https://en.wikipedia.org/wiki/Cyber-physical_system",
+    "https://en.wikipedia.org/wiki/Physical_symbol_system",
+    "https://en.wikipedia.org/wiki/Physical_property",
+    "https://en.wikipedia.org/wiki/Physical_object",
+    "https://en.wikipedia.org/wiki/Model",
+    "https://en.wikipedia.org/wiki/Physical_constant",
+    "https://en.wikipedia.org/wiki/Outline_of_physical_science",
+    "https://en.wikipedia.org/wiki/Quantum_mechanics"
+  ],
+  "results": [
+    {
+      "title": "Physical system",
+      "url": "https://en.wikipedia.org/wiki/Physical_system",
+      "snippet": "<span class=\"searchmatch\">physical</span> <span class=\"searchmatch\">system</span> is a collection of <span class=\"searchmatch\">physical</span> objects under study. The collection differs from a set; the objects must coexist and have some <span class=\"searchmatch\">physical</span> relationship",
+      "query": "physical system"
+    },
+    {
+      "title": "Cyber-physical system",
+      "url": "https://en.wikipedia.org/wiki/Cyber-physical_system",
+      "snippet": "Cyber-<span class=\"searchmatch\">physical</span> <span class=\"searchmatch\">systems</span> (CPS) are mechanisms controlled and monitored by computer algorithms, tightly integrated with the internet and its users. In cyber-physical",
+      "query": "physical system"
+    },
+    {
+      "title": "Physical symbol system",
+      "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+      "snippet": "A <span class=\"searchmatch\">physical</span> symbol <span class=\"searchmatch\">system</span> (also called a formal <span class=\"searchmatch\">system</span>) takes <span class=\"searchmatch\">physical</span> patterns (symbols), combining them into structures (expressions) and manipulating",
+      "query": "physical system"
+    },
+    {
+      "title": "Physical property",
+      "url": "https://en.wikipedia.org/wiki/Physical_property",
+      "snippet": "A <span class=\"searchmatch\">physical</span> property is any property of a <span class=\"searchmatch\">physical</span> <span class=\"searchmatch\">system</span> that is measurable. The changes in the <span class=\"searchmatch\">physical</span> properties of a <span class=\"searchmatch\">system</span> can be used to describe",
+      "query": "physical system"
+    },
+    {
+      "title": "Physical object",
+      "url": "https://en.wikipedia.org/wiki/Physical_object",
+      "snippet": "In natural language and <span class=\"searchmatch\">physical</span> science, a <span class=\"searchmatch\">physical</span> object or material object (or simply an object or body) is a collection of matter, usually contiguous",
+      "query": "physical system"
+    },
+    {
+      "title": "Physical symbol system",
+      "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+      "snippet": "A <span class=\"searchmatch\">physical</span> symbol <span class=\"searchmatch\">system</span> (also called a formal <span class=\"searchmatch\">system</span>) takes <span class=\"searchmatch\">physical</span> patterns (symbols), combining them into structures (expressions) and manipulating",
+      "query": "physical system explained"
+    },
+    {
+      "title": "Model",
+      "url": "https://en.wikipedia.org/wiki/Model",
+      "snippet": "larger <span class=\"searchmatch\">physical</span> representation of an object, person or <span class=\"searchmatch\">system</span>. The object being modelled may be small (e.g., an atom) or large (e.g., the Solar <span class=\"searchmatch\">System</span>) or",
+      "query": "physical system explained"
+    },
+    {
+      "title": "Physical constant",
+      "url": "https://en.wikipedia.org/wiki/Physical_constant",
+      "snippet": "set of <span class=\"searchmatch\">physical</span> constants considered to be fundamental change as <span class=\"searchmatch\">physical</span> models change. Constants fundamental in one theory may be <span class=\"searchmatch\">explained</span> in terms",
+      "query": "physical system explained"
+    },
+    {
+      "title": "Outline of physical science",
+      "url": "https://en.wikipedia.org/wiki/Outline_of_physical_science",
+      "snippet": "<span class=\"searchmatch\">Physical</span> science is a branch of natural science that studies non-living <span class=\"searchmatch\">systems</span>, in contrast to life science. It in turn has many branches, collectively",
+      "query": "physical system explained"
+    },
+    {
+      "title": "Quantum mechanics",
+      "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+      "snippet": "momentum, and other <span class=\"searchmatch\">physical</span> properties may yield. Quantum mechanics allows the calculation of properties and behaviour of <span class=\"searchmatch\">physical</span> <span class=\"searchmatch\">systems</span>. It is typically",
+      "query": "physical system explained"
+    }
+  ],
+  "ts": "2026-11-03T14:44:04.311303+00:00"
+}

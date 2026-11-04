@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_8feb13ebae",
+    "title": "Understand Scholars more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Scholars",
+        "Scholars explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:16:52.324962Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:16:52.324972Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:16:52.324974Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:16:52.324976Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:16:52.324977Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Scholars was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Scholars was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:16:52.324994Z",
+      "question": "What actually is Scholars, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:16:52.325420+00:00",
+    "updated_at": "2026-11-03 16:16:53.533023+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Google_Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Schwarzman_Scholars",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Semantic_Scholar",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Violence_in_the_Quran",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/PnL_explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Daniel_McClellan_%28biblical_scholar%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/No_Time_to_Explain",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8feb13ebae/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:17:00.657940+00:00"
+}

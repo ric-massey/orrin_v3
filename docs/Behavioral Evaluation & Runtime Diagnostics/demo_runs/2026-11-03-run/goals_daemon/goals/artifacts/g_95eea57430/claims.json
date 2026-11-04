@@ -1,0 +1,87 @@
+{
+  "question": "What actually is Sawdust, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "sawdust"
+  ],
+  "entities": [
+    "Sawdust",
+    "by-product of lumber production",
+    "IARC group 1 Carcinogen",
+    "major use of sawdust",
+    "for particleboard",
+    "used in the manufacture of charcoal briquettes",
+    "that sawdust",
+    "used as a filler in sausage",
+    "the floor",
+    "wood covered in sawdust"
+  ],
+  "relations": [
+    {
+      "subject": "Sawdust",
+      "predicate": "is a",
+      "object": "by-product of lumber production",
+      "source": "my prior claims [g_1b7f64d97e]"
+    },
+    {
+      "subject": "Sawdust",
+      "predicate": "is an",
+      "object": "IARC group 1 Carcinogen",
+      "source": "https://en.wikipedia.org/wiki/Sawdust"
+    },
+    {
+      "subject": "major use of sawdust",
+      "predicate": "is",
+      "object": "for particleboard",
+      "source": "https://en.wikipedia.org/wiki/Sawdust"
+    },
+    {
+      "subject": "Sawdust",
+      "predicate": "is",
+      "object": "used in the manufacture of charcoal briquettes",
+      "source": "https://en.wikipedia.org/wiki/Sawdust"
+    },
+    {
+      "subject": "that sawdust",
+      "predicate": "was",
+      "object": "used as a filler in sausage",
+      "source": "https://en.wikipedia.org/wiki/Sawdust"
+    },
+    {
+      "subject": "the floor",
+      "predicate": "was",
+      "object": "wood covered in sawdust",
+      "source": "https://en.wikipedia.org/wiki/Pie_and_mash"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1b7f64d97e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sawdust"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_bread"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wood-waste_burner"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Briquette"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Great_Lakes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Chopper_pump"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pie_and_mash"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Truss"
+    }
+  ],
+  "ts": "2026-11-03T20:40:08.327765+00:00"
+}

@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_fd3bdb9079",
+    "title": "Understand Often these more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Often these",
+        "Often these explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:17.028764Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:17.028777Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:17.028780Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:17.028798Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:17.028801Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Often these was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Often these was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T19:21:17.029143Z",
+      "question": "What actually is Often these, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 19:21:17.043023+00:00",
+    "updated_at": "2026-11-03 19:21:18.371651+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Often",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Release_early%2C_release_often",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Midfielder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Sun_Is_Often_Out",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Populism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Prequel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thing_Explainer",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T19:21:23.890006+00:00"
+}

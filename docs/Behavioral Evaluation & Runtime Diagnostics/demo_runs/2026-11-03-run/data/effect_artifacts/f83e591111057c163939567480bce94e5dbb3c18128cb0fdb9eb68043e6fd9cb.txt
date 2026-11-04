@@ -1,0 +1,66 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "evolution",
+    "not a topic of major religious controversy in America",
+    "teaching of evolution",
+    "effectively suspended in US public schools until the 1960s"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "my prior claims [g_b0c587178a]"
+    },
+    {
+      "subject": "evolution",
+      "predicate": "was",
+      "object": "not a topic of major religious controversy in America",
+      "source": "https://en.wikipedia.org/wiki/Intelligent_design"
+    },
+    {
+      "subject": "teaching of evolution",
+      "predicate": "was",
+      "object": "effectively suspended in US public schools until the 1960s",
+      "source": "https://en.wikipedia.org/wiki/Intelligent_design"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_b0c587178a]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Christian_views_on_masturbation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Boogiepop_Phantom"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wikipedia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Intelligent_design"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WandaVision"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ayaan_Hirsi_Ali"
+    }
+  ],
+  "ts": "2026-11-03T21:47:11.691740+00:00"
+}

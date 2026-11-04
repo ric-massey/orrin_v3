@@ -1,0 +1,92 @@
+{
+  "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "explanations"
+  ],
+  "entities": [
+    "that the task of a theory or model of scientific explanation",
+    "to outline the structure of such explanations",
+    "function and evolution",
+    "often presented as separate and distinct explanations of behaviour",
+    "purposefully create new knowledge through good explanations",
+    "acquired that the beginning of infinity took off during the Enlightenment",
+    "His explanation for human creativity",
+    "that it evolved as a way to faithfully reproduce existing memes",
+    "for E being an explanation of O according to theory T",
+    "formalized as",
+    "so that natural selection",
+    "the explanation in both cases"
+  ],
+  "relations": [
+    {
+      "subject": "that the task of a theory or model of scientific explanation",
+      "predicate": "is",
+      "object": "to outline the structure of such explanations",
+      "source": "my prior claims [g_6ed95fbb91]"
+    },
+    {
+      "subject": "function and evolution",
+      "predicate": "are",
+      "object": "often presented as separate and distinct explanations of behaviour",
+      "source": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "subject": "purposefully create new knowledge through good explanations",
+      "predicate": "was",
+      "object": "acquired that the beginning of infinity took off during the Enlightenment",
+      "source": "https://en.wikipedia.org/wiki/The_Beginning_of_Infinity"
+    },
+    {
+      "subject": "His explanation for human creativity",
+      "predicate": "is",
+      "object": "that it evolved as a way to faithfully reproduce existing memes",
+      "source": "https://en.wikipedia.org/wiki/The_Beginning_of_Infinity"
+    },
+    {
+      "subject": "for E being an explanation of O according to theory T",
+      "predicate": "are",
+      "object": "formalized as",
+      "source": "https://en.wikipedia.org/wiki/Abductive_reasoning"
+    },
+    {
+      "subject": "so that natural selection",
+      "predicate": "was",
+      "object": "the explanation in both cases",
+      "source": "https://en.wikipedia.org/wiki/Darwinism_%28book%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_6ed95fbb91]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tinbergen%27s_four_questions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Beginning_of_Infinity"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Abductive_reasoning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_philosophy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Passages_from_Antiquity_to_Feudalism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Application_software"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Dynamic_programming"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Spheroid"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Darwinism_%28book%29"
+    }
+  ],
+  "ts": "2026-11-03T21:43:12.663501+00:00"
+}

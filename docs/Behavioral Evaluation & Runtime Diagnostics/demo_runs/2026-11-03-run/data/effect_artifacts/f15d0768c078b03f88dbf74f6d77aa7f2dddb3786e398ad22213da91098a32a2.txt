@@ -1,0 +1,130 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing",
+    "level of paracetamol at specific times after the medication",
+    "taken",
+    "The medication",
+    "generally given for at least 24 hours",
+    "In the United Kingdom it",
+    "medication responsible for the greatest number of overdoses",
+    "these medications",
+    "used to treat mental illnesses",
+    "Psychiatric medications",
+    "prescription-only and come in forms such as pills",
+    "prescription medications",
+    "psychiatric medications",
+    "evolving into more novel methods of drug delivery",
+    "and so the majority of studies"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_1a598df078]"
+    },
+    {
+      "subject": "level of paracetamol at specific times after the medication",
+      "predicate": "was",
+      "object": "taken",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "The medication",
+      "predicate": "is",
+      "object": "generally given for at least 24 hours",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "In the United Kingdom it",
+      "predicate": "is the",
+      "object": "medication responsible for the greatest number of overdoses",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "these medications",
+      "predicate": "are",
+      "object": "used to treat mental illnesses",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "Psychiatric medications",
+      "predicate": "are",
+      "object": "prescription-only and come in forms such as pills",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "Psychiatric medications",
+      "predicate": "are",
+      "object": "prescription medications",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "psychiatric medications",
+      "predicate": "are",
+      "object": "evolving into more novel methods of drug delivery",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "and so the majority of studies",
+      "predicate": "are",
+      "object": "conducted on psychiatric medication",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "Physicians who research psychiatric medications",
+      "predicate": "are",
+      "object": "psychopharmacologists",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "commonly used classes of medications for these disorders",
+      "predicate": "are",
+      "object": "antidepressants",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "subject": "these medications",
+      "predicate": "are",
+      "object": "associated with significant neurotoxicities",
+      "source": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_1a598df078]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lithium_%28medication%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Psychiatric_medication"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Serotonin_syndrome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Topical_medication"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Drug_overdose"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Opioid_overdose"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-medication"
+    }
+  ],
+  "ts": "2026-11-03T16:39:21.370445+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "question": "What is there about The Daily Stoic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "daily",
+    "stoic"
+  ],
+  "entities": [
+    "The audiobook version of The Daily Stoic",
+    "published by Tim Ferriss",
+    "Stoic philosophy",
+    "traditionally divided into three interconnected disciplines",
+    "Central to Stoic ethics",
+    "the idea of living in accordance with nature",
+    "the system of propositional logic developed by the Stoics",
+    "one of the two great systems of logic in the classical world",
+    "The Stoics held that an understanding of ethics",
+    "impossible without logic",
+    "episodes List of episodes This",
+    "list of episodes for The Daily Show"
+  ],
+  "relations": [
+    {
+      "subject": "The audiobook version of The Daily Stoic",
+      "predicate": "was",
+      "object": "published by Tim Ferriss",
+      "source": "https://en.wikipedia.org/wiki/The_Daily_Stoic"
+    },
+    {
+      "subject": "Stoic philosophy",
+      "predicate": "is",
+      "object": "traditionally divided into three interconnected disciplines",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "Central to Stoic ethics",
+      "predicate": "was",
+      "object": "the idea of living in accordance with nature",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "the system of propositional logic developed by the Stoics",
+      "predicate": "was",
+      "object": "one of the two great systems of logic in the classical world",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "The Stoics held that an understanding of ethics",
+      "predicate": "was",
+      "object": "impossible without logic",
+      "source": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "subject": "episodes List of episodes This",
+      "predicate": "is a",
+      "object": "list of episodes for The Daily Show",
+      "source": "https://en.wikipedia.org/wiki/List_of_The_Daily_Show_episodes_%282025%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Daily_Stoic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ryan_Holiday"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stoicism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meditations"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Robert_Greene_%28American_author%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Daily_Show_episodes_%282025%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Shane_McRae"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Chad_%28slang%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Massimo_Pigliucci"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mike_Wazowski"
+    }
+  ],
+  "ts": "2026-11-03T03:36:23.392912+00:00"
+}

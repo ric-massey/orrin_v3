@@ -1,0 +1,78 @@
+{
+  "queries": [
+    "Three-dimensional elements",
+    "Three-dimensional elements explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Three-dimensional_space",
+    "https://en.wikipedia.org/wiki/Dimension",
+    "https://en.wikipedia.org/wiki/Assemblage_%28art%29",
+    "https://en.wikipedia.org/wiki/Three-dimensional_chess",
+    "https://en.wikipedia.org/wiki/Structure",
+    "https://en.wikipedia.org/wiki/Periodic_table",
+    "https://en.wikipedia.org/wiki/3D_rotation_group"
+  ],
+  "results": [
+    {
+      "title": "Three-dimensional space",
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_space",
+      "snippet": "the <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> Euclidean space, which is the Euclidean space of <span class=\"searchmatch\">dimension</span> <span class=\"searchmatch\">three</span>, which models physical space. More general <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> spaces",
+      "query": "Three-dimensional elements"
+    },
+    {
+      "title": "Dimension",
+      "url": "https://en.wikipedia.org/wiki/Dimension",
+      "snippet": " A two-<span class=\"searchmatch\">dimensional</span> Euclidean space is a two-<span class=\"searchmatch\">dimensional</span> space on the plane. The inside of a cube, a cylinder or a sphere is <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> (3D) because",
+      "query": "Three-dimensional elements"
+    },
+    {
+      "title": "Assemblage (art)",
+      "url": "https://en.wikipedia.org/wiki/Assemblage_%28art%29",
+      "snippet": "substrate that consists of <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> <span class=\"searchmatch\">elements</span> projecting out of or from the substrate. It is similar to collage, a two-<span class=\"searchmatch\">dimensional</span> medium. It is part",
+      "query": "Three-dimensional elements"
+    },
+    {
+      "title": "Three-dimensional chess",
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_chess",
+      "snippet": "<span class=\"searchmatch\">Three</span>-<span class=\"searchmatch\">dimensional</span> chess (or 3D chess) refers to a family of chess variants that replaces the two-<span class=\"searchmatch\">dimensional</span> board with a <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> array of cells",
+      "query": "Three-dimensional elements"
+    },
+    {
+      "title": "Structure",
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "snippet": "structural <span class=\"searchmatch\">elements</span> can be classified as one-<span class=\"searchmatch\">dimensional</span> (ropes, struts, beams, arches), two-<span class=\"searchmatch\">dimensional</span> (membranes, plates, slab, shells, vaults), or <span class=\"searchmatch\">three</span>-dimensional",
+      "query": "Three-dimensional elements"
+    },
+    {
+      "title": "Three-dimensional space",
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_space",
+      "snippet": "the <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> Euclidean space, which is the Euclidean space of <span class=\"searchmatch\">dimension</span> <span class=\"searchmatch\">three</span>, which models physical space. More general <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> spaces",
+      "query": "Three-dimensional elements explained"
+    },
+    {
+      "title": "Dimension",
+      "url": "https://en.wikipedia.org/wiki/Dimension",
+      "snippet": " A two-<span class=\"searchmatch\">dimensional</span> Euclidean space is a two-<span class=\"searchmatch\">dimensional</span> space on the plane. The inside of a cube, a cylinder or a sphere is <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> (3D) because",
+      "query": "Three-dimensional elements explained"
+    },
+    {
+      "title": "Three-dimensional chess",
+      "url": "https://en.wikipedia.org/wiki/Three-dimensional_chess",
+      "snippet": "<span class=\"searchmatch\">Three</span>-<span class=\"searchmatch\">dimensional</span> chess (or 3D chess) refers to a family of chess variants that replaces the two-<span class=\"searchmatch\">dimensional</span> board with a <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> array of cells",
+      "query": "Three-dimensional elements explained"
+    },
+    {
+      "title": "Periodic table",
+      "url": "https://en.wikipedia.org/wiki/Periodic_table",
+      "snippet": "some of the missing <span class=\"searchmatch\">elements</span>. The periodic law was recognized as a fundamental discovery in the late 19th century. It was <span class=\"searchmatch\">explained</span> early in the 20th century",
+      "query": "Three-dimensional elements explained"
+    },
+    {
+      "title": "3D rotation group",
+      "url": "https://en.wikipedia.org/wiki/3D_rotation_group",
+      "snippet": "denoted SO(3), is the group of all rotations about the origin of <span class=\"searchmatch\">three</span>-<span class=\"searchmatch\">dimensional</span> Euclidean space R 3 {\\displaystyle \\mathbb {R} ^{3}} under the operation",
+      "query": "Three-dimensional elements explained"
+    }
+  ],
+  "ts": "2026-11-03T19:21:34.742535+00:00"
+}

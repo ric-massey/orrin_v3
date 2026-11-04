@@ -1,0 +1,52 @@
+{
+  "question": "What is there about the world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [g_8d04f9bd04]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_8d04f9bd04]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stochastic_parrot"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stacey_Dooley"
+    }
+  ],
+  "ts": "2026-11-03T11:47:10.605525+00:00"
+}

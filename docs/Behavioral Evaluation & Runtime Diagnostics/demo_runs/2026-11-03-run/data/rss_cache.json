@@ -1,0 +1,130 @@
+{
+  "_last_feed_idx": 0,
+  "_seen_guids": [
+    "https://news.mit.edu/2026/study-pinpoints-states-with-steepest-warming-trends-1030",
+    "https://news.mit.edu/2026/mit-engineers-create-nanoparticles-delivering-personalized-cancer-vaccines-1030",
+    "https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022",
+    "https://news.mit.edu/2026/watch-universe-emerge-from-dark-ages-with-lumina-1026",
+    "https://news.mit.edu/2026/flexible-new-route-designer-materials-from-nanoparticles-1102",
+    "https://news.mit.edu/2026/capturing-complete-process-of-embryonic-development-1028",
+    "https://news.mit.edu/2026/symposium-highlights-innovations-for-aging-brain-health-1019",
+    "https://news.mit.edu/2026/oceans-most-abundant-loner-microbe-has-sticky-second-life-1020",
+    "https://news.mit.edu/2026/magnetic-sensors-track-muscle-movement-better-prosthetic-limb-control-1029",
+    "https://www.quantamagazine.org/?p=168464",
+    "https://news.mit.edu/2026/new-system-gives-users-more-control-over-online-experience-1029",
+    "https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102",
+    "https://news.mit.edu/2026/origami-based-construction-method-yields-lightweight-load-bearing-structures-architecture-1027",
+    "https://www.quantamagazine.org/?p=168400",
+    "https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102",
+    "https://news.mit.edu/2026/how-biggest-alzheimers-risk-gene-disrupts-process-insulating-neurons-1028",
+    "https://www.quantamagazine.org/?p=168519",
+    "https://www.quantamagazine.org/?p=168359",
+    "https://news.mit.edu/2026/implantable-device-uses-ultrasound-improve-drug-delivery-brain-1026",
+    "https://news.mit.edu/2026/qa-hey-ai-who-should-i-vote-for-this-year-1030",
+    "https://news.mit.edu/2026/featured-video-changing-conversation-about-endometriosis-1103",
+    "https://news.mit.edu/2026/qa-how-ai-came-to-model-messy-human-mind-1023",
+    "https://news.mit.edu/2026/soft-robot-could-help-doctors-diagnose-treat-small-intestine-disorders-1028",
+    "https://news.mit.edu/2026/j-pal-north-america-launches-homelessness-evaluation-resource-hub-1026",
+    "https://www.quantamagazine.org/?p=168250"
+  ],
+  "MIT News": {
+    "fetched_at": "2026-11-04T01:20:58.169307+00:00",
+    "items": [
+      {
+        "title": "Featured video: Changing the conversation about endometriosis",
+        "summary": "Documentary shines a powerful light on a painful disease that affects 265 million women, highlights efforts at MIT’s Center for Gynepathology Research to study the disease and find treatments.",
+        "link": "https://news.mit.edu/2026/featured-video-changing-conversation-about-endometriosis-1103",
+        "guid": "https://news.mit.edu/2026/featured-video-changing-conversation-about-endometriosis-1103"
+      },
+      {
+        "title": "Powering up for a pivotal moment",
+        "summary": "From a nuclear revival to qubits, the MIT Energy Initiative’s annual research conference tracked deployment of today’s technologies to discovery of tomorrow’s breakthroughs.",
+        "link": "https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102",
+        "guid": "https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102"
+      },
+      {
+        "title": "A flexible new route to designer materials built from nanoparticles",
+        "summary": "Pliable connector molecules could be key to creating nanoparticle-based materials for photonics, chemical catalysis, medicine, and more.",
+        "link": "https://news.mit.edu/2026/flexible-new-route-designer-materials-from-nanoparticles-1102",
+        "guid": "https://news.mit.edu/2026/flexible-new-route-designer-materials-from-nanoparticles-1102"
+      },
+      {
+        "title": "MIT engineers design a safer, more efficient vaccination system for farmed fish",
+        "summary": "Water-resistant microneedles made from food-grade silk could deliver vaccines to help prevent the spread of disease in aquaculture.",
+        "link": "https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102",
+        "guid": "https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102"
+      },
+      {
+        "title": "Study pinpoints states with steepest warming trends since 1980",
+        "summary": "The findings indicate where adaptive measures are needed most around the United States.",
+        "link": "https://news.mit.edu/2026/study-pinpoints-states-with-steepest-warming-trends-1030",
+        "guid": "https://news.mit.edu/2026/study-pinpoints-states-with-steepest-warming-trends-1030"
+      },
+      {
+        "title": "Q&A: Hey AI, who should I vote for this year?",
+        "summary": "MIT professors Adam Berinsky and Chara Podimata discuss a new project to track how AI chatbots are responding to questions about the 2026 U.S. midterm elections.",
+        "link": "https://news.mit.edu/2026/qa-hey-ai-who-should-i-vote-for-this-year-1030",
+        "guid": "https://news.mit.edu/2026/qa-hey-ai-who-should-i-vote-for-this-year-1030"
+      },
+      {
+        "title": "MIT engineers create nanoparticles for delivering personalized cancer vaccines",
+        "summary": "The particles carry a customized dose of cancer antigens that can provoke a strong immune response against tumors.",
+        "link": "https://news.mit.edu/2026/mit-engineers-create-nanoparticles-delivering-personalized-cancer-vaccines-1030",
+        "guid": "https://news.mit.edu/2026/mit-engineers-create-nanoparticles-delivering-personalized-cancer-vaccines-1030"
+      },
+      {
+        "title": "Magnetic sensors track muscle movement, for better prosthetic limb control",
+        "summary": "Researchers hope to use these sensors to help people with amputation achieve more natural movements with their prosthetic limbs.",
+        "link": "https://news.mit.edu/2026/magnetic-sensors-track-muscle-movement-better-prosthetic-limb-control-1029",
+        "guid": "https://news.mit.edu/2026/magnetic-sensors-track-muscle-movement-better-prosthetic-limb-control-1029"
+      },
+      {
+        "title": "New system gives users more control over their online experience",
+        "summary": "The Social.Wiki framework enables anyone to easily edit social websites within the system, while allowing them to choose the content they see.",
+        "link": "https://news.mit.edu/2026/new-system-gives-users-more-control-over-online-experience-1029",
+        "guid": "https://news.mit.edu/2026/new-system-gives-users-more-control-over-online-experience-1029"
+      },
+      {
+        "title": "Capturing the complete process of embryonic development",
+        "summary": "By tracking over 1 million cells, researchers created a detailed map of embryonic development in mice. It could provide development and disease insights.",
+        "link": "https://news.mit.edu/2026/capturing-complete-process-of-embryonic-development-1028",
+        "guid": "https://news.mit.edu/2026/capturing-complete-process-of-embryonic-development-1028"
+      }
+    ]
+  },
+  "Quanta Magazine": {
+    "fetched_at": "2026-11-04T02:00:22.111556+00:00",
+    "items": [
+      {
+        "title": "Is There Anything Left in the Dream of Cold Fusion?",
+        "summary": "Dig a little deeper and you’ll find a thriving research program with exotic atoms that won’t solve the energy crisis but stretches the boundaries of physics.              The post Is There Anything Left in the Dream of Cold Fusion? first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/is-there-anything-left-in-the-dream-of-cold-fusion-20261102/",
+        "guid": "https://www.quantamagazine.org/?p=168519"
+      },
+      {
+        "title": "A New Map of ‘Empty’ Space Challenges a Tranquil Picture of the Galaxy",
+        "summary": "For decades, astronomers treated the interstellar medium as a static backdrop to the goings-on of the universe. Now, a wave of 3D mapping is bringing the interstellar medium’s dynamic nature into focus.            The post A New Map of &#8216;Empty&#8217; Space Challenges a Tranquil Picture of the G",
+        "link": "https://www.quantamagazine.org/a-new-map-of-empty-space-challenges-a-tranquil-picture-of-the-galaxy-20261030/",
+        "guid": "https://www.quantamagazine.org/?p=168464"
+      },
+      {
+        "title": "How Do You Take a Picture of a Black Hole?",
+        "summary": "Astrophysicist Shep Doeleman explains how capturing the first image of a black hole required a telescope the size of the world, and why the next goal is to create a movie.            The post How Do You Take a Picture of a Black Hole? first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/how-do-you-take-a-picture-of-a-black-hole-20261029/",
+        "guid": "https://www.quantamagazine.org/?p=168400"
+      },
+      {
+        "title": "How Spiders Spin ‘Silk Dope’ Into Nature’s Toughest Material",
+        "summary": "By probing its molecular structure, biologists are uncovering how a tangle of unstructured proteins turns into a strong, flexible fiber.            The post How Spiders Spin ‘Silk Dope’ Into Nature’s Toughest Material first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/how-spiders-spin-silk-dope-into-natures-toughest-material-20261028/",
+        "guid": "https://www.quantamagazine.org/?p=168359"
+      },
+      {
+        "title": "How Voting Is Like a Klein Bottle",
+        "summary": "A new topological model connects a centuries-old voting paradox to a surface with no distinct inside or outside.            The post How Voting Is Like a Klein Bottle first appeared on Quanta Magazine",
+        "link": "https://www.quantamagazine.org/how-voting-is-like-a-klein-bottle-20261026/",
+        "guid": "https://www.quantamagazine.org/?p=168250"
+      }
+    ]
+  }
+}

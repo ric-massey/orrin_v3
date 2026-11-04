@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Allopurinol",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gout",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stevens%E2%80%93Johnson_syndrome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_04.txt",
+      "chars": 10860
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Febuxostat",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kidney_stone_disease",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_07.txt",
+      "chars": 18587
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/William_B._White",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1d64000175/doc_08.txt",
+      "chars": 15360
+    }
+  ],
+  "ts": "2026-11-03T18:54:25.194972+00:00"
+}

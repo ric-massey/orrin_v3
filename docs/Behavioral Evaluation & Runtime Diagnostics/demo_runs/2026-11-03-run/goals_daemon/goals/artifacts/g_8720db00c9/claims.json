@@ -1,0 +1,126 @@
+{
+  "question": "What actually is Midfielders, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "midfielders"
+  ],
+  "entities": [
+    "and",
+    "in that case known as defensive midfielders",
+    "they",
+    "often referred to as deep-lying midfielders",
+    "There",
+    "also attacking midfielders with limited defensive assignments",
+    "Midfielders",
+    "the players who typically travel the greatest distance during a match",
+    "often assigned the task of assisting forwards to create scoring opportunities",
+    "Spanish midfielder Xavi",
+    "known for his passing and vision with Barcelona",
+    "The term box-to-box midfielder",
+    "central midfielders who are hard-working and who have good all-round abilities",
+    "Notable examples of box-to-box midfielders",
+    "Lothar Matthäus",
+    "only 3 midfielders allowed on the field at one time by each team"
+  ],
+  "relations": [
+    {
+      "subject": "and",
+      "predicate": "are",
+      "object": "in that case known as defensive midfielders",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "they",
+      "predicate": "are",
+      "object": "often referred to as deep-lying midfielders",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "also attacking midfielders with limited defensive assignments",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "Midfielders",
+      "predicate": "are",
+      "object": "the players who typically travel the greatest distance during a match",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "Midfielders",
+      "predicate": "are",
+      "object": "often assigned the task of assisting forwards to create scoring opportunities",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "Spanish midfielder Xavi",
+      "predicate": "was",
+      "object": "known for his passing and vision with Barcelona",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "The term box-to-box midfielder",
+      "predicate": "refers to",
+      "object": "central midfielders who are hard-working and who have good all-round abilities",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "Notable examples of box-to-box midfielders",
+      "predicate": "are",
+      "object": "Lothar Matthäus",
+      "source": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "subject": "There",
+      "predicate": "are",
+      "object": "only 3 midfielders allowed on the field at one time by each team",
+      "source": "https://en.wikipedia.org/wiki/Midfielder_%28lacrosse%29"
+    },
+    {
+      "subject": "The only time they",
+      "predicate": "are",
+      "object": "not allowed to have 3 midfielders on the field is if there is a penalty",
+      "source": "https://en.wikipedia.org/wiki/Midfielder_%28lacrosse%29"
+    },
+    {
+      "subject": "Midfielders",
+      "predicate": "are",
+      "object": "required to wear a chest pad",
+      "source": "https://en.wikipedia.org/wiki/Midfielder_%28lacrosse%29"
+    },
+    {
+      "subject": "The main objective of a midfielder",
+      "predicate": "is",
+      "object": "to transition the ball from defense to offense",
+      "source": "https://en.wikipedia.org/wiki/Midfielder_%28lacrosse%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Midfielder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Midfielder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Midfielder_%28lacrosse%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Association_football_positions"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Midfielder_%28disambiguation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Remembrance_poppy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_The_Weekly_with_Charlie_Pickering_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9"
+    }
+  ],
+  "ts": "2026-11-03T20:40:50.419561+00:00"
+}

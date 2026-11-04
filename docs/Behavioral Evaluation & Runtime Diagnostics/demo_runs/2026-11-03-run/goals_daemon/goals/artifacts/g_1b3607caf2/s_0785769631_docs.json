@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Writing",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_languages_by_first_written_account",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Languages_of_Asia",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cyrillic_alphabets",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Chinese_language",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b3607caf2/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T05:38:05.201724+00:00"
+}

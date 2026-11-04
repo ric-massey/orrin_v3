@@ -1,0 +1,8 @@
+What I learned about may specifically more deeply:
+
+- [Chunk: 💔 Goal failed: Understand theory more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap / [emotion/cause] A sense of rejection grew because: 💔 Goal failed: Understand theory more deeply.]
+- [will] I resolve (held lightly, strength 0.20) to: pursue: Understand may specifically more deeply — This doesn't clearly connect to my values yet — I'll hold it lightly.
+- [Chunk: [will] I resolve (held lightly, strength 0.20) to: pursue: Understand theory more deeply — This doesn't clearly connect… / [will] I resolve (held lightly, strength 0.20) to: pursue: Understand Sisu more deeply — This doesn't clearly connect…]
+- [Chunk: 💔 Goal failed: Understand Sisu more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap / [emotion/cause]… / 💔 Goal failed: Leave Ric a note about the world. steps_unreachable: 3 steps abandoned at the 3-attempt cap /…]
+- [Chunk: [will] I resolve to: pursue: Understand talk more deeply — I stand behind this. (strength 0. / [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.]
+- [Chunk: 💔 Goal failed: Understand evolutionary biology and cooperation more deeply — round 3. ValueError: no URLs to fetch / 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch]

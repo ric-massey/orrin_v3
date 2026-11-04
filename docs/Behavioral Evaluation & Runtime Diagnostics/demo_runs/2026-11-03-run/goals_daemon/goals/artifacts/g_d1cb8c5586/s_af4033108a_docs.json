@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28signal_processing%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_02.txt",
+      "chars": 1899
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Trellis_quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_03.txt",
+      "chars": 1762
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28music%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_04.txt",
+      "chars": 5908
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vector_quantization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_05.txt",
+      "chars": 13044
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantization_%28physics%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_06.txt",
+      "chars": 11406
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_07.txt",
+      "chars": 9680
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Old_quantum_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Elementary_charge",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_d1cb8c5586/doc_10.txt",
+      "chars": 17951
+    }
+  ],
+  "ts": "2026-11-03T06:40:25.485590+00:00"
+}

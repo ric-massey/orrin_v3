@@ -1,0 +1,136 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "eventually become larger than any computable function and",
+    "hence noncomputable",
+    "of biological evolution that an EA mainly imitates",
+    "reproduction",
+    "this computational complexity",
+    "due to fitness function evaluation",
+    "co-evolution and density-dependent natural selection",
+    "amenable to investigation within the Tierra framework",
+    "the fitness function",
+    "endogenous",
+    "ended evolution can be implemented in an artificial system",
+    "still an open question in the field of artificial life",
+    "biological sense evolution can occur even when the phenotype",
+    "unchanged"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "my prior claims [g_db140af482]"
+    },
+    {
+      "subject": "eventually become larger than any computable function and",
+      "predicate": "are",
+      "object": "hence noncomputable",
+      "source": "https://en.wikipedia.org/wiki/Busy_beaver"
+    },
+    {
+      "subject": "of biological evolution that an EA mainly imitates",
+      "predicate": "are",
+      "object": "reproduction",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_algorithm"
+    },
+    {
+      "subject": "this computational complexity",
+      "predicate": "is",
+      "object": "due to fitness function evaluation",
+      "source": "https://en.wikipedia.org/wiki/Evolutionary_algorithm"
+    },
+    {
+      "subject": "co-evolution and density-dependent natural selection",
+      "predicate": "are",
+      "object": "amenable to investigation within the Tierra framework",
+      "source": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29"
+    },
+    {
+      "subject": "the fitness function",
+      "predicate": "is",
+      "object": "endogenous",
+      "source": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29"
+    },
+    {
+      "subject": "ended evolution can be implemented in an artificial system",
+      "predicate": "is",
+      "object": "still an open question in the field of artificial life",
+      "source": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29"
+    },
+    {
+      "subject": "biological sense evolution can occur even when the phenotype",
+      "predicate": "is",
+      "object": "unchanged",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "The scientific theory of evolution by natural selection",
+      "predicate": "was",
+      "object": "conceived independently by two British naturalists",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "Evolution by natural selection",
+      "predicate": "is",
+      "object": "established by observable facts about living organisms",
+      "source": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "subject": "view of it as the primary mechanism of evolution",
+      "predicate": "was",
+      "object": "rejected by some",
+      "source": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "subject": "that studies literature in the context of evolution by",
+      "predicate": "means",
+      "object": "of natural selection",
+      "source": "https://en.wikipedia.org/wiki/Darwinian_literary_studies"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_db140af482]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Busy_beaver"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolutionary_algorithm"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tierra_%28computer_simulation%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Objections_to_evolution"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_evolutionary_thought"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Darwinian_literary_studies"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Karl_Popper"
+    }
+  ],
+  "ts": "2026-11-03T21:46:41.820794+00:00"
+}

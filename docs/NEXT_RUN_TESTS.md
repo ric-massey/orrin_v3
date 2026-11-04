@@ -505,6 +505,33 @@ scrape-stitches, hence gate item (d)).
 
 ---
 
+## Run 14 result — 2026-11-03/04 life: **NOT PASSED** — Feed 🔴 · Memory 🔴 (world share) · Reward honesty 🔴 (B24) · learning contract ✅ as built
+
+Build `9d7d1fc`, symbolic-only, 14,671 cycles, one segment. **Killed at ~23.9 h of a
+27.8 h life by the host**: the Claude desktop app switched account and stopped every
+terminal it hosted, Orrin's included; no cleanup ran. Verdict, measurements and the
+fix list: `docs/Behavioral Evaluation & Runtime Diagnostics/demo_runs/2026-11-03-run/DEMO_RUN_2026-11-03.md`.
+
+| Row | Run 13 | Run 14 | |
+|---|---|---|---|
+| B11 orphan repairs / waiting-goal focus / resolved predictions | 18 / 53–78 % / 3 | 0 / 0 % / 5 | ✅ |
+| B11 characterize share of WAL rows | 96 % | 42.6 % | 🔴 |
+| B20, B13, B6 neighbours, B14, B22, B27, B28 | | all pass | ✅ |
+| B6 longest daemon silence (`[step_exec]`; the compacted WAL cannot show it) | 247 min | 61.0 min | 🔴 |
+| B7 research no-op / B5 max round / B4 junk concepts | 95 % / 21 / many | ~86 % / 7 / ~25 of 60 | 🔴 |
+| B1/B3 self-log summaries / own-file perceptions | 74 % / 32 | 4.1 % / 0 | ✅ |
+| B3 world findings share | 2.8 % | **7.3 %** | 🔴 |
+| B8, B15, B16, B17, B23 | | pass | ✅ |
+| B24 top rule hits per cycle | ~7.2 | 8.29 | 🔴 |
+| B10 breaker / B9 pumps per hour | 48 % / ~170 | 33 % / 621 (each +0.003) | 🔴 |
+| B25, B26 | | pass | ✅ |
+| F1, F2, F3, R1 | | pass | ✅ |
+| A1 answer-informed / changed | — | 1 / 0 | reported |
+
+B2 and B19 were not measured; B18 was not reached (no natural death). The transformer
+began this life at step 0 (the 2026-11-02 smoke lives overwrote it); fixed with this
+capture, `tests/brain/test_data_dir_isolation.py`.
+
 ## Run 13 result — 2026-10-06/08 life: **NOT PASSED** — Lifecycle ✅ · Health ✅ · **Growth ✅ (first time)** · Feed 🔴 · Honesty 🔴 · Skeptic 🔴
 
 Thirteenth acceptance run (**mode: symbolic-only**, build **`a6045bc`**, committed and

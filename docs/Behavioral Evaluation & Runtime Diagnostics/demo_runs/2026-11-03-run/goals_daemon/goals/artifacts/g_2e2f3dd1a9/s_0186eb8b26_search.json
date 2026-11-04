@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "they history and development",
+    "they applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_decompression_research_and_development",
+    "https://en.wikipedia.org/wiki/RuneScape",
+    "https://en.wikipedia.org/wiki/Electronics",
+    "https://en.wikipedia.org/wiki/Human_Development_Index",
+    "https://en.wikipedia.org/wiki/Gender_and_development",
+    "https://en.wikipedia.org/wiki/Application_software",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/Database_application",
+    "https://en.wikipedia.org/wiki/Authorization",
+    "https://en.wikipedia.org/wiki/Web_application"
+  ],
+  "results": [
+    {
+      "title": "History of decompression research and development",
+      "url": "https://en.wikipedia.org/wiki/History_of_decompression_research_and_development",
+      "snippet": "algorithms, tables <span class=\"searchmatch\">and</span> decompression computers. US Navy decompression tables have gone through a lot of <span class=\"searchmatch\">development</span> over the years. <span class=\"searchmatch\">They</span> have mostly been",
+      "query": "they history and development"
+    },
+    {
+      "title": "RuneScape",
+      "url": "https://en.wikipedia.org/wiki/RuneScape",
+      "snippet": "4 was confirmed to be in <span class=\"searchmatch\">development</span>. Jagex has maintained several community channels <span class=\"searchmatch\">and</span> activities over the game&#039;s <span class=\"searchmatch\">history</span>, including website forums",
+      "query": "they history and development"
+    },
+    {
+      "title": "Electronics",
+      "url": "https://en.wikipedia.org/wiki/Electronics",
+      "snippet": "influenced the <span class=\"searchmatch\">development</span> of many aspects of modern society, such as telecommunications, entertainment, education, health care, industry, <span class=\"searchmatch\">and</span> security. The",
+      "query": "they history and development"
+    },
+    {
+      "title": "Human Development Index",
+      "url": "https://en.wikipedia.org/wiki/Human_Development_Index",
+      "snippet": "The Human <span class=\"searchmatch\">Development</span> Index (HDI) is a statistical composite index of life expectancy, education (mean years of schooling completed <span class=\"searchmatch\">and</span> expected years",
+      "query": "they history and development"
+    },
+    {
+      "title": "Gender and development",
+      "url": "https://en.wikipedia.org/wiki/Gender_and_development",
+      "snippet": "Gender <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">development</span> is an interdisciplinary field of research <span class=\"searchmatch\">and</span> applied study that implements a feminist approach to understanding <span class=\"searchmatch\">and</span> addressing",
+      "query": "they history and development"
+    },
+    {
+      "title": "Application software",
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "snippet": "browsers, media players, <span class=\"searchmatch\">and</span> mobile <span class=\"searchmatch\">applications</span> used in daily tasks. An <span class=\"searchmatch\">application</span> (app, <span class=\"searchmatch\">application</span> program, software <span class=\"searchmatch\">application</span>) is any program that",
+      "query": "they applications and examples"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "the software industry to create stateless, reliable, web-based <span class=\"searchmatch\">applications</span>. An <span class=\"searchmatch\">application</span> that adheres to the REST architectural constraints may be informally",
+      "query": "they applications and examples"
+    },
+    {
+      "title": "Database application",
+      "url": "https://en.wikipedia.org/wiki/Database_application",
+      "snippet": "subsequently conveyed back into the database. Early <span class=\"searchmatch\">examples</span> of database <span class=\"searchmatch\">applications</span> were accounting systems <span class=\"searchmatch\">and</span> airline reservations systems, such as SABRE",
+      "query": "they applications and examples"
+    },
+    {
+      "title": "Authorization",
+      "url": "https://en.wikipedia.org/wiki/Authorization",
+      "snippet": "widely used framework for authorizing <span class=\"searchmatch\">applications</span> is OAuth 2. It provides a standardized way for third-party <span class=\"searchmatch\">applications</span> to obtain limited access to a user&#039;s",
+      "query": "they applications and examples"
+    },
+    {
+      "title": "Web application",
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "snippet": "A web <span class=\"searchmatch\">application</span> (or web app) is <span class=\"searchmatch\">application</span> software that is created with web technologies <span class=\"searchmatch\">and</span> runs via a web browser. Web <span class=\"searchmatch\">applications</span> emerged during",
+      "query": "they applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T21:45:45.632346+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "question": "What actually is Mathematical logic, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "mathematical",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "Mathematical logic",
+    "study of logic within mathematics",
+    "sometimes the field of computational complexity theory",
+    "also included together with mathematical logic",
+    "theory",
+    "not ordinarily considered a subfield of mathematical logic",
+    "logic",
+    "studied with rhetoric",
+    "History of logic Theories of logic",
+    "developed in many cultures in history",
+    "and was a comprehensive reference to symbolic logic as it",
+    "understood at the end of the",
+    "This",
+    "what consistent meant in traditional Aristotelian logic"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_842258da6b]"
+    },
+    {
+      "subject": "Mathematical logic",
+      "predicate": "is the",
+      "object": "study of logic within mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "sometimes the field of computational complexity theory",
+      "predicate": "is",
+      "object": "also included together with mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "theory",
+      "predicate": "is",
+      "object": "not ordinarily considered a subfield of mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "logic",
+      "predicate": "was",
+      "object": "studied with rhetoric",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "History of logic Theories of logic",
+      "predicate": "were",
+      "object": "developed in many cultures in history",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "and was a comprehensive reference to symbolic logic as it",
+      "predicate": "was",
+      "object": "understood at the end of the",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "what consistent meant in traditional Aristotelian logic",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "system for which these semantic and syntactic definitions",
+      "predicate": "are",
+      "object": "equivalent for any theory formulated in a particular deductive logic",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "consistency proof",
+      "predicate": "is a",
+      "object": "mathematical proof that a particular theory is consistent",
+      "source": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "subject": "structures",
+      "predicate": "are",
+      "object": "the objects used to define the semantics of first-order logic",
+      "source": "https://en.wikipedia.org/wiki/Structure_%28mathematical_logic%29"
+    },
+    {
+      "subject": "The mathematical-puzzle game Sudoku created in the 1970s",
+      "predicate": "is a",
+      "object": "special case of Latin squares",
+      "source": "https://en.wikipedia.org/wiki/Recreational_mathematics"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_842258da6b]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Theory_%28mathematical_logic%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_logic_symbols"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consistency"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structure_%28mathematical_logic%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Recreational_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logicism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Foundations_of_mathematics"
+    }
+  ],
+  "ts": "2026-11-03T16:17:15.204438+00:00"
+}

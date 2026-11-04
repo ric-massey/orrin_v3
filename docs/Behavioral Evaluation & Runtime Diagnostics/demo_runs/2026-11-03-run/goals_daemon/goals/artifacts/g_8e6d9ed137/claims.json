@@ -1,0 +1,42 @@
+{
+  "question": "What actually is they, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "round"
+  ],
+  "entities": [],
+  "relations": [],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lists_of_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/GPT-4Chan"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Leaders%27_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philippine_Amusement_and_Gaming_Corporation"
+    }
+  ],
+  "ts": "2026-11-03T21:42:37.052389+00:00"
+}

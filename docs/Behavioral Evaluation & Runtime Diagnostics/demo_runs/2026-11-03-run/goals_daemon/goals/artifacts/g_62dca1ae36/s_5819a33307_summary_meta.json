@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_62dca1ae36",
+    "title": "Answer: What actually is Overdosing on medication, beyond the mentions I keep seeing? — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is Overdosing on medication, beyond the mentions I keep seeing? history and development",
+        "What actually is Overdosing on medication, beyond the mentions I keep seeing? applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_0871f415a1",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.720902Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.720910Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.720912Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.720913Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.720915Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is Overdosing on medication, beyond the mentio' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:17:29.720929Z",
+      "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:17:29.721680+00:00",
+    "updated_at": "2026-11-03 16:17:30.883544+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_4694b2a2cc]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Michael_Jackson",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kurt_Cobain",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Project_2025",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_The_Sopranos_characters",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Heartland_episodes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Characters_of_Casualty",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Hollyoaks_characters_introduced_in_2015",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Traders_episodes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_62dca1ae36/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:17:37.489660+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_2c2172de6d",
+    "title": "Understand Midfielders more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Midfielders open problems",
+        "Midfielders criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_8720db00c9",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:09.933659Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:09.933668Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:09.933670Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:09.933672Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:06:09.933673Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Midfielders was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Midfielders was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:06:09.933686Z",
+      "question": "What actually is Midfielders, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:06:09.934020+00:00",
+    "updated_at": "2026-11-03 21:06:11.168000+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_8720db00c9]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formation_%28association_football%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Marco_Verratti",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Association_football_tactics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jorge_Messi",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gennaro_Gattuso",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fabio_Celestini",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Barron_Trump",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2c2172de6d/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:06:16.976883+00:00"
+}

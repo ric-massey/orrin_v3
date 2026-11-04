@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pisco_sour",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Human_food",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mish",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_04.txt",
+      "chars": 5722
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Best_Medicine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Traditional_Chinese_medicine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philippines",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Salt_in_Chinese_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/MasterChef_Australia_series_2",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Society_and_culture_of_the_Han_dynasty",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_9485e81f7b/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-04T02:32:15.796820+00:00"
+}

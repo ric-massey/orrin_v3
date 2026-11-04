@@ -1,0 +1,632 @@
+[
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:36:47.778193+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:38:29.349514+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:44:30.838184+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:45:37.262464+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:46:01.213417+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:46:11.734654+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:48:51.909220+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:52:20.904153+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:55:27.692040+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:56:54.493651+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T22:58:41.123459+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:05:47.000787+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:06:50.906001+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:11:31.964516+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:16:08.420826+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:17:22.236398+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:25:15.354882+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:28:13.433466+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:28:34.444088+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:32:19.269068+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:36:21.094502+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:36:42.608539+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:36:52.961656+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:42:32.071178+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:43:51.654294+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:49:37.123922+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:50:29.470074+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:52:50.949441+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:53:49.164442+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:55:18.594717+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:56:23.767803+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-03T23:56:46.218306+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:00:07.792883+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:10:02.645861+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:13:10.832485+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:14:13.486188+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:18:37.176580+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:19:54.429771+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:28:41.791128+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:29:19.686568+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:33:32.222603+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:34:04.054291+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:35:55.224252+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:40:17.902499+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:41:29.980768+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:50:05.417461+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:51:01.354732+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:54:22.938595+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:54:56.992454+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:55:55.684529+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:58:37.161434+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:59:28.269740+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T00:59:48.380072+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:02:34.754330+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:02:58.054079+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:03:42.374161+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:06:17.350175+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:07:10.731381+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:08:25.615860+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:11:03.450981+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:12:17.959122+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:13:16.150727+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:17:14.968609+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:19:22.847650+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:20:47.038278+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 1,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:26:34.133051+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:29:07.854414+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:30:34.988724+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:30:44.901238+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:37:15.590559+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:38:28.068870+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:43:31.587299+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:44:52.357616+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:48:13.887033+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:50:39.519391+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:55:17.314102+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T01:59:36.691425+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:00:37.542276+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:00:58.422379+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:08:42.498325+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:09:37.501028+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:12:49.776400+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:16:06.427895+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:20:54.498506+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:26:51.555787+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:27:59.607135+00:00"
+  },
+  {
+    "decayed": 1,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:31:56.419165+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:42:27.898951+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:43:40.925314+00:00"
+  },
+  {
+    "decayed": 2,
+    "pruned": 0,
+    "retired": 0,
+    "inference_taxed": 31,
+    "timestamp": "2026-11-04T02:43:55.801902+00:00"
+  }
+]

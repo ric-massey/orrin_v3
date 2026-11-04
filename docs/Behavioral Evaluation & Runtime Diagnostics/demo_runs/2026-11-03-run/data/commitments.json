@@ -1,0 +1,902 @@
+[
+ {
+  "id": "5b581529-52be-4b58-8c15-cc0483c9fe03",
+  "intention": "pursue: Understand illustrates how logical rules more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "ec85a1e7-2e0c-44e6-9380-98a9165d2422",
+  "formed_ts": 1793712668.9577239
+ },
+ {
+  "id": "fdd38b9b-2b20-4501-824f-a951a5e8253f",
+  "intention": "pursue: Leave Ric a note about evolutionary biology",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "4de5fa71-744e-4300-97b3-0a759193a8f5",
+  "formed_ts": 1793712936.462255
+ },
+ {
+  "id": "78dae581-6537-4ee3-8018-3c14a51bdb8b",
+  "intention": "pursue: Reflect on my open question: How Do You Take a Picture of a Black Hole?",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+  "formed_ts": 1793713161.862845
+ },
+ {
+  "id": "ea47a539-8670-4518-80a2-ad517d618362",
+  "intention": "pursue: Understand theory more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "0c4fda30-3646-4af6-b22f-ff47f40e5927",
+  "formed_ts": 1793713659.485267
+ },
+ {
+  "id": "6250b34e-a65e-43b9-84fa-c9b0bedacba8",
+  "intention": "pursue: Understand may specifically more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+  "formed_ts": 1793713730.094669
+ },
+ {
+  "id": "5386ad32-7624-4b32-a078-dfa4b593dbcd",
+  "intention": "pursue: Understand they more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "794f52ef-d389-43ee-bf02-b5917945fbbd",
+  "formed_ts": 1793715760.572853
+ },
+ {
+  "id": "e880dcbb-e276-4bf2-85ce-8c5411e902da",
+  "intention": "pursue: Turn what I know about may specifically into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "d8b02123-a009-401e-9156-a815a2ffee11",
+  "formed_ts": 1793717042.21247
+ },
+ {
+  "id": "064a71e1-cfbd-4a0c-a2ff-921f3003d3c7",
+  "intention": "pursue: Leave Ric a note about mathematics",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "085f715e-d72f-4d2a-a8a5-72044463762a",
+  "formed_ts": 1793717047.698783
+ },
+ {
+  "id": "fed2bc3e-877b-4c5c-b185-c1a31f4a5849",
+  "intention": "pursue: Leave Ric a note about physical system",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "ddafae37-66b9-4212-a8e7-1277c1794dc8",
+  "formed_ts": 1793717117.535506
+ },
+ {
+  "id": "4837ca66-52d9-4f68-b609-96593ebfbd44",
+  "intention": "pursue: Understand Cosmogony more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+  "formed_ts": 1793717120.084094
+ },
+ {
+  "id": "b7023552-0abd-409e-be28-0a58a219cd35",
+  "intention": "pursue: Turn what I know about physical system \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "cfdb4ac3-748d-4925-bf66-745471a55efa",
+  "formed_ts": 1793718567.451054
+ },
+ {
+  "id": "4106a568-3931-4f4c-82b1-e658a81dfd9a",
+  "intention": "pursue: Turn what I know about mathematics \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ddb39dba-cee5-4fb7-b840-2d690378b0f1",
+  "formed_ts": 1793718579.760889
+ },
+ {
+  "id": "2eeb9fe9-30a2-42b5-84bf-62896bd0f622",
+  "intention": "pursue: Turn what I know about attempts into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "bc0c589b-53a9-42a3-aaeb-41a9d8aa8800",
+  "formed_ts": 1793718592.0688431
+ },
+ {
+  "id": "b42442a6-6d93-4186-87a3-47d854772d13",
+  "intention": "pursue: Turn what I know about Sisu \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "f2d6fcd5-78bf-4e70-95ef-73d0740a6ba5",
+  "formed_ts": 1793718601.9546938
+ },
+ {
+  "id": "08457242-0112-4451-89b0-3f89b1d9c5e5",
+  "intention": "pursue: Turn what I know about consciousness and subjective experience \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "7eb05a84-6be4-48d4-9778-5955e16fcd19",
+  "formed_ts": 1793718614.872704
+ },
+ {
+  "id": "b6cd2342-cb31-4fd6-8154-d60930f66162",
+  "intention": "pursue: Understand Nitroglycerin more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "81e19be9-a189-46ce-a1a4-c06c5022c845",
+  "formed_ts": 1793719424.267422
+ },
+ {
+  "id": "832324b0-09d5-4378-8bec-bdc8edab6988",
+  "intention": "pursue: Understand Overdosing on medication more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+  "formed_ts": 1793719491.795593
+ },
+ {
+  "id": "04bd0635-13ad-49e7-b7ff-b6f68d0f7899",
+  "intention": "pursue: Understand Scholars more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "8cedc77c-0928-4d9c-8440-bc27f9fbf59f",
+  "formed_ts": 1793720370.74454
+ },
+ {
+  "id": "47c88f3a-34ce-4ee0-aaed-e1975b50721e",
+  "intention": "pursue: Leave Ric a note about consciousness and subjective experience",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "11e16d91-a85a-4344-bb68-d0688a04bb05",
+  "formed_ts": 1793720442.131524
+ },
+ {
+  "id": "773eda78-027c-4a60-8984-9267efaae3da",
+  "intention": "pursue: Understand early productions more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "8dcb7ad3-783d-44c0-937d-0b8730365572",
+  "formed_ts": 1793721329.709025
+ },
+ {
+  "id": "41cdbdac-cdba-4697-9769-8db1155f042e",
+  "intention": "pursue: Turn what I know about Mathematical logic into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "eb744f18-c096-44ff-ad60-6c35dc561609",
+  "formed_ts": 1793722625.9523158
+ },
+ {
+  "id": "c40db21f-00a4-4ebc-b579-7c5c19404e4a",
+  "intention": "pursue: Leave Ric a note about mathematical logic",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "48ce4537-516d-43d1-b344-b84504335b00",
+  "formed_ts": 1793722656.867032
+ },
+ {
+  "id": "4e2c97a5-5555-4e63-8fe0-b0314128082e",
+  "intention": "pursue: Understand All names more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "a4174735-9b37-4250-8e87-c4e13a9a58d4",
+  "formed_ts": 1793722717.949731
+ },
+ {
+  "id": "e3eeff07-6c1a-4db1-9b64-567334703505",
+  "intention": "pursue: Understand benzodiazepines more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "8b7cefb9-a0d4-469e-a80c-4e7a71e39f55",
+  "formed_ts": 1793722727.4794161
+ },
+ {
+  "id": "81825ae2-520f-423e-898d-20a72bcb4ec6",
+  "intention": "pursue: Turn what I know about All names into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "ada609c0-0651-4b25-b047-3b4a50139fc0",
+  "formed_ts": 1793723949.6268108
+ },
+ {
+  "id": "a76c9338-3652-47a7-8829-f73f6ba5b3da",
+  "intention": "pursue: Turn what I know about consistency proof into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "34ecf420-c850-44c4-9494-afdbaec14f58",
+  "formed_ts": 1793723972.212762
+ },
+ {
+  "id": "fdfe7ca2-e8c6-4445-98b1-6fc47ea621a0",
+  "intention": "pursue: Turn what I know about early productions into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "6e0722ca-c899-4455-a8df-8ceb10f08228",
+  "formed_ts": 1793723984.92752
+ },
+ {
+  "id": "3a0fea68-593c-4232-aed6-b078b7ce9471",
+  "intention": "pursue: Turn what I know about Answer: What actually is early productions, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b2bdb245-e5e6-40c2-817b-144934a71385",
+  "formed_ts": 1793723998.6771278
+ },
+ {
+  "id": "1562d50d-77eb-4883-8d07-b2e64d791842",
+  "intention": "pursue: Understand structures more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "d05c81df-4eee-4f40-9c50-aefaeba47970",
+  "formed_ts": 1793724014.938427
+ },
+ {
+  "id": "574f081e-424b-409e-9f44-f32591b02eab",
+  "intention": "pursue: Turn what I know about Answer: What actually is early productions, beyond the mentions I keep seeing? \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "164a0e6b-5ffb-4782-99b3-5efd409a69fb",
+  "formed_ts": 1793724030.353117
+ },
+ {
+  "id": "89317d63-a08c-4dbf-bf57-a2045f43d864",
+  "intention": "pursue: Reflect on my open question: What actually is Mathematical logic, beyond the mentions I keep seeing?",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "a305780a-d2ea-4551-b0d8-ea83aedcc295",
+  "formed_ts": 1793724320.9793332
+ },
+ {
+  "id": "a3e18a0e-06f3-44dd-9aeb-ed96427f93f6",
+  "intention": "pursue: Leave Ric a note about structures",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+  "formed_ts": 1793724363.136951
+ },
+ {
+  "id": "37f7d21e-fc3e-4eff-ac32-ed3501f14261",
+  "intention": "pursue: Understand Allopurinol more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "1c4fe8b7-be93-476a-a5bd-6c0b20efc7e7",
+  "formed_ts": 1793724405.028043
+ },
+ {
+  "id": "542e36fc-837e-4b52-bc08-8babd0e966cc",
+  "intention": "pursue: Understand Products more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "cf4d6e71-1983-4865-be01-d742a6d81fd0",
+  "formed_ts": 1793725223.220901
+ },
+ {
+  "id": "a3210e9a-20c6-495d-a5b6-828788053226",
+  "intention": "pursue: Reflect on my open question: What actually is early productions, beyond the mentions I keep seeing?",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "7f231042-a7c2-444e-8cf4-a0e676aa296c",
+  "formed_ts": 1793725305.680303
+ },
+ {
+  "id": "cbe5a626-67cb-42a1-bc77-830b1996ea44",
+  "intention": "pursue: Open question: Are these genuinely useful, or selected by inertia?",
+  "strength": 0.617,
+  "initial_strength": 0.617,
+  "stance": "endorse",
+  "wm_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+  "formed_ts": 1793726578.40412
+ },
+ {
+  "id": "4f0508e3-8db1-4065-b397-4c3000477c03",
+  "intention": "pursue: Understand Three-dimensional elements more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "2ee2891e-8a33-4303-b7ad-80fb237e9226",
+  "formed_ts": 1793726808.2793138
+ },
+ {
+  "id": "391afd58-226a-4302-a81f-322c00b7c4ed",
+  "intention": "pursue: Understand bridges and salt domes more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "c0111f4b-e410-4d5f-9cf6-eac4787ce7c5",
+  "formed_ts": 1793727774.27755
+ },
+ {
+  "id": "b4c69f79-a6ec-42e8-b264-4a6ca6bbd4e3",
+  "intention": "pursue: Understand Meta Runner more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+  "formed_ts": 1793727859.254285
+ },
+ {
+  "id": "0fd88310-6c10-4d91-91de-f28768ebb8c4",
+  "intention": "pursue: Understand Often these more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "7bde4d28-c232-4895-874a-09776df93cf5",
+  "formed_ts": 1793730738.516393
+ },
+ {
+  "id": "3a4929c7-60af-4491-b409-64b32bffcfae",
+  "intention": "pursue: Turn what I know about theory into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "76456c1d-0411-445b-b3ba-9ed0d1db6fc4",
+  "formed_ts": 1793731965.055004
+ },
+ {
+  "id": "8c75d38d-011a-4607-b2b5-d89de5dbdf36",
+  "intention": "pursue: Turn what I know about Meta Runner into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "085a6277-946c-4c7a-af0b-fb412436bca5",
+  "formed_ts": 1793731977.436171
+ },
+ {
+  "id": "02c7fdc7-e775-4055-ad6e-ae55de4df43f",
+  "intention": "pursue: Turn what I know about structures \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "91300c98-53b3-44b0-9483-156681bbadd5",
+  "formed_ts": 1793731992.2101161
+ },
+ {
+  "id": "64f3d9a5-32f7-4271-b5d8-41beafbf1067",
+  "intention": "pursue: Turn what I know about benzodiazepines into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "25a3ed84-6ef5-47e2-bc8f-92885b17fce1",
+  "formed_ts": 1793732004.768534
+ },
+ {
+  "id": "e9b3ee23-6eb1-4d7c-878c-2d5bd59cd325",
+  "intention": "pursue: Turn what I know about Below into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "55218b55-6037-4612-9381-1f76e686c450",
+  "formed_ts": 1793732015.862238
+ },
+ {
+  "id": "0ef455a0-5cc3-4af1-987d-e3f23f8a0254",
+  "intention": "pursue: Turn what I know about bridges and salt domes into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "25e0561d-d108-42e6-b00b-cd671dee8895",
+  "formed_ts": 1793732058.563393
+ },
+ {
+  "id": "20068fba-367f-40e5-96d6-2325f6f65139",
+  "intention": "pursue: Understand Oxypurinol more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "da187671-283f-489e-b717-300447bd9587",
+  "formed_ts": 1793732075.412104
+ },
+ {
+  "id": "10ce9061-1b53-4311-9bad-5fa37b26ea7f",
+  "intention": "pursue: Turn what I know about Answer: What actually is bridges and salt domes, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "eda7e0c6-8d54-49fd-bcfb-127c78aaa84f",
+  "formed_ts": 1793732089.465916
+ },
+ {
+  "id": "e458fb0a-5fa4-4f58-ad60-a5a131c3a5a4",
+  "intention": "pursue: Understand Sawdust more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+  "formed_ts": 1793732379.117462
+ },
+ {
+  "id": "a6b39b80-79a5-40eb-8831-a93b919ef325",
+  "intention": "pursue: Turn what I know about Febuxostat into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "d1986bbe-f275-4a7a-8de8-9298d6f00359",
+  "formed_ts": 1793733676.6097422
+ },
+ {
+  "id": "f06dcda4-9e65-4e7c-ad16-14d209060471",
+  "intention": "pursue: Turn what I know about Often these into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "611afb56-6212-4108-9d38-0efd481744a8",
+  "formed_ts": 1793733693.319794
+ },
+ {
+  "id": "54154bd3-c611-4e2c-a651-7dd90bcd17ea",
+  "intention": "pursue: Turn what I know about Three-dimensional elements into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b0cff08a-2cf7-4489-8130-ad56bcba58ab",
+  "formed_ts": 1793733707.7108018
+ },
+ {
+  "id": "94325d1e-645b-4f70-9420-be042ad1df03",
+  "intention": "pursue: Leave Ric a note about three dimensional elements",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "bf5c120e-7d09-4f32-bdda-bc0016e35721",
+  "formed_ts": 1793734045.836534
+ },
+ {
+  "id": "5af2c35c-ad1e-4395-a38c-54dfba648539",
+  "intention": "pursue: Understand work more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "d199862e-88f0-4ab3-a509-285941742065",
+  "formed_ts": 1793734126.848347
+ },
+ {
+  "id": "a80a9321-a461-4148-b1ee-45c5458aab95",
+  "intention": "pursue: Understand Explanations more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "c67dcee1-9e5a-422f-8d0f-791ef1c8653c",
+  "formed_ts": 1793734283.9132009
+ },
+ {
+  "id": "1562db92-fe27-442a-9267-5886a70d09ba",
+  "intention": "pursue: Reflect on my open question: What actually is bridges and salt domes, beyond the mentions I keep seeing?",
+  "strength": 0.383,
+  "initial_strength": 0.383,
+  "stance": "endorse",
+  "wm_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+  "formed_ts": 1793735480.7038348
+ },
+ {
+  "id": "df9390a9-b296-4ac0-b137-d64a660f6bd6",
+  "intention": "pursue: Understand they more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "31f8295e-a113-404f-9fae-3c58aff9a3d7",
+  "formed_ts": 1793738416.027338
+ },
+ {
+  "id": "2184faa3-162f-475a-902a-41f2e09ff674",
+  "intention": "pursue: Turn what I know about Answer: What actually is they, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "5793e5ae-ebe1-476a-a720-3fbfb61fa76b",
+  "formed_ts": 1793738442.57015
+ },
+ {
+  "id": "4c34ef33-55f2-4f38-ba78-b22cfeb4e928",
+  "intention": "pursue: Turn what I know about Answer: What actually is they, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "0ee11e72-79a2-4b65-b96f-575ff1fe1281",
+  "formed_ts": 1793738456.919648
+ },
+ {
+  "id": "e88755c9-c836-47c8-b2ea-048f13f45a30",
+  "intention": "pursue: Understand They Live more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "5813425a-9cd9-4ab9-b1c3-30fff0714274",
+  "formed_ts": 1793738659.735956
+ },
+ {
+  "id": "413c4711-be20-4ea7-a181-ba706b26f245",
+  "intention": "pursue: Understand singular they more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+  "formed_ts": 1793738760.5837429
+ },
+ {
+  "id": "8380c4af-fe67-4322-a54e-635e6097e7d9",
+  "intention": "pursue: Turn what I know about Midfielders \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "b782da9c-a238-4812-908b-a63396dc6789",
+  "formed_ts": 1793739983.203785
+ },
+ {
+  "id": "0640552a-cd70-4cef-be4b-5bddd80992b9",
+  "intention": "pursue: Turn what I know about Answer: What actually is they, beyond the mentions I keep seeing? \u2014 round 4 into a written synthesis",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "9e422ea4-f9c7-4337-9d00-b917e35fdb23",
+  "formed_ts": 1793742186.668227
+ },
+ {
+  "id": "ab090566-f865-4841-b9c8-be438b1c4cd1",
+  "intention": "pursue: Turn what I know about Explanations \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "9e231ccf-6a92-4278-a333-6d45a976dc77",
+  "formed_ts": 1793742235.072701
+ },
+ {
+  "id": "c6050b31-9e8c-4fbd-8e1f-6b3c3182a49d",
+  "intention": "pursue: Turn what I know about They Live into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "11d5ac21-edd3-4356-b314-76f796e1089c",
+  "formed_ts": 1793742249.337132
+ },
+ {
+  "id": "62cc80e8-04d4-47bb-8e83-08678873b10f",
+  "intention": "pursue: Understand you end up showing more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "011ce925-a1fd-4492-80c4-7c9659c4e47a",
+  "formed_ts": 1793742265.559027
+ },
+ {
+  "id": "467b8893-a89b-454c-870b-fb73b3510906",
+  "intention": "pursue: Turn what I know about Answer: What actually is you end up showing, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a411e536-16cd-4540-a4c5-b0299a54a5d3",
+  "formed_ts": 1793742290.0271559
+ },
+ {
+  "id": "30893590-4f86-4cb3-9ecb-f372ccabc967",
+  "intention": "pursue: Turn what I know about Answer: What actually is you end up showing, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "2e3a01a0-cfa6-40f1-9e95-39b0a8b7b2b4",
+  "formed_ts": 1793742343.6084359
+ },
+ {
+  "id": "5875ca31-7d38-4e9d-a4c1-3482f95a07e4",
+  "intention": "pursue: Turn what I know about Answer: What actually is you end up showing, beyond the mentions I keep seeing? \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "18352c1b-8bfb-4d69-935e-026e5fcd06c2",
+  "formed_ts": 1793742359.4310532
+ },
+ {
+  "id": "4d7c8d29-e74f-4b1a-a927-0e9b632643ca",
+  "intention": "pursue: Turn what I know about Answer: What actually is you end up showing, beyond the mentions I keep seeing? \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "3c999f4a-88c7-466e-be91-b9beea8dbf6a",
+  "formed_ts": 1793742379.501218
+ },
+ {
+  "id": "a327d0a1-73f2-42c1-9379-f668ef94c764",
+  "intention": "pursue: Turn what I know about Holly into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "51dfd07c-7877-48a7-ae05-fc5f93661199",
+  "formed_ts": 1793742393.868171
+ },
+ {
+  "id": "d2f97754-85f2-479c-8836-babcc8f7238f",
+  "intention": "pursue: Turn what I know about Answer: What actually is function and evolution, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "20461e01-b259-4ab5-8836-70c1827620bb",
+  "formed_ts": 1793742421.167671
+ },
+ {
+  "id": "a067b18e-1f03-471a-8775-f30b18cf44dd",
+  "intention": "pursue: Turn what I know about Answer: What actually is function and evolution, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "cac1a389-5614-403a-a0ef-f26b6947529c",
+  "formed_ts": 1793742437.725315
+ },
+ {
+  "id": "5f7db6c2-f2f6-40aa-b8e6-9049141b9ed5",
+  "intention": "pursue: Turn what I know about Answer: What actually is function and evolution, beyond the mentions I keep seeing? \u2014 round 3 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "be08aada-1b0d-4dce-b16b-472a2b094d1b",
+  "formed_ts": 1793742459.965346
+ },
+ {
+  "id": "edc50691-eefb-42cc-beb6-ed35a61ca9cc",
+  "intention": "pursue: Understand function and evolution more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "585c210b-2ed3-41c0-928e-a0cef0c6e492",
+  "formed_ts": 1793742475.784816
+ },
+ {
+  "id": "c1980e4b-2602-4e0a-a4ba-42b930f13450",
+  "intention": "pursue: Understand how memory works in the brain more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "579de8a4-7835-451f-adf0-69fc0b78975d",
+  "formed_ts": 1793742932.264499
+ },
+ {
+  "id": "c39c3304-5524-49d0-a8d6-3a2ef146f0e7",
+  "intention": "pursue: Understand general relativity explained more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+  "formed_ts": 1793743017.431808
+ },
+ {
+  "id": "ae6100ee-0254-474f-b1b4-02f372845bf3",
+  "intention": "pursue: Turn what I know about how memory works in the brain \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "21b0a385-e226-470a-9110-bd5b404cd2f7",
+  "formed_ts": 1793744246.313344
+ },
+ {
+  "id": "271022f6-2ee3-4783-804a-46067c08aad7",
+  "intention": "pursue: Turn what I know about Answer: What actually is how memory works in the brain, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "bd291ce0-7bbf-46d3-ab82-5b68143d5323",
+  "formed_ts": 1793744261.076467
+ },
+ {
+  "id": "08da3706-543b-4d4b-8ab1-508efa9848b7",
+  "intention": "pursue: Turn what I know about Answer: What actually is how memory works in the brain, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "27aa4a38-efdf-44c9-b5de-1910c199d462",
+  "formed_ts": 1793744279.78045
+ },
+ {
+  "id": "490db6c8-efde-4d3f-afdf-077de29f4352",
+  "intention": "pursue: Turn what I know about Answer: What actually is stoic philosophy and daily life, beyond the mentions I keep seeing? \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "a8738071-23a2-4020-bf24-8954b48a5db3",
+  "formed_ts": 1793744325.6077518
+ },
+ {
+  "id": "0a048486-4acf-4c2e-a290-c49aa3e73869",
+  "intention": "pursue: Turn what I know about The Prince \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "6e05d229-dbbe-40c9-97ad-e9a0787fbd34",
+  "formed_ts": 1793745550.4513001
+ },
+ {
+  "id": "8888dd00-c01f-4b5c-895e-e65beb2769b2",
+  "intention": "pursue: Turn what I know about Aesthetics into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "61359452-4d2f-45bf-aa5f-0e0eb10d864d",
+  "formed_ts": 1793745566.890157
+ },
+ {
+  "id": "4ae74cfc-c934-4a56-8041-ae3f2a6f6e8a",
+  "intention": "pursue: Turn what I know about Robertson \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "034609b7-b868-4822-b064-a7c9385bcc04",
+  "formed_ts": 1793745589.175429
+ },
+ {
+  "id": "e2264efb-f0bb-483c-9546-87773edb5236",
+  "intention": "pursue: Turn what I know about Saltiness and sourness into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "fabe76b5-18b6-4117-8b67-28eb3d99bf6c",
+  "formed_ts": 1793746817.5099578
+ },
+ {
+  "id": "e2e49d63-c1b1-4cc4-b740-889b2a8cdbe1",
+  "intention": "pursue: Turn what I know about He repeatedly \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "03deb583-d8ab-498f-ac56-b90697f1c3aa",
+  "formed_ts": 1793746835.831329
+ },
+ {
+  "id": "ed5ea064-fa1b-42fc-831c-19ef52454308",
+  "intention": "pursue: Turn what I know about Answer: What actually is He repeatedly, beyond the mentions I keep seeing into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "4c261ab7-ca7e-4f74-8462-2671534726c1",
+  "formed_ts": 1793746852.734439
+ },
+ {
+  "id": "1780a554-14c0-4dea-9200-ddf9c270e18c",
+  "intention": "pursue: Turn what I know about Taste \u2014 round 2 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1008be88-e443-448b-8ac5-636b4435bf40",
+  "formed_ts": 1793748079.907798
+ },
+ {
+  "id": "d4c1e4dc-a62c-49af-8128-67d40ebf0ec3",
+  "intention": "pursue: Understand emergence in complex systems more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "a6d731cb-ad7f-4286-aded-92e22c4bd57c",
+  "formed_ts": 1793748662.506423
+ },
+ {
+  "id": "a510de21-3154-41ab-8f31-788e96082964",
+  "intention": "pursue: Leave Ric a note about taste",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+  "formed_ts": 1793748710.876012
+ },
+ {
+  "id": "0ba37b96-6cad-420c-9412-3e0b7726e620",
+  "intention": "pursue: Reflect on my open question: What actually is He repeatedly, beyond the mentions I keep seeing?",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "4baf4cf8-e298-40ab-9381-7799ae48e1ed",
+  "formed_ts": 1793748963.4009962
+ },
+ {
+  "id": "d17178d1-f7fc-481e-8941-c34f37d5c1ed",
+  "intention": "pursue: Reflect on my open question: What am I not saying to myself that I need to hear?",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+  "formed_ts": 1793749196.571743
+ },
+ {
+  "id": "ce7cb095-8f6f-4053-96a7-a4cf2ca0a55c",
+  "intention": "pursue: Understand stoic philosophy and daily life more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "3776d0fc-ad0e-47ab-a6af-deeccb34665b",
+  "formed_ts": 1793750662.358054
+ },
+ {
+  "id": "f9f9fc54-0adb-4e64-a8f8-2708c35fc4f6",
+  "intention": "pursue: Turn what I know about general relativity explained into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1efe3f24-7de3-425d-98ed-7ae2bfab8b6b",
+  "formed_ts": 1793751887.1220841
+ },
+ {
+  "id": "fa080427-1b2f-4b62-ae24-644e5012ebd6",
+  "intention": "pursue: Trace in my own history what drives 'no net progress on either goal'",
+  "strength": 0.709,
+  "initial_strength": 0.709,
+  "stance": "endorse",
+  "wm_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+  "formed_ts": 1793753903.4337978
+ },
+ {
+  "id": "9c5b8164-cd8c-46ea-89ba-c8abfd070e94",
+  "intention": "pursue: Leave Ric a note about general relativity",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "dde2e7d4-415a-4360-9e48-1a4d50c75060",
+  "formed_ts": 1793754139.654339
+ },
+ {
+  "id": "95b6b461-b8d2-413e-8465-7a83d94484fd",
+  "intention": "pursue: Reflect on my open question: What actually is Oxypurinol, beyond the mentions I keep seeing?",
+  "strength": 0.233,
+  "initial_strength": 0.233,
+  "stance": "endorse",
+  "wm_id": "d03d21a7-696b-40e8-ae17-ec41b58026a8",
+  "formed_ts": 1793754388.318452
+ },
+ {
+  "id": "9c9de66c-8c50-4a2b-b38f-6926440fb325",
+  "intention": "pursue: Turn what I know about stoic philosophy and daily life \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "1a22586b-a5c7-4902-90b6-e0e09063828a",
+  "formed_ts": 1793757117.729331
+ },
+ {
+  "id": "5ada9cf5-fd5f-4372-aa0e-bce78342a471",
+  "intention": "pursue: Understand Saltiness and sourness more deeply",
+  "strength": 0.2,
+  "initial_strength": 0.2,
+  "stance": "ambivalent",
+  "wm_id": "36c009bb-2f98-483c-8a35-a3cb5e5121c6",
+  "formed_ts": 1793759550.212199
+ },
+ {
+  "id": "fb4b3a3d-85d9-45e7-9ce6-ff6075eabdec",
+  "intention": "pursue: Turn what I know about Saltiness and sourness \u2014 round 4 into a written synthesis",
+  "strength": 0.533,
+  "initial_strength": 0.533,
+  "stance": "endorse",
+  "wm_id": "98a5c9f1-3b90-4996-964c-cf9bb88d8ef2",
+  "formed_ts": 1793759596.390773
+ }
+]

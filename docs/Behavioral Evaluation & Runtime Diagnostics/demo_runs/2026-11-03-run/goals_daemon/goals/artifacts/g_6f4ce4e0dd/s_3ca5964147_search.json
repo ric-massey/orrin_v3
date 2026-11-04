@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "What is there about history that my earlier notes on it are missing? history and development",
+    "What is there about history that my earlier notes on it are missing? applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/My_Secret_History",
+    "https://en.wikipedia.org/wiki/History_of_film",
+    "https://en.wikipedia.org/wiki/History_of_autism",
+    "https://en.wikipedia.org/wiki/She%3A_A_History_of_Adventure",
+    "https://en.wikipedia.org/wiki/History_of_English",
+    "https://en.wikipedia.org/wiki/Meaning_of_life",
+    "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+    "https://en.wikipedia.org/wiki/Google_Maps",
+    "https://en.wikipedia.org/wiki/Lazarus_%28software%29",
+    "https://en.wikipedia.org/wiki/List_of_Bewitched_episodes"
+  ],
+  "results": [
+    {
+      "title": "My Secret History",
+      "url": "https://en.wikipedia.org/wiki/My_Secret_History",
+      "snippet": "<span class=\"searchmatch\">My</span> Secret <span class=\"searchmatch\">History</span> <span class=\"searchmatch\">is</span> a novel by Paul Theroux published in June 1989 by Putnam Adult in the US <span class=\"searchmatch\">and</span> Hamish Hamilton in the UK. The novel follows the life",
+      "query": "What is there about history that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "History of film",
+      "url": "https://en.wikipedia.org/wiki/History_of_film",
+      "snippet": "The <span class=\"searchmatch\">history</span> of film chronicles the artistic <span class=\"searchmatch\">and</span> cultural <span class=\"searchmatch\">development</span> of a visual art form <span class=\"searchmatch\">that</span> uses film technologies <span class=\"searchmatch\">that</span> began in the late 19th century",
+      "query": "What is there about history that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "History of autism",
+      "url": "https://en.wikipedia.org/wiki/History_of_autism",
+      "snippet": "<span class=\"searchmatch\">development</span> in 1989 by American teacher Carol Gray. She published her first paper <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">it</span> in April 1993, also publishing the first book <span class=\"searchmatch\">about</span> <span class=\"searchmatch\">it</span> <span class=\"searchmatch\">that</span> year",
+      "query": "What is there about history that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "She: A History of Adventure",
+      "url": "https://en.wikipedia.org/wiki/She%3A_A_History_of_Adventure",
+      "snippet": "same qualities, <span class=\"searchmatch\">and</span> we anticipate for <span class=\"searchmatch\">it</span> a similar popularity. <span class=\"searchmatch\">There</span> <span class=\"searchmatch\">is</span> even more imagination in the later than in the <span class=\"searchmatch\">earlier</span> story; <span class=\"searchmatch\">it</span> contains scenes",
+      "query": "What is there about history that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "History of English",
+      "url": "https://en.wikipedia.org/wiki/History_of_English",
+      "snippet": "from <span class=\"searchmatch\">what</span> <span class=\"searchmatch\">is</span> now northwest Germany, southern Denmark <span class=\"searchmatch\">and</span> the Netherlands. The Anglo-Saxons settled in the British Isles from the mid-5th century <span class=\"searchmatch\">and</span> came",
+      "query": "What is there about history that my earlier notes on it are missing? history and development"
+    },
+    {
+      "title": "Meaning of life",
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "snippet": "such as—but not limited to—&quot;<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> the meaning of life?&quot;, &quot;<span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> the purpose of existence?&quot;, <span class=\"searchmatch\">and</span> &quot;Why <span class=\"searchmatch\">are</span> we here?&quot;. <span class=\"searchmatch\">There</span> have been many proposed answers",
+      "query": "What is there about history that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "History of the World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+      "snippet": "but the Web <span class=\"searchmatch\">is</span> a service <span class=\"searchmatch\">that</span> operates over the Internet, just as email <span class=\"searchmatch\">and</span> videoconferencing do. The <span class=\"searchmatch\">history</span> of the Internet <span class=\"searchmatch\">and</span> the <span class=\"searchmatch\">history</span> of hypertext",
+      "query": "What is there about history that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "Google Maps",
+      "url": "https://en.wikipedia.org/wiki/Google_Maps",
+      "snippet": "Google Maps <span class=\"searchmatch\">is</span> a web mapping platform <span class=\"searchmatch\">and</span> consumer <span class=\"searchmatch\">application</span> developed by Google. <span class=\"searchmatch\">It</span> offers satellite imagery, aerial photography, street maps, 360°",
+      "query": "What is there about history that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "Lazarus (software)",
+      "url": "https://en.wikipedia.org/wiki/Lazarus_%28software%29",
+      "snippet": "console <span class=\"searchmatch\">and</span> graphical user interface (GUI) <span class=\"searchmatch\">applications</span> for desktop computers, mobile devices, web <span class=\"searchmatch\">applications</span>, web services, visual components, <span class=\"searchmatch\">and</span> function",
+      "query": "What is there about history that my earlier notes on it are missing? applications and examples"
+    },
+    {
+      "title": "List of Bewitched episodes",
+      "url": "https://en.wikipedia.org/wiki/List_of_Bewitched_episodes",
+      "snippet": "days—maybe weeks—<span class=\"searchmatch\">earlier</span>, <span class=\"searchmatch\">and</span> pick-ups <span class=\"searchmatch\">and</span> insert shots were done <span class=\"searchmatch\">on</span> the completion date. (For instance, episodes 2–7 were all &quot;completed&quot; <span class=\"searchmatch\">on</span> September 11",
+      "query": "What is there about history that my earlier notes on it are missing? applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T06:35:18.110249+00:00"
+}

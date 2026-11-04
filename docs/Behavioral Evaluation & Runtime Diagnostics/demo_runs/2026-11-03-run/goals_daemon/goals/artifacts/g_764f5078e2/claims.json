@@ -1,0 +1,68 @@
+{
+  "question": "What actually is All names, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "names"
+  ],
+  "entities": [
+    "Trade names",
+    "also used when a preferred name cannot be registered",
+    "business names do not always identify the entity that",
+    "legally responsible",
+    "trade names",
+    "generally treated as proper nouns"
+  ],
+  "relations": [
+    {
+      "subject": "Trade names",
+      "predicate": "are",
+      "object": "also used when a preferred name cannot be registered",
+      "source": "https://en.wikipedia.org/wiki/Trade_name"
+    },
+    {
+      "subject": "business names do not always identify the entity that",
+      "predicate": "is",
+      "object": "legally responsible",
+      "source": "https://en.wikipedia.org/wiki/Trade_name"
+    },
+    {
+      "subject": "trade names",
+      "predicate": "are",
+      "object": "generally treated as proper nouns",
+      "source": "https://en.wikipedia.org/wiki/Trade_name"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/All_the_Names"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/All_in_Your_Name"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/All_in_the_Name_of_Love"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/All_the_Names_of_God"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Name_All_the_Animals"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Clarissa_Explains_It_All"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Clarissa_Explains_It_All_episodes"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sister_Mary_Explains_It_All"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Trade_name"
+    }
+  ],
+  "ts": "2026-11-03T16:39:01.934330+00:00"
+}

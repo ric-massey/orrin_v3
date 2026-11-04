@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "formal logic history and development",
+    "formal logic applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_logic",
+    "https://en.wikipedia.org/wiki/Mathematical_logic",
+    "https://en.wikipedia.org/wiki/Formal_methods",
+    "https://en.wikipedia.org/wiki/Logic",
+    "https://en.wikipedia.org/wiki/Terminism_%28logic%29",
+    "https://en.wikipedia.org/wiki/Formal_system",
+    "https://en.wikipedia.org/wiki/Formal_verification",
+    "https://en.wikipedia.org/wiki/Description_logic"
+  ],
+  "results": [
+    {
+      "title": "History of logic",
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "snippet": "The <span class=\"searchmatch\">history</span> of <span class=\"searchmatch\">logic</span> deals with the study of the <span class=\"searchmatch\">development</span> of the science of valid inference (<span class=\"searchmatch\">logic</span>). <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logics</span> developed in ancient times in India",
+      "query": "formal logic history and development"
+    },
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "Mathematical <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within mathematics. This is commonly done by means of <span class=\"searchmatch\">formal</span> systems called <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "formal logic history and development"
+    },
+    {
+      "title": "Formal methods",
+      "url": "https://en.wikipedia.org/wiki/Formal_methods",
+      "snippet": "science, <span class=\"searchmatch\">formal</span> methods are mathematically rigorous techniques for the specification, <span class=\"searchmatch\">development</span>, analysis, <span class=\"searchmatch\">and</span> verification of software <span class=\"searchmatch\">and</span> hardware",
+      "query": "formal logic history and development"
+    },
+    {
+      "title": "Logic",
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "snippet": "<span class=\"searchmatch\">Logic</span> is the study of correct reasoning. It includes both <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">and</span> informal <span class=\"searchmatch\">logic</span>. <span class=\"searchmatch\">Formal</span> <span class=\"searchmatch\">logic</span> is the study of deductively valid inferences or logical",
+      "query": "formal logic history and development"
+    },
+    {
+      "title": "Terminism (logic)",
+      "url": "https://en.wikipedia.org/wiki/Terminism_%28logic%29",
+      "snippet": "quantified <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">logic</span> of medieval scholastic philosophy, <span class=\"searchmatch\">and</span> thus contrasts with theology which had closer connections with metaphysics <span class=\"searchmatch\">and</span> special commitments",
+      "query": "formal logic history and development"
+    },
+    {
+      "title": "Formal system",
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "snippet": "related to <span class=\"searchmatch\">Formal</span> systems at Wikimedia Commons Encyclopædia Britannica, <span class=\"searchmatch\">Formal</span> system definition, 2007 Daniel Richardson, <span class=\"searchmatch\">Formal</span> systems, <span class=\"searchmatch\">logic</span> <span class=\"searchmatch\">and</span> semantics",
+      "query": "formal logic applications and examples"
+    },
+    {
+      "title": "Mathematical logic",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "snippet": "Mathematical <span class=\"searchmatch\">logic</span> is the study of <span class=\"searchmatch\">logic</span> within mathematics. This is commonly done by means of <span class=\"searchmatch\">formal</span> systems called <span class=\"searchmatch\">formal</span> <span class=\"searchmatch\">logics</span> that define rules of",
+      "query": "formal logic applications and examples"
+    },
+    {
+      "title": "Formal verification",
+      "url": "https://en.wikipedia.org/wiki/Formal_verification",
+      "snippet": "algebra, <span class=\"searchmatch\">formal</span> semantics of programming languages such as operational semantics, denotational semantics, axiomatic semantics <span class=\"searchmatch\">and</span> Hoare <span class=\"searchmatch\">logic</span>. Model checking",
+      "query": "formal logic applications and examples"
+    },
+    {
+      "title": "Formal methods",
+      "url": "https://en.wikipedia.org/wiki/Formal_methods",
+      "snippet": "reliability <span class=\"searchmatch\">and</span> robustness of a design. <span class=\"searchmatch\">Formal</span> methods employ a variety of theoretical computer science fundamentals, including <span class=\"searchmatch\">logic</span> calculi, <span class=\"searchmatch\">formal</span> languages",
+      "query": "formal logic applications and examples"
+    },
+    {
+      "title": "Description logic",
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "snippet": "Description <span class=\"searchmatch\">logics</span> (DL) are a family of <span class=\"searchmatch\">formal</span> knowledge representation languages. Many DLs are more expressive than propositional <span class=\"searchmatch\">logic</span> but less expressive",
+      "query": "formal logic applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T04:32:19.405012+00:00"
+}

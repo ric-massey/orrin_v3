@@ -1,0 +1,162 @@
+{
+  "goal": {
+    "id": "g_48bdc84a72",
+    "title": "Understand early productions more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "early productions",
+        "early productions explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:32.937841Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:32.937849Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:32.937851Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:32.937852Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:32.937854Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "early productions was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about early productions was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:39:32.937868Z",
+      "question": "What actually is early productions, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:39:32.938439+00:00",
+    "updated_at": "2026-11-03 16:39:34.237164+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Early_Spring",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_Streetcar_Named_Desire",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Rocky_Horror_Show",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Johnny_%22J%22",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Little_Shop_of_Horrors_%28musical%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glitch_Productions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lyca_Productions",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Early_modern_period",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Michael_Douglas",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_48bdc84a72/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:39:39.548590+00:00"
+}

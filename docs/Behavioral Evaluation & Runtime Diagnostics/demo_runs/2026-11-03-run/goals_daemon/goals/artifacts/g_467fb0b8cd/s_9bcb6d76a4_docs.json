@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jack_Fishman",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_04.txt",
+      "chars": 3724
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Self-medication",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Allopurinol",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Urban_legends_about_drugs",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Anxiety_disorder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_467fb0b8cd/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:39:52.068807+00:00"
+}

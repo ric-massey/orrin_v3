@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "singular they open problems",
+    "singular they criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Resolution_of_singularities",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/Millennium_Prize_Problems",
+    "https://en.wikipedia.org/wiki/Singular_%28software%29",
+    "https://en.wikipedia.org/wiki/ChatGPT",
+    "https://en.wikipedia.org/wiki/What_Is_Man%3F_%28Twain_essay%29",
+    "https://en.wikipedia.org/wiki/Criticism_of_the_Talmud",
+    "https://en.wikipedia.org/wiki/Textual_criticism",
+    "https://en.wikipedia.org/wiki/Stephen_Hawking"
+  ],
+  "results": [
+    {
+      "title": "Resolution of singularities",
+      "url": "https://en.wikipedia.org/wiki/Resolution_of_singularities",
+      "snippet": "over fields of characteristic p, it is an <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problem</span>. Originally the <span class=\"searchmatch\">problem</span> of resolution of <span class=\"searchmatch\">singularities</span> was to find a nonsingular model for the function",
+      "query": "singular they open problems"
+    },
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "15 <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> on quantum operators (about 5 already solved in 2000). A second list of 15 Simon <span class=\"searchmatch\">problems</span> was released in 2000 (at least 3 <span class=\"searchmatch\">problems</span> solved)",
+      "query": "singular they open problems"
+    },
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "Many mathematical <span class=\"searchmatch\">problems</span> have been stated but not yet solved. These <span class=\"searchmatch\">problems</span> come from many areas of mathematics, such as theoretical physics, computer",
+      "query": "singular they open problems"
+    },
+    {
+      "title": "Millennium Prize Problems",
+      "url": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems",
+      "snippet": "Millennium Prize <span class=\"searchmatch\">Problems</span> are seven well-known complex mathematical <span class=\"searchmatch\">problems</span> selected by the Clay Mathematics Institute in 2000. Each of the <span class=\"searchmatch\">problems</span> has a prize",
+      "query": "singular they open problems"
+    },
+    {
+      "title": "Singular (software)",
+      "url": "https://en.wikipedia.org/wiki/Singular_%28software%29",
+      "snippet": "algebraic geometry, and <span class=\"searchmatch\">singularity</span> theory. <span class=\"searchmatch\">Singular</span> has been released under the terms of GNU General Public License. <span class=\"searchmatch\">Problems</span> in non-commutative algebra",
+      "query": "singular they open problems"
+    },
+    {
+      "title": "ChatGPT",
+      "url": "https://en.wikipedia.org/wiki/ChatGPT",
+      "snippet": "transform numerous professional fields, <span class=\"searchmatch\">and</span> it has instigated public <span class=\"searchmatch\">debate</span> about the nature of creativity <span class=\"searchmatch\">and</span> the future of knowledge work. The chatbot",
+      "query": "singular they criticism and debate"
+    },
+    {
+      "title": "What Is Man? (Twain essay)",
+      "url": "https://en.wikipedia.org/wiki/What_Is_Man%3F_%28Twain_essay%29",
+      "snippet": "driven by the <span class=\"searchmatch\">singular</span> purpose to satisfy his own desires <span class=\"searchmatch\">and</span> achieve peace of mind. The Young Man objects <span class=\"searchmatch\">and</span> asks him to go into particulars <span class=\"searchmatch\">and</span> furnish his",
+      "query": "singular they criticism and debate"
+    },
+    {
+      "title": "Criticism of the Talmud",
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_the_Talmud",
+      "snippet": "<span class=\"searchmatch\">Criticism</span> of the Talmud includes <span class=\"searchmatch\">criticisms</span> <span class=\"searchmatch\">and</span> attacks on the Talmud&#039;s doctrines, laws, <span class=\"searchmatch\">and</span> authority. In his work The History of the Talmud, historian",
+      "query": "singular they criticism and debate"
+    },
+    {
+      "title": "Textual criticism",
+      "url": "https://en.wikipedia.org/wiki/Textual_criticism",
+      "snippet": "Textual <span class=\"searchmatch\">criticism</span> is a branch of textual scholarship, philology, <span class=\"searchmatch\">and</span> literary <span class=\"searchmatch\">criticism</span> that is concerned with the identification of textual variants",
+      "query": "singular they criticism and debate"
+    },
+    {
+      "title": "Stephen Hawking",
+      "url": "https://en.wikipedia.org/wiki/Stephen_Hawking",
+      "snippet": " <span class=\"searchmatch\">and</span> eventually by using a single cheek muscle. Hawking&#039;s scientific works included a collaboration with Roger Penrose on gravitational <span class=\"searchmatch\">singularity</span> theorems",
+      "query": "singular they criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T21:42:31.822972+00:00"
+}

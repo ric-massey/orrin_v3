@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "formal logic recent research",
+    "formal logic common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Formal_system",
+    "https://en.wikipedia.org/wiki/Term_logic",
+    "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+    "https://en.wikipedia.org/wiki/Formal_methods",
+    "https://en.wikipedia.org/wiki/Propositional_logic",
+    "https://en.wikipedia.org/wiki/Formal_fallacy",
+    "https://en.wikipedia.org/wiki/List_of_fallacies",
+    "https://en.wikipedia.org/wiki/Deductive_reasoning",
+    "https://en.wikipedia.org/wiki/Affirming_the_consequent",
+    "https://en.wikipedia.org/wiki/Syllogism"
+  ],
+  "results": [
+    {
+      "title": "Formal system",
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "snippet": "equality used in first order <span class=\"searchmatch\">logic</span>. The two main types of deductive systems are proof systems and <span class=\"searchmatch\">formal</span> semantics. <span class=\"searchmatch\">Formal</span> proofs are sequences of well-formed",
+      "query": "formal logic recent research"
+    },
+    {
+      "title": "Term logic",
+      "url": "https://en.wikipedia.org/wiki/Term_logic",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and <span class=\"searchmatch\">formal</span> semantics, term <span class=\"searchmatch\">logic</span>, also known as traditional <span class=\"searchmatch\">logic</span>, syllogistic <span class=\"searchmatch\">logic</span> or Aristotelian <span class=\"searchmatch\">logic</span>, is a loose name for an approach to",
+      "query": "formal logic recent research"
+    },
+    {
+      "title": "Philosophy of logic",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_logic",
+      "snippet": "investigating the properties of <span class=\"searchmatch\">formal</span> logical systems, like consistency and completeness. Various characterizations of the nature of <span class=\"searchmatch\">logic</span> are found in the academic",
+      "query": "formal logic recent research"
+    },
+    {
+      "title": "Formal methods",
+      "url": "https://en.wikipedia.org/wiki/Formal_methods",
+      "snippet": "robustness of a design. <span class=\"searchmatch\">Formal</span> methods employ a variety of theoretical computer science fundamentals, including <span class=\"searchmatch\">logic</span> calculi, <span class=\"searchmatch\">formal</span> languages, automata",
+      "query": "formal logic recent research"
+    },
+    {
+      "title": "Propositional logic",
+      "url": "https://en.wikipedia.org/wiki/Propositional_logic",
+      "snippet": "foundation of first-order logic and higher-order <span class=\"searchmatch\">logic</span>. Propositional <span class=\"searchmatch\">logic</span> is typically studied with a <span class=\"searchmatch\">formal</span> language, in which propositions are represented",
+      "query": "formal logic recent research"
+    },
+    {
+      "title": "Formal fallacy",
+      "url": "https://en.wikipedia.org/wiki/Formal_fallacy",
+      "snippet": "In <span class=\"searchmatch\">logic</span> and philosophy, a <span class=\"searchmatch\">formal</span> fallacy is a pattern of reasoning with a flaw in its logical structure (the logical relationship between the premises",
+      "query": "formal logic common misconceptions"
+    },
+    {
+      "title": "List of fallacies",
+      "url": "https://en.wikipedia.org/wiki/List_of_fallacies",
+      "snippet": "or irrational thought pattern List of cognitive biases List of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> List of memory biases List of paradoxes Outline of public relations –",
+      "query": "formal logic common misconceptions"
+    },
+    {
+      "title": "Deductive reasoning",
+      "url": "https://en.wikipedia.org/wiki/Deductive_reasoning",
+      "snippet": "inferences are found both in natural language and in <span class=\"searchmatch\">formal</span> logical systems, such as propositional <span class=\"searchmatch\">logic</span>. Deductive arguments differ from non-deductive arguments",
+      "query": "formal logic common misconceptions"
+    },
+    {
+      "title": "Affirming the consequent",
+      "url": "https://en.wikipedia.org/wiki/Affirming_the_consequent",
+      "snippet": "errors are <span class=\"searchmatch\">common</span> in everyday thinking and communication and can result from, among other causes, communication issues, <span class=\"searchmatch\">misconceptions</span> about <span class=\"searchmatch\">logic</span>, and failure",
+      "query": "formal logic common misconceptions"
+    },
+    {
+      "title": "Syllogism",
+      "url": "https://en.wikipedia.org/wiki/Syllogism",
+      "snippet": "Metatheorems; Historical, Philosophical, and Pedagogical <span class=\"searchmatch\">Misconceptions</span>.&quot; History and Philosophy of <span class=\"searchmatch\">Logic</span> 36(1):39–61. Englebretsen, George. 1987. The New Syllogistic",
+      "query": "formal logic common misconceptions"
+    }
+  ],
+  "ts": "2026-11-03T08:00:56.404152+00:00"
+}

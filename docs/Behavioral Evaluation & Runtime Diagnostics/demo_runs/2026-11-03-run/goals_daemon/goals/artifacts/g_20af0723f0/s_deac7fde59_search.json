@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Below",
+    "Below explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Below",
+    "https://en.wikipedia.org/wiki/Below_%28miniseries%29",
+    "https://en.wikipedia.org/wiki/Below_Deck",
+    "https://en.wikipedia.org/wiki/Above_the_Below",
+    "https://en.wikipedia.org/wiki/Below_%28film%29",
+    "https://en.wikipedia.org/wiki/As_Above%2C_So_Below_%28film%29",
+    "https://en.wikipedia.org/wiki/Five_Below",
+    "https://en.wikipedia.org/wiki/Thousand_Below",
+    "https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below",
+    "https://en.wikipedia.org/wiki/List_of_3Com_products"
+  ],
+  "results": [
+    {
+      "title": "Below",
+      "url": "https://en.wikipedia.org/wiki/Below",
+      "snippet": "Look up <span class=\"searchmatch\">below</span> in Wiktionary, the free dictionary. <span class=\"searchmatch\">Below</span> may refer to: Earth Ground (disambiguation) Soil Floor Bottom (disambiguation) Less than Temperatures",
+      "query": "Below"
+    },
+    {
+      "title": "Below (miniseries)",
+      "url": "https://en.wikipedia.org/wiki/Below_%28miniseries%29",
+      "snippet": "<span class=\"searchmatch\">Below</span> is a 2026 Canadian thriller television miniseries created by Jesse McKeown and starring Josh Hartnett, Mackenzie Davis, and Charlie Heaton. It premiered",
+      "query": "Below"
+    },
+    {
+      "title": "Below Deck",
+      "url": "https://en.wikipedia.org/wiki/Below_Deck",
+      "snippet": "a number of spin-offs, including <span class=\"searchmatch\">Below</span> Deck Mediterranean, <span class=\"searchmatch\">Below</span> Deck Sailing Yacht, <span class=\"searchmatch\">Below</span> Deck Down Under, and <span class=\"searchmatch\">Below</span> Deck Adventure. For the first season",
+      "query": "Below"
+    },
+    {
+      "title": "Above the Below",
+      "url": "https://en.wikipedia.org/wiki/Above_the_Below",
+      "snippet": "Above the <span class=\"searchmatch\">Below</span> is an upcoming survival thriller film co-directed by Idris Elba and Martin Owen. Elizabeth Morris, Matt Mitchell, and Vicki Sargent wrote",
+      "query": "Below"
+    },
+    {
+      "title": "Below (film)",
+      "url": "https://en.wikipedia.org/wiki/Below_%28film%29",
+      "snippet": "<span class=\"searchmatch\">Below</span> is a 2002 submarine supernatural horror film directed by David Twohy, written by Darren Aronofsky, Lucas Sussman and Twohy, and stars Bruce Greenwood",
+      "query": "Below"
+    },
+    {
+      "title": "As Above, So Below (film)",
+      "url": "https://en.wikipedia.org/wiki/As_Above%2C_So_Below_%28film%29",
+      "snippet": "&quot;As Above, So <span class=\"searchmatch\">Below&#039;s</span> Twist Ending <span class=\"searchmatch\">Explained</span>: They&#039;re In Hell&quot;. Screen Rant. Palmer, Zachary (March 13, 2021). &quot;As Above So <span class=\"searchmatch\">Below</span> <span class=\"searchmatch\">Explained</span> - The True Story",
+      "query": "Below explained"
+    },
+    {
+      "title": "Five Below",
+      "url": "https://en.wikipedia.org/wiki/Five_Below",
+      "snippet": "Five <span class=\"searchmatch\">Below</span>, Inc. (stylized as fiVe BEL°W) is an American chain of specialty discount gift shops that prices most of its products at up to $5, plus a smaller",
+      "query": "Below explained"
+    },
+    {
+      "title": "Thousand Below",
+      "url": "https://en.wikipedia.org/wiki/Thousand_Below",
+      "snippet": "Thousand <span class=\"searchmatch\">Below</span> is an American metalcore band from San Diego, California. They began under Rise Records and are currently under Pale Chord. The band has",
+      "query": "Below explained"
+    },
+    {
+      "title": "Speakerboxxx/The Love Below",
+      "url": "https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below",
+      "snippet": "Speakerboxxx/The Love <span class=\"searchmatch\">Below</span> is the fifth studio album by the American hip-hop duo Outkast. It was released on September 23, 2003, by Arista Records. Issued",
+      "query": "Below explained"
+    },
+    {
+      "title": "List of 3Com products",
+      "url": "https://en.wikipedia.org/wiki/List_of_3Com_products",
+      "snippet": "absorbed by HP and no longer exists as a separate entity. The article <span class=\"searchmatch\">below</span> <span class=\"searchmatch\">explains</span> the portfolio at the time of acquisition. The corporation had three",
+      "query": "Below explained"
+    }
+  ],
+  "ts": "2026-11-03T18:53:26.026671+00:00"
+}

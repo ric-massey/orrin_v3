@@ -1,0 +1,31 @@
+{
+  "queries": [
+    "What actually is Saltiness and sourness, beyond the mentions I keep seeing? history and development",
+    "What actually is Saltiness and sourness, beyond the mentions I keep seeing? applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/1999_in_British_television"
+  ],
+  "results": [
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "&quot;Sweet, <span class=\"searchmatch\">Sour</span>, <span class=\"searchmatch\">Salty</span>, Bitter ... <span class=\"searchmatch\">and</span> Umami&quot;. Krulwich Wonders, an NPR Science Blog. NPR. Retrieved January 13, 2011. d. &quot;Probing Question: <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> umami",
+      "query": "What actually is Saltiness and sourness, beyond the mentions I keep seeing? history and development"
+    },
+    {
+      "title": "1999 in British television",
+      "url": "https://en.wikipedia.org/wiki/1999_in_British_television",
+      "snippet": "<span class=\"searchmatch\">seeing</span> in <span class=\"searchmatch\">the</span> start of <span class=\"searchmatch\">the</span> new millennium. In <span class=\"searchmatch\">the</span> UK, <span class=\"searchmatch\">the</span> 28-hour marathon show <span class=\"searchmatch\">is</span> shown on BBC One <span class=\"searchmatch\">and</span> hosted by Michael Parkinson, Gaby Roslin <span class=\"searchmatch\">and</span> David",
+      "query": "What actually is Saltiness and sourness, beyond the mentions I keep seeing? history and development"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "&quot;Sweet, <span class=\"searchmatch\">Sour</span>, <span class=\"searchmatch\">Salty</span>, Bitter ... <span class=\"searchmatch\">and</span> Umami&quot;. Krulwich Wonders, an NPR Science Blog. NPR. Retrieved January 13, 2011. d. &quot;Probing Question: <span class=\"searchmatch\">What</span> <span class=\"searchmatch\">is</span> umami",
+      "query": "What actually is Saltiness and sourness, beyond the mentions I keep seeing? applications and examples"
+    }
+  ],
+  "ts": "2026-11-04T02:33:17.658055+00:00"
+}

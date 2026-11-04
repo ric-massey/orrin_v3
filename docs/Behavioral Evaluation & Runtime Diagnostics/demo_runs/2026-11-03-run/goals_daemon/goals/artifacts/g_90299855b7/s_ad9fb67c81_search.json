@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "theory",
+    "theory explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Theory",
+    "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y",
+    "https://en.wikipedia.org/wiki/String_theory",
+    "https://en.wikipedia.org/wiki/Theory-theory",
+    "https://en.wikipedia.org/wiki/Game_theory",
+    "https://en.wikipedia.org/wiki/Light",
+    "https://en.wikipedia.org/wiki/Olive_theory",
+    "https://en.wikipedia.org/wiki/Spoon_theory",
+    "https://en.wikipedia.org/wiki/Miasma_theory",
+    "https://en.wikipedia.org/wiki/Theory_of_relativity"
+  ],
+  "results": [
+    {
+      "title": "Theory",
+      "url": "https://en.wikipedia.org/wiki/Theory",
+      "snippet": "<span class=\"searchmatch\">theory</span> — Galois <span class=\"searchmatch\">theory</span> — Game <span class=\"searchmatch\">theory</span> — Gauge <span class=\"searchmatch\">theory</span> — Graph <span class=\"searchmatch\">theory</span> — Group <span class=\"searchmatch\">theory</span> — Hodge <span class=\"searchmatch\">theory</span> — Homology <span class=\"searchmatch\">theory</span> — Homotopy <span class=\"searchmatch\">theory</span> — Ideal <span class=\"searchmatch\">theory</span> —",
+      "query": "theory"
+    },
+    {
+      "title": "Theory X and Theory Y",
+      "url": "https://en.wikipedia.org/wiki/Theory_X_and_Theory_Y",
+      "snippet": "<span class=\"searchmatch\">Theory</span> X and <span class=\"searchmatch\">Theory</span> Y are <span class=\"searchmatch\">theories</span> of human work motivation and management. They were created by Douglas McGregor while he was working at the MIT Sloan",
+      "query": "theory"
+    },
+    {
+      "title": "String theory",
+      "url": "https://en.wikipedia.org/wiki/String_theory",
+      "snippet": "In physics, string <span class=\"searchmatch\">theory</span> is a theoretical framework in which the point-like particles of particle physics are replaced by one-dimensional objects called",
+      "query": "theory"
+    },
+    {
+      "title": "Theory-theory",
+      "url": "https://en.wikipedia.org/wiki/Theory-theory",
+      "snippet": "The <span class=\"searchmatch\">theory</span>-<span class=\"searchmatch\">theory</span> (or &#039;<span class=\"searchmatch\">theory</span> <span class=\"searchmatch\">theory</span>&#039;) is a scientific <span class=\"searchmatch\">theory</span> relating to the human development of understanding about the outside world. This <span class=\"searchmatch\">theory</span> asserts",
+      "query": "theory"
+    },
+    {
+      "title": "Game theory",
+      "url": "https://en.wikipedia.org/wiki/Game_theory",
+      "snippet": "game <span class=\"searchmatch\">theory</span> include algorithmic game <span class=\"searchmatch\">theory</span>, behavioral game <span class=\"searchmatch\">theory</span>, combinatorial game <span class=\"searchmatch\">theory</span>, evolutionary game <span class=\"searchmatch\">theory</span>, and quantum game <span class=\"searchmatch\">theory</span>. In 1994",
+      "query": "theory"
+    },
+    {
+      "title": "Light",
+      "url": "https://en.wikipedia.org/wiki/Light",
+      "snippet": "after a wave <span class=\"searchmatch\">theory</span> of light became firmly established as the model for light (as has been <span class=\"searchmatch\">explained</span>, neither a particle or wave <span class=\"searchmatch\">theory</span> is fully correct)",
+      "query": "theory explained"
+    },
+    {
+      "title": "Olive theory",
+      "url": "https://en.wikipedia.org/wiki/Olive_theory",
+      "snippet": "peel <span class=\"searchmatch\">theory</span>. &quot;Jack Sprat&quot;, which describes a similar idea Opposites attract TikTok Food Trends Munson, Olivia (2023-12-29). &quot;&#039;Olive <span class=\"searchmatch\">theory</span>,&#039; <span class=\"searchmatch\">explained</span>: The",
+      "query": "theory explained"
+    },
+    {
+      "title": "Spoon theory",
+      "url": "https://en.wikipedia.org/wiki/Spoon_theory",
+      "snippet": "spoon <span class=\"searchmatch\">theory</span> does not capture. To <span class=\"searchmatch\">explain</span> these various experiences, the community has produced a multitude of related <span class=\"searchmatch\">theories</span>, including fork <span class=\"searchmatch\">theory</span>, knife",
+      "query": "theory explained"
+    },
+    {
+      "title": "Miasma theory",
+      "url": "https://en.wikipedia.org/wiki/Miasma_theory",
+      "snippet": "organic matter, the breath of humans and animals, and other odors. The <span class=\"searchmatch\">theory</span> <span class=\"searchmatch\">explained</span> why epidemics tend to happen in places with high population density",
+      "query": "theory explained"
+    },
+    {
+      "title": "Theory of relativity",
+      "url": "https://en.wikipedia.org/wiki/Theory_of_relativity",
+      "snippet": "candidates (1981), the <span class=\"searchmatch\">theory</span> <span class=\"searchmatch\">explained</span> their attributes, and measurement of them further confirmed the <span class=\"searchmatch\">theory</span>. Special relativity is a <span class=\"searchmatch\">theory</span> of the structure",
+      "query": "theory explained"
+    }
+  ],
+  "ts": "2026-11-03T18:52:32.698687+00:00"
+}

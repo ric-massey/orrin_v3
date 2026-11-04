@@ -1,0 +1,55 @@
+{
+  "question": "What actually is may specifically, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "specifically"
+  ],
+  "entities": [
+    "What actually",
+    "may specifically"
+  ],
+  "relations": [
+    {
+      "subject": "What actually",
+      "predicate": "is",
+      "object": "may specifically",
+      "source": "my prior memo: research_memo.md"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: research_memo.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-disorder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Jello_Biafra"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Devil_May_Cry_%28TV_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Open-fields_doctrine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cruising_for_sex"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Varieties_of_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_the_Quran"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Utopia_%28book%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Eichmann_in_Jerusalem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Max_Stirner"
+    }
+  ],
+  "ts": "2026-11-03T14:44:22.000386+00:00"
+}

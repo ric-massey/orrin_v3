@@ -1,0 +1,80 @@
+{
+  "queries": [
+    "the nature of mathematics",
+    "the nature of mathematics explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Mathematics",
+    "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+    "https://en.wikipedia.org/wiki/Future_of_mathematics",
+    "https://en.wikipedia.org/wiki/Mathematical_problem",
+    "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+    "https://en.wikipedia.org/wiki/Patterns_in_nature",
+    "https://en.wikipedia.org/wiki/Pattern",
+    "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+    "https://en.wikipedia.org/wiki/History_of_mathematics"
+  ],
+  "results": [
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "foundation for all <span class=\"searchmatch\">mathematics</span>). <span class=\"searchmatch\">Mathematics</span> involves <span class=\"searchmatch\">the</span> description and manipulation <span class=\"searchmatch\">of</span> abstract objects that are either abstractions from <span class=\"searchmatch\">nature</span> or purely abstract",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Philosophy of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mathematics",
+      "snippet": "Philosophy <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> is <span class=\"searchmatch\">the</span> branch <span class=\"searchmatch\">of</span> philosophy that deals with <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> and its relationship to other areas <span class=\"searchmatch\">of</span> philosophy, particularly",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Future of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Future_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">The</span> progression <span class=\"searchmatch\">of</span> both <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> and individual <span class=\"searchmatch\">mathematical</span> problems into <span class=\"searchmatch\">the</span> future is a widely debated topic; many past predictions",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Mathematical problem",
+      "url": "https://en.wikipedia.org/wiki/Mathematical_problem",
+      "snippet": "be a problem referring to <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">nature</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> itself, such as Russell&#039;s Paradox. Informal &quot;real-world&quot; <span class=\"searchmatch\">mathematical</span> problems are questions related",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Foundations of mathematics",
+      "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+      "snippet": "Foundations <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> are <span class=\"searchmatch\">the</span> logical and <span class=\"searchmatch\">mathematical</span> frameworks that allow <span class=\"searchmatch\">the</span> development <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> without generating self-contradictory",
+      "query": "the nature of mathematics"
+    },
+    {
+      "title": "Patterns in nature",
+      "url": "https://en.wikipedia.org/wiki/Patterns_in_nature",
+      "snippet": "showed how <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">mathematics</span> <span class=\"searchmatch\">of</span> fractals could create plant growth patterns. <span class=\"searchmatch\">Mathematics</span>, physics and chemistry can <span class=\"searchmatch\">explain</span> patterns in <span class=\"searchmatch\">nature</span> at different",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Pattern",
+      "url": "https://en.wikipedia.org/wiki/Pattern",
+      "snippet": "countless kinds <span class=\"searchmatch\">of</span> unclassified patterns, present in everyday <span class=\"searchmatch\">nature</span>, fashion, many artistic areas, as well as a connection with <span class=\"searchmatch\">mathematics</span>. A geometric",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Mathematics",
+      "url": "https://en.wikipedia.org/wiki/Mathematics",
+      "snippet": "foundation for all <span class=\"searchmatch\">mathematics</span>). <span class=\"searchmatch\">Mathematics</span> involves <span class=\"searchmatch\">the</span> description and manipulation <span class=\"searchmatch\">of</span> abstract objects that are either abstractions from <span class=\"searchmatch\">nature</span> or purely abstract",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "Relationship between mathematics and physics",
+      "url": "https://en.wikipedia.org/wiki/Relationship_between_mathematics_and_physics",
+      "snippet": "Galilei: &quot;<span class=\"searchmatch\">The</span> book <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">nature</span> is written in <span class=\"searchmatch\">the</span> language <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span>&quot;. Before giving a <span class=\"searchmatch\">mathematical</span> proof for <span class=\"searchmatch\">the</span> formula for <span class=\"searchmatch\">the</span> volume <span class=\"searchmatch\">of</span> a sphere",
+      "query": "the nature of mathematics explained"
+    },
+    {
+      "title": "History of mathematics",
+      "url": "https://en.wikipedia.org/wiki/History_of_mathematics",
+      "snippet": "<span class=\"searchmatch\">The</span> history <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">mathematics</span> deals with <span class=\"searchmatch\">the</span> origin <span class=\"searchmatch\">of</span> discoveries in <span class=\"searchmatch\">mathematics</span> and <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">mathematical</span> methods and notation <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> past. Before <span class=\"searchmatch\">the</span> modern",
+      "query": "the nature of mathematics explained"
+    }
+  ],
+  "ts": "2026-11-03T02:51:13.144405+00:00"
+}

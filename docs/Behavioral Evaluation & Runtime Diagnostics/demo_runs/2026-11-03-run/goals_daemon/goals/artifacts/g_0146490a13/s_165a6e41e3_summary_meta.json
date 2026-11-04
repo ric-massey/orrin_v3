@@ -1,0 +1,159 @@
+{
+  "goal": {
+    "id": "g_0146490a13",
+    "title": "Understand Saltiness and sourness more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Saltiness and sourness history and development",
+        "Saltiness and sourness applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_8878f0e50a",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-04T02:32:31.007955Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-04T02:32:31.007965Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-04T02:32:31.007967Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-04T02:32:31.007968Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-04T02:32:31.007971Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Saltiness and sourness was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Saltiness and sourness was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-04T02:32:31.008018Z",
+      "question": "What actually is Saltiness and sourness, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-04 02:32:31.008672+00:00",
+    "updated_at": "2026-11-04 02:32:32.175955+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_9485e81f7b]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kaeng_thepho",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pisco_sour",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pickled_cucumber",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_fermented_foods",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sichuan_cuisine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Retronasal_smell",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Youtiao",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_0146490a13/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-04T02:32:38.120076+00:00"
+}

@@ -1,0 +1,147 @@
+{
+  "goal": {
+    "id": "g_e05815230c",
+    "title": "Answer: What actually is Mathematical logic, beyond the mentions I keep seeing? — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is Mathematical logic, beyond the mentions I keep seeing? open problems",
+        "What actually is Mathematical logic, beyond the mentions I keep seeing? criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_f28476e6b2",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.558690Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.558700Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.558702Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.558709Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:17:29.558711Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is Mathematical logic, beyond the mentions I k' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:17:29.558734Z",
+      "question": "What actually is Mathematical logic, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:17:29.590655+00:00",
+    "updated_at": "2026-11-03 16:17:30.834706+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_f28476e6b2]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Scientific_method",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fuzzy_concept",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ludwig_Wittgenstein",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bertrand_Russell",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexander_Zinoviev",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e05815230c/doc_06.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:17:35.071799+00:00"
+}

@@ -1,0 +1,124 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing",
+    "level of paracetamol at specific times after the medication",
+    "taken",
+    "The medication",
+    "generally given for at least 24 hours",
+    "In the United Kingdom it",
+    "medication responsible for the greatest number of overdoses",
+    "The substances most widely used in self-medication",
+    "over-the-counter drugs and dietary supplements",
+    "Products",
+    "marketed by manufacturers as useful for self-medication",
+    "Self-medication",
+    "often seen as gaining personal independence from established medicine",
+    "Self-medication can",
+    "unintentional self-harm"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_0871f415a1]"
+    },
+    {
+      "subject": "level of paracetamol at specific times after the medication",
+      "predicate": "was",
+      "object": "taken",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "The medication",
+      "predicate": "is",
+      "object": "generally given for at least 24 hours",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "In the United Kingdom it",
+      "predicate": "is the",
+      "object": "medication responsible for the greatest number of overdoses",
+      "source": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "subject": "The substances most widely used in self-medication",
+      "predicate": "are",
+      "object": "over-the-counter drugs and dietary supplements",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Products",
+      "predicate": "are",
+      "object": "marketed by manufacturers as useful for self-medication",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Self-medication",
+      "predicate": "is",
+      "object": "often seen as gaining personal independence from established medicine",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "Self-medication can",
+      "predicate": "cause",
+      "object": "unintentional self-harm",
+      "source": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "subject": "the chance of death from overdosing on opiates",
+      "predicate": "is",
+      "object": "greatly increased when they are consumed in conjunction with alcohol",
+      "source": "https://en.wikipedia.org/wiki/List_of_deaths_from_drug_overdose_and_intoxication"
+    },
+    {
+      "subject": "benzodiazepines",
+      "predicate": "were",
+      "object": "the most prescribed medications globally",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_0871f415a1]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Drug_overdose"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Paracetamol_poisoning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Opioid_epidemic_in_the_United_States"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Self-medication"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Amlodipine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_deaths_from_drug_overdose_and_intoxication"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Charlie_Kirk"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Obsessive%E2%80%93compulsive_disorder"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Methylphenidate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    }
+  ],
+  "ts": "2026-11-03T16:17:16.225809+00:00"
+}

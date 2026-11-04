@@ -1,0 +1,131 @@
+{
+  "question": "What is there about foundations of quantum mechanics that my earlier notes on it are missing?",
+  "subject_terms": [
+    "foundations",
+    "quantum",
+    "mechanics"
+  ],
+  "entities": [
+    "quantum computer",
+    "computer that represents and processes information using quantum states",
+    "current hardware implementations of quantum computation",
+    "largely experimental and suitable for only certain specialized tasks",
+    "Quantum computers",
+    "not yet practical for real-world applications",
+    "Quantum theory",
+    "developed in the 1920s to explain perplexing physical phenomena",
+    "every quantum event",
+    "branch point",
+    "mechanics that asserts that the universal wave function",
+    "objectively real",
+    "the subjective appearance of wave function collapse",
+    "explained by the mechanism of quantum decoherence",
+    "MWI",
+    "considered a mainstream interpretation of quantum mechanics"
+  ],
+  "relations": [
+    {
+      "subject": "quantum computer",
+      "predicate": "is a",
+      "object": "computer that represents and processes information using quantum states",
+      "source": "https://en.wikipedia.org/wiki/Quantum_computing"
+    },
+    {
+      "subject": "current hardware implementations of quantum computation",
+      "predicate": "are",
+      "object": "largely experimental and suitable for only certain specialized tasks",
+      "source": "https://en.wikipedia.org/wiki/Quantum_computing"
+    },
+    {
+      "subject": "Quantum computers",
+      "predicate": "are",
+      "object": "not yet practical for real-world applications",
+      "source": "https://en.wikipedia.org/wiki/Quantum_computing"
+    },
+    {
+      "subject": "Quantum theory",
+      "predicate": "was",
+      "object": "developed in the 1920s to explain perplexing physical phenomena",
+      "source": "https://en.wikipedia.org/wiki/Quantum_computing"
+    },
+    {
+      "subject": "every quantum event",
+      "predicate": "is a",
+      "object": "branch point",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "mechanics that asserts that the universal wave function",
+      "predicate": "is",
+      "object": "objectively real",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "the subjective appearance of wave function collapse",
+      "predicate": "is",
+      "object": "explained by the mechanism of quantum decoherence",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "MWI",
+      "predicate": "is",
+      "object": "considered a mainstream interpretation of quantum mechanics",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "using the Copenhagen interpretation the universe",
+      "predicate": "is",
+      "object": "divided into a quantum and a classical domain",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "there",
+      "predicate": "is",
+      "object": "no division between classical and quantum",
+      "source": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "subject": "the other curves",
+      "predicate": "are",
+      "object": "correctly predicted by quantum theories",
+      "source": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "subject": "Quantum decoherence",
+      "predicate": "is the",
+      "object": "loss of quantum coherence",
+      "source": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_computing"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Many-worlds_interpretation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Quantum_decoherence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/De_Broglie%E2%80%93Bohm_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Einstein%E2%80%93Podolsky%E2%80%93Rosen_paradox"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hidden-variable_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Copenhagen_interpretation"
+    }
+  ],
+  "ts": "2026-11-03T03:36:26.069440+00:00"
+}

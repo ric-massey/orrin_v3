@@ -1,0 +1,137 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "The majority of these models",
+    "language models",
+    "The majority of large models",
+    "language models or multimodal models with language capacity",
+    "similar architectures",
+    "adapted for language tasks",
+    "either because the official language",
+    "biscriptal",
+    "some of those languages",
+    "switched to the New Turkic Alphabet",
+    "The Abkhazian and Ossetian languages",
+    "switched to the Mkhedruli script",
+    "The last language to adopt Cyrillic",
+    "the Gagauz language",
+    "Exceptions and additions for particular languages",
+    "noted below"
+  ],
+  "relations": [
+    {
+      "subject": "The majority of these models",
+      "predicate": "are",
+      "object": "language models",
+      "source": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "subject": "The majority of large models",
+      "predicate": "are",
+      "object": "language models or multimodal models with language capacity",
+      "source": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "subject": "similar architectures",
+      "predicate": "were",
+      "object": "adapted for language tasks",
+      "source": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "subject": "either because the official language",
+      "predicate": "is",
+      "object": "biscriptal",
+      "source": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "subject": "some of those languages",
+      "predicate": "were",
+      "object": "switched to the New Turkic Alphabet",
+      "source": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "subject": "The Abkhazian and Ossetian languages",
+      "predicate": "were",
+      "object": "switched to the Mkhedruli script",
+      "source": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "subject": "The last language to adopt Cyrillic",
+      "predicate": "was",
+      "object": "the Gagauz language",
+      "source": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "subject": "Exceptions and additions for particular languages",
+      "predicate": "are",
+      "object": "noted below",
+      "source": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "subject": "Language",
+      "predicate": "is a",
+      "object": "central question in post-colonial studies",
+      "source": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    },
+    {
+      "subject": "language",
+      "predicate": "is a",
+      "object": "weapon and a site of intense neocolonial conflict",
+      "source": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    },
+    {
+      "subject": "the question of whether or not to write in African languages",
+      "predicate": "is a",
+      "object": "serious one for the African writer",
+      "source": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    },
+    {
+      "subject": "contribution to the language debate",
+      "predicate": "is",
+      "object": "widely known and studied",
+      "source": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Language_Problems_and_Language_Planning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Large_language_model"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/OpenAI"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Cyrillic_alphabets"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Decolonising_the_Mind"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_book_%28academic_discipline%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Antipositivism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Methodenstreit"
+    }
+  ],
+  "ts": "2026-11-03T05:37:55.760109+00:00"
+}

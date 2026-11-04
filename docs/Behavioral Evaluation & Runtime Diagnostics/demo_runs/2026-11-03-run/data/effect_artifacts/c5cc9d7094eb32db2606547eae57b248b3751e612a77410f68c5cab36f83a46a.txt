@@ -1,0 +1,78 @@
+{
+  "question": "What actually is Sawdust, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "sawdust"
+  ],
+  "entities": [
+    "Sawdust",
+    "by-product of lumber production",
+    "also an IARC group 1 Carcinogen",
+    "Hong Kong Sawdust",
+    "most commonly generated when working with wood",
+    "Other breeding sites",
+    "sawdust heaps around sawmills"
+  ],
+  "relations": [
+    {
+      "subject": "Sawdust",
+      "predicate": "is a",
+      "object": "by-product of lumber production",
+      "source": "my prior memo: synthesis.md"
+    },
+    {
+      "subject": "Sawdust",
+      "predicate": "is",
+      "object": "also an IARC group 1 Carcinogen",
+      "source": "https://en.wikipedia.org/wiki/Health_impacts_of_sawdust"
+    },
+    {
+      "subject": "Hong Kong Sawdust",
+      "predicate": "is",
+      "object": "most commonly generated when working with wood",
+      "source": "https://en.wikipedia.org/wiki/Health_impacts_of_sawdust"
+    },
+    {
+      "subject": "Other breeding sites",
+      "predicate": "are",
+      "object": "sawdust heaps around sawmills",
+      "source": "https://en.wikipedia.org/wiki/Oryctes_rhinoceros"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior memo: synthesis.md"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Health_impacts_of_sawdust"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pykrete"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Killers"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Silo"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Oryctes_rhinoceros"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sierra_Pacific_Industries"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ingmar_Bergman"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Sustainable_fashion"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alexei_Navalny"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Phineas_Gage"
+    }
+  ],
+  "ts": "2026-11-03T19:21:09.456375+00:00"
+}

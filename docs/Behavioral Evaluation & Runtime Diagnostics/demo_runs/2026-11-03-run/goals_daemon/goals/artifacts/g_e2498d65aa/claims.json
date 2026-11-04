@@ -1,0 +1,68 @@
+{
+  "question": "What actually is singular they, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "singular"
+  ],
+  "entities": [
+    "to X",
+    "isomorphism away from the singular points of X",
+    "and thus there",
+    "no singular points",
+    "Singular",
+    "developed under the direction of Wolfram Decker"
+  ],
+  "relations": [
+    {
+      "subject": "to X",
+      "predicate": "is an",
+      "object": "isomorphism away from the singular points of X",
+      "source": "https://en.wikipedia.org/wiki/Resolution_of_singularities"
+    },
+    {
+      "subject": "and thus there",
+      "predicate": "are",
+      "object": "no singular points",
+      "source": "https://en.wikipedia.org/wiki/Resolution_of_singularities"
+    },
+    {
+      "subject": "Singular",
+      "predicate": "is",
+      "object": "developed under the direction of Wolfram Decker",
+      "source": "https://en.wikipedia.org/wiki/Singular_%28software%29"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Resolution_of_singularities"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Millennium_Prize_Problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Singular_%28software%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ChatGPT"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/What_Is_Man%3F_%28Twain_essay%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_the_Talmud"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Textual_criticism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stephen_Hawking"
+    }
+  ],
+  "ts": "2026-11-03T21:42:38.648379+00:00"
+}

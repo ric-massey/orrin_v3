@@ -1,0 +1,55 @@
+{
+  "question": "What actually is He repeatedly, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "repeatedly"
+  ],
+  "entities": [
+    "He repeatedly raped and tortured her while she",
+    "tied to a pulley suspended from the ceiling of his mobile home"
+  ],
+  "relations": [
+    {
+      "subject": "He repeatedly raped and tortured her while she",
+      "predicate": "was",
+      "object": "tied to a pulley suspended from the ceiling of his mobile home",
+      "source": "my prior claims [g_32a31a5da5]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_32a31a5da5]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Monty_Hall_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Two_envelopes_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/%C3%89variste_Galois"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Problem_of_induction"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Bill_Nye%E2%80%93Ken_Ham_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2008_United_States_presidential_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Oxford_Union"
+    }
+  ],
+  "ts": "2026-11-03T23:00:24.645032+00:00"
+}

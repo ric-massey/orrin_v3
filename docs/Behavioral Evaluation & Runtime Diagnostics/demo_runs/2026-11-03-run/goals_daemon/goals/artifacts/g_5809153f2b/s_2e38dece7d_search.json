@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "philosophy of time history and development",
+    "philosophy of time applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/History_of_philosophy",
+    "https://en.wikipedia.org/wiki/A_History_of_Western_Philosophy",
+    "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+    "https://en.wikipedia.org/wiki/Unix_philosophy",
+    "https://en.wikipedia.org/wiki/History_of_philosophy_in_Finland",
+    "https://en.wikipedia.org/wiki/Practical_philosophy",
+    "https://en.wikipedia.org/wiki/Philosophy",
+    "https://en.wikipedia.org/wiki/Time_perception"
+  ],
+  "results": [
+    {
+      "title": "History of philosophy",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "snippet": "The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> is the systematic study <span class=\"searchmatch\">of</span> the <span class=\"searchmatch\">development</span> <span class=\"searchmatch\">of</span> philosophical thought. It focuses on <span class=\"searchmatch\">philosophy</span> as rational inquiry based on argumentation",
+      "query": "philosophy of time history and development"
+    },
+    {
+      "title": "A History of Western Philosophy",
+      "url": "https://en.wikipedia.org/wiki/A_History_of_Western_Philosophy",
+      "snippet": "<span class=\"searchmatch\">History</span> <span class=\"searchmatch\">of</span> Western <span class=\"searchmatch\">Philosophy</span> is a 1945 book by British philosopher Bertrand Russell (1872–1970). A survey <span class=\"searchmatch\">of</span> Western <span class=\"searchmatch\">philosophy</span> from the pre-Socratic",
+      "query": "philosophy of time history and development"
+    },
+    {
+      "title": "Philosophy of space and time",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+      "snippet": "The <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> space <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">time</span> is a branch <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> concerned with ideas about knowledge <span class=\"searchmatch\">and</span> understanding within space <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">time</span>. Such ideas have",
+      "query": "philosophy of time history and development"
+    },
+    {
+      "title": "Unix philosophy",
+      "url": "https://en.wikipedia.org/wiki/Unix_philosophy",
+      "snippet": "Unix <span class=\"searchmatch\">philosophy</span>, originated by Ken Thompson, is a set <span class=\"searchmatch\">of</span> cultural norms <span class=\"searchmatch\">and</span> philosophical approaches to minimalist, modular software <span class=\"searchmatch\">development</span>. It is",
+      "query": "philosophy of time history and development"
+    },
+    {
+      "title": "History of philosophy in Finland",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy_in_Finland",
+      "snippet": "The <span class=\"searchmatch\">history</span> <span class=\"searchmatch\">of</span> Finnish <span class=\"searchmatch\">philosophy</span> ranges from the prehistoric period to contemporary <span class=\"searchmatch\">philosophy</span>. <span class=\"searchmatch\">Philosophy</span> was the first academic subject in Finland",
+      "query": "philosophy of time history and development"
+    },
+    {
+      "title": "Philosophy of space and time",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+      "snippet": "The <span class=\"searchmatch\">philosophy</span> <span class=\"searchmatch\">of</span> space <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">time</span> is a branch <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> concerned with ideas about knowledge <span class=\"searchmatch\">and</span> understanding within space <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">time</span>. Such ideas have",
+      "query": "philosophy of time applications and examples"
+    },
+    {
+      "title": "Practical philosophy",
+      "url": "https://en.wikipedia.org/wiki/Practical_philosophy",
+      "snippet": "Practical <span class=\"searchmatch\">philosophy</span> concerns itself mainly with subjects that have <span class=\"searchmatch\">applications</span> in life, like the study <span class=\"searchmatch\">of</span> values, norms, politics, art, etc. The modern",
+      "query": "philosophy of time applications and examples"
+    },
+    {
+      "title": "Philosophy",
+      "url": "https://en.wikipedia.org/wiki/Philosophy",
+      "snippet": "<span class=\"searchmatch\">Philosophy</span> (from Ancient Greek φιλοσοφία (philosophía), lit. &#039;love <span class=\"searchmatch\">of</span> wisdom&#039;) is a systematic study <span class=\"searchmatch\">of</span> general <span class=\"searchmatch\">and</span> fundamental questions concerning topics",
+      "query": "philosophy of time applications and examples"
+    },
+    {
+      "title": "Time perception",
+      "url": "https://en.wikipedia.org/wiki/Time_perception",
+      "snippet": "<span class=\"searchmatch\">and</span> neuroscience, <span class=\"searchmatch\">time</span> perception or chronoception is the subjective experience, or sense, <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">time</span>, which is measured by someone&#039;s own perception <span class=\"searchmatch\">of</span> the",
+      "query": "philosophy of time applications and examples"
+    },
+    {
+      "title": "History of philosophy",
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "snippet": "The history <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">philosophy</span> is the systematic study <span class=\"searchmatch\">of</span> the development <span class=\"searchmatch\">of</span> philosophical thought. It focuses on <span class=\"searchmatch\">philosophy</span> as rational inquiry based on argumentation",
+      "query": "philosophy of time applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T11:07:44.303648+00:00"
+}

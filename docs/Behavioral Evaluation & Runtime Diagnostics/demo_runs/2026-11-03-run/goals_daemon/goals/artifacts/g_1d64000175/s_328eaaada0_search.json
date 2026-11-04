@@ -1,0 +1,79 @@
+{
+  "queries": [
+    "Allopurinol",
+    "Allopurinol explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Allopurinol",
+    "https://en.wikipedia.org/wiki/Gout",
+    "https://en.wikipedia.org/wiki/Stevens%E2%80%93Johnson_syndrome",
+    "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome",
+    "https://en.wikipedia.org/wiki/Febuxostat",
+    "https://en.wikipedia.org/wiki/Kidney_stone_disease",
+    "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+    "https://en.wikipedia.org/wiki/William_B._White"
+  ],
+  "results": [
+    {
+      "title": "Allopurinol",
+      "url": "https://en.wikipedia.org/wiki/Allopurinol",
+      "snippet": "<span class=\"searchmatch\">Allopurinol</span> is a medication used to decrease high blood uric acid levels. It is specifically used to prevent gout, prevent specific types of kidney stones",
+      "query": "Allopurinol"
+    },
+    {
+      "title": "Gout",
+      "url": "https://en.wikipedia.org/wiki/Gout",
+      "snippet": "may be lowered via lifestyle changes; in those with frequent attacks, <span class=\"searchmatch\">allopurinol</span> or probenecid provides long-term prevention. Taking vitamin C and having",
+      "query": "Allopurinol"
+    },
+    {
+      "title": "Stevens–Johnson syndrome",
+      "url": "https://en.wikipedia.org/wiki/Stevens%E2%80%93Johnson_syndrome",
+      "snippet": "common cause is certain medications such as lamotrigine, carbamazepine, <span class=\"searchmatch\">allopurinol</span>, sulfonamide antibiotics and nevirapine. Other causes can include infections",
+      "query": "Allopurinol"
+    },
+    {
+      "title": "Allopurinol hypersensitivity syndrome",
+      "url": "https://en.wikipedia.org/wiki/Allopurinol_hypersensitivity_syndrome",
+      "snippet": "<span class=\"searchmatch\">Allopurinol</span> hypersensitivity syndrome (AHS) typically occurs in persons with preexisting kidney failure. Weeks to months after <span class=\"searchmatch\">allopurinol</span> is begun, the",
+      "query": "Allopurinol"
+    },
+    {
+      "title": "Febuxostat",
+      "url": "https://en.wikipedia.org/wiki/Febuxostat",
+      "snippet": "levels. It is generally recommended only for people who cannot take <span class=\"searchmatch\">allopurinol</span>. It is taken by mouth. Common side effects include liver problems, nausea",
+      "query": "Allopurinol"
+    },
+    {
+      "title": "Gout",
+      "url": "https://en.wikipedia.org/wiki/Gout",
+      "snippet": "may be lowered via lifestyle changes; in those with frequent attacks, <span class=\"searchmatch\">allopurinol</span> or probenecid provides long-term prevention. Taking vitamin C and having",
+      "query": "Allopurinol explained"
+    },
+    {
+      "title": "Stevens–Johnson syndrome",
+      "url": "https://en.wikipedia.org/wiki/Stevens%E2%80%93Johnson_syndrome",
+      "snippet": "common cause is certain medications such as lamotrigine, carbamazepine, <span class=\"searchmatch\">allopurinol</span>, sulfonamide antibiotics and nevirapine. Other causes can include infections",
+      "query": "Allopurinol explained"
+    },
+    {
+      "title": "Kidney stone disease",
+      "url": "https://en.wikipedia.org/wiki/Kidney_stone_disease",
+      "snippet": "is not effective, medications such as thiazide diuretics, citrate, or <span class=\"searchmatch\">allopurinol</span> may be suggested. Soft drinks containing phosphoric acid (typically colas)",
+      "query": "Allopurinol explained"
+    },
+    {
+      "title": "Xanthine oxidase",
+      "url": "https://en.wikipedia.org/wiki/Xanthine_oxidase",
+      "snippet": "metabolic pathway for uric acid formation, the xanthine oxidase inhibitor <span class=\"searchmatch\">allopurinol</span> is used in the treatment of gout. Since xanthine oxidase is involved",
+      "query": "Allopurinol explained"
+    },
+    {
+      "title": "William B. White",
+      "url": "https://en.wikipedia.org/wiki/William_B._White",
+      "snippet": "whether the xanthine oxidase inhibitor febuxostat was noninferior to <span class=\"searchmatch\">allopurinol</span> on major adverse cardiovascular events. Results published in the New",
+      "query": "Allopurinol explained"
+    }
+  ],
+  "ts": "2026-11-03T18:54:19.830085+00:00"
+}

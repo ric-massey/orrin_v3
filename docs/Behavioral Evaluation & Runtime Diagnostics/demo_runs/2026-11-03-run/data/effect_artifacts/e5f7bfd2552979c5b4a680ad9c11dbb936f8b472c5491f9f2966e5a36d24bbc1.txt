@@ -1,0 +1,84 @@
+{
+  "question": "What actually is study found that there, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "study"
+  ],
+  "entities": [
+    "she was troubled to see how study participants",
+    "behaving and treated and confronted Zimbardo",
+    "This example",
+    "taken from a GWA study investigating kidney stone disease",
+    "suggested alternative to linkage studies",
+    "the genetic association study",
+    "The predictive power of the marshmallow test",
+    "challenged in a 2020 study",
+    "The purpose of the study",
+    "to understand when the control of delayed gratification"
+  ],
+  "relations": [
+    {
+      "subject": "she was troubled to see how study participants",
+      "predicate": "were",
+      "object": "behaving and treated and confronted Zimbardo",
+      "source": "https://en.wikipedia.org/wiki/Stanford_prison_experiment"
+    },
+    {
+      "subject": "This example",
+      "predicate": "is",
+      "object": "taken from a GWA study investigating kidney stone disease",
+      "source": "https://en.wikipedia.org/wiki/Genome-wide_association_study"
+    },
+    {
+      "subject": "suggested alternative to linkage studies",
+      "predicate": "was",
+      "object": "the genetic association study",
+      "source": "https://en.wikipedia.org/wiki/Genome-wide_association_study"
+    },
+    {
+      "subject": "The predictive power of the marshmallow test",
+      "predicate": "was",
+      "object": "challenged in a 2020 study",
+      "source": "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment"
+    },
+    {
+      "subject": "The purpose of the study",
+      "predicate": "was",
+      "object": "to understand when the control of delayed gratification",
+      "source": "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Libido"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Colorism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical_attractiveness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Human_penis_size"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Backrooms_%28web_series%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stanford_prison_experiment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Genome-wide_association_study"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    }
+  ],
+  "ts": "2026-11-03T12:58:53.131614+00:00"
+}

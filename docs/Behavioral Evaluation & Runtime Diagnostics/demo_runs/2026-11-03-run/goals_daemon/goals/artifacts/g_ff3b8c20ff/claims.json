@@ -1,0 +1,74 @@
+{
+  "question": "What actually is Our Life, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "life"
+  ],
+  "entities": [
+    "the Our Band Could Be Your Life audiobook",
+    "released",
+    "The Life of a Showgirl",
+    "twelfth studio album by the American singer-songwriter Taylor Swift",
+    "the global best-selling album of 2025 and won various awards",
+    "created during the European leg of the Eras Tour in 2024"
+  ],
+  "relations": [
+    {
+      "subject": "the Our Band Could Be Your Life audiobook",
+      "predicate": "was",
+      "object": "released",
+      "source": "https://en.wikipedia.org/wiki/Our_Band_Could_Be_Your_Life"
+    },
+    {
+      "subject": "The Life of a Showgirl",
+      "predicate": "is the",
+      "object": "twelfth studio album by the American singer-songwriter Taylor Swift",
+      "source": "https://en.wikipedia.org/wiki/The_Life_of_a_Showgirl"
+    },
+    {
+      "subject": "The Life of a Showgirl",
+      "predicate": "was",
+      "object": "the global best-selling album of 2025 and won various awards",
+      "source": "https://en.wikipedia.org/wiki/The_Life_of_a_Showgirl"
+    },
+    {
+      "subject": "The Life of a Showgirl",
+      "predicate": "was",
+      "object": "created during the European leg of the Eras Tour in 2024",
+      "source": "https://en.wikipedia.org/wiki/The_Life_of_a_Showgirl"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/In_This_Our_Life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Remake_Our_Life%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Life_on_Our_Planet"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Our_Band_Could_Be_Your_Life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/It%27s_Our_Life%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/This_American_Life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Life_of_Chuck"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Life_of_a_Showgirl"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explained_%28TV_series%29"
+    }
+  ],
+  "ts": "2026-11-03T21:44:16.698932+00:00"
+}

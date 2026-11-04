@@ -1,0 +1,4481 @@
+[
+  {
+    "id": "3bf1114a98",
+    "topic": "shadow",
+    "view": "Shadow keeps surfacing — most sharply in \"🌓 Shadow question: Am I moving toward something or away from something?\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.78,
+    "alpha": 11.9,
+    "beta": 3.35,
+    "formed_at": "2026-11-03T02:51:16.491829+00:00",
+    "updated_at": "2026-11-04T02:37:57.774113+00:00",
+    "evidence_count": 43,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T02:51:16.491829+00:00",
+        "kind": "observation",
+        "ref_id": "4de082dd-fa24-41f6-abea-f64230e536e2",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T03:51:27.574995+00:00",
+        "kind": "observation",
+        "ref_id": "67c925b3-d4e8-4c31-bc04-9bc8142a5e63",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:16:01.548887+00:00",
+        "kind": "observation",
+        "ref_id": "a8189589-f1ad-46b6-9d84-13431b98a148",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:21:34.439175+00:00",
+        "kind": "observation",
+        "ref_id": "da8dfb81-35a3-46c7-bedc-77a8c03e2c4e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:22:27.787392+00:00",
+        "kind": "observation",
+        "ref_id": "303f41a0-4304-4915-adfb-bd6ff4852ae5",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:25:55.299339+00:00",
+        "kind": "observation",
+        "ref_id": "e580b3d0-7dec-414a-b234-ab43d601c692",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:33:48.245790+00:00",
+        "kind": "observation",
+        "ref_id": "39f8e802-331c-4345-8ca7-1debbe378ef4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:47:13.586558+00:00",
+        "kind": "observation",
+        "ref_id": "2e6a78c7-26d7-4863-b8fd-e533fe346147",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:29:19.451128+00:00",
+        "kind": "observation",
+        "ref_id": "25df112b-0aa6-4091-aef8-fa4e98267ccb",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:40:33.244214+00:00",
+        "kind": "observation",
+        "ref_id": "d0efc9d4-947a-4e20-a1d8-2180a3639151",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:51:51.411721+00:00",
+        "kind": "observation",
+        "ref_id": "c6d2c346-0526-4be3-ac54-456126674e1a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T13:30:00.295889+00:00",
+        "kind": "observation",
+        "ref_id": "888cdd80-bc37-45ae-a620-e0cb91e6b196",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T13:30:05.867087+00:00",
+        "kind": "observation",
+        "ref_id": "a6aa5f16-34fe-4fcb-8fd7-cc539d0a78cc",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:10:37.690327+00:00",
+        "kind": "observation",
+        "ref_id": "8c00d790-081c-4433-a44a-855edaf1bfba",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:22:50.714583+00:00",
+        "kind": "observation",
+        "ref_id": "dd529489-f3cd-432b-baba-5fb06d521280",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:23:17.990734+00:00",
+        "kind": "observation",
+        "ref_id": "26eb1cb6-d9ce-4b02-a28d-02f1f5b0107a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:23:24.419932+00:00",
+        "kind": "observation",
+        "ref_id": "b91f6a58-ea2c-48fa-9237-ab7cc248d792",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:33:17.493158+00:00",
+        "kind": "observation",
+        "ref_id": "119e26ce-ca79-4844-acf9-6074f7156a4e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:35:31.982859+00:00",
+        "kind": "observation",
+        "ref_id": "9253a007-e6ad-4ad7-89c8-566814bcb06f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:36:47.725105+00:00",
+        "kind": "observation",
+        "ref_id": "ed2dc349-4390-46ac-a5e7-2bf120dba4b3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:36:53.968589+00:00",
+        "kind": "observation",
+        "ref_id": "b6d4299a-d75a-49a9-8a36-6054d4fb67f0",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:37:34.295233+00:00",
+        "kind": "observation",
+        "ref_id": "f4611c83-32ae-421f-8729-7d28a5e6dac4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:21:23.876669+00:00",
+        "kind": "observation",
+        "ref_id": "9f11d60d-fb50-4240-a13e-19a28b00adfe",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:21:40.502268+00:00",
+        "kind": "observation",
+        "ref_id": "66739b34-103f-474d-826f-90a30583bd0e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:24:27.127352+00:00",
+        "kind": "observation",
+        "ref_id": "0e96d98e-b7e6-4ead-a4da-f76d1b106c0c",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:40:12.996325+00:00",
+        "kind": "observation",
+        "ref_id": "69c0ab46-4c99-4e43-9737-09cbd894d0a6",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:51:05.435068+00:00",
+        "kind": "observation",
+        "ref_id": "0ae2a4d8-ea84-47b2-8817-a2cdb64ee145",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:01:56.506970+00:00",
+        "kind": "observation",
+        "ref_id": "a68f09b9-764f-4bfb-a1ca-bf801284a989",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:02:07.268975+00:00",
+        "kind": "observation",
+        "ref_id": "7839026e-0ca8-4854-b93b-0593e815569f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:02:14.929881+00:00",
+        "kind": "observation",
+        "ref_id": "9ee048ff-6eeb-44de-8507-a13f9aff07c0",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:17:36.485196+00:00",
+        "kind": "observation",
+        "ref_id": "5598dec9-f25e-4ecd-95ab-831bdfa68edf",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:38:41.493392+00:00",
+        "kind": "observation",
+        "ref_id": "df475fb5-b943-403f-b5ca-00ae5369b642",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:42:09.322733+00:00",
+        "kind": "observation",
+        "ref_id": "810c5e42-5ffe-4060-b786-1a044e6a2843",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:50:51.298965+00:00",
+        "kind": "observation",
+        "ref_id": "40650110-651f-48e9-8077-f2bb4ff72bad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640100+00:00",
+        "kind": "observation",
+        "ref_id": "29bf3045-e35f-4f8a-918b-6a88f1d1a2d9",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:22:01.739395+00:00",
+        "kind": "observation",
+        "ref_id": "385e923e-9513-4372-bd0e-cbb2fe50c0e3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:34:53.607745+00:00",
+        "kind": "observation",
+        "ref_id": "873826df-1449-4633-bccb-4a9f030209b4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:38:53.969232+00:00",
+        "kind": "observation",
+        "ref_id": "79e7d3b8-ac06-432f-955e-65f22760ab26",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T20:06:04.175633+00:00",
+        "kind": "observation",
+        "ref_id": "6fe14275-2253-4833-82cc-a151286b253a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:55:41.417924+00:00",
+        "kind": "observation",
+        "ref_id": "5b501d2a-e99e-40a5-9140-3451fdb20002",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:01:06.215841+00:00",
+        "kind": "observation",
+        "ref_id": "dfa69154-b33b-413a-8b7e-977e020e2fdb",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:17:21.876262+00:00",
+        "kind": "observation",
+        "ref_id": "ab1a9c9b-97ab-4fe9-82a0-c3dc4f86361d",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:44:52.183831+00:00",
+        "kind": "observation",
+        "ref_id": "e431e58d-17d1-48db-aa3a-cd3d133bb3b7",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-04T01:13:15.717153+00:00",
+        "kind": "mention",
+        "ref_id": "5b6edf47-f084-4a2f-8e81-4bd7fe913902",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:24:18.226117+00:00",
+        "kind": "mention",
+        "ref_id": "e55c4508-07e7-418b-b28c-08eb9c2b7066",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:24:55.373511+00:00",
+        "kind": "mention",
+        "ref_id": "0a8f0dc1-dfe2-4564-bf45-cca567866c9e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:25:09.447575+00:00",
+        "kind": "mention",
+        "ref_id": "2f0bbf31-e36c-4a37-ad0d-38c3cdb962cf",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:29:07.342332+00:00",
+        "kind": "mention",
+        "ref_id": "bf217641-ac15-4290-ab43-6e696f89190d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:29:18.341959+00:00",
+        "kind": "mention",
+        "ref_id": "3c228d73-5b77-4595-a169-89266e680cdc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:30:23.851549+00:00",
+        "kind": "mention",
+        "ref_id": "9741d971-e56a-4c11-8127-2ea4f0c6b01c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:09.863292+00:00",
+        "kind": "mention",
+        "ref_id": "ef4b77f3-9589-46f6-a334-e3b54621f22d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:47.949149+00:00",
+        "kind": "mention",
+        "ref_id": "1c47adb2-3fa6-4905-bafd-1901e8f7a517",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:57.916078+00:00",
+        "kind": "mention",
+        "ref_id": "6db6d9a2-bdb9-4beb-a477-44a0f1e2e61e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:01:11.601217+00:00",
+        "kind": "mention",
+        "ref_id": "1e540946-1d76-4a07-bdaf-774ab7354e56",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:26:40.129633+00:00",
+        "kind": "mention",
+        "ref_id": "e356b59b-bde6-43be-b9de-fa520f7ca8db",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:26:51.119621+00:00",
+        "kind": "mention",
+        "ref_id": "65f2a0ea-bab5-4c85-9463-7589f920c09b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:34:59.053338+00:00",
+        "kind": "mention",
+        "ref_id": "77563f0e-c5b4-4436-842e-b06b8cee5af5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:34.007028+00:00",
+        "kind": "mention",
+        "ref_id": "c82eacdd-6d2c-478c-9bc3-d9fe2969d159",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:47.457416+00:00",
+        "kind": "mention",
+        "ref_id": "fad30a2a-6efa-41f5-8414-193965de37bf",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:57.774113+00:00",
+        "kind": "mention",
+        "ref_id": "e10df4f0-0036-4d70-b3bb-7b45b4de7678",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "4de082dd-fa24-41f6-abea-f64230e536e2",
+      "dba31aab-9a3a-4fa3-89c6-92558fbd35bc",
+      "02bb2822-3914-4e21-bc21-830a0ced1992"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false,
+    "roots_lost": true
+  },
+  {
+    "id": "87155e1d6f",
+    "topic": "lightly",
+    "view": "Lightly has mostly landed well across 2 recent moments — most sharply in \"[will] I resolve (held lightly, strength 0.20) to: pursue: Leave Ric a note about logic — This doesn't clearly connect t\". I find myself drawn to it.",
+    "confidence": 0.52,
+    "alpha": 2.6,
+    "beta": 2.4,
+    "formed_at": "2026-11-03T03:21:16.758217+00:00",
+    "updated_at": "2026-11-03T23:31:58.437370+00:00",
+    "evidence_count": 5,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T03:21:16.758217+00:00",
+        "kind": "observation",
+        "ref_id": "04ecb751-dad9-4c98-a437-222c38dd4e4d",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T04:51:31.325268+00:00",
+        "kind": "mention",
+        "ref_id": "0c9500c4-28ca-4cb6-bd5c-5328dad9ba32",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T04:51:31.325297+00:00",
+        "kind": "observation",
+        "ref_id": "0c9500c4-28ca-4cb6-bd5c-5328dad9ba32",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T06:50:02.803916+00:00",
+        "kind": "mention",
+        "ref_id": "00b98cb2-ae55-4078-bf71-c08b938176dc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T06:50:02.803936+00:00",
+        "kind": "mention",
+        "ref_id": "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:51:44.310277+00:00",
+        "kind": "mention",
+        "ref_id": "331346d4-bcff-47f7-af66-20037ddc59a5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:21:48.000655+00:00",
+        "kind": "mention",
+        "ref_id": "406c92b0-d1e7-4b1e-b1ff-9da9e622bc16",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.392767+00:00",
+        "kind": "mention",
+        "ref_id": "a9edb055-7625-42fa-9171-542692940fb1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:21:53.051379+00:00",
+        "kind": "mention",
+        "ref_id": "39921db2-a14c-41b2-b329-0c50373b30ca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:22:46.606890+00:00",
+        "kind": "mention",
+        "ref_id": "25adadb9-bff7-4d98-9c8d-98c9c8ac276e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:53:19.603533+00:00",
+        "kind": "mention",
+        "ref_id": "6e447629-ae3f-40a2-8bce-73651deafa72",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:57:07.694756+00:00",
+        "kind": "mention",
+        "ref_id": "dc308b22-7b6c-4cc2-bc7e-3ee18d7c3fec",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:15:41.901691+00:00",
+        "kind": "mention",
+        "ref_id": "762c4a81-af8e-49ac-a25c-9a402aad6c9b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:25:40.952121+00:00",
+        "kind": "mention",
+        "ref_id": "fb866f47-bff4-4575-a20c-baa30c838f91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:23:20.280982+00:00",
+        "kind": "mention",
+        "ref_id": "532042df-99ce-434f-8f1e-b052c415253a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:35:38.549745+00:00",
+        "kind": "mention",
+        "ref_id": "4de5fa71-744e-4300-97b3-0a759193a8f5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:39:23.117581+00:00",
+        "kind": "mention",
+        "ref_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493044+00:00",
+        "kind": "mention",
+        "ref_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:54:08.953815+00:00",
+        "kind": "mention",
+        "ref_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:24:58.095294+00:00",
+        "kind": "mention",
+        "ref_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:40:44.525606+00:00",
+        "kind": "mention",
+        "ref_id": "11e16d91-a85a-4344-bb68-d0688a04bb05",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:17:40.585958+00:00",
+        "kind": "mention",
+        "ref_id": "48ce4537-516d-43d1-b344-b84504335b00",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:17:40.585997+00:00",
+        "kind": "observation",
+        "ref_id": "48ce4537-516d-43d1-b344-b84504335b00",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:46:06.873427+00:00",
+        "kind": "mention",
+        "ref_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:46:06.873462+00:00",
+        "kind": "observation",
+        "ref_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419374+00:00",
+        "kind": "mention",
+        "ref_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:59:44.565599+00:00",
+        "kind": "mention",
+        "ref_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:28:50.017057+00:00",
+        "kind": "mention",
+        "ref_id": "d199862e-88f0-4ab3-a509-285941742065",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:46:33.135285+00:00",
+        "kind": "mention",
+        "ref_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:57:01.252041+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:58.437333+00:00",
+        "kind": "mention",
+        "ref_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:58.437370+00:00",
+        "kind": "observation",
+        "ref_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+        "direction": "for",
+        "weight": 0.25
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "04ecb751-dad9-4c98-a437-222c38dd4e4d",
+      "f6f776bf-db51-41aa-902b-fd6dd7ca1ba0"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": false
+  },
+  {
+    "id": "437b930db8",
+    "topic": "something",
+    "view": "Something keeps surfacing — most sharply in \"🌓 Shadow question: Am I moving toward something or away from something?\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.82,
+    "alpha": 11.65,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T03:51:27.576042+00:00",
+    "updated_at": "2026-11-04T02:33:12.572545+00:00",
+    "evidence_count": 42,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T03:51:27.576042+00:00",
+        "kind": "observation",
+        "ref_id": "c88a8e6e-8ce5-4773-b2aa-916c8ba9753f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:16:01.549028+00:00",
+        "kind": "observation",
+        "ref_id": "a8189589-f1ad-46b6-9d84-13431b98a148",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:21:34.439306+00:00",
+        "kind": "observation",
+        "ref_id": "da8dfb81-35a3-46c7-bedc-77a8c03e2c4e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:22:27.787526+00:00",
+        "kind": "observation",
+        "ref_id": "303f41a0-4304-4915-adfb-bd6ff4852ae5",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:25:55.299479+00:00",
+        "kind": "observation",
+        "ref_id": "e580b3d0-7dec-414a-b234-ab43d601c692",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:33:48.245911+00:00",
+        "kind": "observation",
+        "ref_id": "39f8e802-331c-4345-8ca7-1debbe378ef4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:47:13.586675+00:00",
+        "kind": "observation",
+        "ref_id": "2e6a78c7-26d7-4863-b8fd-e533fe346147",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:29:19.451244+00:00",
+        "kind": "observation",
+        "ref_id": "25df112b-0aa6-4091-aef8-fa4e98267ccb",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:40:33.244303+00:00",
+        "kind": "observation",
+        "ref_id": "d0efc9d4-947a-4e20-a1d8-2180a3639151",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T12:51:51.411839+00:00",
+        "kind": "observation",
+        "ref_id": "c6d2c346-0526-4be3-ac54-456126674e1a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T13:30:00.296009+00:00",
+        "kind": "observation",
+        "ref_id": "888cdd80-bc37-45ae-a620-e0cb91e6b196",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T13:30:05.867206+00:00",
+        "kind": "observation",
+        "ref_id": "a6aa5f16-34fe-4fcb-8fd7-cc539d0a78cc",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:10:37.690455+00:00",
+        "kind": "observation",
+        "ref_id": "8c00d790-081c-4433-a44a-855edaf1bfba",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:22:50.714689+00:00",
+        "kind": "observation",
+        "ref_id": "dd529489-f3cd-432b-baba-5fb06d521280",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:23:17.990864+00:00",
+        "kind": "observation",
+        "ref_id": "26eb1cb6-d9ce-4b02-a28d-02f1f5b0107a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:23:24.420065+00:00",
+        "kind": "observation",
+        "ref_id": "b91f6a58-ea2c-48fa-9237-ab7cc248d792",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:33:17.493295+00:00",
+        "kind": "observation",
+        "ref_id": "119e26ce-ca79-4844-acf9-6074f7156a4e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:35:31.982977+00:00",
+        "kind": "observation",
+        "ref_id": "9253a007-e6ad-4ad7-89c8-566814bcb06f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:36:47.725273+00:00",
+        "kind": "observation",
+        "ref_id": "ed2dc349-4390-46ac-a5e7-2bf120dba4b3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:36:53.968757+00:00",
+        "kind": "observation",
+        "ref_id": "b6d4299a-d75a-49a9-8a36-6054d4fb67f0",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T15:37:34.295377+00:00",
+        "kind": "observation",
+        "ref_id": "f4611c83-32ae-421f-8729-7d28a5e6dac4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:21:23.876845+00:00",
+        "kind": "observation",
+        "ref_id": "9f11d60d-fb50-4240-a13e-19a28b00adfe",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:21:40.502448+00:00",
+        "kind": "observation",
+        "ref_id": "66739b34-103f-474d-826f-90a30583bd0e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:24:27.127519+00:00",
+        "kind": "observation",
+        "ref_id": "0e96d98e-b7e6-4ead-a4da-f76d1b106c0c",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:40:12.996464+00:00",
+        "kind": "observation",
+        "ref_id": "69c0ab46-4c99-4e43-9737-09cbd894d0a6",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:51:05.435216+00:00",
+        "kind": "observation",
+        "ref_id": "0ae2a4d8-ea84-47b2-8817-a2cdb64ee145",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:01:56.507095+00:00",
+        "kind": "observation",
+        "ref_id": "a68f09b9-764f-4bfb-a1ca-bf801284a989",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:02:07.269104+00:00",
+        "kind": "observation",
+        "ref_id": "7839026e-0ca8-4854-b93b-0593e815569f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:02:14.930007+00:00",
+        "kind": "observation",
+        "ref_id": "9ee048ff-6eeb-44de-8507-a13f9aff07c0",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:17:36.485332+00:00",
+        "kind": "observation",
+        "ref_id": "5598dec9-f25e-4ecd-95ab-831bdfa68edf",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:38:41.493540+00:00",
+        "kind": "observation",
+        "ref_id": "df475fb5-b943-403f-b5ca-00ae5369b642",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:42:09.322853+00:00",
+        "kind": "observation",
+        "ref_id": "810c5e42-5ffe-4060-b786-1a044e6a2843",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:50:51.299108+00:00",
+        "kind": "observation",
+        "ref_id": "40650110-651f-48e9-8077-f2bb4ff72bad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640237+00:00",
+        "kind": "observation",
+        "ref_id": "29bf3045-e35f-4f8a-918b-6a88f1d1a2d9",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:22:01.739547+00:00",
+        "kind": "observation",
+        "ref_id": "385e923e-9513-4372-bd0e-cbb2fe50c0e3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:34:53.607869+00:00",
+        "kind": "observation",
+        "ref_id": "873826df-1449-4633-bccb-4a9f030209b4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:38:53.969353+00:00",
+        "kind": "observation",
+        "ref_id": "79e7d3b8-ac06-432f-955e-65f22760ab26",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T20:06:04.175766+00:00",
+        "kind": "observation",
+        "ref_id": "6fe14275-2253-4833-82cc-a151286b253a",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:45:40.581342+00:00",
+        "kind": "mention",
+        "ref_id": "da3740fe-42bb-4b1a-b637-a450183b936c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:41.418035+00:00",
+        "kind": "mention",
+        "ref_id": "5b501d2a-e99e-40a5-9140-3451fdb20002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:41.418056+00:00",
+        "kind": "observation",
+        "ref_id": "5b501d2a-e99e-40a5-9140-3451fdb20002",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T22:46:33.492355+00:00",
+        "kind": "mention",
+        "ref_id": "96ff6489-b1f9-4149-a15a-085d3442bd23",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:01:06.215955+00:00",
+        "kind": "mention",
+        "ref_id": "dfa69154-b33b-413a-8b7e-977e020e2fdb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:01:06.215975+00:00",
+        "kind": "observation",
+        "ref_id": "dfa69154-b33b-413a-8b7e-977e020e2fdb",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:09:07.560940+00:00",
+        "kind": "mention",
+        "ref_id": "a4605b4c-9f10-4f48-a2d0-3d5f90152898",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:21.876367+00:00",
+        "kind": "mention",
+        "ref_id": "ab1a9c9b-97ab-4fe9-82a0-c3dc4f86361d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:21.876396+00:00",
+        "kind": "observation",
+        "ref_id": "ab1a9c9b-97ab-4fe9-82a0-c3dc4f86361d",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:29:32.391307+00:00",
+        "kind": "mention",
+        "ref_id": "9e45d35e-5c72-4efc-92cc-217986834f7e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:44:52.183931+00:00",
+        "kind": "mention",
+        "ref_id": "e431e58d-17d1-48db-aa3a-cd3d133bb3b7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:44:52.183951+00:00",
+        "kind": "observation",
+        "ref_id": "e431e58d-17d1-48db-aa3a-cd3d133bb3b7",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:49:50.451292+00:00",
+        "kind": "mention",
+        "ref_id": "544ad705-552a-4343-94dc-c57e381f49ed",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:10:02.132757+00:00",
+        "kind": "mention",
+        "ref_id": "91e2dd8e-bcd1-49c5-885e-8b1ceb71b19a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:31:38.225975+00:00",
+        "kind": "mention",
+        "ref_id": "4dd64ca4-851e-4829-848c-daf93ba24684",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:51:42.790566+00:00",
+        "kind": "mention",
+        "ref_id": "124a713a-069f-4f5c-b264-a57121d1ad8b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:57:59.111347+00:00",
+        "kind": "mention",
+        "ref_id": "0aa3667b-4034-47c4-9632-da36186c1f83",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:12:27.095616+00:00",
+        "kind": "mention",
+        "ref_id": "6e6a508a-70dd-4282-8aef-af5530c4d84b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:32:27.378102+00:00",
+        "kind": "mention",
+        "ref_id": "fcdabf6e-acf4-44b7-b2ab-8ea6e25d2d25",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:52:38.741934+00:00",
+        "kind": "mention",
+        "ref_id": "18574ee2-8195-4f2d-8a7e-08cc5655895d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:12:49.433026+00:00",
+        "kind": "mention",
+        "ref_id": "f9d1df60-539f-4ff9-a1fa-d868aa0add4b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:33:12.572545+00:00",
+        "kind": "mention",
+        "ref_id": "17cfc88d-3e73-4eca-8ffd-c0ac2446bf59",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "c88a8e6e-8ce5-4773-b2aa-916c8ba9753f",
+      "67c925b3-d4e8-4c31-bc04-9bc8142a5e63"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "5494af1f14",
+    "topic": "question",
+    "view": "Question keeps landing badly — most sharply in \"💔 Goal failed: Reflect on my open question: Is what I'm doing right now aligned with what I actually care about?. steps_\". I've grown wary of it.",
+    "confidence": 0.54,
+    "alpha": 2.29,
+    "beta": 1.96,
+    "formed_at": "2026-11-03T04:21:29.686551+00:00",
+    "updated_at": "2026-11-04T02:37:57.774234+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T04:21:29.686551+00:00",
+        "kind": "observation",
+        "ref_id": "909ba2c3-c9bf-4c01-b78f-f8722a30df89",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T04:51:31.325490+00:00",
+        "kind": "observation",
+        "ref_id": "778f5f9c-f9bb-425f-8553-f600409c54f8",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:54:40.071519+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:15.849260+00:00",
+        "kind": "mention",
+        "ref_id": "2570c1af-d96b-4bbb-a0ae-295e5b70655f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:25.082524+00:00",
+        "kind": "mention",
+        "ref_id": "e347fcd0-3528-4b2c-b11f-f23a9d37f636",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:41.418120+00:00",
+        "kind": "mention",
+        "ref_id": "5b501d2a-e99e-40a5-9140-3451fdb20002",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:01:22.362948+00:00",
+        "kind": "mention",
+        "ref_id": "4335227e-79ee-43c2-a056-aa2848026a28",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:01:30.551360+00:00",
+        "kind": "mention",
+        "ref_id": "d18d5d2b-bbee-468f-8e7c-7e4470f2f354",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:36:23.859409+00:00",
+        "kind": "mention",
+        "ref_id": "356334ef-738b-4656-8ac9-c1980bc7dcc6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:36:33.809321+00:00",
+        "kind": "mention",
+        "ref_id": "55cc6de3-9734-47ee-b5f7-d803bedec6e6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:36:47.298391+00:00",
+        "kind": "mention",
+        "ref_id": "16999e2f-ee38-4b76-92f1-db8aa0da9803",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:36:56.205372+00:00",
+        "kind": "mention",
+        "ref_id": "589cf33a-2999-4b92-9f4e-9e63cd446686",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:49:13.611179+00:00",
+        "kind": "mention",
+        "ref_id": "04285ad8-68af-4ddd-a8fd-d79cb7e7e475",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:01:06.216037+00:00",
+        "kind": "mention",
+        "ref_id": "dfa69154-b33b-413a-8b7e-977e020e2fdb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:13:34.998376+00:00",
+        "kind": "mention",
+        "ref_id": "f682dc38-5cc8-4d00-bd77-e6925b1df267",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:13:43.260341+00:00",
+        "kind": "mention",
+        "ref_id": "fd21692b-f975-4c5d-b31f-90a09cc6bb07",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:13:54.685321+00:00",
+        "kind": "mention",
+        "ref_id": "e661c91d-8047-4ab5-929b-db2852d15013",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:21.876447+00:00",
+        "kind": "mention",
+        "ref_id": "ab1a9c9b-97ab-4fe9-82a0-c3dc4f86361d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:35.973371+00:00",
+        "kind": "mention",
+        "ref_id": "aedc90c6-7449-440f-8583-ba0d737f56b9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:45.509186+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:30:43.374794+00:00",
+        "kind": "mention",
+        "ref_id": "9738ec32-1b8e-42ba-a587-262643bfe87b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:05.759019+00:00",
+        "kind": "mention",
+        "ref_id": "d247be10-96cf-45e3-b938-256944986efa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:18.544906+00:00",
+        "kind": "mention",
+        "ref_id": "7c083336-28f8-4d4d-be20-310c22e28163",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:36:29.406827+00:00",
+        "kind": "mention",
+        "ref_id": "1a939bfe-8310-4642-87c0-ae732acd0b1b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:36:42.201892+00:00",
+        "kind": "mention",
+        "ref_id": "f1d1e507-2915-4bae-9124-cc274ff2fed2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:36:52.522039+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:39:17.934712+00:00",
+        "kind": "mention",
+        "ref_id": "73fd2202-a1e7-4732-ba6e-65eb84837632",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:39:30.705139+00:00",
+        "kind": "mention",
+        "ref_id": "63972eac-838f-42ef-9933-e9019cb0779c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:39:40.071971+00:00",
+        "kind": "mention",
+        "ref_id": "32ce6c94-75af-4e21-929b-80ea1bd4400a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:39:50.385783+00:00",
+        "kind": "mention",
+        "ref_id": "9a2b04b3-325c-4a10-930b-565016ed50ac",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.671822+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:44:52.184005+00:00",
+        "kind": "mention",
+        "ref_id": "e431e58d-17d1-48db-aa3a-cd3d133bb3b7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:45:02.018708+00:00",
+        "kind": "mention",
+        "ref_id": "af5ba973-f24f-4367-97d5-f41771eee010",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:54:12.273973+00:00",
+        "kind": "mention",
+        "ref_id": "9e789d33-6d79-4426-addb-dc204b8a0b4b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:57:35.846804+00:00",
+        "kind": "mention",
+        "ref_id": "926f01f2-75ce-4631-ac0d-85218325c72b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:02:25.616217+00:00",
+        "kind": "mention",
+        "ref_id": "1386e1dc-6692-46e9-b410-d473c949b67c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:02:34.438482+00:00",
+        "kind": "mention",
+        "ref_id": "b80c7a89-d482-423a-a876-0480898c80ec",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:02:43.829960+00:00",
+        "kind": "mention",
+        "ref_id": "54cdb68c-08a4-4ce5-9e47-a133ac63e45e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:04:41.911847+00:00",
+        "kind": "mention",
+        "ref_id": "03a34f2b-c3d9-466e-bc1e-f805c0a2ab8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:04:51.887835+00:00",
+        "kind": "mention",
+        "ref_id": "6c4e026e-a108-471c-8511-eef8e284bbed",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:05:05.664441+00:00",
+        "kind": "mention",
+        "ref_id": "79e13ae2-151b-48ca-bda2-3b9f1f6b7ffb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:08:35.922856+00:00",
+        "kind": "mention",
+        "ref_id": "ed253d79-9651-4ebc-9e36-db4e71618992",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:09:18.607373+00:00",
+        "kind": "mention",
+        "ref_id": "0a35f1ed-c79f-4085-be93-527480bd039f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:13:15.717282+00:00",
+        "kind": "mention",
+        "ref_id": "5b6edf47-f084-4a2f-8e81-4bd7fe913902",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:24:18.226249+00:00",
+        "kind": "mention",
+        "ref_id": "e55c4508-07e7-418b-b28c-08eb9c2b7066",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:24:55.373616+00:00",
+        "kind": "mention",
+        "ref_id": "0a8f0dc1-dfe2-4564-bf45-cca567866c9e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:25:09.447692+00:00",
+        "kind": "mention",
+        "ref_id": "2f0bbf31-e36c-4a37-ad0d-38c3cdb962cf",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:29:07.342436+00:00",
+        "kind": "mention",
+        "ref_id": "bf217641-ac15-4290-ab43-6e696f89190d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:29:18.342070+00:00",
+        "kind": "mention",
+        "ref_id": "3c228d73-5b77-4595-a169-89266e680cdc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:30:23.851656+00:00",
+        "kind": "mention",
+        "ref_id": "9741d971-e56a-4c11-8127-2ea4f0c6b01c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:09.863395+00:00",
+        "kind": "mention",
+        "ref_id": "ef4b77f3-9589-46f6-a334-e3b54621f22d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:47.949258+00:00",
+        "kind": "mention",
+        "ref_id": "1c47adb2-3fa6-4905-bafd-1901e8f7a517",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:00:57.916180+00:00",
+        "kind": "mention",
+        "ref_id": "6db6d9a2-bdb9-4beb-a477-44a0f1e2e61e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:01:11.601334+00:00",
+        "kind": "mention",
+        "ref_id": "1e540946-1d76-4a07-bdaf-774ab7354e56",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:26:40.129740+00:00",
+        "kind": "mention",
+        "ref_id": "e356b59b-bde6-43be-b9de-fa520f7ca8db",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:26:51.119724+00:00",
+        "kind": "mention",
+        "ref_id": "65f2a0ea-bab5-4c85-9463-7589f920c09b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:34:59.053462+00:00",
+        "kind": "mention",
+        "ref_id": "77563f0e-c5b4-4436-842e-b06b8cee5af5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:34.007147+00:00",
+        "kind": "mention",
+        "ref_id": "c82eacdd-6d2c-478c-9bc3-d9fe2969d159",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:47.457542+00:00",
+        "kind": "mention",
+        "ref_id": "fad30a2a-6efa-41f5-8414-193965de37bf",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:57.774234+00:00",
+        "kind": "mention",
+        "ref_id": "e10df4f0-0036-4d70-b3bb-7b45b4de7678",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "909ba2c3-c9bf-4c01-b78f-f8722a30df89",
+      "778f5f9c-f9bb-425f-8553-f600409c54f8",
+      "9c4fc57f-11f7-41a7-af8b-00e51fb7431f",
+      "416f0703-b015-4ba7-80a3-85509007f47e"
+    ],
+    "linked_opinion_ids": [],
+    "needs_review": true
+  },
+  {
+    "id": "26934eb377",
+    "topic": "failed",
+    "view": "Failed keeps landing badly — most sharply in \"💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch\". I've grown wary of it.",
+    "confidence": 0.53,
+    "alpha": 2.51,
+    "beta": 2.24,
+    "formed_at": "2026-11-03T04:51:31.340155+00:00",
+    "updated_at": "2026-11-04T02:33:12.572626+00:00",
+    "evidence_count": 4,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T04:51:31.340155+00:00",
+        "kind": "observation",
+        "ref_id": "778f5f9c-f9bb-425f-8553-f600409c54f8",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T05:21:32.338694+00:00",
+        "kind": "observation",
+        "ref_id": "b5785131-83ec-4a84-ac51-1da35715aaee",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T10:18:18.677077+00:00",
+        "kind": "mention",
+        "ref_id": "d37cf11d-a60c-4189-8964-536293425c2f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:19:10.931359+00:00",
+        "kind": "mention",
+        "ref_id": "69102fc5-0ddb-4a2c-b592-619bf5ec319d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:20:06.033599+00:00",
+        "kind": "mention",
+        "ref_id": "22735049-82ce-45d4-881e-7e179dc03e8f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:20:59.428098+00:00",
+        "kind": "mention",
+        "ref_id": "62b652be-1ca7-4727-aeec-123a0d21a70a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:22:06.666554+00:00",
+        "kind": "mention",
+        "ref_id": "683b8012-cddf-48fd-9fea-c96e5b57cc01",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:23:02.457230+00:00",
+        "kind": "mention",
+        "ref_id": "d9dfaf5c-6c72-4384-b752-a995a2423357",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:23:11.655943+00:00",
+        "kind": "mention",
+        "ref_id": "0de45d1c-6d4a-4fc6-a571-e7e86048a01d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:23:11.655957+00:00",
+        "kind": "mention",
+        "ref_id": "022dee5f-8db5-408a-9fd5-7bfeecdb3319",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:23:53.634145+00:00",
+        "kind": "mention",
+        "ref_id": "8a14f2ab-826f-4e1b-926d-ac09be375d0e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:26:34.847096+00:00",
+        "kind": "mention",
+        "ref_id": "80255fc3-328e-414e-be8b-a491eea22bfe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:27:27.976892+00:00",
+        "kind": "mention",
+        "ref_id": "b1ef327e-847c-4571-8a28-6c5d5d314a39",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:28:24.220227+00:00",
+        "kind": "mention",
+        "ref_id": "7a8ca442-ccfc-438d-ba97-20bc1060738a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:29:18.648548+00:00",
+        "kind": "mention",
+        "ref_id": "d0acc93a-db2f-4323-a699-e48ce03a1cff",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:30:12.671591+00:00",
+        "kind": "mention",
+        "ref_id": "3d64e49d-6431-4908-9f46-357f3b8ca867",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:31:08.605434+00:00",
+        "kind": "mention",
+        "ref_id": "f25870e2-a3e3-4516-92f4-3f7881fc13c2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:31:59.210692+00:00",
+        "kind": "mention",
+        "ref_id": "d67f184a-32cf-454c-a674-db4774340c3a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:32:58.805227+00:00",
+        "kind": "mention",
+        "ref_id": "ec8b99df-4876-4790-9a3b-895ce04d99d3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:33:53.566250+00:00",
+        "kind": "mention",
+        "ref_id": "47c9b34d-70a5-4b8d-b8a7-af0e2a67dc09",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:34:58.223027+00:00",
+        "kind": "mention",
+        "ref_id": "ce54f7e3-4283-49f5-8baf-babbde8eec90",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:35:50.471843+00:00",
+        "kind": "mention",
+        "ref_id": "6db6b764-1c75-4ba8-9aed-ecd631cc7091",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:36:46.931764+00:00",
+        "kind": "mention",
+        "ref_id": "8c786918-01ac-45c0-b444-ab7d62cdf15e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:37:42.552802+00:00",
+        "kind": "mention",
+        "ref_id": "6056c8ee-56bb-45ce-bca3-441d802f36fc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:38:13.146699+00:00",
+        "kind": "mention",
+        "ref_id": "3a666019-2bcb-48e1-b3be-d5983628b1ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:38:13.146719+00:00",
+        "kind": "mention",
+        "ref_id": "065914ad-54d5-4caa-a3f1-f4f6df32389e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:38:36.753372+00:00",
+        "kind": "mention",
+        "ref_id": "7f67f6b3-bc63-4c2e-9d57-26fcba6e9c6f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:39:33.774296+00:00",
+        "kind": "mention",
+        "ref_id": "9d5366b5-b434-430f-af6a-605751f5bfa4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:40:31.278548+00:00",
+        "kind": "mention",
+        "ref_id": "3466284a-c5d5-4993-9ab2-342ddf58066b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:41:25.247994+00:00",
+        "kind": "mention",
+        "ref_id": "3ad386c0-b0d9-49ea-a3e4-795a3613cc26",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:42:22.306503+00:00",
+        "kind": "mention",
+        "ref_id": "246b8200-7b85-4a7a-88e4-782aa26faefa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:42:26.989231+00:00",
+        "kind": "mention",
+        "ref_id": "49430a98-c645-49c9-9d10-f619185b758d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:43:13.548915+00:00",
+        "kind": "mention",
+        "ref_id": "07ce2517-c8ca-4d7d-a462-ec189e450ad7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:44:20.524994+00:00",
+        "kind": "mention",
+        "ref_id": "fc02dc63-5f32-4628-a007-2494e1e9a185",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:45:13.358515+00:00",
+        "kind": "mention",
+        "ref_id": "c9bb6b20-e2f2-4b1f-bc8e-9062ba1f3b00",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:46:11.328995+00:00",
+        "kind": "mention",
+        "ref_id": "dc142e94-3054-4a38-bc6e-4267b7abe330",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:47:08.544924+00:00",
+        "kind": "mention",
+        "ref_id": "dd73cb5f-14d8-418e-bd48-6029f6d51fe2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:48:02.682857+00:00",
+        "kind": "mention",
+        "ref_id": "c77f2a8f-0c42-451c-b07b-71615287090a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:48:58.717290+00:00",
+        "kind": "mention",
+        "ref_id": "eebb2923-9f2b-433e-aa50-5b5c67668de6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:49:50.057862+00:00",
+        "kind": "mention",
+        "ref_id": "87657443-efba-4f4e-bd3e-37186a59f3bb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:50:43.089189+00:00",
+        "kind": "mention",
+        "ref_id": "b4b04138-1f44-4bf4-9c96-46decbe9e9b7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:51:38.953855+00:00",
+        "kind": "mention",
+        "ref_id": "e20b26cb-29d6-467b-98f9-9af8746d39f0",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:53:15.869964+00:00",
+        "kind": "mention",
+        "ref_id": "9d43af84-c20b-47ca-aee9-f7d0ac439f6b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T11:23:17.905965+00:00",
+        "kind": "mention",
+        "ref_id": "c4233c47-29ac-4f44-9382-bb3841d0f42f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T11:23:17.905987+00:00",
+        "kind": "mention",
+        "ref_id": "d1443604-9955-4228-bdee-f8fcb3370f45",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T11:53:18.716615+00:00",
+        "kind": "mention",
+        "ref_id": "999e9f21-ed29-4b9f-b97e-035ed6eeb5ef",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T12:53:15.584802+00:00",
+        "kind": "mention",
+        "ref_id": "f05cd7ce-46fd-4122-9129-696417734428",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493241+00:00",
+        "kind": "mention",
+        "ref_id": "e4ccfe2d-afcd-44f6-8b66-8672bb68ca25",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:23:11.674736+00:00",
+        "kind": "mention",
+        "ref_id": "ecf46cc3-8ed4-4246-9b5d-a75b3301a237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:11:39.922679+00:00",
+        "kind": "mention",
+        "ref_id": "65591118-d860-476c-9085-be7f1aec8633",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:18:06.349794+00:00",
+        "kind": "mention",
+        "ref_id": "74b1f509-0402-4640-ac86-cfe8cc08700d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640351+00:00",
+        "kind": "mention",
+        "ref_id": "ed53ef0f-4d2a-4eab-85f3-767c3d87841e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640371+00:00",
+        "kind": "observation",
+        "ref_id": "ed53ef0f-4d2a-4eab-85f3-767c3d87841e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:05:37.486106+00:00",
+        "kind": "mention",
+        "ref_id": "1bb99665-3f09-4c1a-9d47-0cbfa5caf8ee",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:40:29.994744+00:00",
+        "kind": "mention",
+        "ref_id": "de90aac6-9636-47c0-89ae-df6f0dc3442a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344031+00:00",
+        "kind": "mention",
+        "ref_id": "7c115349-7ad2-4c45-875c-f285052bc997",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344054+00:00",
+        "kind": "mention",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344076+00:00",
+        "kind": "observation",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T22:31:43.350988+00:00",
+        "kind": "mention",
+        "ref_id": "59ff2acf-4a6f-44d7-bbde-d2aae581b16f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:33:12.572626+00:00",
+        "kind": "mention",
+        "ref_id": "cddea655-15e8-441e-b196-65fcf3b9013b",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "778f5f9c-f9bb-425f-8553-f600409c54f8",
+      "bcf2aaea-997c-4d12-ad05-039c4903d115",
+      "9bfc341d-c1ce-4722-8a2e-409c3fd071a4",
+      "b5785131-83ec-4a84-ac51-1da35715aaee"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14"
+    ],
+    "needs_review": true
+  },
+  {
+    "id": "7eaf5e9864",
+    "topic": "valueerror",
+    "view": "Valueerror keeps surfacing — most sharply in \"💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 2.15,
+    "beta": 3.35,
+    "formed_at": "2026-11-03T05:21:32.356427+00:00",
+    "updated_at": "2026-11-04T02:33:12.572666+00:00",
+    "evidence_count": 4,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T05:21:32.356427+00:00",
+        "kind": "observation",
+        "ref_id": "bcf2aaea-997c-4d12-ad05-039c4903d115",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T05:51:35.617799+00:00",
+        "kind": "mention",
+        "ref_id": "9bfc341d-c1ce-4722-8a2e-409c3fd071a4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T05:51:35.617808+00:00",
+        "kind": "mention",
+        "ref_id": "b5785131-83ec-4a84-ac51-1da35715aaee",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T05:51:35.617822+00:00",
+        "kind": "observation",
+        "ref_id": "b5785131-83ec-4a84-ac51-1da35715aaee",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:18:06.349867+00:00",
+        "kind": "mention",
+        "ref_id": "74b1f509-0402-4640-ac86-cfe8cc08700d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640417+00:00",
+        "kind": "mention",
+        "ref_id": "ed53ef0f-4d2a-4eab-85f3-767c3d87841e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640431+00:00",
+        "kind": "observation",
+        "ref_id": "ed53ef0f-4d2a-4eab-85f3-767c3d87841e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:40:29.994802+00:00",
+        "kind": "mention",
+        "ref_id": "de90aac6-9636-47c0-89ae-df6f0dc3442a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344126+00:00",
+        "kind": "mention",
+        "ref_id": "7c115349-7ad2-4c45-875c-f285052bc997",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344137+00:00",
+        "kind": "mention",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344156+00:00",
+        "kind": "observation",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T22:31:43.351051+00:00",
+        "kind": "mention",
+        "ref_id": "59ff2acf-4a6f-44d7-bbde-d2aae581b16f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:33:12.572666+00:00",
+        "kind": "mention",
+        "ref_id": "cddea655-15e8-441e-b196-65fcf3b9013b",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.75,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "bcf2aaea-997c-4d12-ad05-039c4903d115",
+      "9bfc341d-c1ce-4722-8a2e-409c3fd071a4",
+      "b5785131-83ec-4a84-ac51-1da35715aaee"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "26934eb377"
+    ],
+    "needs_review": false,
+    "roots_lost": true
+  },
+  {
+    "id": "9010f5324a",
+    "topic": "deeply",
+    "view": "Deeply keeps surfacing — most sharply in \"[will] I resolve to: pursue: Understand history of written language more deeply — I stand behind this. (strength 0.38)\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T05:51:35.622838+00:00",
+    "updated_at": "2026-11-03T22:01:42.427405+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T05:51:35.622838+00:00",
+        "kind": "observation",
+        "ref_id": "9bfc341d-c1ce-4722-8a2e-409c3fd071a4",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T06:21:38.956827+00:00",
+        "kind": "mention",
+        "ref_id": "447e2f06-8708-4677-a878-532b12f2056f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T06:21:38.956850+00:00",
+        "kind": "observation",
+        "ref_id": "447e2f06-8708-4677-a878-532b12f2056f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T06:50:02.804199+00:00",
+        "kind": "mention",
+        "ref_id": "00b98cb2-ae55-4078-bf71-c08b938176dc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:51:44.310483+00:00",
+        "kind": "mention",
+        "ref_id": "331346d4-bcff-47f7-af66-20037ddc59a5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.392996+00:00",
+        "kind": "mention",
+        "ref_id": "a9edb055-7625-42fa-9171-542692940fb1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:53:19.603798+00:00",
+        "kind": "mention",
+        "ref_id": "6e447629-ae3f-40a2-8bce-73651deafa72",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:23:20.281191+00:00",
+        "kind": "mention",
+        "ref_id": "532042df-99ce-434f-8f1e-b052c415253a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493348+00:00",
+        "kind": "mention",
+        "ref_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493359+00:00",
+        "kind": "mention",
+        "ref_id": "e4ccfe2d-afcd-44f6-8b66-8672bb68ca25",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:23:11.674842+00:00",
+        "kind": "mention",
+        "ref_id": "ecf46cc3-8ed4-4246-9b5d-a75b3301a237",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:54:08.954138+00:00",
+        "kind": "mention",
+        "ref_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:24:58.095530+00:00",
+        "kind": "mention",
+        "ref_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:11:39.922843+00:00",
+        "kind": "mention",
+        "ref_id": "65591118-d860-476c-9085-be7f1aec8633",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:24:35.896376+00:00",
+        "kind": "mention",
+        "ref_id": "69156377-e989-42e7-bc3a-1848bf47dc77",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419595+00:00",
+        "kind": "mention",
+        "ref_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:55:01.640476+00:00",
+        "kind": "mention",
+        "ref_id": "ed53ef0f-4d2a-4eab-85f3-767c3d87841e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:59:44.565868+00:00",
+        "kind": "mention",
+        "ref_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:28:50.017271+00:00",
+        "kind": "mention",
+        "ref_id": "d199862e-88f0-4ab3-a509-285941742065",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:40:29.994863+00:00",
+        "kind": "mention",
+        "ref_id": "de90aac6-9636-47c0-89ae-df6f0dc3442a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:41:09.344212+00:00",
+        "kind": "mention",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:46:33.135582+00:00",
+        "kind": "mention",
+        "ref_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:57:01.252343+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:01:42.427405+00:00",
+        "kind": "mention",
+        "ref_id": "86d5aa3e-80ba-4f20-a5c2-97b0512b2149",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "9bfc341d-c1ce-4722-8a2e-409c3fd071a4",
+      "b5785131-83ec-4a84-ac51-1da35715aaee",
+      "447e2f06-8708-4677-a878-532b12f2056f",
+      "35d126c8-e185-4779-af20-31dbe2bb4516"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "26934eb377",
+      "7eaf5e9864"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "785e254f4f",
+    "topic": "resolve",
+    "view": "Resolve has mostly landed well across 5 recent moments — most sharply in \"[will] I resolve to: pursue: Trace in my own history what drives 'no net progress on either goal' — I stand behind this.\". I find myself drawn to it.",
+    "confidence": 0.44,
+    "alpha": 1.85,
+    "beta": 2.4,
+    "formed_at": "2026-11-03T06:21:38.990119+00:00",
+    "updated_at": "2026-11-04T01:26:38.878571+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T06:21:38.990119+00:00",
+        "kind": "observation",
+        "ref_id": "721ed92e-4c23-4f8c-a115-302a1151fa38",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T06:50:02.804245+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T06:50:02.804256+00:00",
+        "kind": "mention",
+        "ref_id": "00b98cb2-ae55-4078-bf71-c08b938176dc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T06:50:02.804268+00:00",
+        "kind": "mention",
+        "ref_id": "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T06:50:02.804285+00:00",
+        "kind": "mention",
+        "ref_id": "d3092149-a330-4315-a9bb-2f2c4cc01a21",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:21:40.340524+00:00",
+        "kind": "mention",
+        "ref_id": "4bd6260f-d76d-492c-b17f-55d1df0afd75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:51:44.310530+00:00",
+        "kind": "mention",
+        "ref_id": "331346d4-bcff-47f7-af66-20037ddc59a5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:21:48.001020+00:00",
+        "kind": "mention",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:21:48.001036+00:00",
+        "kind": "mention",
+        "ref_id": "406c92b0-d1e7-4b1e-b1ff-9da9e622bc16",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393050+00:00",
+        "kind": "mention",
+        "ref_id": "a9edb055-7625-42fa-9171-542692940fb1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:21:53.051642+00:00",
+        "kind": "mention",
+        "ref_id": "39921db2-a14c-41b2-b329-0c50373b30ca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:22:46.607219+00:00",
+        "kind": "mention",
+        "ref_id": "25adadb9-bff7-4d98-9c8d-98c9c8ac276e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:53:19.603855+00:00",
+        "kind": "mention",
+        "ref_id": "6e447629-ae3f-40a2-8bce-73651deafa72",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:57:07.695164+00:00",
+        "kind": "mention",
+        "ref_id": "dc308b22-7b6c-4cc2-bc7e-3ee18d7c3fec",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:15:41.902013+00:00",
+        "kind": "mention",
+        "ref_id": "762c4a81-af8e-49ac-a25c-9a402aad6c9b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:25:40.952467+00:00",
+        "kind": "mention",
+        "ref_id": "fb866f47-bff4-4575-a20c-baa30c838f91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:52:30.887205+00:00",
+        "kind": "mention",
+        "ref_id": "9f85667e-4a03-43c7-8e94-a276488929a7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:23:20.281240+00:00",
+        "kind": "mention",
+        "ref_id": "532042df-99ce-434f-8f1e-b052c415253a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:35:38.549970+00:00",
+        "kind": "mention",
+        "ref_id": "4de5fa71-744e-4300-97b3-0a759193a8f5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:39:23.117863+00:00",
+        "kind": "mention",
+        "ref_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493419+00:00",
+        "kind": "mention",
+        "ref_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:54:08.954208+00:00",
+        "kind": "mention",
+        "ref_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:24:58.095588+00:00",
+        "kind": "mention",
+        "ref_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:40:44.526070+00:00",
+        "kind": "mention",
+        "ref_id": "11e16d91-a85a-4344-bb68-d0688a04bb05",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:17:40.586446+00:00",
+        "kind": "mention",
+        "ref_id": "48ce4537-516d-43d1-b344-b84504335b00",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:45:24.261228+00:00",
+        "kind": "mention",
+        "ref_id": "a305780a-d2ea-4551-b0d8-ea83aedcc295",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:46:06.873813+00:00",
+        "kind": "mention",
+        "ref_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:23:01.303381+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419652+00:00",
+        "kind": "mention",
+        "ref_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:59:44.565931+00:00",
+        "kind": "mention",
+        "ref_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:28:50.017322+00:00",
+        "kind": "mention",
+        "ref_id": "d199862e-88f0-4ab3-a509-285941742065",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:51:24.405160+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:46:33.135643+00:00",
+        "kind": "mention",
+        "ref_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:57:01.252409+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:58.437564+00:00",
+        "kind": "mention",
+        "ref_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.672011+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.107920+00:00",
+        "kind": "mention",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.107945+00:00",
+        "kind": "observation",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-04T01:26:38.878571+00:00",
+        "kind": "mention",
+        "ref_id": "0d2a6063-44b7-4750-8150-c6586a1d14f4",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "721ed92e-4c23-4f8c-a115-302a1151fa38",
+      "447e2f06-8708-4677-a878-532b12f2056f",
+      "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+      "5f673933-9e51-43bc-86f2-aba0a3ac499d",
+      "2621339f-2390-44dd-8dcc-4f10484563dd"
+    ],
+    "linked_opinion_ids": [
+      "87155e1d6f"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "bf497f9e19",
+    "topic": "pursue",
+    "view": "Pursue keeps surfacing — most sharply in \"[will] I resolve (held lightly, strength 0.20) to: pursue: Reflect on my open question: How Do You Take a Picture of a B\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.31,
+    "alpha": 1.4,
+    "beta": 3.1,
+    "formed_at": "2026-11-03T06:51:39.785669+00:00",
+    "updated_at": "2026-11-04T00:58:27.107994+00:00",
+    "evidence_count": 3,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T06:51:39.785669+00:00",
+        "kind": "observation",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T07:21:40.340549+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:21:40.340560+00:00",
+        "kind": "mention",
+        "ref_id": "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:21:40.340587+00:00",
+        "kind": "observation",
+        "ref_id": "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+        "direction": "against",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T07:21:40.340605+00:00",
+        "kind": "mention",
+        "ref_id": "4bd6260f-d76d-492c-b17f-55d1df0afd75",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T07:51:44.310595+00:00",
+        "kind": "mention",
+        "ref_id": "331346d4-bcff-47f7-af66-20037ddc59a5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:21:48.001102+00:00",
+        "kind": "mention",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393123+00:00",
+        "kind": "mention",
+        "ref_id": "a9edb055-7625-42fa-9171-542692940fb1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:53:19.603912+00:00",
+        "kind": "mention",
+        "ref_id": "6e447629-ae3f-40a2-8bce-73651deafa72",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:57:07.695237+00:00",
+        "kind": "mention",
+        "ref_id": "dc308b22-7b6c-4cc2-bc7e-3ee18d7c3fec",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:15:41.902073+00:00",
+        "kind": "mention",
+        "ref_id": "762c4a81-af8e-49ac-a25c-9a402aad6c9b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:25:40.952529+00:00",
+        "kind": "mention",
+        "ref_id": "fb866f47-bff4-4575-a20c-baa30c838f91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:52:30.887266+00:00",
+        "kind": "mention",
+        "ref_id": "9f85667e-4a03-43c7-8e94-a276488929a7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:23:20.281287+00:00",
+        "kind": "mention",
+        "ref_id": "532042df-99ce-434f-8f1e-b052c415253a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:35:38.550013+00:00",
+        "kind": "mention",
+        "ref_id": "4de5fa71-744e-4300-97b3-0a759193a8f5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:39:23.117915+00:00",
+        "kind": "mention",
+        "ref_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:39:23.117936+00:00",
+        "kind": "observation",
+        "ref_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+        "direction": "against",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493509+00:00",
+        "kind": "mention",
+        "ref_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:54:08.954295+00:00",
+        "kind": "mention",
+        "ref_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:24:58.095674+00:00",
+        "kind": "mention",
+        "ref_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:40:44.526175+00:00",
+        "kind": "mention",
+        "ref_id": "11e16d91-a85a-4344-bb68-d0688a04bb05",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:17:40.586540+00:00",
+        "kind": "mention",
+        "ref_id": "48ce4537-516d-43d1-b344-b84504335b00",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:45:24.261312+00:00",
+        "kind": "mention",
+        "ref_id": "a305780a-d2ea-4551-b0d8-ea83aedcc295",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:46:06.873896+00:00",
+        "kind": "mention",
+        "ref_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:23:01.303452+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419732+00:00",
+        "kind": "mention",
+        "ref_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:59:44.566004+00:00",
+        "kind": "mention",
+        "ref_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:28:50.017372+00:00",
+        "kind": "mention",
+        "ref_id": "d199862e-88f0-4ab3-a509-285941742065",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:51:24.405231+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:46:33.135702+00:00",
+        "kind": "mention",
+        "ref_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:57:01.252472+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:58.437607+00:00",
+        "kind": "mention",
+        "ref_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.672068+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.107994+00:00",
+        "kind": "mention",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+      "00b98cb2-ae55-4078-bf71-c08b938176dc",
+      "c7f5c69f-a223-4f5c-ba0d-48fce72224da"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "9010f5324a"
+    ],
+    "needs_review": true
+  },
+  {
+    "id": "5177790ad6",
+    "topic": "strength",
+    "view": "Strength keeps surfacing — most sharply in \"[will] I resolve to: pursue: Leave Ric a note about talk — I stand behind this. (strength 0.53)\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T08:21:48.041936+00:00",
+    "updated_at": "2026-11-04T00:58:27.108045+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T08:21:48.041936+00:00",
+        "kind": "observation",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393142+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393153+00:00",
+        "kind": "mention",
+        "ref_id": "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393171+00:00",
+        "kind": "mention",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393187+00:00",
+        "kind": "observation",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T08:51:52.393194+00:00",
+        "kind": "mention",
+        "ref_id": "a9edb055-7625-42fa-9171-542692940fb1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:21:53.051758+00:00",
+        "kind": "mention",
+        "ref_id": "39921db2-a14c-41b2-b329-0c50373b30ca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:22:46.607342+00:00",
+        "kind": "mention",
+        "ref_id": "25adadb9-bff7-4d98-9c8d-98c9c8ac276e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:53:19.603984+00:00",
+        "kind": "mention",
+        "ref_id": "6e447629-ae3f-40a2-8bce-73651deafa72",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T09:57:07.695325+00:00",
+        "kind": "mention",
+        "ref_id": "dc308b22-7b6c-4cc2-bc7e-3ee18d7c3fec",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:15:41.902144+00:00",
+        "kind": "mention",
+        "ref_id": "762c4a81-af8e-49ac-a25c-9a402aad6c9b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:25:40.952599+00:00",
+        "kind": "mention",
+        "ref_id": "fb866f47-bff4-4575-a20c-baa30c838f91",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T10:52:30.887335+00:00",
+        "kind": "mention",
+        "ref_id": "9f85667e-4a03-43c7-8e94-a276488929a7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:23:20.281348+00:00",
+        "kind": "mention",
+        "ref_id": "532042df-99ce-434f-8f1e-b052c415253a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:35:38.550066+00:00",
+        "kind": "mention",
+        "ref_id": "4de5fa71-744e-4300-97b3-0a759193a8f5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T13:39:23.117995+00:00",
+        "kind": "mention",
+        "ref_id": "34481f28-5d8c-4f4d-9da8-a701b258b676",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:09:28.493583+00:00",
+        "kind": "mention",
+        "ref_id": "03df06b2-d119-4b01-8f63-2cd498808bde",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T14:54:08.954371+00:00",
+        "kind": "mention",
+        "ref_id": "270fdb7a-fcaf-4321-b89d-aea4821805ea",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:24:58.095739+00:00",
+        "kind": "mention",
+        "ref_id": "e66c7ddf-89aa-4a75-b744-51040293209e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T15:40:44.526260+00:00",
+        "kind": "mention",
+        "ref_id": "11e16d91-a85a-4344-bb68-d0688a04bb05",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:17:40.586627+00:00",
+        "kind": "mention",
+        "ref_id": "48ce4537-516d-43d1-b344-b84504335b00",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:45:24.261389+00:00",
+        "kind": "mention",
+        "ref_id": "a305780a-d2ea-4551-b0d8-ea83aedcc295",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T16:46:06.873973+00:00",
+        "kind": "mention",
+        "ref_id": "67cbb797-b341-42ac-b7ba-b9eb6eef2845",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:00:35.064340+00:00",
+        "kind": "mention",
+        "ref_id": "790df2fc-ad62-464f-b146-df19e609a819",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:23:01.303517+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419797+00:00",
+        "kind": "mention",
+        "ref_id": "09a03f49-24f4-4c14-9d0a-a18bca9a2c15",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:59:44.566071+00:00",
+        "kind": "mention",
+        "ref_id": "d7adc5af-1d35-4771-a9dd-c398392789cc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:05:37.486386+00:00",
+        "kind": "mention",
+        "ref_id": "1bb99665-3f09-4c1a-9d47-0cbfa5caf8ee",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:28:50.017442+00:00",
+        "kind": "mention",
+        "ref_id": "d199862e-88f0-4ab3-a509-285941742065",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:40:29.995085+00:00",
+        "kind": "mention",
+        "ref_id": "de90aac6-9636-47c0-89ae-df6f0dc3442a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T19:51:24.405315+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T20:46:33.135760+00:00",
+        "kind": "mention",
+        "ref_id": "bd241e5d-be46-481d-9fae-3ca89df79821",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:41.418453+00:00",
+        "kind": "mention",
+        "ref_id": "c6d26f11-d0a3-4d89-bab2-1a8dba76590c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:55:50.119388+00:00",
+        "kind": "mention",
+        "ref_id": "6f5678b9-5d47-407e-ac06-eb96d26e4869",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:57:01.252531+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:31:58.437649+00:00",
+        "kind": "mention",
+        "ref_id": "6ea55f2e-6a45-4b20-af8c-6ba2450b46fa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.672124+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.108045+00:00",
+        "kind": "mention",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+      "c7f5c69f-a223-4f5c-ba0d-48fce72224da",
+      "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+      "406c92b0-d1e7-4b1e-b1ff-9da9e622bc16"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "9010f5324a",
+      "bf497f9e19"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "81f3d2a447",
+    "topic": "abandoned",
+    "view": "Abandoned keeps landing badly — most sharply in \"💔 Goal failed: Understand may specifically more deeply. steps_unreachable: 3 steps abandoned at the 3-attempt cap\". I've grown wary of it.",
+    "confidence": 0.47,
+    "alpha": 2.01,
+    "beta": 2.24,
+    "formed_at": "2026-11-03T14:23:40.067094+00:00",
+    "updated_at": "2026-11-04T02:41:38.946605+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T14:23:40.067094+00:00",
+        "kind": "observation",
+        "ref_id": "e4ccfe2d-afcd-44f6-8b66-8672bb68ca25",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:11:39.923199+00:00",
+        "kind": "observation",
+        "ref_id": "65591118-d860-476c-9085-be7f1aec8633",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-04T00:09:38.105303+00:00",
+        "kind": "mention",
+        "ref_id": "0dd2ca49-974c-45d7-87a2-bd5c498a38a4",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:11:32.530069+00:00",
+        "kind": "mention",
+        "ref_id": "07a73ce1-8828-46c6-8c57-d965235a119e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:13:23.162489+00:00",
+        "kind": "mention",
+        "ref_id": "ff983909-f5a0-4d88-80d6-9338c7a1417e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:15:48.819865+00:00",
+        "kind": "mention",
+        "ref_id": "4bc5ff90-e939-469c-90f2-f30e2f49f855",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:18:04.974832+00:00",
+        "kind": "mention",
+        "ref_id": "cf7fe1d8-8ff0-48d4-8343-809210b474c3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:20:03.237272+00:00",
+        "kind": "mention",
+        "ref_id": "f7640afe-66a8-4d5b-8ed9-7f845321eb08",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:21:55.235266+00:00",
+        "kind": "mention",
+        "ref_id": "52a572c3-7ec0-4eb9-9a49-0244b973a47a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:28:26.614342+00:00",
+        "kind": "mention",
+        "ref_id": "0c8c167e-0a1c-4d35-9563-7ce875116efa",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:31:07.786432+00:00",
+        "kind": "mention",
+        "ref_id": "f89c43b2-db43-44ec-8b6e-6dc14c3da124",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:33:06.452945+00:00",
+        "kind": "mention",
+        "ref_id": "56ba5851-596d-4086-8cab-293ccd80bbfb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:35:11.179325+00:00",
+        "kind": "mention",
+        "ref_id": "799b0e09-ae5f-4324-8dfa-134404cf018d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:37:04.613787+00:00",
+        "kind": "mention",
+        "ref_id": "5c4d32c7-0e7e-46ca-ad27-2dce79518432",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:39:04.170068+00:00",
+        "kind": "mention",
+        "ref_id": "a206e961-fa89-480d-a9d4-ca8163cfcdb6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:41:39.418295+00:00",
+        "kind": "mention",
+        "ref_id": "90a1dbdd-dc7b-439b-a7a4-827c70c9cdfd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:44:16.893639+00:00",
+        "kind": "mention",
+        "ref_id": "87d12081-4a6a-4fc9-a7f7-22d297ed84d5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:46:32.853339+00:00",
+        "kind": "mention",
+        "ref_id": "3dd22849-f2b9-45eb-94c5-fc131a296da5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:49:03.117860+00:00",
+        "kind": "mention",
+        "ref_id": "c95470b2-e96b-452e-858c-24afd96e99e9",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:51:17.360808+00:00",
+        "kind": "mention",
+        "ref_id": "ccd3831f-e12e-47cd-b901-a9c90f94b845",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:56:47.884926+00:00",
+        "kind": "mention",
+        "ref_id": "ba2ce59e-d433-45dc-b133-62ce8d71a3bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:05:16.062422+00:00",
+        "kind": "mention",
+        "ref_id": "1412450b-cb41-4295-a4ce-931462e2fa97",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:07:35.107085+00:00",
+        "kind": "mention",
+        "ref_id": "c39b0117-9d30-4907-8f4c-7a207a1c0de2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:10:08.694157+00:00",
+        "kind": "mention",
+        "ref_id": "9a8ec768-d75e-40ac-8438-e5b9fceef9d2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:12:54.018036+00:00",
+        "kind": "mention",
+        "ref_id": "7eff4d8c-5279-4b98-8407-38502707d500",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:14:26.861144+00:00",
+        "kind": "mention",
+        "ref_id": "d4ef3cc8-098a-4d9a-bf66-4c908baba704",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:15:26.585746+00:00",
+        "kind": "mention",
+        "ref_id": "f69c9a91-286f-4985-acf3-9f54b039c5a6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:18:03.605892+00:00",
+        "kind": "mention",
+        "ref_id": "4d586f51-de3d-4983-8cd8-d2f3056ad2c8",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:20:31.774207+00:00",
+        "kind": "mention",
+        "ref_id": "016915ca-f79e-4b6b-a845-6663cd35d959",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:22:33.136305+00:00",
+        "kind": "mention",
+        "ref_id": "4b217c21-51fd-4f3c-ae28-4226364066db",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:26:10.440233+00:00",
+        "kind": "mention",
+        "ref_id": "7370bed2-8eda-4655-81f8-ab1b9b7d79c5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:28:27.657587+00:00",
+        "kind": "mention",
+        "ref_id": "cdd8dcaa-fdcd-4555-8236-38e442db6fa5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:31:33.378732+00:00",
+        "kind": "mention",
+        "ref_id": "d995d4fe-9a6c-4f35-86b0-885ccddb9aca",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:33:49.370360+00:00",
+        "kind": "mention",
+        "ref_id": "16ce03ea-dea6-4d95-8aaa-96b0490ecd33",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:36:01.678659+00:00",
+        "kind": "mention",
+        "ref_id": "3639d941-28bb-4079-a79c-613e9423cbcd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:38:18.436115+00:00",
+        "kind": "mention",
+        "ref_id": "2ae87eed-2c76-4d21-b978-c0ecc2f0e4af",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:40:28.314824+00:00",
+        "kind": "mention",
+        "ref_id": "47921721-0eac-4cb6-ad43-fde8d4ef0e06",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:42:56.963099+00:00",
+        "kind": "mention",
+        "ref_id": "8f4b6818-aa2b-44b0-bf91-a6941003fdba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:45:27.902714+00:00",
+        "kind": "mention",
+        "ref_id": "9eb554d8-2c95-48b7-abeb-92fd6568233b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:48:22.576463+00:00",
+        "kind": "mention",
+        "ref_id": "a7d614ec-1b5a-4c57-ade5-59bd7b8e4e98",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:50:39.029679+00:00",
+        "kind": "mention",
+        "ref_id": "123c1298-b14d-4f38-9a65-8152e9733618",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:52:51.773891+00:00",
+        "kind": "mention",
+        "ref_id": "f58a4083-a90f-46bc-b576-f39f9dcb96a5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:55:16.880817+00:00",
+        "kind": "mention",
+        "ref_id": "049a1ae1-c033-445e-b676-1a88035ae018",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:57:11.230412+00:00",
+        "kind": "mention",
+        "ref_id": "6c92d58a-ad3f-4c52-92fb-ac6d04d3011e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:59:23.390883+00:00",
+        "kind": "mention",
+        "ref_id": "9a2574f2-4919-4873-8b6d-02a6d7233f79",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:01:23.456898+00:00",
+        "kind": "mention",
+        "ref_id": "962c0073-2e57-42d5-9807-bdaa1b739bc2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:03:34.412105+00:00",
+        "kind": "mention",
+        "ref_id": "c8075056-b337-46fa-98c3-a0f9e4726387",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:06:28.866225+00:00",
+        "kind": "mention",
+        "ref_id": "e9fabf38-4bb9-4cfa-9029-f758cdf552bb",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:08:42.028478+00:00",
+        "kind": "mention",
+        "ref_id": "962ab90c-ba9c-4b93-b194-df2401c82c12",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:10:47.998292+00:00",
+        "kind": "mention",
+        "ref_id": "e5a4881c-6e92-4789-81de-2f23009834db",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:13:10.090920+00:00",
+        "kind": "mention",
+        "ref_id": "a3d28bf4-2c58-4594-9c37-cfb8ff84282c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:17:34.999152+00:00",
+        "kind": "mention",
+        "ref_id": "ed9051eb-e903-4879-8422-754aa3dd27ed",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:20:06.273955+00:00",
+        "kind": "mention",
+        "ref_id": "c50b35fb-1cb5-4146-bfa7-ebc76f9d322a",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:22:20.073920+00:00",
+        "kind": "mention",
+        "ref_id": "40d989b8-5081-441e-b905-c6458b360836",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:24:39.092442+00:00",
+        "kind": "mention",
+        "ref_id": "a909556e-4efd-40cf-b698-a46c63db441e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:27:15.088036+00:00",
+        "kind": "mention",
+        "ref_id": "1ec5b621-c2a2-46a0-86dd-d4fc964ca051",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:30:11.307470+00:00",
+        "kind": "mention",
+        "ref_id": "fb1d9846-d80c-4c53-b73e-63c444ebb173",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:35:10.464359+00:00",
+        "kind": "mention",
+        "ref_id": "58a2087a-0029-4f59-b82b-d7d5b84d5302",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:13.870373+00:00",
+        "kind": "mention",
+        "ref_id": "ab628e24-4d0b-42f9-9ecf-3ea7756cf45c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:41:38.946605+00:00",
+        "kind": "mention",
+        "ref_id": "993b6f7f-f942-4267-af54-818ac1d7fca8",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e4ccfe2d-afcd-44f6-8b66-8672bb68ca25",
+      "ecf46cc3-8ed4-4246-9b5d-a75b3301a237",
+      "ab08ab7d-de3f-441a-9534-a20f0b8b1a0a"
+    ],
+    "linked_opinion_ids": [
+      "5494af1f14",
+      "26934eb377"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "8acc1df806",
+    "topic": "focused",
+    "view": "Focused keeps surfacing — most sharply in \"Orrin reflects to break gentle drift in focused mode.\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.65,
+    "alpha": 4.9,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T15:41:31.845351+00:00",
+    "updated_at": "2026-11-04T02:39:33.972139+00:00",
+    "evidence_count": 15,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T15:41:31.845351+00:00",
+        "kind": "observation",
+        "ref_id": "e2692efe-18af-4c37-8a1c-3792a06f02be",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:15:22.515944+00:00",
+        "kind": "observation",
+        "ref_id": "fe00087f-ad20-4efd-9ea0-eda82c95bae8",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:17:03.744665+00:00",
+        "kind": "observation",
+        "ref_id": "53196904-2c79-4259-817b-1f6bf6663e83",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T16:39:30.314536+00:00",
+        "kind": "observation",
+        "ref_id": "7b2cd0f3-b76d-4e52-bee1-881295932f57",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:10:10.583968+00:00",
+        "kind": "observation",
+        "ref_id": "1bd98d4b-c463-4e01-879f-4756c5bcdbeb",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:22:15.505785+00:00",
+        "kind": "observation",
+        "ref_id": "dc237c45-67a5-4257-a54d-cdb3a070965e",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T20:45:25.624339+00:00",
+        "kind": "observation",
+        "ref_id": "d07d6f46-4bda-4a4b-93bb-2e9bcf7b9760",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:42:42.469702+00:00",
+        "kind": "mention",
+        "ref_id": "09154b5d-ce18-4adc-919c-0931ef9307d3",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:42:42.469722+00:00",
+        "kind": "observation",
+        "ref_id": "09154b5d-ce18-4adc-919c-0931ef9307d3",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:43:04.077415+00:00",
+        "kind": "mention",
+        "ref_id": "016fda46-a62e-4ea3-aac2-ef1ec8bb8161",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:43:04.077434+00:00",
+        "kind": "observation",
+        "ref_id": "016fda46-a62e-4ea3-aac2-ef1ec8bb8161",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:45:27.021976+00:00",
+        "kind": "mention",
+        "ref_id": "c4f7d5d5-574a-45b4-a052-17c56fcfcd2c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:50:54.326974+00:00",
+        "kind": "mention",
+        "ref_id": "fb9df7df-84b4-4b36-befb-0eccbc829cba",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:56:51.071678+00:00",
+        "kind": "mention",
+        "ref_id": "6555b465-e5da-4b42-a932-e22c58a734be",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:34:39.295520+00:00",
+        "kind": "mention",
+        "ref_id": "1ae2d2c3-9dd0-412b-86d1-53dbeda9149f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:39:46.496469+00:00",
+        "kind": "mention",
+        "ref_id": "64c567a2-af87-433c-b71e-c0ab89b68b7b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:44:49.235838+00:00",
+        "kind": "mention",
+        "ref_id": "436d55af-e806-4e92-90c3-c07f26447897",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:01:41.006655+00:00",
+        "kind": "mention",
+        "ref_id": "a110732f-c5b9-4261-8f6b-658c1eae18df",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:06:17.541643+00:00",
+        "kind": "mention",
+        "ref_id": "f586577c-982b-4051-9293-0601045491b2",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:06:17.541663+00:00",
+        "kind": "observation",
+        "ref_id": "f586577c-982b-4051-9293-0601045491b2",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:06:50.508246+00:00",
+        "kind": "mention",
+        "ref_id": "201ac9ff-ad49-488f-a653-30867ed995d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:17:01.685072+00:00",
+        "kind": "mention",
+        "ref_id": "cf038116-bd0d-4df9-8d7e-3782f981572b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:18:55.734321+00:00",
+        "kind": "mention",
+        "ref_id": "7dc9b98f-3fd4-434a-b270-e6d6574fa7bc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:18:55.734352+00:00",
+        "kind": "observation",
+        "ref_id": "7dc9b98f-3fd4-434a-b270-e6d6574fa7bc",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:21:16.592184+00:00",
+        "kind": "mention",
+        "ref_id": "2ecb2b9d-1485-4f11-8847-6b8a0a4ab830",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:21:16.592204+00:00",
+        "kind": "observation",
+        "ref_id": "2ecb2b9d-1485-4f11-8847-6b8a0a4ab830",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:21:33.852416+00:00",
+        "kind": "mention",
+        "ref_id": "f4beea88-9670-4682-b10b-d8293a2489f7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:21:33.852445+00:00",
+        "kind": "observation",
+        "ref_id": "f4beea88-9670-4682-b10b-d8293a2489f7",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:22:05.784632+00:00",
+        "kind": "mention",
+        "ref_id": "15357f53-c70c-467e-9217-07a2a380d55f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:32:44.850555+00:00",
+        "kind": "mention",
+        "ref_id": "79c57bf8-3e90-424a-bcf6-9cbb4d460476",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:38:09.013043+00:00",
+        "kind": "mention",
+        "ref_id": "75eff512-8ad3-4652-9dc7-2d05c0245396",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:38:09.013064+00:00",
+        "kind": "observation",
+        "ref_id": "75eff512-8ad3-4652-9dc7-2d05c0245396",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T23:38:09.013086+00:00",
+        "kind": "mention",
+        "ref_id": "6eddb896-59ae-47ae-b5e2-8fcb8dd10bbc",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:48:32.171621+00:00",
+        "kind": "mention",
+        "ref_id": "21b24281-4a2e-4a64-8f98-3129dce87889",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:53:48.736583+00:00",
+        "kind": "mention",
+        "ref_id": "40634530-09f4-4582-b6a7-42fb06d7d022",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:05:18.288563+00:00",
+        "kind": "mention",
+        "ref_id": "990891e2-a674-48b5-a177-848b27efbdb7",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:10:24.312359+00:00",
+        "kind": "mention",
+        "ref_id": "a947857c-bfd8-4baa-9f2b-dbc26b328a13",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:15:25.408405+00:00",
+        "kind": "mention",
+        "ref_id": "bb8adea8-d088-4408-b9e6-bf9e3fcf6971",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:20:25.551465+00:00",
+        "kind": "mention",
+        "ref_id": "dae0cb5b-a922-456d-a0e7-d55b6fd48a2d",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:26:22.180115+00:00",
+        "kind": "mention",
+        "ref_id": "c4b29452-c758-48bb-80fa-56e1789c3d66",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:31:48.586640+00:00",
+        "kind": "mention",
+        "ref_id": "e0eaf313-b056-411c-ac06-794a574cbc22",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:49:18.341518+00:00",
+        "kind": "mention",
+        "ref_id": "f0cad938-ebb7-4d03-85a2-8f40c8a727ac",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:54:22.591230+00:00",
+        "kind": "mention",
+        "ref_id": "ad598fff-17d4-4901-84ae-17cee7425fed",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:09:38.426990+00:00",
+        "kind": "mention",
+        "ref_id": "079bf1df-ed58-425a-8cf9-e55f39ee4535",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:12:06.979677+00:00",
+        "kind": "mention",
+        "ref_id": "db5d45ee-1fa0-4a0b-a790-f6b3154baf1c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:12:06.979699+00:00",
+        "kind": "observation",
+        "ref_id": "db5d45ee-1fa0-4a0b-a790-f6b3154baf1c",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-04T01:14:38.720336+00:00",
+        "kind": "mention",
+        "ref_id": "decba177-4571-4d8d-b398-c9a13c4d0ffd",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:25:27.055757+00:00",
+        "kind": "mention",
+        "ref_id": "b183194f-78ae-4907-95cb-79416d811e2e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:30:34.595695+00:00",
+        "kind": "mention",
+        "ref_id": "b6a3fe0a-89c0-4f81-8ebb-f8af9f440f60",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:42:22.175452+00:00",
+        "kind": "mention",
+        "ref_id": "26efb0b5-6853-4cb6-86c4-075e9ed756e5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:47:26.300396+00:00",
+        "kind": "mention",
+        "ref_id": "528b2494-5898-4a05-8069-714397447d95",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:52:30.528518+00:00",
+        "kind": "mention",
+        "ref_id": "890d1c20-0b41-4cd3-98b5-56c499a67127",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:57:44.724991+00:00",
+        "kind": "mention",
+        "ref_id": "ec305a2c-77ba-4b33-bef9-3d722cc97e3e",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:02:52.134611+00:00",
+        "kind": "mention",
+        "ref_id": "9cf6b628-b191-44d5-9b76-f9f5fe50177c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:07:55.792220+00:00",
+        "kind": "mention",
+        "ref_id": "88e90cd7-606b-44ad-af06-7cb3a43ba9fe",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:15:09.078093+00:00",
+        "kind": "mention",
+        "ref_id": "cc5de8fd-7e3c-41c4-95b8-455e2bb77462",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:20:16.739725+00:00",
+        "kind": "mention",
+        "ref_id": "847caa0d-d75f-4695-bc55-a320f421de24",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:29:24.549825+00:00",
+        "kind": "mention",
+        "ref_id": "f7c1b01b-3f22-4a4a-b434-003566c96d59",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:34:34.279347+00:00",
+        "kind": "mention",
+        "ref_id": "67a14d8b-2636-4593-8437-e44d0d4d56a1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:39:33.972139+00:00",
+        "kind": "mention",
+        "ref_id": "040b79b6-89aa-4ce4-850c-5dee60ee5f07",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e2692efe-18af-4c37-8a1c-3792a06f02be",
+      "8a000855-7e0c-4740-b09f-0afa4b79af34"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "7eaf5e9864",
+      "9010f5324a",
+      "bf497f9e19",
+      "5177790ad6"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "44255a3e9d",
+    "topic": "stand behind",
+    "view": "Stand behind keeps surfacing — most sharply in \"[will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T17:23:01.309776+00:00",
+    "updated_at": "2026-11-04T00:58:27.108158+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "expected_gain",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T17:23:01.309776+00:00",
+        "kind": "observation",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419887+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419898+00:00",
+        "kind": "mention",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419915+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T17:53:02.419931+00:00",
+        "kind": "observation",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:51:24.405490+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.672261+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.108158+00:00",
+        "kind": "mention",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.6,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+      "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+      "c52823a2-c2b6-402c-bc73-84f18dfc2776"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "9010f5324a",
+      "bf497f9e19",
+      "5177790ad6",
+      "8acc1df806"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "9da3be8f92",
+    "topic": "behind",
+    "view": "Behind keeps surfacing — most sharply in \"[will] I resolve to: pursue: Open question: Are these genuinely useful, or selected by inertia? — I stand behind this. (\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.39,
+    "alpha": 1.65,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T17:53:02.432348+00:00",
+    "updated_at": "2026-11-04T00:58:27.108206+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "exploration_drive",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T17:53:02.432348+00:00",
+        "kind": "observation",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T18:23:11.632904+00:00",
+        "kind": "mention",
+        "ref_id": "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:23:11.632915+00:00",
+        "kind": "mention",
+        "ref_id": "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:23:11.632932+00:00",
+        "kind": "mention",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T18:23:11.632946+00:00",
+        "kind": "observation",
+        "ref_id": "c52823a2-c2b6-402c-bc73-84f18dfc2776",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T19:51:24.405560+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T23:40:07.672316+00:00",
+        "kind": "mention",
+        "ref_id": "0a688898-b186-48e3-98fb-f76ee30984f6",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T00:58:27.108206+00:00",
+        "kind": "mention",
+        "ref_id": "be6fd0d0-510f-4da7-bee8-fec262256be9",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 0.6,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "e939c94c-c3df-42e2-b76c-283bc8c412ad",
+      "2793e8b7-7642-4f80-aac7-015aa5ec665f",
+      "c52823a2-c2b6-402c-bc73-84f18dfc2776"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "9010f5324a",
+      "bf497f9e19",
+      "5177790ad6",
+      "8acc1df806",
+      "44255a3e9d"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "7ddf80803d",
+    "topic": "actually",
+    "view": "Actually keeps surfacing — most sharply in \"💔 Goal failed: Answer: What actually is they, beyond the mentions I keep seeing? — round 3. ValueError: no URLs to fetch\" — but it hasn't settled into a stance yet.",
+    "confidence": 0.42,
+    "alpha": 1.9,
+    "beta": 2.6,
+    "formed_at": "2026-11-03T20:47:03.108037+00:00",
+    "updated_at": "2026-11-04T02:37:47.457982+00:00",
+    "evidence_count": 3,
+    "emotion_when_formed": "confidence",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T20:47:03.108037+00:00",
+        "kind": "observation",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T21:17:24.161073+00:00",
+        "kind": "mention",
+        "ref_id": "c3687a9c-674e-4a73-8638-098b4974cd9f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:33:29.122840+00:00",
+        "kind": "mention",
+        "ref_id": "6ccb4162-a190-42bb-8efc-c01b135c8061",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:33:37.537162+00:00",
+        "kind": "mention",
+        "ref_id": "e8e916b9-f9ba-4fff-b7b9-f9674ed161d1",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T21:54:07.096166+00:00",
+        "kind": "mention",
+        "ref_id": "71d65d56-15fe-4ce8-835b-244eda768e34",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:31:43.351575+00:00",
+        "kind": "mention",
+        "ref_id": "59ff2acf-4a6f-44d7-bbde-d2aae581b16f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:31:43.351596+00:00",
+        "kind": "observation",
+        "ref_id": "59ff2acf-4a6f-44d7-bbde-d2aae581b16f",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T22:49:13.611698+00:00",
+        "kind": "mention",
+        "ref_id": "04285ad8-68af-4ddd-a8fd-d79cb7e7e475",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:09:18.607954+00:00",
+        "kind": "mention",
+        "ref_id": "0a35f1ed-c79f-4085-be93-527480bd039f",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:13:15.717721+00:00",
+        "kind": "mention",
+        "ref_id": "5b6edf47-f084-4a2f-8e81-4bd7fe913902",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T01:30:23.851999+00:00",
+        "kind": "mention",
+        "ref_id": "9741d971-e56a-4c11-8127-2ea4f0c6b01c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:01:11.601697+00:00",
+        "kind": "mention",
+        "ref_id": "1e540946-1d76-4a07-bdaf-774ab7354e56",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:26:51.120072+00:00",
+        "kind": "mention",
+        "ref_id": "65f2a0ea-bab5-4c85-9463-7589f920c09b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:33:12.573003+00:00",
+        "kind": "mention",
+        "ref_id": "cddea655-15e8-441e-b196-65fcf3b9013b",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:33:12.573023+00:00",
+        "kind": "observation",
+        "ref_id": "cddea655-15e8-441e-b196-65fcf3b9013b",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-04T02:34:59.053895+00:00",
+        "kind": "mention",
+        "ref_id": "77563f0e-c5b4-4436-842e-b06b8cee5af5",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-04T02:37:47.457982+00:00",
+        "kind": "mention",
+        "ref_id": "fad30a2a-6efa-41f5-8414-193965de37bf",
+        "direction": "for",
+        "weight": 0.0
+      }
+    ],
+    "salience": 1.0,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "c3687a9c-674e-4a73-8638-098b4974cd9f",
+      "7c115349-7ad2-4c45-875c-f285052bc997",
+      "2417331e-797e-49b0-8b59-f20a10a2f02f"
+    ],
+    "linked_opinion_ids": [
+      "3bf1114a98",
+      "437b930db8",
+      "7eaf5e9864",
+      "8acc1df806"
+    ],
+    "needs_review": false
+  },
+  {
+    "id": "67b0d7c169",
+    "topic": "understand",
+    "view": "Understand keeps landing badly — most sharply in \"[will] I resolve (held lightly, strength 0.20) to: pursue: Understand general relativity explained more deeply — This do\". I've grown wary of it.",
+    "confidence": 0.38,
+    "alpha": 1.6,
+    "beta": 2.65,
+    "formed_at": "2026-11-03T22:01:42.524274+00:00",
+    "updated_at": "2026-11-03T22:31:43.351656+00:00",
+    "evidence_count": 2,
+    "emotion_when_formed": "motivation",
+    "formation_method": "evidence_weighted",
+    "evidence": [
+      {
+        "ts": "2026-11-03T22:01:42.524274+00:00",
+        "kind": "observation",
+        "ref_id": "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+        "direction": "for",
+        "weight": 0.25
+      },
+      {
+        "ts": "2026-11-03T22:31:43.351637+00:00",
+        "kind": "mention",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "for",
+        "weight": 0.0
+      },
+      {
+        "ts": "2026-11-03T22:31:43.351656+00:00",
+        "kind": "observation",
+        "ref_id": "6850407f-794f-4fda-be2e-7825d13f487c",
+        "direction": "against",
+        "weight": 0.25
+      }
+    ],
+    "salience": 0.35,
+    "stake": 0.1,
+    "root_memory_ids": [
+      "d8bf4f44-f0fd-4391-9503-d978d7774e28",
+      "6850407f-794f-4fda-be2e-7825d13f487c",
+      "86d5aa3e-80ba-4f20-a5c2-97b0512b2149"
+    ],
+    "linked_opinion_ids": [
+      "26934eb377",
+      "9010f5324a",
+      "81f3d2a447"
+    ],
+    "needs_review": true
+  }
+]

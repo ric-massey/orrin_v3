@@ -1,0 +1,72 @@
+{
+  "question": "What actually is Overdosing on medication, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "overdosing",
+    "medication"
+  ],
+  "entities": [
+    "which",
+    "factor in overdosing",
+    "Anti-anxiety medication",
+    "any drug that can be taken or prescribed for the treatment of anxiety disorders",
+    "Both of them",
+    "considered as first-line anti-anxiety medications"
+  ],
+  "relations": [
+    {
+      "subject": "which",
+      "predicate": "is a",
+      "object": "factor in overdosing",
+      "source": "my prior claims [g_9898d125ee]"
+    },
+    {
+      "subject": "Anti-anxiety medication",
+      "predicate": "is",
+      "object": "any drug that can be taken or prescribed for the treatment of anxiety disorders",
+      "source": "https://en.wikipedia.org/wiki/Anxiolytic"
+    },
+    {
+      "subject": "Both of them",
+      "predicate": "are",
+      "object": "considered as first-line anti-anxiety medications",
+      "source": "https://en.wikipedia.org/wiki/Anxiolytic"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_9898d125ee]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Drug_overdose"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vanilla_Sky"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Kenneth_Harrison_%28serial_killer%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Persepolis_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Pegeen_Vail_Guggenheim"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lithium_%28medication%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Ezetimibe"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Anxiolytic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fentanyl"
+    }
+  ],
+  "ts": "2026-11-03T15:10:41.312474+00:00"
+}

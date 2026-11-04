@@ -1,0 +1,174 @@
+{
+  "goal": {
+    "id": "g_063f3269da",
+    "title": "Understand philosophy of time more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "philosophy of time",
+        "philosophy of time explained",
+        "what is not obvious about philosophy of time"
+      ],
+      "synth_kind": "memo",
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:04.514108Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:04.514111Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:04.514113Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:04.514114Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T03:16:04.514116Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "A new angle on philosophy of time was researched.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A new fact about philosophy of time was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T03:16:04.514147Z",
+      "question": "What is there about philosophy of time that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 03:16:04.514479+00:00",
+    "updated_at": "2026-11-03 03:16:07.879344+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "A durable artifact exists for this goal.",
+          "kind": "artifact",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The artifact directly addresses the goal rather than merely describing intent.",
+          "kind": "quality",
+          "target": true,
+          "met": false
+        },
+        {
+          "criterion": "The result has been checked against the stated outcome.",
+          "kind": "validation",
+          "target": true,
+          "met": false
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_space_and_time",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Eternalism_%28philosophy_of_time%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Donnie_Darko",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Time_travel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_presentism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_philosophy",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Consciousness_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Time",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Identity_%28philosophy%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_063f3269da/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T03:16:14.029010+00:00"
+}

@@ -1,0 +1,147 @@
+{
+  "goal": {
+    "id": "g_eb87d6cf5c",
+    "title": "Answer: What actually is bridges and salt domes, beyond the mentions I keep seeing? — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What actually is bridges and salt domes, beyond the mentions I keep seeing? open problems",
+        "What actually is bridges and salt domes, beyond the mentions I keep seeing? criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_d0712958cf",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:35.903834Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:35.903841Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:35.903843Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:35.903844Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T18:54:35.903848Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is bridges and salt domes, beyond the mentions' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T18:54:35.903893Z",
+      "question": "What actually is bridges and salt domes, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 18:54:35.906769+00:00",
+    "updated_at": "2026-11-03 18:54:37.888447+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_d0712958cf]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Close_Encounters_of_the_Third_Kind",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_ancient_Roman_religion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Slavery_in_ancient_Rome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Charles_III%2C_Duke_of_Bourbon",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_Hungary",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_eb87d6cf5c/doc_06.txt"
+    }
+  ],
+  "ts": "2026-11-03T18:54:42.853221+00:00"
+}

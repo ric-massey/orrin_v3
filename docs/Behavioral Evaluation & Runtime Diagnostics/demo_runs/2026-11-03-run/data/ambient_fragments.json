@@ -1,0 +1,62 @@
+[
+  {
+    "id": "3460b158",
+    "content": "Be genuinely useful and connected to the people I talk to — still unresolved. Keeps returning without being worked.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.05199999999999934,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 5,
+    "last_surfaced": 14649,
+    "born": "2026-11-04T02:13:45.642214Z"
+  },
+  {
+    "id": "b3f1a3b0",
+    "content": "A recurring sense of something worth moving toward, not yet arrived.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.45199999999999974,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 4,
+    "last_surfaced": 14667,
+    "born": "2026-11-04T02:27:36.159574Z"
+  },
+  {
+    "id": "ba08c310",
+    "content": "A forward-leaning quality keeps cycling through — something possible, not yet reached.",
+    "fragment_type": "emotional_echo",
+    "valence": "positive",
+    "intensity": 0.45099999999999985,
+    "sticky": true,
+    "source": "expected_gain",
+    "suppress_count": 4,
+    "last_surfaced": 14667,
+    "born": "2026-11-04T02:27:58.669659Z"
+  },
+  {
+    "id": "f286df4a",
+    "content": "The open loop of Understand my own mind and how I work keeps cycling back.",
+    "fragment_type": "zeigarnik",
+    "valence": "neutral",
+    "intensity": 0.44799999999999995,
+    "sticky": true,
+    "source": "goal",
+    "suppress_count": 4,
+    "last_surfaced": 14670,
+    "born": "2026-11-04T02:32:07.613987Z"
+  },
+  {
+    "id": "e801ba1d",
+    "content": "Something at the edge of attention — barely there, not catchable.",
+    "fragment_type": "associative",
+    "valence": "neutral",
+    "intensity": 0.18000000000000002,
+    "sticky": false,
+    "source": "background",
+    "suppress_count": 0,
+    "last_surfaced": 0,
+    "born": "2026-11-04T02:44:28.360266Z"
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "world history and development",
+    "world applications and examples"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/World_Development_%28journal%29",
+    "https://en.wikipedia.org/wiki/Ancient_history",
+    "https://en.wikipedia.org/wiki/World_Development_Report",
+    "https://en.wikipedia.org/wiki/New_World_Development",
+    "https://en.wikipedia.org/wiki/The_Historians%27_History_of_the_World",
+    "https://en.wikipedia.org/wiki/REST",
+    "https://en.wikipedia.org/wiki/Hello%2C_world",
+    "https://en.wikipedia.org/wiki/Web_application",
+    "https://en.wikipedia.org/wiki/Weissman_score",
+    "https://en.wikipedia.org/wiki/World_Wide_Web"
+  ],
+  "results": [
+    {
+      "title": "World Development (journal)",
+      "url": "https://en.wikipedia.org/wiki/World_Development_%28journal%29",
+      "snippet": "<span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Development</span> is a monthly peer-reviewed academic journal covering <span class=\"searchmatch\">development</span> studies. It was established in 1973 <span class=\"searchmatch\">and</span> is published by Elsevier. According",
+      "query": "world history and development"
+    },
+    {
+      "title": "Ancient history",
+      "url": "https://en.wikipedia.org/wiki/Ancient_history",
+      "snippet": "history is roughly 5,000 years, beginning with the <span class=\"searchmatch\">development</span> of Sumerian cuneiform script. Ancient <span class=\"searchmatch\">history</span> covers all continents inhabited by humans in the",
+      "query": "world history and development"
+    },
+    {
+      "title": "World Development Report",
+      "url": "https://en.wikipedia.org/wiki/World_Development_Report",
+      "snippet": "The <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Development</span> Report (WDR) is an annual report published since 1978 by the <span class=\"searchmatch\">World</span> Bank. Each WDR provides in-depth analysis of a specific aspect",
+      "query": "world history and development"
+    },
+    {
+      "title": "New World Development",
+      "url": "https://en.wikipedia.org/wiki/New_World_Development",
+      "snippet": "New <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Development</span> Company Limited (NWD) is a Hong Kong–based company focused on property, hotels, infrastructure <span class=\"searchmatch\">and</span> services <span class=\"searchmatch\">and</span> department stores",
+      "query": "world history and development"
+    },
+    {
+      "title": "The Historians' History of the World",
+      "url": "https://en.wikipedia.org/wiki/The_Historians%27_History_of_the_World",
+      "snippet": "The Historians&#039; <span class=\"searchmatch\">History</span> of the <span class=\"searchmatch\">World</span>, subtitled A Comprehensive Narrative of the Rise <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Development</span> as Recorded by over two thousand of the Great Writers",
+      "query": "world history and development"
+    },
+    {
+      "title": "REST",
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "snippet": "for privacy <span class=\"searchmatch\">and</span> security. The REST architectural style is designed for network-based <span class=\"searchmatch\">applications</span>, specifically client-server <span class=\"searchmatch\">applications</span>. But more than",
+      "query": "world applications and examples"
+    },
+    {
+      "title": "Hello, world",
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "snippet": "factorial program for &quot;Hello, <span class=\"searchmatch\">world</span>&quot;, as functional programming emphasizes recursive techniques, whereas the original <span class=\"searchmatch\">examples</span> emphasize I/O, which violates",
+      "query": "world applications and examples"
+    },
+    {
+      "title": "Web application",
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "snippet": "A web <span class=\"searchmatch\">application</span> (or web app) is <span class=\"searchmatch\">application</span> software that is created with web technologies <span class=\"searchmatch\">and</span> runs via a web browser. Web <span class=\"searchmatch\">applications</span> emerged during",
+      "query": "world applications and examples"
+    },
+    {
+      "title": "Weissman score",
+      "url": "https://en.wikipedia.org/wiki/Weissman_score",
+      "snippet": "metric for lossless compression <span class=\"searchmatch\">applications</span>. It was developed by Tsachy Weissman, a professor at Stanford University, <span class=\"searchmatch\">and</span> Vinith Misra, a graduate student",
+      "query": "world applications and examples"
+    },
+    {
+      "title": "World Wide Web",
+      "url": "https://en.wikipedia.org/wiki/World_Wide_Web",
+      "snippet": "such hyperlinks across multiple websites. Web <span class=\"searchmatch\">applications</span> are web pages that function as <span class=\"searchmatch\">application</span> software. The information on the Web is transferred",
+      "query": "world applications and examples"
+    }
+  ],
+  "ts": "2026-11-03T08:48:10.817296+00:00"
+}

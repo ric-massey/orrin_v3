@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/All_the_Names",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_01.txt",
+      "chars": 6052
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/All_in_Your_Name",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_02.txt",
+      "chars": 7700
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/All_in_the_Name_of_Love",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_03.txt",
+      "chars": 8178
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/All_the_Names_of_God",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_04.txt",
+      "chars": 5844
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Name_All_the_Animals",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_05.txt",
+      "chars": 2314
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Clarissa_Explains_It_All",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Clarissa_Explains_It_All_episodes",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sister_Mary_Explains_It_All",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_08.txt",
+      "chars": 10551
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Trade_name",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_764f5078e2/doc_10.txt",
+      "chars": 15623
+    }
+  ],
+  "ts": "2026-11-03T16:38:59.788501+00:00"
+}

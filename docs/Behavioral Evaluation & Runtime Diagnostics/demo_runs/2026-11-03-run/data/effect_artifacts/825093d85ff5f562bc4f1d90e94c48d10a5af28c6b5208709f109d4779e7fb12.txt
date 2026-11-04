@@ -1,0 +1,47 @@
+{
+  "question": "What actually is you end up showing, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "end",
+    "showing"
+  ],
+  "entities": [
+    "you end up showing",
+    "yourself"
+  ],
+  "relations": [
+    {
+      "subject": "you end up showing",
+      "predicate": "is",
+      "object": "yourself",
+      "source": "my prior claims [g_ce2875314c]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_ce2875314c]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_End_%28Grimm%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_YouTube"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/WandaVision"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Google_Search"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Clara_Bow"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Android_%28operating_system%29"
+    }
+  ],
+  "ts": "2026-11-03T21:45:52.890695+00:00"
+}

@@ -1,0 +1,8 @@
+What I learned about emergence in complex systems more deeply:
+
+- [emotion/cause] A sense of being stuck grew because: [goal_blocked] 'Understand emergence in complex systems more deeply': step did not take hold (attemp
+- [Chunk: [will] I resolve to: pursue: Understand emergence in complex systems more deeply — I stand behind this. (strength 0.53) / [will] I resolve to: pursue: Understand foundations of quantum mechanics more deeply — I stand behind this. (strength 0.]
+- [Chunk: [Incubation] While sitting with: '💔 Goal failed: Understand the nature of mathematics more deeply — round 3. / [Incubation] While sitting with: '💔 Goal failed: Understand formal logic more deeply.]
+- 💔 Goal failed: Understand history of written language more deeply. ValueError: no URLs to fetch
+- 💔 Goal failed: Understand the nature of mathematics more deeply — round 3. ValueError: no URLs to fetch
+- [Chunk: [will] I resolve to: pursue: Understand world more deeply — I stand behind this. (strength 0.39) / [will] I resolve to: pursue: Understand formal logic more deeply — I stand behind this. (strength 0.53)]

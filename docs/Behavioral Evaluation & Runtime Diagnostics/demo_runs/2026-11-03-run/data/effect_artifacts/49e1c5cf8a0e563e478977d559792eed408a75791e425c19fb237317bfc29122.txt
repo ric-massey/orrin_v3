@@ -1,0 +1,132 @@
+{
+  "question": "What actually is Holly, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "holly"
+  ],
+  "entities": [
+    "The type species",
+    "European holly Ilex aquifolium described by Linnaeus",
+    "Holly",
+    "among the first artists inducted into the Rock and Roll Hall of Fame",
+    "Buddy Holly and his family",
+    "members of the Tabernacle Baptist Church",
+    "influenced by the music of Hank Williams",
+    "An excerpt from Holly",
+    "published in Entertainment Weekly on January 23",
+    "contacted by Penelope Dahl",
+    "Holly learns that Bonnie",
+    "last seen at a convenience store near Deerfield Park before leaving on her bike",
+    "While Holly",
+    "imprisoned",
+    "like Holly herself",
+    "running the show"
+  ],
+  "relations": [
+    {
+      "subject": "The type species",
+      "predicate": "is the",
+      "object": "European holly Ilex aquifolium described by Linnaeus",
+      "source": "https://en.wikipedia.org/wiki/Holly"
+    },
+    {
+      "subject": "Holly",
+      "predicate": "was",
+      "object": "among the first artists inducted into the Rock and Roll Hall of Fame",
+      "source": "https://en.wikipedia.org/wiki/Buddy_Holly"
+    },
+    {
+      "subject": "Buddy Holly and his family",
+      "predicate": "were",
+      "object": "members of the Tabernacle Baptist Church",
+      "source": "https://en.wikipedia.org/wiki/Buddy_Holly"
+    },
+    {
+      "subject": "Holly",
+      "predicate": "was",
+      "object": "influenced by the music of Hank Williams",
+      "source": "https://en.wikipedia.org/wiki/Buddy_Holly"
+    },
+    {
+      "subject": "An excerpt from Holly",
+      "predicate": "was",
+      "object": "published in Entertainment Weekly on January 23",
+      "source": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "subject": "Holly",
+      "predicate": "is",
+      "object": "contacted by Penelope Dahl",
+      "source": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "subject": "Holly learns that Bonnie",
+      "predicate": "was",
+      "object": "last seen at a convenience store near Deerfield Park before leaving on her bike",
+      "source": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "subject": "While Holly",
+      "predicate": "is",
+      "object": "imprisoned",
+      "source": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "subject": "like Holly herself",
+      "predicate": "is",
+      "object": "running the show",
+      "source": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "subject": "even after learning that Holly",
+      "predicate": "was",
+      "object": "right about Robyn",
+      "source": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    },
+    {
+      "subject": "Holly",
+      "predicate": "was",
+      "object": "born in 1986 and is 16 at the start of the show and 20 at the end",
+      "source": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    },
+    {
+      "subject": "she and Holly",
+      "predicate": "are",
+      "object": "very close and Holly often encourages Val to take more risks",
+      "source": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Holly"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Buddy_Holly"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Holly_%28novel%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/The_Hollies"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Holly_Madison"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_What_I_Like_About_You_characters"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Nell_Fisher"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Body_Double"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Breakfast_at_Tiffany%27s_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Breakfast_at_Tiffany%27s_%28novella%29"
+    }
+  ],
+  "ts": "2026-11-03T21:46:25.817629+00:00"
+}

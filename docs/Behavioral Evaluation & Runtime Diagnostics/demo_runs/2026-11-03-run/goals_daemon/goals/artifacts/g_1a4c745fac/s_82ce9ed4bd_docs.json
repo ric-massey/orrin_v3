@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_01.txt",
+      "chars": 16631
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_02.txt",
+      "chars": 9219
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_03.txt",
+      "chars": 9542
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Syntactic_Structures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hyperboloid_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_05.txt",
+      "chars": 15648
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_06.txt",
+      "chars": 9114
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_07.txt",
+      "chars": 16851
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/India",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_09.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:40:04.586429+00:00"
+}

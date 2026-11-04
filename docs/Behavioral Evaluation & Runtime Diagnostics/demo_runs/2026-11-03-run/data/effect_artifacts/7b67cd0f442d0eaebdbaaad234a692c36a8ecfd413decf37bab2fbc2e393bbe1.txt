@@ -1,0 +1,124 @@
+{
+  "question": "What actually is hierarchy of needs, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "hierarchy",
+    "needs"
+  ],
+  "entities": [
+    "The hierarchy of needs developed by Abraham Maslow",
+    "one of his most enduring contributions to psychology",
+    "The hierarchy",
+    "split between deficiency needs and growth needs",
+    "there",
+    "five sets of basic needs",
+    "beginning with the physiological needs that",
+    "the most prepotent of all",
+    "If the physiological needs",
+    "fulfilled",
+    "If both the physiological and safety needs",
+    "fairly well gratified",
+    "The next need",
+    "esteem",
+    "Needs",
+    "distinguished from wants"
+  ],
+  "relations": [
+    {
+      "subject": "The hierarchy of needs developed by Abraham Maslow",
+      "predicate": "is",
+      "object": "one of his most enduring contributions to psychology",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "The hierarchy",
+      "predicate": "is",
+      "object": "split between deficiency needs and growth needs",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "five sets of basic needs",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "beginning with the physiological needs that",
+      "predicate": "are",
+      "object": "the most prepotent of all",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "If the physiological needs",
+      "predicate": "are",
+      "object": "fulfilled",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "If both the physiological and safety needs",
+      "predicate": "are",
+      "object": "fairly well gratified",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "The next need",
+      "predicate": "is",
+      "object": "esteem",
+      "source": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "subject": "Needs",
+      "predicate": "are",
+      "object": "distinguished from wants",
+      "source": "https://en.wikipedia.org/wiki/Need"
+    },
+    {
+      "subject": "need",
+      "predicate": "is",
+      "object": "something required for a safe",
+      "source": "https://en.wikipedia.org/wiki/Need"
+    },
+    {
+      "subject": "When needs or wants",
+      "predicate": "are",
+      "object": "backed by purchasing power",
+      "source": "https://en.wikipedia.org/wiki/Need"
+    },
+    {
+      "subject": "need",
+      "predicate": "is a",
+      "object": "psychological feature that arouses an organism to action toward a goal",
+      "source": "https://en.wikipedia.org/wiki/Need"
+    },
+    {
+      "subject": "of Needs The most widely known academic model of needs",
+      "predicate": "was",
+      "object": "proposed by psychologist Abraham Maslow in his hierarchy of needs in 1943",
+      "source": "https://en.wikipedia.org/wiki/Need"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Need"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Abraham_Maslow"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/ERG_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/DIKW_pyramid"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Analytic_hierarchy_process"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard"
+    }
+  ],
+  "ts": "2026-11-03T18:53:40.778732+00:00"
+}

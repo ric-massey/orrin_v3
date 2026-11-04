@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "you end up showing open problems",
+    "you end up showing criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/You_Can_See_Everything",
+    "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+    "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+    "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+    "https://en.wikipedia.org/wiki/YouTube",
+    "https://en.wikipedia.org/wiki/ChatGPT",
+    "https://en.wikipedia.org/wiki/CNN/YouTube_presidential_debates"
+  ],
+  "results": [
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "15 <span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> on quantum operators (about 5 already solved in 2000). A second list of 15 Simon <span class=\"searchmatch\">problems</span> was released in 2000 (at least 3 <span class=\"searchmatch\">problems</span> solved)",
+      "query": "you end up showing open problems"
+    },
+    {
+      "title": "Monty Hall problem",
+      "url": "https://en.wikipedia.org/wiki/Monty_Hall_problem",
+      "snippet": " <span class=\"searchmatch\">You</span> pick a door, say No. 1, and the host, who knows what&#039;s behind the doors, <span class=\"searchmatch\">opens</span> another door, say No. 3, which has a goat. He then says to <span class=\"searchmatch\">you</span>, &quot;Do",
+      "query": "you end up showing open problems"
+    },
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "Many mathematical <span class=\"searchmatch\">problems</span> have been stated but not yet solved. These <span class=\"searchmatch\">problems</span> come from many areas of mathematics, such as theoretical physics, computer",
+      "query": "you end up showing open problems"
+    },
+    {
+      "title": "You Can See Everything",
+      "url": "https://en.wikipedia.org/wiki/You_Can_See_Everything",
+      "snippet": "<span class=\"searchmatch\">You</span> Can See Everything is a 2026 American metadocumentary directed by Nathan Fielder (in his feature directorial debut) and Lance Oppenheim. It follows",
+      "query": "you end up showing open problems"
+    },
+    {
+      "title": "P versus NP problem",
+      "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+      "snippet": "in polynomial time? More unsolved <span class=\"searchmatch\">problems</span> in computer science The P versus NP <span class=\"searchmatch\">problem</span> is a major unsolved <span class=\"searchmatch\">problem</span> in theoretical computer science. Informally",
+      "query": "you end up showing open problems"
+    },
+    {
+      "title": "2024 Joe Biden–Donald Trump presidential debate",
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "snippet": "done. <span class=\"searchmatch\">And</span> I know like millions of Americans know: When <span class=\"searchmatch\">you</span> get knocked down, <span class=\"searchmatch\">you</span> get back <span class=\"searchmatch\">up</span>.&quot; — Joe Biden, responding to <span class=\"searchmatch\">criticism</span> of his <span class=\"searchmatch\">debate</span> performance",
+      "query": "you end up showing criticism and debate"
+    },
+    {
+      "title": "2024 United States presidential debates",
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "snippet": "done. <span class=\"searchmatch\">And</span> I know what millions of Americans know: When <span class=\"searchmatch\">you</span> get knocked down, <span class=\"searchmatch\">you</span> get back <span class=\"searchmatch\">up</span>.&quot; — Joe Biden, responding to <span class=\"searchmatch\">criticism</span> of his <span class=\"searchmatch\">debate</span> performance",
+      "query": "you end up showing criticism and debate"
+    },
+    {
+      "title": "YouTube",
+      "url": "https://en.wikipedia.org/wiki/YouTube",
+      "snippet": "<span class=\"searchmatch\">You</span>Tube book community BreadTube – Group of left-wing <span class=\"searchmatch\">You</span>Tubers CNN/<span class=\"searchmatch\">You</span>Tube presidential <span class=\"searchmatch\">debates</span> – Series of televised <span class=\"searchmatch\">debates</span> sponsored by CNN <span class=\"searchmatch\">and</span> YouTube",
+      "query": "you end up showing criticism and debate"
+    },
+    {
+      "title": "ChatGPT",
+      "url": "https://en.wikipedia.org/wiki/ChatGPT",
+      "snippet": "transform numerous professional fields, <span class=\"searchmatch\">and</span> it has instigated public <span class=\"searchmatch\">debate</span> about the nature of creativity <span class=\"searchmatch\">and</span> the future of knowledge work. The chatbot",
+      "query": "you end up showing criticism and debate"
+    },
+    {
+      "title": "CNN/YouTube presidential debates",
+      "url": "https://en.wikipedia.org/wiki/CNN/YouTube_presidential_debates",
+      "snippet": "The CNN/<span class=\"searchmatch\">You</span>Tube presidential <span class=\"searchmatch\">debates</span> were a series of televised <span class=\"searchmatch\">debates</span> held during the 2008 Republican Party <span class=\"searchmatch\">and</span> Democratic Party presidential primaries",
+      "query": "you end up showing criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T21:46:01.503828+00:00"
+}

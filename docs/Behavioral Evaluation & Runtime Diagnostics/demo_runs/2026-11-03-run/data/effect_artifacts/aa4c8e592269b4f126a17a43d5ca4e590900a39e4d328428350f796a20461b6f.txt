@@ -1,0 +1,118 @@
+{
+  "question": "What actually is physical system, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "physical",
+    "system"
+  ],
+  "entities": [
+    "map as an example of a physical system A physical system",
+    "collection of physical objects under study",
+    "passive systems and active systems",
+    "distinguished",
+    "physical condition of a thermodynamic system at a given time",
+    "described by its state",
+    "The possible equilibria between bodies",
+    "determined by the physical properties of the walls that separate the bodies",
+    "the description of non-equilibrium thermodynamic systems",
+    "field theory",
+    "or whether they",
+    "ultimately physical phenomena",
+    "then",
+    "mental events explicable in terms of physical events",
+    "System to train actors This article may",
+    "copy editing for spelling"
+  ],
+  "relations": [
+    {
+      "subject": "map as an example of a physical system A physical system",
+      "predicate": "is a",
+      "object": "collection of physical objects under study",
+      "source": "my prior claims [g_3421366886]"
+    },
+    {
+      "subject": "passive systems and active systems",
+      "predicate": "are",
+      "object": "distinguished",
+      "source": "https://en.wikipedia.org/wiki/Thermodynamic_system"
+    },
+    {
+      "subject": "physical condition of a thermodynamic system at a given time",
+      "predicate": "is",
+      "object": "described by its state",
+      "source": "https://en.wikipedia.org/wiki/Thermodynamic_system"
+    },
+    {
+      "subject": "The possible equilibria between bodies",
+      "predicate": "are",
+      "object": "determined by the physical properties of the walls that separate the bodies",
+      "source": "https://en.wikipedia.org/wiki/Thermodynamic_system"
+    },
+    {
+      "subject": "the description of non-equilibrium thermodynamic systems",
+      "predicate": "is a",
+      "object": "field theory",
+      "source": "https://en.wikipedia.org/wiki/Thermodynamic_system"
+    },
+    {
+      "subject": "or whether they",
+      "predicate": "are",
+      "object": "ultimately physical phenomena",
+      "source": "https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem"
+    },
+    {
+      "subject": "then",
+      "predicate": "are",
+      "object": "mental events explicable in terms of physical events",
+      "source": "https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem"
+    },
+    {
+      "subject": "System to train actors This article may",
+      "predicate": "require",
+      "object": "copy editing for spelling",
+      "source": "https://en.wikipedia.org/wiki/Stanislavski%27s_system"
+    },
+    {
+      "subject": "early productions",
+      "predicate": "were",
+      "object": "created without the use of his system",
+      "source": "https://en.wikipedia.org/wiki/Stanislavski%27s_system"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_3421366886]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Thermodynamic_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Socialist_calculation_debate"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Physical%3A_Asia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Bohr%E2%80%93Einstein_debates"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hasan_Piker"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Stanislavski%27s_system"
+    }
+  ],
+  "ts": "2026-11-03T15:09:24.086800+00:00"
+}

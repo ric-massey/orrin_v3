@@ -1,0 +1,114 @@
+{
+  "question": "What actually is Scholars, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "scholars"
+  ],
+  "entities": [
+    "Scholar and His Books by Gerbrand van den Eeckhout A scholar",
+    "person who is a researcher or has expertise in an academic discipline",
+    "the term scholar sometimes",
+    "equivalent to the term academic",
+    "The common themes",
+    "that a scholar is a person who has a high intellectual ability",
+    "Many scholars",
+    "also professors who teach others",
+    "Schwarzman Scholars",
+    "conceptualized by its founder",
+    "Semantic Scholar",
+    "designed to highlight the most important and influential elements of a paper",
+    "This",
+    "list of Rhodes Scholars",
+    "All names",
+    "verified using the Rhodes Scholar Database"
+  ],
+  "relations": [
+    {
+      "subject": "Scholar and His Books by Gerbrand van den Eeckhout A scholar",
+      "predicate": "is a",
+      "object": "person who is a researcher or has expertise in an academic discipline",
+      "source": "https://en.wikipedia.org/wiki/Scholar"
+    },
+    {
+      "subject": "the term scholar sometimes",
+      "predicate": "is",
+      "object": "equivalent to the term academic",
+      "source": "https://en.wikipedia.org/wiki/Scholar"
+    },
+    {
+      "subject": "The common themes",
+      "predicate": "are",
+      "object": "that a scholar is a person who has a high intellectual ability",
+      "source": "https://en.wikipedia.org/wiki/Scholar"
+    },
+    {
+      "subject": "Many scholars",
+      "predicate": "are",
+      "object": "also professors who teach others",
+      "source": "https://en.wikipedia.org/wiki/Scholar"
+    },
+    {
+      "subject": "Schwarzman Scholars",
+      "predicate": "was",
+      "object": "conceptualized by its founder",
+      "source": "https://en.wikipedia.org/wiki/Schwarzman_Scholars"
+    },
+    {
+      "subject": "Semantic Scholar",
+      "predicate": "is",
+      "object": "designed to highlight the most important and influential elements of a paper",
+      "source": "https://en.wikipedia.org/wiki/Semantic_Scholar"
+    },
+    {
+      "subject": "This",
+      "predicate": "is a",
+      "object": "list of Rhodes Scholars",
+      "source": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars"
+    },
+    {
+      "subject": "All names",
+      "predicate": "are",
+      "object": "verified using the Rhodes Scholar Database",
+      "source": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars"
+    },
+    {
+      "subject": "This",
+      "predicate": "is",
+      "object": "not an exhaustive list of all Rhodes Scholars",
+      "source": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Scholar"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Google_Scholar"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Schwarzman_Scholars"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Semantic_Scholar"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Violence_in_the_Quran"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/PnL_explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Daniel_McClellan_%28biblical_scholar%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/No_Time_to_Explain"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    }
+  ],
+  "ts": "2026-11-03T16:17:00.600898+00:00"
+}

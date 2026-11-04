@@ -18,13 +18,13 @@ import json
 import os
 import tempfile
 import threading
-from pathlib import Path
 from typing import Any, Dict, Optional
+from brain.paths import DATA_DIR
 from brain.utils.failure_counter import record_failure
 
 _log = get_logger(__name__)
 
-_EXPECTATIONS_FILE = Path(__file__).resolve().parent.parent / "data" / "drive_expectations.json"
+_EXPECTATIONS_FILE = DATA_DIR / "drive_expectations.json"  # DATA_DIR, so an isolated life keeps its own
 _EMA_ALPHA      = 0.15   # learning rate — ~6 observations to update half-weight
 _GAP_THRESHOLD  = 0.08   # minimum gap magnitude to trigger an affect response
 _AFFECT_SCALE   = 0.30   # max affect bump magnitude (gap=1.0 → 0.30 bump)

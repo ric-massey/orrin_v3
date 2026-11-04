@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "talk",
+    "talk explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Talk",
+    "https://en.wikipedia.org/wiki/Talk_Talk",
+    "https://en.wikipedia.org/wiki/Talk_That_Talk",
+    "https://en.wikipedia.org/wiki/The_Talk_%28talk_show%29",
+    "https://en.wikipedia.org/wiki/Talk_Talk_Talk",
+    "https://en.wikipedia.org/wiki/Talk_to_Me_%282022_film%29",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/Erotic_talk",
+    "https://en.wikipedia.org/wiki/Haliey_Welch",
+    "https://en.wikipedia.org/wiki/Talking_Heads"
+  ],
+  "results": [
+    {
+      "title": "Talk",
+      "url": "https://en.wikipedia.org/wiki/Talk",
+      "snippet": "amount of <span class=\"searchmatch\">talking</span> <span class=\"searchmatch\">Talk</span> Radio (disambiguation) <span class=\"searchmatch\">Talk</span> show (disambiguation) <span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> (disambiguation) <span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> (disambiguation) <span class=\"searchmatch\">Talking</span> (disambiguation)",
+      "query": "talk"
+    },
+    {
+      "title": "Talk Talk",
+      "url": "https://en.wikipedia.org/wiki/Talk_Talk",
+      "snippet": "<span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> were an English band formed in 1981 by Mark Hollis (vocals, guitar, piano), Lee Harris (drums), Paul Webb (bass), and Simon Brenner (keyboards)",
+      "query": "talk"
+    },
+    {
+      "title": "Talk That Talk",
+      "url": "https://en.wikipedia.org/wiki/Talk_That_Talk",
+      "snippet": "<span class=\"searchmatch\">Talk</span> That <span class=\"searchmatch\">Talk</span> is the sixth studio album by Barbadian singer Rihanna. It was released on November 18, 2011 by Def Jam Recordings, SRP Records, and Roc",
+      "query": "talk"
+    },
+    {
+      "title": "The Talk (talk show)",
+      "url": "https://en.wikipedia.org/wiki/The_Talk_%28talk_show%29",
+      "snippet": "The <span class=\"searchmatch\">Talk</span> is an American <span class=\"searchmatch\">talk</span> show that aired on CBS from October 18, 2010, to December 20, 2024. The show was developed by actress and host Sara Gilbert",
+      "query": "talk"
+    },
+    {
+      "title": "Talk Talk Talk",
+      "url": "https://en.wikipedia.org/wiki/Talk_Talk_Talk",
+      "snippet": "<span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> <span class=\"searchmatch\">Talk</span> is the second studio album by the English rock band The Psychedelic Furs. It was released on 15 May 1981 by Columbia Records. It was reissued",
+      "query": "talk"
+    },
+    {
+      "title": "Talk to Me (2022 film)",
+      "url": "https://en.wikipedia.org/wiki/Talk_to_Me_%282022_film%29",
+      "snippet": "<span class=\"searchmatch\">Talk</span> to Me is a 2022 Australian supernatural horror film directed by Danny and Michael Philippou in their feature directorial debuts and written by Danny",
+      "query": "talk explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "talk explained"
+    },
+    {
+      "title": "Erotic talk",
+      "url": "https://en.wikipedia.org/wiki/Erotic_talk",
+      "snippet": "Erotic <span class=\"searchmatch\">talk</span>, also known as dirty <span class=\"searchmatch\">talk</span>, love <span class=\"searchmatch\">talk</span>, sexy <span class=\"searchmatch\">talk</span>, <span class=\"searchmatch\">talking</span> dirty, or naughty <span class=\"searchmatch\">talk</span>, is the practice of using explicit word imagery to heighten",
+      "query": "talk explained"
+    },
+    {
+      "title": "Haliey Welch",
+      "url": "https://en.wikipedia.org/wiki/Haliey_Welch",
+      "snippet": "sex, specifically fellatio. She is also known for her subsequent podcast, <span class=\"searchmatch\">Talk</span> Tuah, and a cryptocurrency coin which faced criticism following release.",
+      "query": "talk explained"
+    },
+    {
+      "title": "Talking Heads",
+      "url": "https://en.wikipedia.org/wiki/Talking_Heads",
+      "snippet": "an issue of TV Guide, which &quot;<span class=\"searchmatch\">explained</span> the term used by TV studios to describe a head-and-shoulder shot of a person <span class=\"searchmatch\">talking</span> as &#039;all content, no action&#039;",
+      "query": "talk explained"
+    }
+  ],
+  "ts": "2026-11-03T08:00:58.308880+00:00"
+}

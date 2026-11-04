@@ -1,0 +1,30 @@
+{
+  "q0": {
+    "grew": {
+      "long_memory": 272
+    },
+    "compressed": {
+      "memory_store": 10586
+    },
+    "forgotten": {}
+  },
+  "updated": 1793760056.0,
+  "q1": {
+    "grew": {
+      "long_memory": 351
+    },
+    "compressed": {
+      "memory_store": 8637
+    },
+    "forgotten": {}
+  },
+  "q2": {
+    "grew": {
+      "long_memory": 596
+    },
+    "compressed": {
+      "memory_store": 10365
+    },
+    "forgotten": {}
+  }
+}

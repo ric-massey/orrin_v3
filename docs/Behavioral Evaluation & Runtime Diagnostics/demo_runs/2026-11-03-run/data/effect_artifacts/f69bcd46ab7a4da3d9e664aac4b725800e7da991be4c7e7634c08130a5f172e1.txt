@@ -1,0 +1,123 @@
+{
+  "question": "What actually is benzodiazepines, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "benzodiazepines"
+  ],
+  "entities": [
+    "benzodiazepines",
+    "the most prescribed medications globally",
+    "High doses of many shorter-acting benzodiazepines may also",
+    "anterograde amnesia and dissociation",
+    "Benzodiazepines",
+    "categorized as short",
+    "Short and intermediate-acting benzodiazepines",
+    "preferred for the treatment of insomnia",
+    "generally viewed as safe and effective for short-term use of two to four weeks",
+    "often prescribed for as-needed use",
+    "associated with an increased risk of suicide due to aggression",
+    "There",
+    "controversy concerning the safety of benzodiazepines during pregnancy",
+    "An overdose of benzodiazepines can",
+    "dangerous deep unconsciousness",
+    "benzodiazepines are well tolerated and"
+  ],
+  "relations": [
+    {
+      "subject": "benzodiazepines",
+      "predicate": "were",
+      "object": "the most prescribed medications globally",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "High doses of many shorter-acting benzodiazepines may also",
+      "predicate": "cause",
+      "object": "anterograde amnesia and dissociation",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "Benzodiazepines",
+      "predicate": "are",
+      "object": "categorized as short",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "Short and intermediate-acting benzodiazepines",
+      "predicate": "are",
+      "object": "preferred for the treatment of insomnia",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "Benzodiazepines",
+      "predicate": "are",
+      "object": "generally viewed as safe and effective for short-term use of two to four weeks",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "Benzodiazepines",
+      "predicate": "are",
+      "object": "often prescribed for as-needed use",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "Benzodiazepines",
+      "predicate": "are",
+      "object": "associated with an increased risk of suicide due to aggression",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "There",
+      "predicate": "is",
+      "object": "controversy concerning the safety of benzodiazepines during pregnancy",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "An overdose of benzodiazepines can",
+      "predicate": "cause",
+      "object": "dangerous deep unconsciousness",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "benzodiazepines are well tolerated and",
+      "predicate": "are",
+      "object": "safe and effective drugs in the short term for a wide range of conditions",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "subject": "When benzodiazepines",
+      "predicate": "are",
+      "object": "stopped",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence"
+    },
+    {
+      "subject": "muscle relaxant and after 4 months there",
+      "predicate": "is",
+      "object": "little evidence that benzodiazepines retain their anxiolytic properties",
+      "source": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Benzodiazepine"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Benzodiazepine_withdrawal_syndrome"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_benzodiazepines"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Alprazolam"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Effects_of_long-term_benzodiazepine_use"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Lorazepam"
+    }
+  ],
+  "ts": "2026-11-03T18:53:18.186397+00:00"
+}

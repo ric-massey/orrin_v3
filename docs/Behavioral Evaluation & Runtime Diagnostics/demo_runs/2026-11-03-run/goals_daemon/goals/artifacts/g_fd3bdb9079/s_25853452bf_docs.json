@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Often",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_01.txt",
+      "chars": 19818
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Release_early%2C_release_often",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_02.txt",
+      "chars": 5130
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Midfielder",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Sun_Is_Often_Out",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_04.txt",
+      "chars": 7401
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Populism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sex%2C_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explained_variation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_07.txt",
+      "chars": 6030
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_08.txt",
+      "chars": 9114
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Prequel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_09.txt",
+      "chars": 11870
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thing_Explainer",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_fd3bdb9079/doc_10.txt",
+      "chars": 7403
+    }
+  ],
+  "ts": "2026-11-03T19:21:22.922558+00:00"
+}

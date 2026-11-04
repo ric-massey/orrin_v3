@@ -1,0 +1,154 @@
+{
+  "goal": {
+    "id": "g_f30df18309",
+    "title": "Understand consistency proof more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "consistency proof",
+        "consistency proof explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:38:53.503971Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:38:53.503977Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:38:53.503978Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:38:53.503980Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:38:53.503981Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "consistency proof was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about consistency proof was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:38:53.503997Z",
+      "question": "What actually is consistency proof, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:38:53.528477+00:00",
+    "updated_at": "2026-11-03 16:38:54.570551+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Consistency",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Proof_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_induction",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Peano_axioms",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_proof",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_f30df18309/doc_08.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:39:01.000070+00:00"
+}

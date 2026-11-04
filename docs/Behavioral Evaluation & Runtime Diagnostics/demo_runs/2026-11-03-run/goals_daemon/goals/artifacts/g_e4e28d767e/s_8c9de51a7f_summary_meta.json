@@ -1,0 +1,150 @@
+{
+  "goal": {
+    "id": "g_e4e28d767e",
+    "title": "Answer: What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "how memory works in the brain",
+        "how memory works in the brain explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:26.715423Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:26.715433Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:26.715435Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:26.715437Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T22:17:26.715438Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What actually is how memory works in the brain, beyond the m' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T22:17:26.715455Z",
+      "question": "What actually is how memory works in the brain, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 22:17:26.715760+00:00",
+    "updated_at": "2026-11-03 22:17:28.022534+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_1f74c2b8d3]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Memory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Brain_Rules",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Memory_erasure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Method_of_loci",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mind_uploading",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Working_memory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e4e28d767e/doc_07.txt"
+    }
+  ],
+  "ts": "2026-11-03T22:17:31.883434+00:00"
+}

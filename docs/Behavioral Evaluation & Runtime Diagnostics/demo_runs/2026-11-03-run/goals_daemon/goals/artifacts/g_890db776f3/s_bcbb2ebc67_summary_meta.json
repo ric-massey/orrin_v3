@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_890db776f3",
+    "title": "Understand structures more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "structures open problems",
+        "structures criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_1a4c745fac",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.185062Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.185071Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.185072Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.185074Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:40:15.185075Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "structures was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about structures was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:40:15.185088Z",
+      "question": "What actually is structures, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:40:15.185812+00:00",
+    "updated_at": "2026-11-03 16:40:16.741742+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_1a4c745fac]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Open_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Problem_structuring_methods",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Structuration_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ernst_Mach",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stephen_Hawking",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_890db776f3/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:40:22.358983+00:00"
+}

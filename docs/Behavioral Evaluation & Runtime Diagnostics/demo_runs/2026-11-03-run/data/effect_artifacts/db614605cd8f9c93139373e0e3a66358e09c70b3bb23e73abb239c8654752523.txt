@@ -1,0 +1,60 @@
+{
+  "question": "What is there about the world that my earlier notes on it are missing?",
+  "subject_terms": [
+    "world"
+  ],
+  "entities": [
+    "captured by the Hubble Space Telescope A world",
+    "totality of entities",
+    "History of the World Wide Web The Web",
+    "invented by English computer scientist Tim Berners-Lee while working at CERN"
+  ],
+  "relations": [
+    {
+      "subject": "captured by the Hubble Space Telescope A world",
+      "predicate": "is a",
+      "object": "totality of entities",
+      "source": "my prior claims [g_9ab4f76b5e]"
+    },
+    {
+      "subject": "History of the World Wide Web The Web",
+      "predicate": "was",
+      "object": "invented by English computer scientist Tim Berners-Lee while working at CERN",
+      "source": "https://en.wikipedia.org/wiki/World_Wide_Web"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_9ab4f76b5e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tonight%27s_the_Night_%28Neil_Young_album%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/My_Bloody_Valentine_%28film%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/My_Secret_History"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/World_Wide_Web"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Tractatus_Logico-Philosophicus"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Danilo_Restivo"
+    }
+  ],
+  "ts": "2026-11-03T11:47:23.883344+00:00"
+}

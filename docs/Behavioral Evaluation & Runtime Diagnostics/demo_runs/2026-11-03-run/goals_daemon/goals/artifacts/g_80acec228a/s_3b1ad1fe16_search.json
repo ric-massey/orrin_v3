@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Products",
+    "Products explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Product",
+    "https://en.wikipedia.org/wiki/By-product",
+    "https://en.wikipedia.org/wiki/Sunbeam_Products",
+    "https://en.wikipedia.org/wiki/Avon_Products",
+    "https://en.wikipedia.org/wiki/Pelican_Products",
+    "https://en.wikipedia.org/wiki/PnL_explained",
+    "https://en.wikipedia.org/wiki/Religion_Explained",
+    "https://en.wikipedia.org/wiki/Product_%28business%29",
+    "https://en.wikipedia.org/wiki/Halal",
+    "https://en.wikipedia.org/wiki/Cross_product"
+  ],
+  "results": [
+    {
+      "title": "Product",
+      "url": "https://en.wikipedia.org/wiki/Product",
+      "snippet": "subsets Wreath <span class=\"searchmatch\">product</span> Free <span class=\"searchmatch\">product</span> Zappa–Szép <span class=\"searchmatch\">product</span> (or knit <span class=\"searchmatch\">product</span>), a generalization of the direct and semidirect <span class=\"searchmatch\">products</span> <span class=\"searchmatch\">Product</span> of rings Ideal",
+      "query": "Products"
+    },
+    {
+      "title": "By-product",
+      "url": "https://en.wikipedia.org/wiki/By-product",
+      "snippet": "There is no strict distinction between by-<span class=\"searchmatch\">products</span> and co-<span class=\"searchmatch\">products</span>. In the context of production, a by-<span class=\"searchmatch\">product</span> is the &quot;output from a joint production process",
+      "query": "Products"
+    },
+    {
+      "title": "Sunbeam Products",
+      "url": "https://en.wikipedia.org/wiki/Sunbeam_Products",
+      "snippet": "Sunbeam <span class=\"searchmatch\">Products</span> is an American company founded in 1897 that has produced electric home appliances under the Sunbeam name since 1910. Its <span class=\"searchmatch\">products</span> have included",
+      "query": "Products"
+    },
+    {
+      "title": "Avon Products",
+      "url": "https://en.wikipedia.org/wiki/Avon_Products",
+      "snippet": "personal care <span class=\"searchmatch\">products</span>. It is a multi-level marketing company based in London. In 2020, Avon had annual sales of $9.1 billion worldwide. Avon <span class=\"searchmatch\">Products</span> founder",
+      "query": "Products"
+    },
+    {
+      "title": "Pelican Products",
+      "url": "https://en.wikipedia.org/wiki/Pelican_Products",
+      "snippet": "Their <span class=\"searchmatch\">products</span> are used in many industries including military, law enforcement, fire safety, and consumer entertainment. The company&#039;s flagship <span class=\"searchmatch\">product</span>, Pelican",
+      "query": "Products"
+    },
+    {
+      "title": "PnL explained",
+      "url": "https://en.wikipedia.org/wiki/PnL_explained",
+      "snippet": "<span class=\"searchmatch\">explained</span> (also called P&amp;L <span class=\"searchmatch\">explain</span>, P&amp;L attribution or profit and loss <span class=\"searchmatch\">explained</span>) is an income statement with commentary that attributes or <span class=\"searchmatch\">explains</span> the",
+      "query": "Products explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "Religion <span class=\"searchmatch\">Explained</span>: The Evolutionary Origins of Religious Thought is a 2001 book by cognitive anthropologist Pascal Boyer, in which the author discusses",
+      "query": "Products explained"
+    },
+    {
+      "title": "Product (business)",
+      "url": "https://en.wikipedia.org/wiki/Product_%28business%29",
+      "snippet": "such as services, digital currency <span class=\"searchmatch\">products</span> offerings, or rights that provide value without physical form. <span class=\"searchmatch\">Products</span> are created through processes of design",
+      "query": "Products explained"
+    },
+    {
+      "title": "Halal",
+      "url": "https://en.wikipedia.org/wiki/Halal",
+      "snippet": "growing demand for halal <span class=\"searchmatch\">products</span>, especially with the rise in the global Muslim population. The increasing demand for halal <span class=\"searchmatch\">products</span> and services has led",
+      "query": "Products explained"
+    },
+    {
+      "title": "Cross product",
+      "url": "https://en.wikipedia.org/wiki/Cross_product",
+      "snippet": "Cartesian <span class=\"searchmatch\">product</span>.[citation needed] Cartesian <span class=\"searchmatch\">product</span> – a <span class=\"searchmatch\">product</span> of two sets Geometric algebra: Rotating systems Multiple cross <span class=\"searchmatch\">products</span> – <span class=\"searchmatch\">products</span> involving",
+      "query": "Products explained"
+    }
+  ],
+  "ts": "2026-11-03T16:40:31.628128+00:00"
+}

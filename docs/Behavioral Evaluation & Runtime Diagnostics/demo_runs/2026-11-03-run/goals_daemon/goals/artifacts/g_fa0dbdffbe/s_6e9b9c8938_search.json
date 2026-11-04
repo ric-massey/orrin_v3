@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "function and evolution recent research",
+    "function and evolution common misconceptions"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Recent_human_evolution",
+    "https://en.wikipedia.org/wiki/Gain-of-function_research",
+    "https://en.wikipedia.org/wiki/Convergent_evolution",
+    "https://en.wikipedia.org/wiki/Differential_evolution",
+    "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+    "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+    "https://en.wikipedia.org/wiki/Vikings",
+    "https://en.wikipedia.org/wiki/Objections_to_evolution",
+    "https://en.wikipedia.org/wiki/Evolution",
+    "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups"
+  ],
+  "results": [
+    {
+      "title": "Recent human evolution",
+      "url": "https://en.wikipedia.org/wiki/Recent_human_evolution",
+      "snippet": "<span class=\"searchmatch\">Recent</span> human <span class=\"searchmatch\">evolution</span> refers to evolutionary adaptation, sexual <span class=\"searchmatch\">and</span> natural selection, <span class=\"searchmatch\">and</span> genetic drift within Homo sapiens populations, since their",
+      "query": "function and evolution recent research"
+    },
+    {
+      "title": "Gain-of-function research",
+      "url": "https://en.wikipedia.org/wiki/Gain-of-function_research",
+      "snippet": "Gain-of-<span class=\"searchmatch\">function</span> <span class=\"searchmatch\">research</span> (GoF <span class=\"searchmatch\">research</span> or GoFR) is medical <span class=\"searchmatch\">research</span> that genetically alters an organism in a way that may enhance the biological <span class=\"searchmatch\">functions</span> of",
+      "query": "function and evolution recent research"
+    },
+    {
+      "title": "Convergent evolution",
+      "url": "https://en.wikipedia.org/wiki/Convergent_evolution",
+      "snippet": "convergent <span class=\"searchmatch\">evolution</span> are analogous, whereas homologous structures or traits have a common origin but can have dissimilar <span class=\"searchmatch\">functions</span>. Bird, bat, <span class=\"searchmatch\">and</span> pterosaur",
+      "query": "function and evolution recent research"
+    },
+    {
+      "title": "Differential evolution",
+      "url": "https://en.wikipedia.org/wiki/Differential_evolution",
+      "snippet": "Zaharie. Differential <span class=\"searchmatch\">evolution</span> can be utilized for constrained optimization as well. A common method involves modifying the target <span class=\"searchmatch\">function</span> to include a penalty",
+      "query": "function and evolution recent research"
+    },
+    {
+      "title": "Extended evolutionary synthesis",
+      "url": "https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis",
+      "snippet": "Smulders, Tom V. (2017). &quot;<span class=\"searchmatch\">Evolution</span> Driven by Organismal Behaviour – a Unifying View of Life, <span class=\"searchmatch\">Function</span>, Form, Mismatches, <span class=\"searchmatch\">and</span> Trends&quot;. Journal of Anatomy",
+      "query": "function and evolution recent research"
+    },
+    {
+      "title": "List of common misconceptions about science, technology, and mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics",
+      "snippet": "Each entry on this list of <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconceptions</span> is worded as a correction; the <span class=\"searchmatch\">misconceptions</span> themselves are implied rather than stated. These entries",
+      "query": "function and evolution common misconceptions"
+    },
+    {
+      "title": "Vikings",
+      "url": "https://en.wikipedia.org/wiki/Vikings",
+      "snippet": "England, Georgina R. Bowden, Molecular Biology <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Evolution</span>, 20 November 2007&quot;. Molecular Biology <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Evolution</span>. 25 (2): 301–09. doi:10.1093/molbev/msm255",
+      "query": "function and evolution common misconceptions"
+    },
+    {
+      "title": "Objections to evolution",
+      "url": "https://en.wikipedia.org/wiki/Objections_to_evolution",
+      "snippet": "Origin of Species, his theory of <span class=\"searchmatch\">evolution</span> (the idea that species arose through descent with modification from a single <span class=\"searchmatch\">common</span> ancestor in a process driven",
+      "query": "function and evolution common misconceptions"
+    },
+    {
+      "title": "Evolution",
+      "url": "https://en.wikipedia.org/wiki/Evolution",
+      "snippet": "selection acting on entire species <span class=\"searchmatch\">and</span> affecting their rates of speciation <span class=\"searchmatch\">and</span> extinction. A <span class=\"searchmatch\">common</span> <span class=\"searchmatch\">misconception</span> is that <span class=\"searchmatch\">evolution</span> has goals, long-term plans",
+      "query": "function and evolution common misconceptions"
+    },
+    {
+      "title": "Rejection of evolution by religious groups",
+      "url": "https://en.wikipedia.org/wiki/Rejection_of_evolution_by_religious_groups",
+      "snippet": "reject <span class=\"searchmatch\">evolution</span>), <span class=\"searchmatch\">and</span> there is very little pressure to teach it as fact. Christian fundamentalists reject the evidence of <span class=\"searchmatch\">common</span> descent of humans <span class=\"searchmatch\">and</span> other",
+      "query": "function and evolution common misconceptions"
+    }
+  ],
+  "ts": "2026-11-03T21:47:19.098662+00:00"
+}

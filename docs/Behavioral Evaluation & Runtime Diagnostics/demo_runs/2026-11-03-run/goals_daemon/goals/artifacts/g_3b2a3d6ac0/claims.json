@@ -1,0 +1,135 @@
+{
+  "question": "What actually is structures, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "structures"
+  ],
+  "entities": [
+    "bridges and salt domes",
+    "all examples of load-bearing structures",
+    "Below",
+    "list of the tallest structures supported by land",
+    "there",
+    "many gaps in the evidence concerning less visible aspects of the structures",
+    "some assumptions to determine how the structures beacons",
+    "illuminated",
+    "Other researchers contend that the structures",
+    "misinterpreted decomposed conifer cones",
+    "The results of construction",
+    "divided into buildings and non-building structures",
+    "Built structures",
+    "broadly divided by their varying design approaches and standards",
+    "The effects of loads on physical structures",
+    "determined through structural analysis"
+  ],
+  "relations": [
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "my prior claims [g_81cdfda281]"
+    },
+    {
+      "subject": "Below",
+      "predicate": "is a",
+      "object": "list of the tallest structures supported by land",
+      "source": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "many gaps in the evidence concerning less visible aspects of the structures",
+      "source": "https://en.wikipedia.org/wiki/History_of_lighthouses"
+    },
+    {
+      "subject": "some assumptions to determine how the structures beacons",
+      "predicate": "were",
+      "object": "illuminated",
+      "source": "https://en.wikipedia.org/wiki/History_of_lighthouses"
+    },
+    {
+      "subject": "Other researchers contend that the structures",
+      "predicate": "are",
+      "object": "misinterpreted decomposed conifer cones",
+      "source": "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants"
+    },
+    {
+      "subject": "The results of construction",
+      "predicate": "are",
+      "object": "divided into buildings and non-building structures",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Built structures",
+      "predicate": "are",
+      "object": "broadly divided by their varying design approaches and standards",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The effects of loads on physical structures",
+      "predicate": "are",
+      "object": "determined through structural analysis",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Three-dimensional elements",
+      "predicate": "were",
+      "object": "the main option available to early structures such as Chichen Itza",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The majority of everyday load-bearing structures",
+      "predicate": "are",
+      "object": "section-active structures like frames",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Other types",
+      "predicate": "are",
+      "object": "Vector-active structures such as trusses",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Efficient data structures",
+      "predicate": "are",
+      "object": "essential for managing large datasets and are fundamental to algorithm design",
+      "source": "https://en.wikipedia.org/wiki/Data_structure"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_81cdfda281]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_the_world%27s_tallest_structures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_lighthouses"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_geology"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fossil_history_of_flowering_plants"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/History_of_atomic_theory"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/REST"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Biomaterial"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Data_structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Amphiphile"
+    }
+  ],
+  "ts": "2026-11-03T18:53:03.996892+00:00"
+}

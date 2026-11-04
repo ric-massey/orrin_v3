@@ -1,0 +1,158 @@
+{
+  "goal": {
+    "id": "g_1a4c745fac",
+    "title": "Understand structures more deeply",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "structures",
+        "structures explained"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:58.935668Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:58.935676Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:58.935678Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:58.935680Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T16:39:58.935682Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "structures was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about structures was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T16:39:58.935733Z",
+      "question": "What actually is structures, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 16:39:58.936359+00:00",
+    "updated_at": "2026-11-03 16:40:00.016957+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Syntactic_Structures",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hyperboloid_structure",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/India",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1a4c745fac/doc_09.txt"
+    }
+  ],
+  "ts": "2026-11-03T16:40:06.185576+00:00"
+}

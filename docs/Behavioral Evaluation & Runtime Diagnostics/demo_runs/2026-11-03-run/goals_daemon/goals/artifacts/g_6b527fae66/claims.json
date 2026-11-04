@@ -1,0 +1,72 @@
+{
+  "question": "What is there about consciousness and subjective experience that my earlier notes on it are missing?",
+  "subject_terms": [
+    "consciousness",
+    "subjective",
+    "experience"
+  ],
+  "entities": [
+    "Subjective experience",
+    "commonly described as encompassing sensory experiences and mental events",
+    "Scholars",
+    "divided as to whether Aristotle had a concept of consciousness",
+    "proposes that what one experiences as the real world",
+    "actually a simulated reality",
+    "movements collectively referred to by scholars as Gnosticism",
+    "the belief that reality as we experience it is the creation of a demiurge"
+  ],
+  "relations": [
+    {
+      "subject": "Subjective experience",
+      "predicate": "is",
+      "object": "commonly described as encompassing sensory experiences and mental events",
+      "source": "my prior claims [g_45347b6f3e]"
+    },
+    {
+      "subject": "Scholars",
+      "predicate": "are",
+      "object": "divided as to whether Aristotle had a concept of consciousness",
+      "source": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "subject": "proposes that what one experiences as the real world",
+      "predicate": "is",
+      "object": "actually a simulated reality",
+      "source": "https://en.wikipedia.org/wiki/Simulation_hypothesis"
+    },
+    {
+      "subject": "movements collectively referred to by scholars as Gnosticism",
+      "predicate": "was",
+      "object": "the belief that reality as we experience it is the creation of a demiurge",
+      "source": "https://en.wikipedia.org/wiki/Simulation_hypothesis"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_45347b6f3e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Consciousness"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_general_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Edmund_Husserl"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Simulation_hypothesis"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Solipsism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Nondualism"
+    }
+  ],
+  "ts": "2026-11-03T15:10:23.931665+00:00"
+}

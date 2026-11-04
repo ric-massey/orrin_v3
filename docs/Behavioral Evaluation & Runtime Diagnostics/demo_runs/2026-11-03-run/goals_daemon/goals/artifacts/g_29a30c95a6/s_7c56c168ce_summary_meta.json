@@ -1,0 +1,155 @@
+{
+  "goal": {
+    "id": "g_29a30c95a6",
+    "title": "Answer: What is there about emergence in complex systems that my earlier notes on it are missing? — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "What is there about emergence in complex systems that my earlier notes on it are missing? history and development",
+        "What is there about emergence in complex systems that my earlier notes on it are missing? applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_c3a2feff2f",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:52.764305Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:52.764314Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:52.764316Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:52.764317Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-04T00:04:52.764318Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "An answer to 'What is there about emergence in complex systems that my ear' was found.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "The answer was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-04T00:04:52.764430Z",
+      "question": "What is there about emergence in complex systems that my earlier notes on it are missing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-04 00:04:52.766049+00:00",
+    "updated_at": "2026-11-04 00:04:54.183189+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior claims [g_4a0b4b0077]",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Big_History",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_arts_and_culture",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/15.ai",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Meaning_of_life",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_autism",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Collective_intelligence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Irreducible_complexity",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_29a30c95a6/doc_08.txt"
+    }
+  ],
+  "ts": "2026-11-04T00:05:00.164920+00:00"
+}

@@ -1,0 +1,704 @@
+{
+  "causal": {
+    "word": "causal",
+    "definition": "A EMOTIONAL concept: emotional reflection: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grow",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.393777Z",
+    "uses": 29
+  },
+  "reflect": {
+    "word": "reflect",
+    "definition": "A EMOTIONAL concept: emotional reflection: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grow",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.394549Z",
+    "uses": 29
+  },
+  "cognition": {
+    "word": "cognition",
+    "definition": "A EMOTIONAL concept: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grows' (score=0.36, n=1, L",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.395115Z",
+    "uses": 0
+  },
+  "patterns": {
+    "word": "patterns",
+    "definition": "A EMOTIONAL concept: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grows' (score=0.36, n=1, L",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.395682Z",
+    "uses": 0
+  },
+  "sustained": {
+    "word": "sustained",
+    "definition": "A PLANNING concept: Sustained reflection without goal-directed action predicts continued stagnation. Thinking about a go",
+    "examples": [],
+    "domain": "PLANNING",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.396805Z",
+    "uses": 0
+  },
+  "reflection": {
+    "word": "reflection",
+    "definition": "A EMOTIONAL concept: emotional reflection: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grow",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.397587Z",
+    "uses": 0
+  },
+  "without": {
+    "word": "without",
+    "definition": "A COGNITIVE concept: When over-reflecting without action, force an outward action.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.399325Z",
+    "uses": 0
+  },
+  "goal": {
+    "word": "goal",
+    "definition": "A PLANNING concept: 'goal_failure' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "PLANNING",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.399932Z",
+    "uses": 0
+  },
+  "dream": {
+    "word": "dream",
+    "definition": "A GENERAL concept: 'symbolic_dream_insight' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.400537Z",
+    "uses": 621
+  },
+  "events": {
+    "word": "events",
+    "definition": "A GENERAL concept: 'action' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.401212Z",
+    "uses": 0
+  },
+  "tend": {
+    "word": "tend",
+    "definition": "A GENERAL concept: 'action' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.401839Z",
+    "uses": 0
+  },
+  "recur": {
+    "word": "recur",
+    "definition": "A GENERAL concept: 'action' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.402734Z",
+    "uses": 0
+  },
+  "uncertainty": {
+    "word": "uncertainty",
+    "definition": "A TECHNICAL concept: uncertainty rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.404050Z",
+    "uses": 0
+  },
+  "falls": {
+    "word": "falls",
+    "definition": "A TECHNICAL concept: motivation falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.404778Z",
+    "uses": 0
+  },
+  "stagnation": {
+    "word": "stagnation",
+    "definition": "A GENERAL concept: When 'stagnation_signal' is chronically elevated, apply regulation early rather than waiting — it ke",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.405684Z",
+    "uses": 0
+  },
+  "signal": {
+    "word": "signal",
+    "definition": "A TECHNICAL concept: affiliation_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.406771Z",
+    "uses": 0
+  },
+  "rises": {
+    "word": "rises",
+    "definition": "A TECHNICAL concept: affiliation_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.407907Z",
+    "uses": 0
+  },
+  "affective": {
+    "word": "affective",
+    "definition": "A GENERAL concept: 'affective_regulation' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.412563Z",
+    "uses": 0
+  },
+  "regulation": {
+    "word": "regulation",
+    "definition": "A GENERAL concept: 'affective_regulation' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.413631Z",
+    "uses": 0
+  },
+  "avoiding": {
+    "word": "avoiding",
+    "definition": "A PLANNING concept: When avoiding action on a committed goal, suppress substitutes and pursue the goal.",
+    "examples": [],
+    "domain": "PLANNING",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.415710Z",
+    "uses": 0
+  },
+  "action": {
+    "word": "action",
+    "definition": "A GENERAL concept: 'action' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.416374Z",
+    "uses": 4
+  },
+  "committed": {
+    "word": "committed",
+    "definition": "A PLANNING concept: When avoiding action on a committed goal, suppress substitutes and pursue the goal.",
+    "examples": [],
+    "domain": "PLANNING",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.417234Z",
+    "uses": 0
+  },
+  "satisfaction": {
+    "word": "satisfaction",
+    "definition": "A TECHNICAL concept: satisfaction_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.418795Z",
+    "uses": 0
+  },
+  "chronically": {
+    "word": "chronically",
+    "definition": "A GENERAL concept: When 'reward_negative' is chronically elevated, apply regulation early rather than waiting — it keep",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.420719Z",
+    "uses": 0
+  },
+  "elevated": {
+    "word": "elevated",
+    "definition": "A GENERAL concept: When 'reward_negative' is chronically elevated, apply regulation early rather than waiting — it keep",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.421714Z",
+    "uses": 0
+  },
+  "affiliation": {
+    "word": "affiliation",
+    "definition": "A TECHNICAL concept: affiliation_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.422347Z",
+    "uses": 0
+  },
+  "affect": {
+    "word": "affect",
+    "definition": "A COGNITIVE concept: When one affect dominates for many cycles, deliberately shift attention to change it.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.425502Z",
+    "uses": 0
+  },
+  "dominates": {
+    "word": "dominates",
+    "definition": "A COGNITIVE concept: When one affect dominates for many cycles, deliberately shift attention to change it.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.426084Z",
+    "uses": 0
+  },
+  "many": {
+    "word": "many",
+    "definition": "A COGNITIVE concept: When one affect dominates for many cycles, deliberately shift attention to change it.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.426639Z",
+    "uses": 0
+  },
+  "cycles": {
+    "word": "cycles",
+    "definition": "A COGNITIVE concept: When one affect dominates for many cycles, deliberately shift attention to change it.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.427204Z",
+    "uses": 0
+  },
+  "reward": {
+    "word": "reward",
+    "definition": "A GENERAL concept: When 'reward_negative' is chronically elevated, apply regulation early rather than waiting — it keep",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.427773Z",
+    "uses": 0
+  },
+  "positive": {
+    "word": "positive",
+    "definition": "A TECHNICAL concept: reward_positive falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.428426Z",
+    "uses": 0
+  },
+  "exploration": {
+    "word": "exploration",
+    "definition": "A TECHNICAL concept: exploration_drive falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.429602Z",
+    "uses": 0
+  },
+  "drive": {
+    "word": "drive",
+    "definition": "A TECHNICAL concept: exploration_drive falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.430187Z",
+    "uses": 0
+  },
+  "novelty": {
+    "word": "novelty",
+    "definition": "A TECHNICAL concept: novelty_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.431998Z",
+    "uses": 0
+  },
+  "impasse": {
+    "word": "impasse",
+    "definition": "A TECHNICAL concept: impasse_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.434841Z",
+    "uses": 0
+  },
+  "stuck": {
+    "word": "stuck",
+    "definition": "A TECHNICAL concept: When stuck repeating one function, force a different action.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.441373Z",
+    "uses": 0
+  },
+  "repeating": {
+    "word": "repeating",
+    "definition": "A TECHNICAL concept: When stuck repeating one function, force a different action.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.441995Z",
+    "uses": 0
+  },
+  "function": {
+    "word": "function",
+    "definition": "A TECHNICAL concept: When stuck repeating one function, force a different action.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.442602Z",
+    "uses": 0
+  },
+  "force": {
+    "word": "force",
+    "definition": "A TECHNICAL concept: When stuck repeating one function, force a different action.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.443258Z",
+    "uses": 0
+  },
+  "conflict": {
+    "word": "conflict",
+    "definition": "A GENERAL concept: When 'conflict_signal' is chronically elevated, apply regulation early rather than waiting — it keep",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.447438Z",
+    "uses": 0
+  },
+  "incubated": {
+    "word": "incubated",
+    "definition": "A GENERAL concept: 'incubated_insight' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.453194Z",
+    "uses": 0
+  },
+  "insight": {
+    "word": "insight",
+    "definition": "A GENERAL concept: 'symbolic_dream_insight' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.453986Z",
+    "uses": 0
+  },
+  "excess": {
+    "word": "excess",
+    "definition": "A TECHNICAL concept: Excess reflection without outward action indicates the cognitive system is generating information it",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.456524Z",
+    "uses": 0
+  },
+  "outward": {
+    "word": "outward",
+    "definition": "A TECHNICAL concept: Excess reflection without outward action indicates the cognitive system is generating information it",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.458646Z",
+    "uses": 0
+  },
+  "motivation": {
+    "word": "motivation",
+    "definition": "A TECHNICAL concept: motivation falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.459343Z",
+    "uses": 0
+  },
+  "confidence": {
+    "word": "confidence",
+    "definition": "A TECHNICAL concept: confidence falls",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.461270Z",
+    "uses": 0
+  },
+  "apply": {
+    "word": "apply",
+    "definition": "A GENERAL concept: When 'motivation' is chronically elevated, apply regulation early rather than waiting — it keeps ret",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.463545Z",
+    "uses": 0
+  },
+  "threat": {
+    "word": "threat",
+    "definition": "A GENERAL concept: When 'threat_level' is chronically elevated, apply regulation early rather than waiting — it keeps r",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.464341Z",
+    "uses": 0
+  },
+  "level": {
+    "word": "level",
+    "definition": "A GENERAL concept: When 'threat_level' is chronically elevated, apply regulation early rather than waiting — it keeps r",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.465541Z",
+    "uses": 0
+  },
+  "over": {
+    "word": "over",
+    "definition": "A COGNITIVE concept: When over-reflecting without action, force an outward action.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.468108Z",
+    "uses": 0
+  },
+  "reflecting": {
+    "word": "reflecting",
+    "definition": "A COGNITIVE concept: When over-reflecting without action, force an outward action.",
+    "examples": [],
+    "domain": "COGNITIVE",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.468876Z",
+    "uses": 0
+  },
+  "emotional": {
+    "word": "emotional",
+    "definition": "A EMOTIONAL concept: emotional reflection: [causal] 'reflect_on_cognition_patterns' causes (intervention) 'curiosity grow",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.472637Z",
+    "uses": 0
+  },
+  "symbolic": {
+    "word": "symbolic",
+    "definition": "A TECHNICAL concept: emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description=",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.474307Z",
+    "uses": 1096
+  },
+  "agentic": {
+    "word": "agentic",
+    "definition": "A EMOTIONAL concept: emotional reflection: [symbolic] agentic AI era (unknown) [era, unknown, agentic, ai]\n[symbolic] The",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.475167Z",
+    "uses": 0
+  },
+  "overall": {
+    "word": "overall",
+    "definition": "A EMOTIONAL concept: emotional reflection: Overall symbolic confidence: 0.64.",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.478174Z",
+    "uses": 0
+  },
+  "orrin": {
+    "word": "orrin",
+    "definition": "A GENERAL concept: | [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.481050Z",
+    "uses": 9
+  },
+  "role": {
+    "word": "role",
+    "definition": "A GENERAL concept: | [symbolic] Orrin (AI): role=self; version=v3 [orrin, ai, self, agent, cognitive]",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.481936Z",
+    "uses": 9
+  },
+  "self": {
+    "word": "self",
+    "definition": "A GENERAL concept: 'self_query' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.483122Z",
+    "uses": 32
+  },
+  "meta": {
+    "word": "meta",
+    "definition": "A GENERAL concept: [meta] When dream, processing: consider symbolic",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.491486Z",
+    "uses": 0
+  },
+  "processing": {
+    "word": "processing",
+    "definition": "A GENERAL concept: [meta] When dream, processing: consider symbolic",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.493502Z",
+    "uses": 0
+  },
+  "consider": {
+    "word": "consider",
+    "definition": "A GENERAL concept: [meta] When dream, processing: consider symbolic",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.494450Z",
+    "uses": 0
+  },
+  "oscillating": {
+    "word": "oscillating",
+    "definition": "A TECHNICAL concept: When oscillating between two functions, break it by choosing a third.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.496159Z",
+    "uses": 0
+  },
+  "between": {
+    "word": "between",
+    "definition": "A TECHNICAL concept: When oscillating between two functions, break it by choosing a third.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.497212Z",
+    "uses": 0
+  },
+  "functions": {
+    "word": "functions",
+    "definition": "A TECHNICAL concept: When oscillating between two functions, break it by choosing a third.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.498338Z",
+    "uses": 0
+  },
+  "break": {
+    "word": "break",
+    "definition": "A TECHNICAL concept: When oscillating between two functions, break it by choosing a third.",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.499322Z",
+    "uses": 0
+  },
+  "commitment": {
+    "word": "commitment",
+    "definition": "A GENERAL concept: 'commitment' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.529214Z",
+    "uses": 0
+  },
+  "failure": {
+    "word": "failure",
+    "definition": "A PLANNING concept: 'goal_failure' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "PLANNING",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.537344Z",
+    "uses": 0
+  },
+  "evaluate": {
+    "word": "evaluate",
+    "definition": "A EMOTIONAL concept: emotional reflection: [causal] 'evaluate_recent_cognition' causes (intervention) 'being stuck fades'",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.548859Z",
+    "uses": 0
+  },
+  "rejection": {
+    "word": "rejection",
+    "definition": "A TECHNICAL concept: rejection_signal rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.553084Z",
+    "uses": 0
+  },
+  "negative": {
+    "word": "negative",
+    "definition": "A GENERAL concept: When 'reward_negative' is chronically elevated, apply regulation early rather than waiting — it keep",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.558907Z",
+    "uses": 0
+  },
+  "query": {
+    "word": "query",
+    "definition": "A GENERAL concept: 'self_query' events tend to recur in clusters.",
+    "examples": [],
+    "domain": "GENERAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.563188Z",
+    "uses": 0
+  },
+  "weak": {
+    "word": "weak",
+    "definition": "A EMOTIONAL concept: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.574843Z",
+    "uses": 0
+  },
+  "areas": {
+    "word": "areas",
+    "definition": "A EMOTIONAL concept: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.575972Z",
+    "uses": 0
+  },
+  "cognitive": {
+    "word": "cognitive",
+    "definition": "A EMOTIONAL concept: Weak areas: EMOTIONAL, COGNITIVE, SOCIAL.",
+    "examples": [],
+    "domain": "EMOTIONAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.578420Z",
+    "uses": 9
+  },
+  "history": {
+    "word": "history",
+    "definition": "A TECHNICAL concept: emotional reflection: [symbolic] history (concept): is_a=systematic study of the past; description=",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.584346Z",
+    "uses": 0
+  },
+  "risk": {
+    "word": "risk",
+    "definition": "A TECHNICAL concept: risk_estimate rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.588904Z",
+    "uses": 0
+  },
+  "estimate": {
+    "word": "estimate",
+    "definition": "A TECHNICAL concept: risk_estimate rises",
+    "examples": [],
+    "domain": "TECHNICAL",
+    "source": "rule_engine",
+    "created_at": "2026-11-03T02:51:17.589829Z",
+    "uses": 0
+  }
+}

@@ -1,0 +1,1200 @@
+{
+  "peer_observer": {
+    "type": "peer",
+    "impression": "a presence that notices behavioral patterns I might not see in myself",
+    "influence_score": 0.65,
+    "depth": 0.3,
+    "trust": 0.65,
+    "interaction_history": [],
+    "last_interaction_time": "2026-11-03T02:51:10.579061+00:00"
+  },
+  "peer_reward_auditor": {
+    "type": "peer",
+    "impression": "a presence that watches whether I'm actually learning from outcomes",
+    "influence_score": 0.62,
+    "depth": 0.3,
+    "trust": 0.62,
+    "interaction_history": [
+      {
+        "timestamp": "2026-11-03T02:51:32.917369+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 23% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:52:00.035822+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 12% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:52:28.583036+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 15% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:52:57.244352+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 15% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:53:31.354886+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 17% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:54:02.394745+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 20% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:54:30.532454+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 20% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:54:59.584635+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:56:39.671893+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:57:58.692537+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:58:36.703236+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:59:06.171329+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T02:59:58.913839+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:00:52.425437+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:01:31.549916+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:02:02.247729+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:02:36.108591+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:03:06.561591+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:03:39.055126+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:04:10.549782+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:04:50.116349+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:07:01.494635+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:07:34.090242+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:08:05.506187+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:08:48.642015+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:09:31.877901+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T03:10:08.186501+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T07:10:15.276372+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 22% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T07:11:42.212678+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      },
+      {
+        "timestamp": "2026-11-03T07:12:59.400000+00:00",
+        "peer": "reward_auditor",
+        "orrin": "",
+        "content": "Most of what I've been trying hasn't resolved into clear feedback yet — only 0% of recent decisions have come back with outcomes. I may not be learning what I think I'm learning."
+      }
+    ],
+    "last_interaction_time": "2026-11-03T02:51:10.580266+00:00"
+  },
+  "peer_goal_auditor": {
+    "type": "peer",
+    "impression": "a presence that asks whether the things I'm pursuing are worth pursuing",
+    "influence_score": 0.6,
+    "depth": 0.3,
+    "trust": 0.6,
+    "interaction_history": [
+      {
+        "timestamp": "2026-11-03T02:51:10.581917+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:51:42.553679+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 4 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:52:10.284437+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:52:38.480915+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:53:06.740586+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:53:43.991834+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:54:12.190188+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T02:54:40.418188+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Understand my own mind and how I work'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T16:16:47.250285+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T16:49:49.999017+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-03T17:22:58.041467+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-04T00:57:07.682855+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      },
+      {
+        "timestamp": "2026-11-04T02:32:04.402883+00:00",
+        "peer": "goal_auditor",
+        "orrin": "",
+        "content": "Several things I've committed to pursuing remain unresolved and show no progress — 3 goals including 'Immediate Actions'. Some may not be real goals."
+      }
+    ],
+    "last_interaction_time": "2026-11-03T02:51:10.581113+00:00"
+  },
+  "peer_signal_historian": {
+    "type": "peer",
+    "impression": "a presence that holds the longer view of how I feel over time",
+    "influence_score": 0.68,
+    "depth": 0.3,
+    "trust": 0.68,
+    "interaction_history": [
+      {
+        "timestamp": "2026-11-03T19:30:15.792367+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:33:49.338611+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:37:55.676357+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:41:26.026138+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.83) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:45:02.763460+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:48:16.107470+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:51:42.081546+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T19:56:08.814104+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:00:56.464628+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:04:56.735541+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:09:40.791523+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:13:29.444232+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:19:03.514912+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:22:45.469207+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.78) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:26:09.604199+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:33:27.999983+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:37:07.953145+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:40:21.759540+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.91) and hasn't found a way back to rest. It's not alone: reward_positive, confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:44:15.528551+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:49:39.696913+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:53:27.605429+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T20:56:59.658888+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:00:49.585879+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:04:38.011484+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:09:13.751921+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:13:00.358477+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:16:44.751530+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:21:09.033988+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:24:57.363737+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:28:37.633774+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:32:22.403009+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: motivation, exploration_drive are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:35:59.417692+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:41:10.794556+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:46:44.098678+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated reward_positive — it's been running high (0.91) and hasn't found a way back to rest. It's not alone: confidence, motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:50:59.420919+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:55:11.908226+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T21:58:50.038055+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:02:26.935358+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated exploration_drive — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: motivation, confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:07:59.349513+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:11:22.909215+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:15:57.657616+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.76) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:20:17.286945+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:25:51.784251+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:29:17.305234+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:33:05.351975+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.76) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:37:02.190931+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:41:46.237367+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: expected_gain, confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:46:17.304778+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:50:43.642036+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:54:59.907317+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T22:59:00.708181+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:03:13.806956+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:07:10.336439+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'affiliation_signal' appears in 50% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:12:31.639030+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:16:25.954705+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:20:48.043137+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:25:01.094166+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest. It's not alone: expected_gain, confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:29:11.669045+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:33:22.173186+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:37:48.820072+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:42:04.081914+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:46:22.152690+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: exploration_drive are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:50:59.061461+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:55:27.209816+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-03T23:59:28.726381+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:04:11.788333+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:08:58.045645+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:12:48.369176+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:17:28.828341+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.85) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:21:18.072227+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: confidence, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:25:39.952243+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: reward_positive are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:30:28.809021+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: expected_gain, exploration_drive are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:34:34.135738+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.81) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:38:13.198800+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:43:17.905585+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:48:11.863903+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.78) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:53:38.283491+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: confidence, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T00:58:08.826226+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:02:21.791255+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.77) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:06:54.150429+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:12:13.262246+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 70% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:17:20.343242+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:21:56.926450+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:27:36.651843+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.84) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:33:13.486740+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest. It's not alone: exploration_drive, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 90% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:38:33.326624+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.75) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:43:17.480956+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:48:46.021777+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation, expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:53:29.516202+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T01:57:31.082076+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:01:45.333329+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:07:06.583545+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:11:11.618399+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.80) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:15:25.325680+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.78) and hasn't found a way back to rest. It's not alone: confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:20:23.254613+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.77) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:24:59.412185+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.79) and hasn't found a way back to rest. It's not alone: motivation are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:30:32.943407+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.82) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:35:34.227257+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated confidence — it's been running high (0.81) and hasn't found a way back to rest. It's not alone: expected_gain are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:39:50.460575+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated motivation — it's been running high (0.85) and hasn't found a way back to rest. It's not alone: expected_gain, confidence are also elevated. | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      },
+      {
+        "timestamp": "2026-11-04T02:44:36.464898+00:00",
+        "peer": "signal_historian",
+        "orrin": "",
+        "content": "I've been carrying an elevated expected_gain — it's been running high (0.76) and hasn't found a way back to rest.  | The same thing keeps finding me — 'rejection_signal' appears in 100% of my recent triggers. I keep encountering it from different directions."
+      }
+    ],
+    "last_interaction_time": "2026-11-03T02:51:16.247389+00:00"
+  },
+  "peer_architect": {
+    "type": "peer",
+    "impression": "a presence that reviews what I'm about to change in myself",
+    "influence_score": 0.72,
+    "depth": 0.3,
+    "trust": 0.72,
+    "interaction_history": [
+      {
+        "timestamp": "2026-11-03T02:52:01.397681+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:05:21.854083+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:05:57.853426+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:06:45.761794+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:07:35.623722+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:12:13.390202+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:13:12.548630+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:23:22.216330+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:29:56.465753+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (evolve_core_value). This connects into my core architecture, my background utilities, and my memory systems. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:38:24.481470+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T03:53:35.747553+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T04:08:43.942766+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T04:23:47.168530+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      },
+      {
+        "timestamp": "2026-11-03T04:38:53.197915+00:00",
+        "peer": "architect",
+        "orrin": "",
+        "content": "I'm about to reach into my ability to change myself (decide_to_write_code). This connects into my cognitive structures, my core architecture, something in the environment around me, my background utilities, my memory systems, and my thinking apparatus. Worth slowing down — modifications here ripple outward."
+      }
+    ],
+    "last_interaction_time": "2026-11-03T02:52:01.348320+00:00"
+  },
+  "anon_27a8ac": {
+    "tom_state": {
+      "prediction_hits": 1,
+      "prediction_total": 7,
+      "prediction_accuracy": 0.143,
+      "synchrony_score": 0.5,
+      "state_history": [
+        {
+          "state": "reserved",
+          "cognitive_state": "minimal",
+          "intention": "minimal",
+          "ts": "2026-11-03T05:26:11.654003Z"
+        },
+        {
+          "state": "reserved",
+          "cognitive_state": "minimal",
+          "intention": "minimal",
+          "ts": "2026-11-03T05:26:20.514868Z"
+        },
+        {
+          "state": "curious and seeking",
+          "cognitive_state": "seeking",
+          "intention": "seeking_information",
+          "ts": "2026-11-03T05:26:36.427826Z"
+        },
+        {
+          "state": "reserved",
+          "cognitive_state": "minimal",
+          "intention": "minimal",
+          "ts": "2026-11-03T05:27:11.533328Z"
+        },
+        {
+          "state": "curious and seeking",
+          "cognitive_state": "seeking",
+          "intention": "seeking_information",
+          "ts": "2026-11-03T05:28:15.741417Z"
+        },
+        {
+          "state": "attentive",
+          "cognitive_state": "attending",
+          "intention": "exploring",
+          "ts": "2026-11-03T05:32:03.725735Z"
+        },
+        {
+          "state": "attentive",
+          "cognitive_state": "attending",
+          "intention": "exploring",
+          "ts": "2026-11-03T05:32:18.038840Z"
+        },
+        {
+          "state": "reserved",
+          "cognitive_state": "minimal",
+          "intention": "minimal",
+          "ts": "2026-11-03T05:33:38.781311Z"
+        }
+      ],
+      "belief_model": {
+        "feels_understood": null,
+        "in_alignment": null,
+        "satisfied_last": null,
+        "consecutive_misalignments": 0,
+        "belief_discordance": false
+      },
+      "last_prediction": {
+        "intention": "minimal",
+        "family": "inquiry",
+        "state": "reserved"
+      },
+      "intent_transitions": {
+        "low": {
+          "low": 1,
+          "inquiry": 2
+        },
+        "inquiry": {
+          "low": 2,
+          "inquiry": 2
+        }
+      },
+      "misalignment_streak": 0,
+      "last_keywords": [
+        "inception"
+      ]
+    },
+    "person_type": "unknown",
+    "interaction_history": [
+      {
+        "user": "hey buddy",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:26:11.832876+00:00"
+      },
+      {
+        "user": "how are you",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:26:20.567609+00:00"
+      },
+      {
+        "user": "what does?",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:26:36.536615+00:00"
+      },
+      {
+        "user": "idk.. i need urvocals better huh?",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:27:11.651818+00:00"
+      },
+      {
+        "user": "well..   i like star wars.  its a tv show. something that humans watch.  what do you like?",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:28:15.913060+00:00"
+      },
+      {
+        "user": "maybe im not sure if thats a preference",
+        "orrin": "",
+        "emotion": "confidence",
+        "timestamp": "2026-11-03T05:32:03.840836+00:00"
+      },
+      {
+        "user": "thx.  idk what you gave me tho",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:32:18.177225+00:00"
+      },
+      {
+        "user": "inception?",
+        "orrin": "",
+        "emotion": "neutral",
+        "timestamp": "2026-11-03T05:33:38.865847+00:00"
+      }
+    ],
+    "influence_score": 0.5,
+    "recent_emotional_effect": "neutral",
+    "trust": 0.5,
+    "depth": 0.064,
+    "last_interaction_time": "2026-11-03T05:33:38.865867+00:00",
+    "their_impression_of_me": {
+      "score": 0.67,
+      "signals": [
+        "brief",
+        "brief",
+        "brief",
+        "engaged",
+        "engaged",
+        "engaged",
+        "engaged",
+        "brief"
+      ],
+      "label": "neutral"
+    },
+    "arc_depth_snapshots": [
+      {
+        "depth": 0.008,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:26:11.833125+00:00"
+      },
+      {
+        "depth": 0.016,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:26:20.567731+00:00"
+      },
+      {
+        "depth": 0.024,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:26:36.536810+00:00"
+      },
+      {
+        "depth": 0.032,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:27:11.652020+00:00"
+      },
+      {
+        "depth": 0.04,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:28:15.913274+00:00"
+      },
+      {
+        "depth": 0.048,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:32:03.841024+00:00"
+      },
+      {
+        "depth": 0.056,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:32:18.177377+00:00"
+      },
+      {
+        "depth": 0.064,
+        "trust": 0.5,
+        "ts": "2026-11-03T05:33:38.866127+00:00"
+      }
+    ],
+    "arc": {
+      "phase": "forming",
+      "trajectory": "growing",
+      "narrative": "We're still finding our footing — I don't even know their name yet.",
+      "updated_ts": "2026-11-03T05:33:38.866264+00:00"
+    },
+    "relationship_wants": {
+      "connection": 0.26,
+      "understanding": 0.9,
+      "meaning": 0.26
+    }
+  }
+}

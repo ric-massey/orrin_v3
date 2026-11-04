@@ -1,0 +1,78 @@
+{
+  "queries": [
+    "benzodiazepines",
+    "benzodiazepines explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Benzodiazepine",
+    "https://en.wikipedia.org/wiki/Benzodiazepine_withdrawal_syndrome",
+    "https://en.wikipedia.org/wiki/Benzodiazepine_dependence",
+    "https://en.wikipedia.org/wiki/List_of_benzodiazepines",
+    "https://en.wikipedia.org/wiki/Alprazolam",
+    "https://en.wikipedia.org/wiki/Effects_of_long-term_benzodiazepine_use",
+    "https://en.wikipedia.org/wiki/Lorazepam"
+  ],
+  "results": [
+    {
+      "title": "Benzodiazepine",
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine",
+      "snippet": "of many shorter-acting <span class=\"searchmatch\">benzodiazepines</span> may also cause anterograde amnesia and dissociation. These properties make <span class=\"searchmatch\">benzodiazepines</span> useful in treating severe",
+      "query": "benzodiazepines"
+    },
+    {
+      "title": "Benzodiazepine withdrawal syndrome",
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine_withdrawal_syndrome",
+      "snippet": "evidence for the need to take <span class=\"searchmatch\">benzodiazepines</span>, which in turn leads to withdrawal failure and reinstatement of <span class=\"searchmatch\">benzodiazepines</span>, often to higher doses. Pre-existing",
+      "query": "benzodiazepines"
+    },
+    {
+      "title": "Benzodiazepine dependence",
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence",
+      "snippet": "and abuse of <span class=\"searchmatch\">benzodiazepines</span>, and physical dependence on them. The increased GABA inhibition on the neural systems caused by <span class=\"searchmatch\">benzodiazepines</span> is counteracted",
+      "query": "benzodiazepines"
+    },
+    {
+      "title": "List of benzodiazepines",
+      "url": "https://en.wikipedia.org/wiki/List_of_benzodiazepines",
+      "snippet": "The tables below contain a sample list of <span class=\"searchmatch\">benzodiazepines</span> and <span class=\"searchmatch\">benzodiazepine</span> analogs that are commonly prescribed, with their basic pharmacological characteristics",
+      "query": "benzodiazepines"
+    },
+    {
+      "title": "Alprazolam",
+      "url": "https://en.wikipedia.org/wiki/Alprazolam",
+      "snippet": "Retrieved 18 July 2017. Michel L, Lang JP (2003). &quot;[<span class=\"searchmatch\">Benzodiazepines</span> and forensic aspects]&quot; [<span class=\"searchmatch\">Benzodiazepines</span> and Forensic Aspects]. L&#039;Encephale (in French)",
+      "query": "benzodiazepines"
+    },
+    {
+      "title": "Benzodiazepine",
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine",
+      "snippet": "of many shorter-acting <span class=\"searchmatch\">benzodiazepines</span> may also cause anterograde amnesia and dissociation. These properties make <span class=\"searchmatch\">benzodiazepines</span> useful in treating severe",
+      "query": "benzodiazepines explained"
+    },
+    {
+      "title": "Benzodiazepine dependence",
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence",
+      "snippet": "and abuse of <span class=\"searchmatch\">benzodiazepines</span>, and physical dependence on them. The increased GABA inhibition on the neural systems caused by <span class=\"searchmatch\">benzodiazepines</span> is counteracted",
+      "query": "benzodiazepines explained"
+    },
+    {
+      "title": "List of benzodiazepines",
+      "url": "https://en.wikipedia.org/wiki/List_of_benzodiazepines",
+      "snippet": "The tables below contain a sample list of <span class=\"searchmatch\">benzodiazepines</span> and <span class=\"searchmatch\">benzodiazepine</span> analogs that are commonly prescribed, with their basic pharmacological characteristics",
+      "query": "benzodiazepines explained"
+    },
+    {
+      "title": "Effects of long-term benzodiazepine use",
+      "url": "https://en.wikipedia.org/wiki/Effects_of_long-term_benzodiazepine_use",
+      "snippet": "adverse effects associated with <span class=\"searchmatch\">benzodiazepines</span>. Increased risk of death has been associated with long-term use of <span class=\"searchmatch\">benzodiazepines</span> in several studies; however",
+      "query": "benzodiazepines explained"
+    },
+    {
+      "title": "Lorazepam",
+      "url": "https://en.wikipedia.org/wiki/Lorazepam",
+      "snippet": "than other <span class=\"searchmatch\">benzodiazepines</span>; it impairs both explicit and implicit memory. In the elderly, falls may occur as a result of <span class=\"searchmatch\">benzodiazepines</span>. Adverse effects",
+      "query": "benzodiazepines explained"
+    }
+  ],
+  "ts": "2026-11-03T18:53:13.527620+00:00"
+}

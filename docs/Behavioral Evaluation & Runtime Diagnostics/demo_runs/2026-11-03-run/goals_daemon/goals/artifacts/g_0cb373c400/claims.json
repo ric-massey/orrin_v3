@@ -1,0 +1,126 @@
+{
+  "question": "What actually is Explanations, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "explanations"
+  ],
+  "entities": [
+    "that the task of a theory or model of scientific explanation",
+    "to outline the structure of such explanations",
+    "it is the task of a theory of explanation to capture what",
+    "common to both scientific and at least some more ordinary forms of explanation",
+    "but it",
+    "still the starting point for discussion of most theories of explanation",
+    "The answer here",
+    "explanation",
+    "explanations try to show why or how something",
+    "or will be",
+    "they may further question why this",
+    "so and put forth an explanation",
+    "The same types of words and phrases",
+    "used in presenting explanations and arguments",
+    "Explanations",
+    "often used within arguments and presented so as to serve as arguments"
+  ],
+  "relations": [
+    {
+      "subject": "that the task of a theory or model of scientific explanation",
+      "predicate": "is",
+      "object": "to outline the structure of such explanations",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "it is the task of a theory of explanation to capture what",
+      "predicate": "is",
+      "object": "common to both scientific and at least some more ordinary forms of explanation",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "but it",
+      "predicate": "is",
+      "object": "still the starting point for discussion of most theories of explanation",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "The answer here",
+      "predicate": "is the",
+      "object": "explanation",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "explanations try to show why or how something",
+      "predicate": "is",
+      "object": "or will be",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "they may further question why this",
+      "predicate": "is",
+      "object": "so and put forth an explanation",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "The same types of words and phrases",
+      "predicate": "are",
+      "object": "used in presenting explanations and arguments",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "Explanations",
+      "predicate": "are",
+      "object": "often used within arguments and presented so as to serve as arguments",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "the explanation as to why a belief",
+      "predicate": "is",
+      "object": "true",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "may be understood as the explanation as to why a belief",
+      "predicate": "is a",
+      "object": "true one or an account of how one knows what one knows",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "It is important to be aware when an explanation",
+      "predicate": "is",
+      "object": "not a justification",
+      "source": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "subject": "Philosophical Explanations",
+      "predicate": "was",
+      "object": "first published in 1981 by Harvard University Press",
+      "source": "https://en.wikipedia.org/wiki/Philosophical_Explanations"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophical_Explanations"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explorable_explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation_of_benefits"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Right_to_explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hanlon%27s_razor"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    }
+  ],
+  "ts": "2026-11-03T21:06:30.850147+00:00"
+}

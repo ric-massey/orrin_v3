@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "the world open problems",
+    "the world criticism and debate"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+    "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+    "https://en.wikipedia.org/wiki/OpenAI",
+    "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+    "https://en.wikipedia.org/wiki/Problem_of_mental_causation",
+    "https://en.wikipedia.org/wiki/Debate",
+    "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+    "https://en.wikipedia.org/wiki/Structuration_theory",
+    "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism",
+    "https://en.wikipedia.org/wiki/Justification_%28epistemology%29"
+  ],
+  "results": [
+    {
+      "title": "List of unsolved problems in physics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "snippet": "<span class=\"searchmatch\">open</span> <span class=\"searchmatch\">problems</span> in physics on &quot;<span class=\"searchmatch\">the</span> verge of <span class=\"searchmatch\">the</span> 21st century&quot;, <span class=\"searchmatch\">the</span> final list includes 30 <span class=\"searchmatch\">problems</span>. Ginzburg also included three &quot;great <span class=\"searchmatch\">problems</span>&quot;: <span class=\"searchmatch\">the</span> problem",
+      "query": "the world open problems"
+    },
+    {
+      "title": "List of unsolved problems in mathematics",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "snippet": "the solution to a long-standing <span class=\"searchmatch\">problem</span>, and some lists of unsolved <span class=\"searchmatch\">problems</span>, such as <span class=\"searchmatch\">the</span> Millennium Prize <span class=\"searchmatch\">Problems</span>, receive considerable attention.",
+      "query": "the world open problems"
+    },
+    {
+      "title": "OpenAI",
+      "url": "https://en.wikipedia.org/wiki/OpenAI",
+      "snippet": "US$852 billion, making it one of <span class=\"searchmatch\">the</span> most valuable AI pure play companies in <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">world</span>, rivalled only by Anthropic. <span class=\"searchmatch\">Open</span>AI was founded in 2015 as a nonprofit",
+      "query": "the world open problems"
+    },
+    {
+      "title": "P versus NP problem",
+      "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+      "snippet": "in polynomial time? More unsolved <span class=\"searchmatch\">problems</span> in computer science <span class=\"searchmatch\">The</span> P versus NP <span class=\"searchmatch\">problem</span> is a major unsolved <span class=\"searchmatch\">problem</span> in theoretical computer science. Informally",
+      "query": "the world open problems"
+    },
+    {
+      "title": "Problem of mental causation",
+      "url": "https://en.wikipedia.org/wiki/Problem_of_mental_causation",
+      "snippet": "actions. <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">problem</span> divides into several distinct sub-<span class=\"searchmatch\">problems</span>, including <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">problem</span> of causal exclusion, <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">problem</span> of anomalism, and <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">problem</span> of externalism",
+      "query": "the world open problems"
+    },
+    {
+      "title": "Debate",
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "snippet": "<span class=\"searchmatch\">Debate</span> is a process that involves formal discourse, discussion, <span class=\"searchmatch\">and</span> oral addresses on a particular collection of topics, often with a moderator <span class=\"searchmatch\">and</span> an",
+      "query": "the world criticism and debate"
+    },
+    {
+      "title": "2024 United States presidential debates",
+      "url": "https://en.wikipedia.org/wiki/2024_United_States_presidential_debates",
+      "snippet": "<span class=\"searchmatch\">debates</span> for major candidates in <span class=\"searchmatch\">the</span> general election were held in connection with <span class=\"searchmatch\">the</span> 2024 presidential election. <span class=\"searchmatch\">The</span> first general election <span class=\"searchmatch\">debate</span> between",
+      "query": "the world criticism and debate"
+    },
+    {
+      "title": "Structuration theory",
+      "url": "https://en.wikipedia.org/wiki/Structuration_theory",
+      "snippet": "have adopted and expanded this balanced position. Though <span class=\"searchmatch\">the</span> theory has received much <span class=\"searchmatch\">criticism</span>, it remains a pillar of contemporary sociological theory",
+      "query": "the world criticism and debate"
+    },
+    {
+      "title": "Materialism and Empirio-criticism",
+      "url": "https://en.wikipedia.org/wiki/Materialism_and_Empirio-criticism",
+      "snippet": "Materialism <span class=\"searchmatch\">and</span> Empirio-<span class=\"searchmatch\">criticism</span> (Russian: Материализм и эмпириокритицизм, Materializm i empiriokrititsizm) is a philosophical work by Vladimir Lenin",
+      "query": "the world criticism and debate"
+    },
+    {
+      "title": "Justification (epistemology)",
+      "url": "https://en.wikipedia.org/wiki/Justification_%28epistemology%29",
+      "snippet": "major subject of <span class=\"searchmatch\">debate</span> is <span class=\"searchmatch\">the</span> sources of justification, which might include perceptual experience (<span class=\"searchmatch\">the</span> evidence of <span class=\"searchmatch\">the</span> senses), reason, <span class=\"searchmatch\">and</span> authoritative",
+      "query": "the world criticism and debate"
+    }
+  ],
+  "ts": "2026-11-03T11:46:52.026582+00:00"
+}

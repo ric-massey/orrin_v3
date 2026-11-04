@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Scholars",
+    "Scholars explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Scholar",
+    "https://en.wikipedia.org/wiki/Google_Scholar",
+    "https://en.wikipedia.org/wiki/Schwarzman_Scholars",
+    "https://en.wikipedia.org/wiki/Semantic_Scholar",
+    "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars",
+    "https://en.wikipedia.org/wiki/Violence_in_the_Quran",
+    "https://en.wikipedia.org/wiki/PnL_explained",
+    "https://en.wikipedia.org/wiki/Daniel_McClellan_%28biblical_scholar%29",
+    "https://en.wikipedia.org/wiki/No_Time_to_Explain",
+    "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+  ],
+  "results": [
+    {
+      "title": "Scholar",
+      "url": "https://en.wikipedia.org/wiki/Scholar",
+      "snippet": "succeed as an academic&quot;. Category:<span class=\"searchmatch\">Scholars</span> and academics – The category of <span class=\"searchmatch\">scholars</span>, people who study a field <span class=\"searchmatch\">Scholarism</span> (學民思潮) Hong Kong political movement",
+      "query": "Scholars"
+    },
+    {
+      "title": "Google Scholar",
+      "url": "https://en.wikipedia.org/wiki/Google_Scholar",
+      "snippet": "One of the sources for the texts in Google <span class=\"searchmatch\">Scholar</span> is the University of Michigan&#039;s print collection. <span class=\"searchmatch\">Scholars</span> have gained a range of features over time",
+      "query": "Scholars"
+    },
+    {
+      "title": "Schwarzman Scholars",
+      "url": "https://en.wikipedia.org/wiki/Schwarzman_Scholars",
+      "snippet": "Architecture. It hosts up to 200 <span class=\"searchmatch\">scholars</span> annually from the United States, China, and other countries around the world. Schwarzman <span class=\"searchmatch\">Scholars</span> has an acceptance rate",
+      "query": "Scholars"
+    },
+    {
+      "title": "Semantic Scholar",
+      "url": "https://en.wikipedia.org/wiki/Semantic_Scholar",
+      "snippet": "papers users care about reading and recommends the latest research to help <span class=\"searchmatch\">scholars</span> stay up to date. It uses a paper embedding model trained using contrastive",
+      "query": "Scholars"
+    },
+    {
+      "title": "List of Rhodes Scholars",
+      "url": "https://en.wikipedia.org/wiki/List_of_Rhodes_Scholars",
+      "snippet": "All names are verified using the Rhodes <span class=\"searchmatch\">Scholar</span> Database. This is not an exhaustive list of all Rhodes <span class=\"searchmatch\">Scholars</span>. A. G. L. Shaw, Behan, Sir John Clifford",
+      "query": "Scholars"
+    },
+    {
+      "title": "Violence in the Quran",
+      "url": "https://en.wikipedia.org/wiki/Violence_in_the_Quran",
+      "snippet": "in Islamic thinking on war&quot; according to <span class=\"searchmatch\">scholars</span> such as Charles Matthews. While numerous <span class=\"searchmatch\">scholars</span> <span class=\"searchmatch\">explain</span> Quranic phrases on violence to be only in",
+      "query": "Scholars explained"
+    },
+    {
+      "title": "PnL explained",
+      "url": "https://en.wikipedia.org/wiki/PnL_explained",
+      "snippet": "<span class=\"searchmatch\">explained</span> (also called P&amp;L <span class=\"searchmatch\">explain</span>, P&amp;L attribution or profit and loss <span class=\"searchmatch\">explained</span>) is an income statement with commentary that attributes or <span class=\"searchmatch\">explains</span> the",
+      "query": "Scholars explained"
+    },
+    {
+      "title": "Daniel McClellan (biblical scholar)",
+      "url": "https://en.wikipedia.org/wiki/Daniel_McClellan_%28biblical_scholar%29",
+      "snippet": "Daniel Orrin McClellan (born July 23, 1980) is an American biblical <span class=\"searchmatch\">scholar</span>. He is well known for his activities on social media, regularly creating and",
+      "query": "Scholars explained"
+    },
+    {
+      "title": "No Time to Explain",
+      "url": "https://en.wikipedia.org/wiki/No_Time_to_Explain",
+      "snippet": "No Time to <span class=\"searchmatch\">Explain</span> is a platform game developed and published by tinyBuild. Designed by Tom Brien and Alex Nichiporchik, it is the successor to Brien&#039;s",
+      "query": "Scholars explained"
+    },
+    {
+      "title": "Explainable artificial intelligence",
+      "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+      "snippet": "certain behaviors). <span class=\"searchmatch\">Explainability</span> research in this area overlaps significantly with interpretability and alignment research. <span class=\"searchmatch\">Scholars</span> sometimes use the",
+      "query": "Scholars explained"
+    }
+  ],
+  "ts": "2026-11-03T16:16:53.525743+00:00"
+}

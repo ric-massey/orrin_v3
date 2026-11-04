@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "Overdosing on medication",
+    "Overdosing on medication explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Drug_overdose",
+    "https://en.wikipedia.org/wiki/Vanilla_Sky",
+    "https://en.wikipedia.org/wiki/Kenneth_Harrison_%28serial_killer%29",
+    "https://en.wikipedia.org/wiki/Persepolis_%28film%29",
+    "https://en.wikipedia.org/wiki/Patient-controlled_analgesia",
+    "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+    "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+    "https://en.wikipedia.org/wiki/Ezetimibe",
+    "https://en.wikipedia.org/wiki/Anxiolytic",
+    "https://en.wikipedia.org/wiki/Nitroglycerin_%28medication%29"
+  ],
+  "results": [
+    {
+      "title": "Drug overdose",
+      "url": "https://en.wikipedia.org/wiki/Drug_overdose",
+      "snippet": "dosage. Drug <span class=\"searchmatch\">overdose</span> is sometimes used as a means to commit suicide, as the result of intentional or unintentional misuse of <span class=\"searchmatch\">medication</span>. Intentional",
+      "query": "Overdosing on medication"
+    },
+    {
+      "title": "Vanilla Sky",
+      "url": "https://en.wikipedia.org/wiki/Vanilla_Sky",
+      "snippet": "publishing company in the hands of his father&#039;s associates, ultimately <span class=\"searchmatch\">overdosing</span> <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">medication</span> and causing Brian to arrange a three-day memorial for him in his",
+      "query": "Overdosing on medication"
+    },
+    {
+      "title": "Kenneth Harrison (serial killer)",
+      "url": "https://en.wikipedia.org/wiki/Kenneth_Harrison_%28serial_killer%29",
+      "snippet": "hospital in 1989, following a suicide attempt by <span class=\"searchmatch\">overdosing</span> <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">medication</span>. Kenneth Francis Harrison was born <span class=\"searchmatch\">on</span> September 4, 1938, in the Mission Hill neighborhood",
+      "query": "Overdosing on medication"
+    },
+    {
+      "title": "Persepolis (film)",
+      "url": "https://en.wikipedia.org/wiki/Persepolis_%28film%29",
+      "snippet": "improve their lives. She grows depressed, and attempts suicide by <span class=\"searchmatch\">overdosing</span> <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">medication</span>. She dreams of meeting God, who insists that her time is not over",
+      "query": "Overdosing on medication"
+    },
+    {
+      "title": "Patient-controlled analgesia",
+      "url": "https://en.wikipedia.org/wiki/Patient-controlled_analgesia",
+      "snippet": "is unlikely to deliver an <span class=\"searchmatch\">overdose</span> of <span class=\"searchmatch\">medication</span>. Providers must always observe the first administration of any PCA <span class=\"searchmatch\">medication</span> which has not already been",
+      "query": "Overdosing on medication"
+    },
+    {
+      "title": "Alzheimer's disease",
+      "url": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease",
+      "snippet": "less likely to get anti-AD <span class=\"searchmatch\">medications</span> compared to their White counterparts. Furthermore, when they are prescribed <span class=\"searchmatch\">medication</span>, they are less likely to adhere",
+      "query": "Overdosing on medication explained"
+    },
+    {
+      "title": "Lithium (medication)",
+      "url": "https://en.wikipedia.org/wiki/Lithium_%28medication%29",
+      "snippet": "lithium compounds, also known as lithium salts, are used as psychiatric <span class=\"searchmatch\">medication</span>, primarily for bipolar disorder and for major depressive disorder. Lithium",
+      "query": "Overdosing on medication explained"
+    },
+    {
+      "title": "Ezetimibe",
+      "url": "https://en.wikipedia.org/wiki/Ezetimibe",
+      "snippet": "Ezetimibe, sold under the brand name Zetia among others, is a <span class=\"searchmatch\">medication</span> used to treat high blood cholesterol and certain other lipid abnormalities. Generally",
+      "query": "Overdosing on medication explained"
+    },
+    {
+      "title": "Anxiolytic",
+      "url": "https://en.wikipedia.org/wiki/Anxiolytic",
+      "snippet": "<span class=\"searchmatch\">medication</span> or other intervention that reduces anxiety. This effect is in contrast to anxiogenic agents which increase anxiety. Anxiolytic <span class=\"searchmatch\">medications</span>",
+      "query": "Overdosing on medication explained"
+    },
+    {
+      "title": "Nitroglycerin (medication)",
+      "url": "https://en.wikipedia.org/wiki/Nitroglycerin_%28medication%29",
+      "snippet": "pregnancy is safe for the fetus. It should not be used together with <span class=\"searchmatch\">medications</span> within the PDE5 inhibitor family such as sildenafil due to the risk of",
+      "query": "Overdosing on medication explained"
+    }
+  ],
+  "ts": "2026-11-03T15:10:16.205944+00:00"
+}

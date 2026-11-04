@@ -1,0 +1,81 @@
+{
+  "queries": [
+    "study found that there",
+    "study found that there explained"
+  ],
+  "urls": [
+    "https://en.wikipedia.org/wiki/Libido",
+    "https://en.wikipedia.org/wiki/Colorism",
+    "https://en.wikipedia.org/wiki/Physical_attractiveness",
+    "https://en.wikipedia.org/wiki/Human_penis_size",
+    "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+    "https://en.wikipedia.org/wiki/Backrooms_%28web_series%29",
+    "https://en.wikipedia.org/wiki/Stanford_prison_experiment",
+    "https://en.wikipedia.org/wiki/Genome-wide_association_study",
+    "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment",
+    "https://en.wikipedia.org/wiki/Religion_Explained"
+  ],
+  "results": [
+    {
+      "title": "Libido",
+      "url": "https://en.wikipedia.org/wiki/Libido",
+      "snippet": " Another <span class=\"searchmatch\">study</span> <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">there</span> is little support for the notion <span class=\"searchmatch\">that</span> testosterone is the critical libido hormone for women. It <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span>, in all other",
+      "query": "study found that there"
+    },
+    {
+      "title": "Colorism",
+      "url": "https://en.wikipedia.org/wiki/Colorism",
+      "snippet": "A 2018 <span class=\"searchmatch\">study</span> <span class=\"searchmatch\">found</span> evidence suggesting discrimination against immigrants with darker skin colors. A 2019 experimental <span class=\"searchmatch\">study</span> <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span> <span class=\"searchmatch\">there</span> was a bias",
+      "query": "study found that there"
+    },
+    {
+      "title": "Physical attractiveness",
+      "url": "https://en.wikipedia.org/wiki/Physical_attractiveness",
+      "snippet": "having shared genes. The <span class=\"searchmatch\">study</span> also <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span>, although female faces <span class=\"searchmatch\">that</span> were more feminine were judged to be more attractive, <span class=\"searchmatch\">there</span> was no association between",
+      "query": "study found that there"
+    },
+    {
+      "title": "Human penis size",
+      "url": "https://en.wikipedia.org/wiki/Human_penis_size",
+      "snippet": "reach a full potential erection length. This <span class=\"searchmatch\">study</span> also <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span> tension forces exerted in this <span class=\"searchmatch\">study</span> by the urologist were shown to be significantly",
+      "query": "study found that there"
+    },
+    {
+      "title": "Coup d'état",
+      "url": "https://en.wikipedia.org/wiki/Coup_d%27%C3%A9tat",
+      "snippet": "region likely to follow. One <span class=\"searchmatch\">study</span> <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span> coups are more likely to occur in states with small populations, as <span class=\"searchmatch\">there</span> are smaller coordination problems",
+      "query": "study found that there"
+    },
+    {
+      "title": "Backrooms (web series)",
+      "url": "https://en.wikipedia.org/wiki/Backrooms_%28web_series%29",
+      "snippet": "research institute <span class=\"searchmatch\">that</span> discovers and makes an entry to the Backrooms—in-universe designated as &quot;the Complex&quot; by Async—and attempts to <span class=\"searchmatch\">study</span> and document it",
+      "query": "study found that there explained"
+    },
+    {
+      "title": "Stanford prison experiment",
+      "url": "https://en.wikipedia.org/wiki/Stanford_prison_experiment",
+      "snippet": "psychology professor Philip Zimbardo managed the research team <span class=\"searchmatch\">that</span> administered the <span class=\"searchmatch\">study</span>. Participants were recruited from the local community through",
+      "query": "study found that there explained"
+    },
+    {
+      "title": "Genome-wide association study",
+      "url": "https://en.wikipedia.org/wiki/Genome-wide_association_study",
+      "snippet": "twins. For example, it is known <span class=\"searchmatch\">that</span> 40% of variance in depression can be <span class=\"searchmatch\">explained</span> by hereditary differences, but GWA <span class=\"searchmatch\">studies</span> only account for a minority",
+      "query": "study found that there explained"
+    },
+    {
+      "title": "Stanford marshmallow experiment",
+      "url": "https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment",
+      "snippet": "willpower, <span class=\"searchmatch\">explained</span> the other half. The predictive power of the marshmallow test was challenged in a 2020 <span class=\"searchmatch\">study</span>. Work done in 2018 and 2024 <span class=\"searchmatch\">found</span> <span class=\"searchmatch\">that</span> the marshmallow",
+      "query": "study found that there explained"
+    },
+    {
+      "title": "Religion Explained",
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "snippet": "variously altered the Religion <span class=\"searchmatch\">Explained</span> title. The American edition was published as: Religion <span class=\"searchmatch\">Explained</span>: The Human Instincts <span class=\"searchmatch\">That</span> Fashion Gods, Spirits and",
+      "query": "study found that there explained"
+    }
+  ],
+  "ts": "2026-11-03T12:58:46.838278+00:00"
+}

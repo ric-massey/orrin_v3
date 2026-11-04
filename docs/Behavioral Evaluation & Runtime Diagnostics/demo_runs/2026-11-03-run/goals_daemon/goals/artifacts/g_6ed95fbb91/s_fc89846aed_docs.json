@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Philosophical_Explanations",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_02.txt",
+      "chars": 13999
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Smale%27s_problems",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Right_to_explanation",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_06.txt",
+      "chars": 18531
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Software_patent_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2024_Joe_Biden%E2%80%93Donald_Trump_presidential_debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_evolutionary_psychology",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Criticism_of_Israel",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_6ed95fbb91/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T21:42:52.539963+00:00"
+}

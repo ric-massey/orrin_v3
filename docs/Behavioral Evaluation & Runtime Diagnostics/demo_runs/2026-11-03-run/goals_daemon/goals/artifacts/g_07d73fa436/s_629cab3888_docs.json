@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_system",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_02.txt",
+      "chars": 19837
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Formal_proof",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_05.txt",
+      "chars": 9200
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Argumentation_theory",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Modal_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_07d73fa436/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T03:36:22.638530+00:00"
+}

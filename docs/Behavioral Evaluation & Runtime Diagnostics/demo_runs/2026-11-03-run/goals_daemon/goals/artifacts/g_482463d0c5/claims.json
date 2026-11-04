@@ -1,0 +1,72 @@
+{
+  "question": "What is there about history of written language that my earlier notes on it are missing?",
+  "subject_terms": [
+    "history",
+    "written",
+    "language"
+  ],
+  "entities": [
+    "History",
+    "systematic study of the past",
+    "Wikipedia",
+    "largest and most read reference work in history",
+    "online English-language encyclopedia project whose articles",
+    "written by experts and reviewed under a formal process",
+    "there",
+    "circumstances in history that justify ethnic cleansing"
+  ],
+  "relations": [
+    {
+      "subject": "History",
+      "predicate": "is the",
+      "object": "systematic study of the past",
+      "source": "my prior claims [g_16c1c9e146]"
+    },
+    {
+      "subject": "Wikipedia",
+      "predicate": "is the",
+      "object": "largest and most read reference work in history",
+      "source": "https://en.wikipedia.org/wiki/Wikipedia"
+    },
+    {
+      "subject": "online English-language encyclopedia project whose articles",
+      "predicate": "were",
+      "object": "written by experts and reviewed under a formal process",
+      "source": "https://en.wikipedia.org/wiki/Wikipedia"
+    },
+    {
+      "subject": "there",
+      "predicate": "are",
+      "object": "circumstances in history that justify ethnic cleansing",
+      "source": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_16c1c9e146]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Whataboutism"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wikipedia"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Utopia_%28book%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Criticism_of_Israel"
+    }
+  ],
+  "ts": "2026-11-03T11:08:00.263796+00:00"
+}

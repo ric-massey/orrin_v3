@@ -1,0 +1,136 @@
+{
+  "question": "What is there about formal logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "formal",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "The term formalism",
+    "sometimes a rough synonym for formal system",
+    "both of which",
+    "part of the formal language",
+    "The two main categories of formal grammar",
+    "that of generative grammars",
+    "The two main types of deductive systems",
+    "proof systems and formal semantics",
+    "an approach to formal logic that began with Aristotle and",
+    "developed further in ancient history mostly by his followers",
+    "works that",
+    "about term logic",
+    "where logic",
+    "understood as the study of arguments"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_3f24e730e9]"
+    },
+    {
+      "subject": "The term formalism",
+      "predicate": "is",
+      "object": "sometimes a rough synonym for formal system",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "both of which",
+      "predicate": "are",
+      "object": "part of the formal language",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "The two main categories of formal grammar",
+      "predicate": "are",
+      "object": "that of generative grammars",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "The two main types of deductive systems",
+      "predicate": "are",
+      "object": "proof systems and formal semantics",
+      "source": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "subject": "an approach to formal logic that began with Aristotle and",
+      "predicate": "was",
+      "object": "developed further in ancient history mostly by his followers",
+      "source": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "subject": "works that",
+      "predicate": "is",
+      "object": "about term logic",
+      "source": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "subject": "where logic",
+      "predicate": "is",
+      "object": "understood as the study of arguments",
+      "source": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "subject": "The formal model of proposition",
+      "predicate": "consists of",
+      "object": "two terms",
+      "source": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "subject": "Philosophy of logic",
+      "predicate": "is the",
+      "object": "branch of philosophy that studies the scope and nature of logic",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_logic"
+    },
+    {
+      "subject": "This involves questions about how logic",
+      "predicate": "is",
+      "object": "to be defined and how different logical systems are connected to each other",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_logic"
+    },
+    {
+      "subject": "Various characterizations of the nature of logic",
+      "predicate": "are",
+      "object": "found in the academic literature",
+      "source": "https://en.wikipedia.org/wiki/Philosophy_of_logic"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_3f24e730e9]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_methods"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Propositional_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_fallacy"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_fallacies"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Deductive_reasoning"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Affirming_the_consequent"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Syllogism"
+    }
+  ],
+  "ts": "2026-11-03T08:01:03.181398+00:00"
+}

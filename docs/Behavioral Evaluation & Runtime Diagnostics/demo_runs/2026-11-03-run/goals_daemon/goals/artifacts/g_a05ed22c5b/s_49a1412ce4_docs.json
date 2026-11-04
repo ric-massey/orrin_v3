@@ -1,0 +1,45 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Umami",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Taste_%28disambiguation%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_04.txt",
+      "chars": 2694
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bad_Taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_05.txt",
+      "chars": 17098
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Max_Miller_%28YouTuber%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_06.txt",
+      "chars": 10708
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Acquired_taste",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_07.txt",
+      "chars": 5829
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Conditioned_taste_aversion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_a05ed22c5b/doc_08.txt",
+      "chars": 10284
+    }
+  ],
+  "ts": "2026-11-03T22:39:53.835893+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_1b7f64d97e",
+    "title": "Understand Sawdust more deeply — round 2",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "Sawdust open problems",
+        "Sawdust criticism and debate"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "g_43da3c84a1",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:02.018441Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:02.018445Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:02.018447Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:02.018448Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T19:21:02.018450Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "Sawdust was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about Sawdust was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T19:21:02.018482Z",
+      "question": "What actually is Sawdust, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 19:21:02.019218+00:00",
+    "updated_at": "2026-11-03 19:21:03.032339+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/research_memo.md",
+  "docs_used": [
+    {
+      "url": "my prior memo: synthesis.md",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Health_impacts_of_sawdust",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pykrete",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Killers",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Silo",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Oryctes_rhinoceros",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sierra_Pacific_Industries",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ingmar_Bergman",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sustainable_fashion",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alexei_Navalny",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_1b7f64d97e/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T19:21:09.542012+00:00"
+}

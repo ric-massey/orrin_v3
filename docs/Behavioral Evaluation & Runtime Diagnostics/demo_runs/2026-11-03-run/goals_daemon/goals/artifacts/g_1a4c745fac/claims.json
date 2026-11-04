@@ -1,0 +1,129 @@
+{
+  "question": "What actually is structures, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "structures"
+  ],
+  "entities": [
+    "bridges and salt domes",
+    "all examples of load-bearing structures",
+    "The results of construction",
+    "divided into buildings and non-building structures",
+    "Built structures",
+    "broadly divided by their varying design approaches and standards",
+    "The effects of loads on physical structures",
+    "determined through structural analysis",
+    "Three-dimensional elements",
+    "the main option available to early structures such as Chichen Itza",
+    "The majority of everyday load-bearing structures",
+    "section-active structures like frames",
+    "Other types",
+    "Vector-active structures such as trusses",
+    "The deep structure of a linguistic expression",
+    "theoretical construct that seeks to unify several related structures"
+  ],
+  "relations": [
+    {
+      "subject": "bridges and salt domes",
+      "predicate": "are",
+      "object": "all examples of load-bearing structures",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The results of construction",
+      "predicate": "are",
+      "object": "divided into buildings and non-building structures",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Built structures",
+      "predicate": "are",
+      "object": "broadly divided by their varying design approaches and standards",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The effects of loads on physical structures",
+      "predicate": "are",
+      "object": "determined through structural analysis",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Three-dimensional elements",
+      "predicate": "were",
+      "object": "the main option available to early structures such as Chichen Itza",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The majority of everyday load-bearing structures",
+      "predicate": "are",
+      "object": "section-active structures like frames",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "Other types",
+      "predicate": "are",
+      "object": "Vector-active structures such as trusses",
+      "source": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "subject": "The deep structure of a linguistic expression",
+      "predicate": "is a",
+      "object": "theoretical construct that seeks to unify several related structures",
+      "source": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure"
+    },
+    {
+      "subject": "deep structures",
+      "predicate": "are",
+      "object": "derivation trees of a context-free language",
+      "source": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure"
+    },
+    {
+      "subject": "partial list of possible structures",
+      "predicate": "is",
+      "object": "measures",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_structure"
+    },
+    {
+      "subject": "Media type Print Pages 117 Syntactic Structures",
+      "predicate": "is a",
+      "object": "seminal work in linguistics by American linguist Noam Chomsky",
+      "source": "https://en.wikipedia.org/wiki/Syntactic_Structures"
+    },
+    {
+      "subject": "Hyperboloid structures",
+      "predicate": "are",
+      "object": "architectural structures designed using a hyperboloid in one sheet",
+      "source": "https://en.wikipedia.org/wiki/Hyperboloid_structure"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "https://en.wikipedia.org/wiki/Structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Deep_structure_and_surface_structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Syntactic_Structures"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Hyperboloid_structure"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explanation"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Religion_Explained"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/India"
+    }
+  ],
+  "ts": "2026-11-03T16:40:06.146950+00:00"
+}

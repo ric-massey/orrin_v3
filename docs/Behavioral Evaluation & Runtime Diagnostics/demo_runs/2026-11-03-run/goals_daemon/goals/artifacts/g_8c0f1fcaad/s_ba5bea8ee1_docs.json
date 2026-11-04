@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine_withdrawal_syndrome",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Benzodiazepine_dependence",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_03.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_benzodiazepines",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alprazolam",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Effects_of_long-term_benzodiazepine_use",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_06.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lorazepam",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_8c0f1fcaad/doc_07.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T18:53:17.509363+00:00"
+}

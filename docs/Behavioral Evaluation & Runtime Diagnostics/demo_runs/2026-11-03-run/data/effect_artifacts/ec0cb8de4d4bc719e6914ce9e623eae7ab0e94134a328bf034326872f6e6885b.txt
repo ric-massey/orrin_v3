@@ -1,0 +1,74 @@
+{
+  "question": "What actually is function and evolution, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "function",
+    "evolution"
+  ],
+  "entities": [
+    "Convergent evolution",
+    "independent evolution of similar features in species of different lineages",
+    "function",
+    "matter of degree",
+    "there",
+    "widespread scientific agreement that evolution",
+    "various other mechanisms of evolution",
+    "given more credit"
+  ],
+  "relations": [
+    {
+      "subject": "Convergent evolution",
+      "predicate": "is the",
+      "object": "independent evolution of similar features in species of different lineages",
+      "source": "my prior claims [g_54db417919]"
+    },
+    {
+      "subject": "function",
+      "predicate": "is a",
+      "object": "matter of degree",
+      "source": "https://en.wikipedia.org/wiki/Vestigiality"
+    },
+    {
+      "subject": "there",
+      "predicate": "was",
+      "object": "widespread scientific agreement that evolution",
+      "source": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
+    },
+    {
+      "subject": "various other mechanisms of evolution",
+      "predicate": "were",
+      "object": "given more credit",
+      "source": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_54db417919]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Vestigiality"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_Friedrich_Nietzsche"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Fuzzy_concept"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Wikipedia"
+    }
+  ],
+  "ts": "2026-11-03T21:47:27.358579+00:00"
+}

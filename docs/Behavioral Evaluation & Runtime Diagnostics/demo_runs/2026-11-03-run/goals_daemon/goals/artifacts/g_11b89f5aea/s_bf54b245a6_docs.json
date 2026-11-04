@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Description_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_01.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ladder_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_03.txt",
+      "chars": 15913
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Frame_problem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_05.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Language%2C_Truth%2C_and_Logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_06.txt",
+      "chars": 16374
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_07.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debate",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Modal_logic",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_11b89f5aea/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T08:25:28.649449+00:00"
+}

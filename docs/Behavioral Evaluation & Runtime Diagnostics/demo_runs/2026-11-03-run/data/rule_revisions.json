@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": "2026-11-03T02:55:34.909164+00:00",
+    "rule_id": "201d56e493",
+    "rule_conclusion": "[causal] 'evaluate_recent_cognition' causes (intervention) 'curiosity grows' (score=0.36, n=1, L2)",
+    "confidence": 0.37,
+    "outcome": 0.11200000000000002,
+    "query": "analyze recent emotional patterns and stability",
+    "status": "retired"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Development_%28journal%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_01.txt",
+      "chars": 2047
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ancient_history",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_02.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Development_Report",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_03.txt",
+      "chars": 12200
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/New_World_Development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Historians%27_History_of_the_World",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_05.txt",
+      "chars": 15759
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_06.txt",
+      "chars": 16118
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hello%2C_world",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_07.txt",
+      "chars": 14974
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_08.txt",
+      "chars": 15467
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Weissman_score",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_09.txt",
+      "chars": 4457
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/World_Wide_Web",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_e73ec00c77/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T08:48:14.502573+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "docs": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Product",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_01.txt",
+      "chars": 2513
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/By-product",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_02.txt",
+      "chars": 4888
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sunbeam_Products",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_03.txt",
+      "chars": 19303
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Avon_Products",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_04.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pelican_Products",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_05.txt",
+      "chars": 11778
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/PnL_explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_06.txt",
+      "chars": 4885
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Religion_Explained",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_07.txt",
+      "chars": 16851
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Product_%28business%29",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_08.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Halal",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_09.txt",
+      "chars": 20000
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cross_product",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_80acec228a/doc_10.txt",
+      "chars": 20000
+    }
+  ],
+  "ts": "2026-11-03T16:40:36.231014+00:00"
+}

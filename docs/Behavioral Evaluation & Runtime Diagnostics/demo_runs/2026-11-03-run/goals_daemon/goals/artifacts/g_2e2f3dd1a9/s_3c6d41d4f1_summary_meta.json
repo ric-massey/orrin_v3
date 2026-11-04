@@ -1,0 +1,163 @@
+{
+  "goal": {
+    "id": "g_2e2f3dd1a9",
+    "title": "Understand they more deeply — round 3",
+    "kind": "research",
+    "spec": {
+      "queries": [
+        "they history and development",
+        "they applications and examples"
+      ],
+      "synth_kind": "memo",
+      "build_on_prior": true,
+      "zone": "world",
+      "orientation": "worldward",
+      "followon_of": "intrinsic-2026-11-03T20:40:15.899009+00:00",
+      "definition_of_done": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ],
+      "grounded_parts": [
+        "intended outcome",
+        "required components",
+        "implementation",
+        "validation",
+        "durable result"
+      ],
+      "plan": [
+        {
+          "step": "Establish intended outcome",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:45:44.005960Z"
+        },
+        {
+          "step": "Establish required components",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:45:44.005972Z"
+        },
+        {
+          "step": "Establish implementation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:45:44.005975Z"
+        },
+        {
+          "step": "Establish validation",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:45:44.005977Z"
+        },
+        {
+          "step": "Establish durable result",
+          "status": "pending",
+          "generated_at": "2026-11-03T21:45:44.005979Z"
+        }
+      ],
+      "milestones": [
+        {
+          "text": "they was researched from outside sources.",
+          "met": false,
+          "met_at": null
+        },
+        {
+          "text": "A sourced finding about they was written to long memory.",
+          "met": false,
+          "met_at": null
+        }
+      ],
+      "requires_artifact": true,
+      "tracked_work": false,
+      "comprehension_source": "symbolic",
+      "comprehended_at": "2026-11-03T21:45:44.005993Z",
+      "question": "What actually is they, beyond the mentions I keep seeing?",
+      "tier": "growth",
+      "driven_by": "world_knowledge",
+      "source": "intrinsic"
+    },
+    "priority": 3,
+    "status": "RUNNING",
+    "created_at": "2026-11-03 21:45:44.007794+00:00",
+    "updated_at": "2026-11-03 21:45:45.637076+00:00",
+    "deadline": null,
+    "parent_id": null,
+    "tags": [
+      "worldward",
+      "external"
+    ],
+    "progress": {
+      "percent": 66.7,
+      "note": "",
+      "evidence": {}
+    },
+    "acceptance": {
+      "criteria": [
+        {
+          "criterion": "Builds on prior work: cites or extends an earlier artifact, memo, or answered question instead of restarting",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        },
+        {
+          "criterion": "States explicitly what is NEW beyond the prior work it builds on",
+          "kind": "quality",
+          "met": false,
+          "ladder_rung": 5
+        }
+      ]
+    },
+    "last_error": null,
+    "step_order": []
+  },
+  "output": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/research_memo.md",
+  "docs_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_decompression_research_and_development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_01.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/RuneScape",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_02.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Electronics",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_03.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Human_Development_Index",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_04.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gender_and_development",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_05.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Application_software",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_06.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/REST",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_07.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Database_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_08.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Authorization",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_09.txt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Web_application",
+      "path": "/Users/ricmassey/orrin_v3/data/goals/artifacts/g_2e2f3dd1a9/doc_10.txt"
+    }
+  ],
+  "ts": "2026-11-03T21:45:51.284715+00:00"
+}

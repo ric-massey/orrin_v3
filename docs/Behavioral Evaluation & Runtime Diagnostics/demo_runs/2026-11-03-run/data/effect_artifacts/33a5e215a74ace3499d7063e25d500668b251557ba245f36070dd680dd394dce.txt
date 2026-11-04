@@ -1,0 +1,53 @@
+{
+  "question": "What actually is you end up showing, beyond the mentions I keep seeing?",
+  "subject_terms": [
+    "end",
+    "showing"
+  ],
+  "entities": [
+    "you end up showing",
+    "yourself"
+  ],
+  "relations": [
+    {
+      "subject": "you end up showing",
+      "predicate": "is",
+      "object": "yourself",
+      "source": "my prior claims [g_09a1f8987e]"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_09a1f8987e]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Meaning_of_life"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Keep_Your_Hands_Off_Eizouken%21"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Eichmann_in_Jerusalem"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Facebook"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/2024_United_States_drone_sightings"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_common_misconceptions_about_science%2C_technology%2C_and_mathematics"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Myth_of_the_spat-on_Vietnam_veteran"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Critique_of_Pure_Reason"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/List_of_cognitive_biases"
+    }
+  ],
+  "ts": "2026-11-03T21:46:10.675879+00:00"
+}

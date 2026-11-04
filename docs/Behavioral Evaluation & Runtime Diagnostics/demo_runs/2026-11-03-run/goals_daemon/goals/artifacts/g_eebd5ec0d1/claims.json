@@ -1,0 +1,133 @@
+{
+  "question": "What is there about formal logic that my earlier notes on it are missing?",
+  "subject_terms": [
+    "formal",
+    "logic"
+  ],
+  "entities": [
+    "Logic",
+    "study of correct reasoning",
+    "Mathematical logic",
+    "study of logic within mathematics",
+    "sometimes the field of computational complexity theory",
+    "also included together with mathematical logic",
+    "theory",
+    "not ordinarily considered a subfield of mathematical logic",
+    "logic",
+    "studied with rhetoric",
+    "History of logic Theories of logic",
+    "developed in many cultures in history",
+    "and was a comprehensive reference to symbolic logic as it",
+    "understood at the end of the",
+    "Formal logic",
+    "study of deductively valid inferences or logical truths"
+  ],
+  "relations": [
+    {
+      "subject": "Logic",
+      "predicate": "is the",
+      "object": "study of correct reasoning",
+      "source": "my prior claims [g_07d73fa436]"
+    },
+    {
+      "subject": "Mathematical logic",
+      "predicate": "is the",
+      "object": "study of logic within mathematics",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "sometimes the field of computational complexity theory",
+      "predicate": "is",
+      "object": "also included together with mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "theory",
+      "predicate": "is",
+      "object": "not ordinarily considered a subfield of mathematical logic",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "logic",
+      "predicate": "was",
+      "object": "studied with rhetoric",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "History of logic Theories of logic",
+      "predicate": "were",
+      "object": "developed in many cultures in history",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "and was a comprehensive reference to symbolic logic as it",
+      "predicate": "was",
+      "object": "understood at the end of the",
+      "source": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "subject": "Formal logic",
+      "predicate": "is the",
+      "object": "study of deductively valid inferences or logical truths",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Informal logic",
+      "predicate": "is",
+      "object": "associated with informal fallacies",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "Systems of logic",
+      "predicate": "are",
+      "object": "theoretical frameworks for assessing the correctness of arguments",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "the main system of logic in the Western world until it",
+      "predicate": "was",
+      "object": "replaced by modern formal logic",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "subject": "the most commonly used system",
+      "predicate": "is",
+      "object": "classical logic",
+      "source": "https://en.wikipedia.org/wiki/Logic"
+    }
+  ],
+  "prediction": null,
+  "sources": [
+    {
+      "src": "my prior claims [g_07d73fa436]"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Mathematical_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_system"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Outline_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_language"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Term_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Philosophy_of_logic"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Formal_semantics_%28natural_language%29"
+    },
+    {
+      "src": "https://en.wikipedia.org/wiki/Informal_logic"
+    }
+  ],
+  "ts": "2026-11-03T03:36:29.095256+00:00"
+}
